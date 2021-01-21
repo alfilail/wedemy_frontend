@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminBaseComponent } from './layouts/base/admin/admin-base.component';
 import { HomepageBaseComponent } from './layouts/base/homepage/homepage-base.component';
-import { ParticipantBaseComponent } from './layouts/base/participant/participant-base.component';
+import { ParticipantBaseComponent } from './layouts/base/participant-instructor/participant-base.component';
 import { HomePageBaseModule } from './modules/homepage/base/homepage-base.module';
 
 const routes: Routes = [
