@@ -8,7 +8,7 @@ import { HomePageBaseModule } from './modules/homepage/base/homepage-base.module
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {

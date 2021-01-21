@@ -27,4 +27,4 @@ import { ReportModule } from '@bootcamp-elearning/modules/participant-instructor
     ReportModule
   ]
 })
-export class UserModule { }
+export class UserFitureModule { }

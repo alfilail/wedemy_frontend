@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserModule } from '../admin/user/user.module';
+import { UserFitureModule } from '@bootcamp-elearning/shared/modules/user-fiture.module';
 
 
 
@@ -8,7 +8,7 @@ import { UserModule } from '../admin/user/user.module';
   declarations: [],
   imports: [
     CommonModule,
-    UserModule
+    UserFitureModule
   ]
 })
 export class InstructorModule { }
