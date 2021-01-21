@@ -1,0 +1,12 @@
+.core-wrapper {
+  min-height: 100vh;
+}
+
+.main-wrapper {
+  background-color: #eff3f9;
+  border-top-left-radius: 35px;
+  border-bottom-left-radius: 35px;
+  padding-top: 40px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
