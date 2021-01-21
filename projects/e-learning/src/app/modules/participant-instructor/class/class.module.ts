@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClassRoutingModule } from './class-routing.module';
-import { ClassReadComponent } from '../../../pages/participant/class/read/class-read.component';
+import { ClassReadComponent } from '../../../pages/participant-tutor/class/read/class-read.component';
 
 
 @NgModule({

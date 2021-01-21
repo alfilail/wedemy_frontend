@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from '../../../pages/participant/dashboard/dashboard.component';
+import { DashboardComponent } from '../../../pages/participant-tutor/dashboard/dashboard.component';
 
 
 @NgModule({

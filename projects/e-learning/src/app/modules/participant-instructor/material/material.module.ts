@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialRoutingModule } from './material-routing.module';
-import { MaterialReadComponent } from '../../../pages/participant/material/read/material-read.component';
+import { MaterialReadComponent } from '../../../pages/participant-tutor/material/read/material-read.component';
 
 
 @NgModule({
