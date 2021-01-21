@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DashboardComponent } from '@bootcamp-elearning/pages/participant-tutor/dashboard/dashboard.component';
 
 const routes: Routes = [
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({
