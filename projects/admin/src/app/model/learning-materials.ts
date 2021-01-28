@@ -1,4 +1,7 @@
-export class LearningMaterials {
+import { BaseEntity } from "./base-entity";
+
+export class LearningMaterials implements BaseEntity {
+    createdBy: string;
     public code: string;
 
     public learningMaterialName: string;

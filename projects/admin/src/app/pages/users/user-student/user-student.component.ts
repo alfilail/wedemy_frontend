@@ -5,10 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   selector: 'app-user-student',
   templateUrl: './user-student.component.html',
   styleUrls: ['./user-student.component.css'],
-  styles: [`:host ::ng-deep .p-dialog .product-image {
-    width: 150px;
-    margin: 0 auto 2rem auto;
-    display: block;}`]
+  styles: []
 })
 export class UserStudentComponent implements OnInit {
 

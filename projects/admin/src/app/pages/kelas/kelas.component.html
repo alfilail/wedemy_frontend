@@ -8,10 +8,8 @@
             <div class="card">
                 <p-toolbar class="p-m-3">
                     <ng-template pTemplate="left">
-                        <button pButton pRipple label="New" icon="pi pi-plus" routerLink="/tambah-kelas"
+                        <button pButton pRipple label="New" icon="pi pi-plus" routerLink="/admin/tambah-kelas"
                             class="p-button-success p-mr-2"></button>
-                        <button pButton pRipple icon="pi pi-trash" label="Delete" class="p-button-danger"
-                            (click)="deleteSelectedProducts()"></button>
                     </ng-template>
                     <ng-template pTemplate="right">
                         <div class="p-d-flex p-ai-center p-jc-between">
@@ -23,14 +21,13 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="kelas" [rows]="10" [paginator]="true" [globalFilterFields]="['name', 'code']"
+                <p-table #dt [value]="listKelas" [rows]="10" [paginator]="true" [globalFilterFields]="['name', 'code']"
                     [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th style="width: 3rem">
-                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            <th pSortableColumn="code">Pengajar<p-sortIcon field="code"></p-sortIcon>
                             </th>
                             <th pSortableColumn="code">Kode Kelas<p-sortIcon field="code"></p-sortIcon>
                             </th>
@@ -50,14 +47,12 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-listKelas>
                         <tr>
-                            <td>
-                                <p-tableCheckbox [value]="listKelas"></p-tableCheckbox>
-                            </td>
-                            <td>{{listKelas.code}}</td>
-                            <td>{{listKelas.name}}</td>
-                            <td>{{listKelas.desc}}</td>
+                            <td>{{listKelas.idClass.idTutor.idProfile.fullName}}</td>
+                            <td>{{listKelas.idClass.code}}</td>
+                            <td>{{listKelas.idClass.className}}</td>
+                            <td>{{listKelas.idClass.description}}</td>
                             <td><img [src]="'../../../../../assets/img/java.png'" width="100" class="p-shadow-4" /></td>
-                            <td>{{listKelas.quota}}</td>
+                            <td>{{listKelas.idClass.quota}}</td>
                             <td>{{listKelas.startDate}}</td>
                             <td>{{listKelas.endDate}}</td>
                             <td>
@@ -70,7 +65,7 @@
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listKelas ? listKelas.length : 0 }} listKelas.
+                            Terdapat {{listKelas ? listKelas.length : 0 }} Kelas.
                         </div>
                     </ng-template>
                 </p-table>

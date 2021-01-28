@@ -26,3 +26,10 @@
    .btn-primary-outline{
     color: white;
     }
+
+    @media (max-width: 576px) {
+      .card{
+        width: 860px;
+      }
+    }
+  

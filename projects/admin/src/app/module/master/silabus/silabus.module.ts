@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SilabusRoutingModule } from './silabus-routing.module';
-import { SilabusComponent } from '../../../pages/silabus/silabus.component';
 import { AngMaterialModule } from '../../../shared/ang-material/ang-material.module';
 import { PrimeModule } from '../../../shared/prime/prime.module';
 import { SharedModule } from '../../../shared/shared.module';
+import { SilabusComponent } from '@bootcamp-admin/pages/silabus/silabus.component';
 
 
 @NgModule({

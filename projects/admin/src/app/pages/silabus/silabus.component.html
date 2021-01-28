@@ -10,8 +10,6 @@
                     <ng-template pTemplate="left">
                         <button pButton pRipple label="New" icon="pi pi-plus" (click)="openNew()"
                             class="p-button-success p-mr-2"></button>
-                        <button pButton pRipple icon="pi pi-trash" label="Delete" class="p-button-danger"
-                            (click)="deleteSelectedProducts()"></button>
                     </ng-template>
                     <ng-template pTemplate="right">
                         <div class="p-d-flex p-ai-center p-jc-between">
@@ -23,15 +21,12 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="silabus" [rows]="10" [paginator]="true" [globalFilterFields]="['name', 'code']"
-                    [rowHover]="true" dataKey="id" class="p-m-3"
+                <p-table #dt [value]="listSilabus" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['name', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th style="width: 3rem">
-                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                            </th>
                             <th pSortableColumn="code">Kode Silabus<p-sortIcon field="code"></p-sortIcon>
                             </th>
                             <th pSortableColumn="name">Nama Silabus<p-sortIcon field="name"></p-sortIcon>
@@ -41,11 +36,8 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-listSilabus>
                         <tr>
-                            <td>
-                                <p-tableCheckbox [value]="listSilabus"></p-tableCheckbox>
-                            </td>
                             <td>{{listSilabus.code}}</td>
-                            <td>{{listSilabus.name}}</td>
+                            <td>{{listSilabus.moduleName}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success p-mr-2" (click)="editProduct()"></button>
@@ -56,24 +48,24 @@
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listSilabus ? listSilabus.length : 0 }} silabus.
+                            Terdapat {{listSilabus ? listSilabus.length : 0 }} Silabus.
                         </div>
                     </ng-template>
                 </p-table>
             </div>
 
 
-            <p-dialog [(visible)]="productDialog" class="p-mt-5" [style]="{width: '40vw'}" header="Detail Kelas"
-                [modal]="true" styleClass="p-fluid">
+            <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tambah Silabus" [modal]="true"
+                styleClass="p-fluid">
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="name">Kode Silabus</label>
-                        <input type="text" pInputText id="code" required autofocus />
+                        <input type="text" pInputText id="code" [(ngModel)]="module.code" autofocus />
                         <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
                     </div>
                     <div class="p-field">
                         <label for="name">Nama Silabus</label>
-                        <input type="text" pInputText id="name" required autofocus />
+                        <input type="text" pInputText id="name" [(ngModel)]="module.moduleName" required autofocus />
                         <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
                     </div>
                     <div class="d-flex justify-content-end">
@@ -85,17 +77,11 @@
                         <div class="mt-2">
                             <button pButton pRipple label="Simpan" icon="pi pi-check"
                                 class="p-button-raised p-button-rounded p-button-success"
-                                (click)="saveProduct()"></button>
+                                (click)="insertModule()"></button>
                         </div>
                     </div>
                 </ng-template>
 
-                <!-- <ng-template pTemplate="footer">
-            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-              (click)="hideDialog()"></button>
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-              (click)="saveProduct()"></button>
-          </ng-template> -->
             </p-dialog>
             <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
         </div>

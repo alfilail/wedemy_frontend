@@ -11,3 +11,14 @@
   margin-top: 470px;
   height: 430px;
   }
+
+  @media (max-width: 576px) {
+    .card{
+      width: 600px;
+    }
+  }
+
+  
+  :host::ng-deep .p-dialog{
+    width: auto !important;
+  }

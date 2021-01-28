@@ -1,7 +1,9 @@
 import { AssignmentTypes } from "./assignment-types";
+import { BaseEntity } from "./base-entity";
 import { DetailModuleRegistrations } from "./dtl-module-registrations";
 
-export class Assignments {
+export class Assignments implements BaseEntity {
+    createdBy: string;
     public code: string;
 
     // public byte[] file;

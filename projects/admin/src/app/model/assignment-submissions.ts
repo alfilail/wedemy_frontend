@@ -3,7 +3,7 @@ import { Grades } from "./grades";
 import { SubmissionStatus } from "./submission-status";
 import { Users } from "./users";
 
-export class AssignmentSubmission {
+export class AssignmentSubmissions {
     // public byte[] file;
 
     public fileType: string;

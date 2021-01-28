@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,9 @@ import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { ConfirmationService, MessageService } from 'primeng/api';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptService } from './shared/http-intercept.service';
+import { PersetujuanAbsenComponent } from './pages/persetujuan-absen/persetujuan-absen.component';
 
 
 @NgModule({
@@ -28,9 +31,11 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     ToastrModule.forRoot(),
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

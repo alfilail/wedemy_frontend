@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Modules } from '../../model/modules';
+import { ModuleService } from '../../service/module.service';
 
 @Component({
   selector: 'app-silabus',
   templateUrl: './silabus.component.html',
   styleUrls: ['./silabus.component.scss'],
-  styles: [`:host ::ng-deep .p-dialog .product-image {
-    width: 150px;
-    margin: 0 auto 2rem auto;
-    display: block;}`]
+  styles: []
 })
 export class SilabusComponent implements OnInit {
 
@@ -17,22 +16,27 @@ export class SilabusComponent implements OnInit {
   submitted: boolean;
   statuses: any[];
 
-  listSilabus = [
-    { code: 'MD001JB-M01', name: 'Java Basic' },
-    { code: 'MD001JB-M02', name: 'Java Featured' },
-    { code: 'MD002JE-M01', name: 'Best Practice Java' },
-    { code: 'MD002JE-M02', name: 'Framework Java' },
-    { code: 'MD003FS-M01', name: 'Front End' },
-  ]
+  listSilabus: Modules[] = [];
+  module = new Modules();
 
-  silabus: any[] = this.listSilabus;
-
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getModules()
+  }
+
+  insertModule(): void {
+    this.moduleService.insertModules(this.module).subscribe(val => { })
+    this.productDialog = false;
+  }
+
+  getModules(): void {
+    this.moduleService.getModules().subscribe(val => {
+      this.listSilabus = val;
+      console.log(val)
+    })
   }
 
   deleteSelectedProducts() {

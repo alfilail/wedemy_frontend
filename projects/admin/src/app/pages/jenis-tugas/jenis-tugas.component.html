@@ -10,8 +10,6 @@
                     <ng-template pTemplate="left">
                         <button pButton pRipple label="New" icon="pi pi-plus" (click)="openNew()"
                             class="p-button-success p-mr-2"></button>
-                        <button pButton pRipple icon="pi pi-trash" label="Delete" class="p-button-danger"
-                            (click)="deleteSelectedProducts()"></button>
                     </ng-template>
                     <ng-template pTemplate="right">
                         <div class="p-d-flex p-ai-center p-jc-between">
@@ -23,29 +21,23 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="jenisTugas" [rows]="10" [paginator]="true" [globalFilterFields]="['name', 'code']"
-                    [rowHover]="true" dataKey="id" class="p-m-3"
+                <p-table #dt [value]="listJenisTugas" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['name', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th style="width: 3rem">
-                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                            </th>
                             <th pSortableColumn="code">Kode<p-sortIcon field="code"></p-sortIcon>
                             </th>
-                            <th pSortableColumn="name">Tipe<p-sortIcon field="name"></p-sortIcon>
+                            <th pSortableColumn="name">Nama Tipe<p-sortIcon field="name"></p-sortIcon>
                             </th>
                             <th>Aksi</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-listJenisTugas>
                         <tr>
-                            <td>
-                                <p-tableCheckbox [value]="listJenisTugas"></p-tableCheckbox>
-                            </td>
                             <td>{{listJenisTugas.code}}</td>
-                            <td>{{listJenisTugas.type}}</td>
+                            <td>{{listJenisTugas.learningMaterialTypeName}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success p-mr-2" (click)="editProduct()"></button>
@@ -56,24 +48,26 @@
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listJenisTugas ? listJenisTugas.length : 0 }} listKelas.
+                            Terdapat {{listJenisTugas ? listJenisTugas.length : 0 }} Jenis Tugas.
                         </div>
                     </ng-template>
                 </p-table>
             </div>
 
 
-            <p-dialog [(visible)]="productDialog" class="p-mt-5" [style]="{width: '55vw', height: '21vw'}"
-                header="Detail Jenis Tugas" [modal]="true" styleClass="p-fluid">
+            <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tambah Jenis Tugas" [modal]="true"
+                styleClass="p-fluid">
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="code">Kode</label>
-                        <input type="text" pInputText id="code" required autofocus />
+                        <input type="text" pInputText id="code" required autofocus
+                            [(ngModel)]="learningMaterialType.code" />
                         <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
                     </div>
                     <div class="p-field">
                         <label for="type">Tipe</label>
-                        <input type="text" pInputText id="type" required autofocus />
+                        <input type="text" pInputText id="type" required autofocus
+                            [(ngModel)]="learningMaterialType.learningMaterialTypeName" />
                         <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
                     </div>
                     <div class="d-flex justify-content-end">
@@ -85,7 +79,7 @@
                         <div class="mt-2">
                             <button pButton pRipple label="Simpan" icon="pi pi-check"
                                 class="p-button-raised p-button-rounded p-button-success"
-                                (click)="saveProduct()"></button>
+                                (click)="insertLearningMaterialType()"></button>
                         </div>
                     </div>
                 </ng-template>

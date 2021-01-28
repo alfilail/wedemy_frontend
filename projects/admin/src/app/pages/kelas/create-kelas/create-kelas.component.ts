@@ -12,7 +12,7 @@ export class CreateKelasComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
-
+  uploadedFiles: any[] = [];
   namaSilabusSelect: string;
   listKelas = [
     { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28', kodeSilabus: 'MD001JB-M01', namaSilabus: 'Java Basic' },
@@ -34,6 +34,7 @@ export class CreateKelasComponent implements OnInit {
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
+
 
   ngOnInit(): void {
   }

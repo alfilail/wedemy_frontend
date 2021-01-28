@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DetailClasses } from '@bootcamp-admin/model/dtl-classes';
+import { DtlClassService } from '@bootcamp-admin/service/dtl-class.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Classes } from '../../model/classes';
+import { ClassService } from '../../service/class.service';
 
 @Component({
   selector: 'app-kelas',
@@ -17,30 +21,23 @@ export class KelasComponent implements OnInit {
   submitted: boolean;
   statuses: any[];
 
-  listKelas = [
-    { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28' },
-    { code: 'C002S-JE01', name: 'Java Expert', desc: 'Kelas ini mempelajari tentang java secara expert', quota: '20', startDate: '2021-03-01', endDate: '2021-03-31' },
-    { code: 'C003S-FS01', name: 'Full Stack', desc: 'Kelas ini mempelajari agar menjadi seorang fullstack', quota: '15', startDate: '2021-04-01', endDate: '2021-04-30' },
-    { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28' },
-    { code: 'C002S-JE01', name: 'Java Expert', desc: 'Kelas ini mempelajari tentang java secara expert', quota: '20', startDate: '2021-03-01', endDate: '2021-03-31' },
-    { code: 'C003S-FS01', name: 'Full Stack', desc: 'Kelas ini mempelajari agar menjadi seorang fullstack', quota: '15', startDate: '2021-04-01', endDate: '2021-04-30' },
-    { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28' },
-    { code: 'C002S-JE01', name: 'Java Expert', desc: 'Kelas ini mempelajari tentang java secara expert', quota: '20', startDate: '2021-03-01', endDate: '2021-03-31' },
-    { code: 'C003S-FS01', name: 'Full Stack', desc: 'Kelas ini mempelajari agar menjadi seorang fullstack', quota: '15', startDate: '2021-04-01', endDate: '2021-04-30' },
-    { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28' },
-    { code: 'C002S-JE01', name: 'Java Expert', desc: 'Kelas ini mempelajari tentang java secara expert', quota: '20', startDate: '2021-03-01', endDate: '2021-03-31' },
-    { code: 'C003S-FS01', name: 'Full Stack', desc: 'Kelas ini mempelajari agar menjadi seorang fullstack', quota: '15', startDate: '2021-04-01', endDate: '2021-04-30' }
-  ]
 
-  kelas: any[] = this.listKelas;
+  listKelas: DetailClasses[] = [];
 
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
+    this.getClasses();
   }
 
+  getClasses() {
+    this.dtlClsService.getDetailClasses().subscribe(val => {
+      this.listKelas = val;
+      console.log(val)
+    })
+  }
   deleteSelectedProducts() {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the selected products?',

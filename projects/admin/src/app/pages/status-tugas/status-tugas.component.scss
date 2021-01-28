@@ -7,3 +7,12 @@
   color: $sidebar-icon-color;
 }
 
+@media (max-width: 576px) {
+  .card{
+    width: 700px;
+  }
+}
+
+:host::ng-deep .p-dialog{
+  width: auto !important;
+}

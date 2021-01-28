@@ -154,14 +154,11 @@
  font-weight: 400;
  font-size: 18px;
  padding-top: 5px;
+ position: relative;
+ left: -4px;
 }
 
 .accordion .icon{
- left: -20;
+ position: relative;
+ left: -3px;
 }
-
-// .mat-expansion-panel-header .mat-list-item  {
-//   // background-color: aquamarine;
-//   // margin-right: 2000px;
-//   padding-right: 1000px;
-// }

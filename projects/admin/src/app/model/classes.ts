@@ -1,6 +1,8 @@
+import { BaseEntity } from "./base-entity";
 import { Users } from "./users";
 
-export class Classes {
+export class Classes implements BaseEntity {
+    public createdBy: string;
     public code: string;
 
     public className: string;

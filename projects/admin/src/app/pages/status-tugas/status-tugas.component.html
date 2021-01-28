@@ -10,8 +10,6 @@
                     <ng-template pTemplate="left">
                         <button pButton pRipple label="New" icon="pi pi-plus" (click)="openNew()"
                             class="p-button-success p-mr-2"></button>
-                        <button pButton pRipple icon="pi pi-trash" label="Delete" class="p-button-danger"
-                            (click)="deleteSelectedProducts()"></button>
                     </ng-template>
                     <ng-template pTemplate="right">
                         <div class="p-d-flex p-ai-center p-jc-between">
@@ -23,15 +21,12 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="statusTugas" [rows]="10" [paginator]="true"
+                <p-table #dt [value]="listStatusTugas" [rows]="10" [paginator]="true"
                     [globalFilterFields]="['name', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th style="width: 3rem">
-                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                            </th>
                             <th pSortableColumn="code">Kode<p-sortIcon field="code"></p-sortIcon>
                             </th>
                             <th pSortableColumn="name">Nama Status<p-sortIcon field="name"></p-sortIcon>
@@ -41,11 +36,8 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-listStatusTugas>
                         <tr>
-                            <td>
-                                <p-tableCheckbox [value]="listStatusTugas"></p-tableCheckbox>
-                            </td>
                             <td>{{listStatusTugas.code}}</td>
-                            <td>{{listStatusTugas.name}}</td>
+                            <td>{{listStatusTugas.submissionStatusesName}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success p-mr-2" (click)="editProduct()"></button>
@@ -56,24 +48,25 @@
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{listStatusTugas ? listStatusTugas.length : 0 }} listKelas.
+                            Terdapat {{listStatusTugas ? listStatusTugas.length : 0 }} Status Tugas.
                         </div>
                     </ng-template>
                 </p-table>
             </div>
 
 
-            <p-dialog [(visible)]="productDialog" class="p-mt-5" [style]="{width: '55vw', height: '21vw'}"
-                header="Detail Status Persetujuan Kelas" [modal]="true" styleClass="p-fluid">
+            <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tambah Status Persetujuan Kelas" [modal]="true"
+                styleClass="p-fluid">
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="code">Kode</label>
-                        <input type="text" pInputText id="code" required autofocus />
+                        <input type="text" pInputText id="code" required autofocus [(ngModel)]="statusTugas.code" />
                         <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
                     </div>
                     <div class="p-field">
                         <label for="name">Nama Status</label>
-                        <input type="text" pInputText id="name" required autofocus />
+                        <input type="text" pInputText id="name" required autofocus
+                            [(ngModel)]="statusTugas.submissionStatusesName" />
                         <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
                     </div>
                     <div class="d-flex justify-content-end">
@@ -85,7 +78,7 @@
                         <div class="mt-2">
                             <button pButton pRipple label="Simpan" icon="pi pi-check"
                                 class="p-button-raised p-button-rounded p-button-success"
-                                (click)="saveProduct()"></button>
+                                (click)="insertSubmissionStatus()"></button>
                         </div>
                     </div>
                 </ng-template>

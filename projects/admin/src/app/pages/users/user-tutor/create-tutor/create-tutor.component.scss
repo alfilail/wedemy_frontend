@@ -14,3 +14,10 @@
  .btn-primary-outline{
   color: white;
   }
+
+  @media (max-width: 576px) {
+    :host::ng-deep .p-button{
+      width: 110px;
+    }
+
+  }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SilabusComponent } from '../../../pages/silabus/silabus.component';
+import { SilabusComponent } from '@bootcamp-admin/pages/silabus/silabus.component';
 
 
 const routes: Routes = [

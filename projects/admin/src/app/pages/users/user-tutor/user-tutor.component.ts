@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Users } from '../../../model/users';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-user-tutor',
@@ -13,21 +15,22 @@ export class UserTutorComponent implements OnInit {
   submitted: boolean;
   statuses: any[];
 
-  listUsers = [
-    { username: 'admin1', roleCode: 'adm', name: 'Imron Rosyadi' },
-    { username: 'tutor1', roleCode: 'ttr', name: 'Nur Alfilail' },
-    { username: 'tutor2', roleCode: 'ttr', name: 'Atalya Yoseba' },
-    { username: 'student1', roleCode: 'std', name: 'Dina Kasturi' },
-    { username: 'student2', roleCode: 'std', name: 'Anggi Alberto' },
-  ]
+  user: Users;
+  listUsers: Users[] = [];
 
-  user: any[] = this.listUsers;
-
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers(): void {
+    this.userService.getUsers().subscribe(val => {
+      this.listUsers = val;
+      console.log(val)
+    })
   }
 
   deleteSelectedProducts() {

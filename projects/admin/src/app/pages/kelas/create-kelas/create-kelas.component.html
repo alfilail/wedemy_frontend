@@ -24,6 +24,10 @@
                             <textarea class="form-control" id="description" rows="3" required autofocus></textarea>
                         </div>
                         <div class="p-field">
+                            <label for="kuota">Gambar Tnumbnail</label>
+                            <input type="file" class="form-control" id="customFile" />
+                        </div>
+                        <div class="p-field">
                             <label for="kuota">Kuota</label>
                             <input id="kuota" type="number" pInputText>
                         </div>
@@ -42,6 +46,21 @@
                                 inputId="navigators" [showIcon]="true" inputId="icon" [(ngModel)]="rangeDates"
                                 selectionMode="range" [readonlyInput]="true" inputId="range">
                             </p-calendar>
+                        </div>
+                        <div class="p-field">
+                            <div class="d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <label for="startDate">Jam Mulai</label>
+                                    <p-calendar [timeOnly]="true" inputId="timeonly">
+                                    </p-calendar>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <label for="startDate">Jam Selesai</label>
+                                    <p-calendar [timeOnly]="true" inputId="timeonly">
+                                    </p-calendar>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
@@ -67,7 +86,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col"> Code</th>
+                                <th scope="col">Code</th>
                                 <th scope="col">Desc Code</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Kuota</th>

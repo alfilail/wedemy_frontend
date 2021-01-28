@@ -14,7 +14,6 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -29,7 +28,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     ToolbarModule,
     ConfirmDialogModule,
     CalendarModule,
-    InputMaskModule
+    InputMaskModule,
   ],
   exports: [
     TableModule,
@@ -42,7 +41,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     ToolbarModule,
     ConfirmDialogModule,
     CalendarModule,
-    InputMaskModule
+    InputMaskModule,
   ]
 })
 export class PrimeModule { }

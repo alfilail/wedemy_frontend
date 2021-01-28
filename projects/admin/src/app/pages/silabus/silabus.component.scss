@@ -11,4 +11,18 @@
     color: $sidebar-icon-color;
   }
   
+  @media (max-width: 576px) {
+    .card{
+      width: 600px;
+    }
+
+    :host::ng-deep .p-dialog{
+      width: 50vw;
+    }
+  }
+
+  :host::ng-deep .p-dialog{
+    width: auto !important;
+  }
+
   

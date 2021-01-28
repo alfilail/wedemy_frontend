@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LearningMaterialTypes } from '@bootcamp-admin/model/learning-material-types';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { LearningMaterialTypeService } from '../../service/learning-material-type.service';
 
 @Component({
   selector: 'app-jenis-tugas',
@@ -17,20 +19,29 @@ export class JenisTugasComponent implements OnInit {
   submitted: boolean;
   statuses: any[];
 
-  listJenisTugas = [
-    { code: 'qz', type: 'quiz' },
-    { code: 'ex', type: 'exam' }
-  ]
 
-  jenisTugas: any[] = this.listJenisTugas;
+  listJenisTugas: LearningMaterialTypes[] = []
+  learningMaterialType = new LearningMaterialTypes();
 
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private learningMaterialTypeService: LearningMaterialTypeService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
+    this.getLearningMaterialTypes()
   }
 
+  insertLearningMaterialType() {
+    this.learningMaterialTypeService.insertLearningMaterialTypes(this.learningMaterialType).subscribe(val => { })
+    this.productDialog = false;
+  }
+
+  getLearningMaterialTypes() {
+    this.learningMaterialTypeService.getLearningMaterialTypes().subscribe(val => {
+      this.listJenisTugas = val;
+      console.log(val)
+    })
+  }
   deleteSelectedProducts() {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the selected products?',

@@ -12,5 +12,6 @@ export enum routes {
   USERPENGAJAR = '/admin/user-tutor',
   USERSTUDENT = '/admin/user-student',
   USERADMIN = '/admin/user-admin',
-  PENGATURAN = '/admin/pengaturan'
+  PENGATURAN = '/admin/pengaturan',
+  STATUSABSEN = '/admin/status-absen'
 }

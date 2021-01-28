@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Profiles } from '../../../model/profiles';
+import { Roles } from '../../../model/roles';
+import { Users } from '../../../model/users';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-user-admin',
   templateUrl: './user-admin.component.html',
   styleUrls: ['./user-admin.component.css'],
-  styles: [`:host ::ng-deep .p-dialog .product-image {
-    width: 150px;
-    margin: 0 auto 2rem auto;
-    display: block;}`]
+  styles: []
 })
 export class UserAdminComponent implements OnInit {
 
@@ -16,22 +17,22 @@ export class UserAdminComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
+  user: Users;
+  listUsers: Users[] = [];
 
-  listUsers = [
-    { username: 'admin1', roleCode: 'adm', name: 'Imron Rosyadi' },
-    { username: 'tutor1', roleCode: 'ttr', name: 'Nur Alfilail' },
-    { username: 'tutor2', roleCode: 'ttr', name: 'Atalya Yoseba' },
-    { username: 'student1', roleCode: 'std', name: 'Dina Kasturi' },
-    { username: 'student2', roleCode: 'std', name: 'Anggi Alberto' },
-  ]
-
-  user: any[] = this.listUsers;
-
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers(): void {
+    this.userService.getUsers().subscribe(val => {
+      this.listUsers = val;
+      console.log(val)
+    })
   }
 
   deleteSelectedProducts() {
@@ -40,15 +41,13 @@ export class UserAdminComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        // this.selectedProducts = null;
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
       }
     });
   }
 
-  editProduct() {
-    // this.product = {...product};
+  editProduct(user: Users) {
+    this.user = { ...user };
     this.productDialog = true;
   }
 

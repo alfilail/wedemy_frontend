@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { SubmissionStatus } from '../../model/submission-status';
+import { SubmissionStatusService } from '../../service/submission-status.service';
 
 @Component({
   selector: 'app-status-tugas',
   templateUrl: './status-tugas.component.html',
   styleUrls: ['./status-tugas.component.scss'],
-  styles: [`:host ::ng-deep .p-dialog .product-image {
-    width: 150px;
-    margin: 0 auto 2rem auto;
-    display: block;}`]
+  styles: []
 })
 export class StatusTugasComponent implements OnInit {
 
@@ -17,22 +16,26 @@ export class StatusTugasComponent implements OnInit {
   submitted: boolean;
   statuses: any[];
 
-  listStatusTugas = [
-    { code: '', name: '' },
-    { code: '', name: '' },
-    { code: '', name: '' },
-    { code: '', name: '' },
-    { code: '', name: '' },
-  ]
+  listStatusTugas: SubmissionStatus[] = [];
+  statusTugas = new SubmissionStatus();
 
-  statusTugas: any[] = this.listStatusTugas;
-
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private submissionStatusService: SubmissionStatusService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.getSubmissionStatus();
+  }
+
+  insertSubmissionStatus() {
+    this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => { })
+    this.productDialog = false;
+  }
+  getSubmissionStatus() {
+    this.submissionStatusService.getSubmissionStatus().subscribe(val => {
+      this.listStatusTugas = val;
+      console.log(val)
+    })
   }
 
   deleteSelectedProducts() {

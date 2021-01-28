@@ -1,37 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Grades } from '../../model/grades';
+import { GradeService } from '../../service/grade.service';
 
 @Component({
   selector: 'app-nilai',
   templateUrl: './nilai.component.html',
   styleUrls: ['./nilai.component.scss'],
-  styles: [`:host ::ng-deep .p-dialog .product-image {
-    width: 150px;
-    margin: 0 auto 2rem auto;
-    display: block;}`]
+  styles: []
 })
 export class NilaiComponent implements OnInit {
 
   productDialog: boolean;
   rangeDates: Date[];
   submitted: boolean;
-  statuses: any[];
 
-  listNilai = [
-    { code: 'A', minScore: '86', maxScore: '100' },
-    { code: 'B', minScore: '75', maxScore: '85' },
-    { code: 'C', minScore: '55', maxScore: '74' },
-    { code: 'D', minScore: '40', maxScore: '54' },
-    { code: 'E', minScore: '0', maxScore: '40' },
-  ]
+  nilai = new Grades();
+  listNilai: Grades[] = []
 
-  nilai: any[] = this.listNilai;
-
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private gradeService: GradeService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
+    this.getNilai();
+  }
+
+  insertNilai(): void {
+    this.gradeService.insertGrade(this.nilai).subscribe(val => { });
+    this.productDialog = false;
+  }
+
+  getNilai(): void {
+    this.gradeService.getGrades().subscribe(val => {
+      this.listNilai = val;
+      console.log(val);
+    })
   }
 
   deleteSelectedProducts() {

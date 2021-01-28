@@ -8,6 +8,7 @@ import { NilaiModule } from './nilai/nilai.module';
 import { SilabusModule } from './silabus/silabus.module';
 import { StatusTugasModule } from './status-tugas/status-tugas.module';
 import { UserModule } from './user/user.module';
+import { PersetujuanAbsenModule } from './persetujuan-absen/persetujuan-absen.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { UserModule } from './user/user.module';
     SilabusModule,
     StatusTugasModule,
     UserModule,
+    PersetujuanAbsenModule
     // PengaturanModule
   ]
 })

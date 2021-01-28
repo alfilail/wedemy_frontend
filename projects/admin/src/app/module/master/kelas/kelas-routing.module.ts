@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateKelasComponent } from '../../../pages/kelas/create-kelas/create-kelas.component';
-import { KelasComponent } from '../../../pages/kelas/kelas.component';
+import { CreateKelasComponent } from '@bootcamp-admin/pages/kelas/create-kelas/create-kelas.component';
+import { KelasComponent } from '@bootcamp-admin/pages/kelas/kelas.component';
 
 
 const routes: Routes = [

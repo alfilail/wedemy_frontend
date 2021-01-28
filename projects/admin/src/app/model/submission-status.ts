@@ -1,4 +1,7 @@
-export class SubmissionStatus {
+import { BaseEntity } from "./base-entity";
+
+export class SubmissionStatus implements BaseEntity {
+    createdBy: string;
 
     public code: string;
 
