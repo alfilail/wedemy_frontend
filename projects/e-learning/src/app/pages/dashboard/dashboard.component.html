@@ -2,42 +2,41 @@
   <div class="container">
     <div class="d-block d-lg-flex justify-content-between mb-4">
       <div class="form-group d-block">
-        <label for="">Kategori :&nbsp;</label>
-        <select class="shadow-sm">
-          <option selected>Semua</option>
-          <option value="1">Mobile Programming</option>
-          <option value="2">Web Programming</option>
-          <option value="3">Spring Boot</option>
+        <label for="">Instruktur :&nbsp;</label>
+        <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" class="shadow-sm">
+          <option [ngValue]="'Semua'">Semua</option>
+          <option *ngFor="let instructor of instructors" [ngValue]="instructor">{{ instructor }}</option>
         </select>
       </div>
       <div class="form-group has-search">
-        <span class="fa fa-search form-control-feedback"></span>
-        <input type="text" class="form-control" placeholder="Temukan kelas">
+        <span class="fas fa-search form-control-feedback"></span>
+        <input [(ngModel)]="query" (ngModelChange)="search()" type="text" class="form-control" placeholder="Temukan kelas">
       </div>
     </div>
 
     <div class="row course-list list justify-content-between">
       <!-- Course Listing -->
-      <div class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
-        <div class="card shadow-lg card-light">
-          <img src="../../../../assets/img/default-course-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title class-title" [routerLink]="['/instructor/class/enrolled']">Fullstack Javascript Web
-              Developer Dalam Waktu 3 Bulan</h5>
-            <p class="card-text class-short-desc">
-              Raih Impian Menjadi Mobile Developer Android & iOS hanya dalam 1 Bulan !
-            </p>
-            <hr>
-            <div class="instructor-profile">
-              <img class="float-left rounded-circle"
-                src="https://s.gravatar.com/avatar/52bc543775b79088bc3bb3db40524299?d=mm" alt="" width="36px"
-                height="36px">
-              <p class="ml-3 float-left instructor-name mt-2">Anggi Alberto</p>
+      <ng-template ngFor let-class [ngForOf]="results" let-i="index">
+        <div  class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
+          <div class="card shadow-lg card-light">
+            <img src="assets/img/default-course-image.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title class-title" [routerLink]="['../class/enrolled']">{{class.name}}</h5>
+              <p class="card-text class-short-desc">
+                {{class.desc}}
+              </p>
+              <hr>
+              <div class="instructor-profile">
+                <img class="float-left rounded-circle"
+                  src="https://s.gravatar.com/avatar/52bc543775b79088bc3bb3db40524299?d=mm" alt="" width="36px"
+                  height="36px">
+                <p class="ml-3 float-left instructor-name mt-2">{{class.instructor}}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
+      </ng-template>
+     
     </div>
   </div>
 </main>
