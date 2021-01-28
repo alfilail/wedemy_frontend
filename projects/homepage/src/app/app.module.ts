@@ -20,7 +20,8 @@ import { MessageService } from 'primeng/api';
   ],
   providers: [
     MessageService,
-    { provide : HTTP_INTERCEPTORS ,  useClass : HttpIntercept , multi : true }
+    { provide: HTTP_INTERCEPTORS, useClass: HttpIntercept, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })
