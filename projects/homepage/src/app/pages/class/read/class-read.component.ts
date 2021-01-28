@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Classes } from '@bootcamp-homepage/models/classes';
+import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
 import { ClassService } from '@bootcamp-homepage/services/class.service';
+import { DetailClassService } from '@bootcamp-homepage/services/detail-class.service';
 
 @Component({
   selector: 'app-class-read',
@@ -19,19 +21,23 @@ export class ClassReadComponent implements OnInit {
     {'status':3,'img':'https://hackernoon.com/hn-images/1*fKb9TdxSYjVzWindUWaGUg.png','quota': 98, 'name': 'Bootstrap', 'modul': '101 modul'}
   ]
   searchText = '';
-  listClasses: Classes[] = [];
+  listClasses: DetailClasses[] = [];
 
   constructor(private router: Router,
-    private classService: ClassService
+    private dtlClassService: DetailClassService
     ) { }
 
   ngOnInit(): void {
-    this.classService.getAll()
+    this.dtlClassService.getAll()
       .subscribe(res => {
         console.log(res);
         this.listClasses = res;
         // console.log(res);
       });
   }
+
+  showDetail(id: string): void {
+    this.router.navigateByUrl(`/class/${id}`);
+}
 
 }

@@ -21,6 +21,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
 import { EditorModule } from 'primeng/editor';
 import {SkeletonModule} from 'primeng/skeleton';
+import {ToastModule} from 'primeng/toast';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {SkeletonModule} from 'primeng/skeleton';
     CalendarModule,
     InputMaskModule,
     EditorModule,
-    SkeletonModule
+    SkeletonModule,
+    ToastModule
   ],
   exports: [
     CommonModule,
@@ -71,7 +73,8 @@ import {SkeletonModule} from 'primeng/skeleton';
     CalendarModule,
     InputMaskModule,
     EditorModule,
-    SkeletonModule
+    SkeletonModule,
+    ToastModule
   ]
 })
 export class PrimeNGModule { }

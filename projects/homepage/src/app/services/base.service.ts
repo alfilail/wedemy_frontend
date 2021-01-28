@@ -5,5 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class BaseService {
 
+  api: string = "http://192.168.15.183:8080";
+  
   constructor() { }
 }

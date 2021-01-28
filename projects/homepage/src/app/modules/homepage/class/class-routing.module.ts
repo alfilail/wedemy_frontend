@@ -9,9 +9,9 @@ const routes: Routes = [
     component: ClassReadComponent
   },
   {
-    path: 'class/detail',
+    path : 'class/:idClass',
     component: ClassDetailComponent
-  }
+  },
 ];
 
 @NgModule({

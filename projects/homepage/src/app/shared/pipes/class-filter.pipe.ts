@@ -23,7 +23,7 @@ export class ClassFilterPipe implements PipeTransform {
     searchText = searchText.toLocaleLowerCase();
 
     return items.filter(it => {
-      return it.className.toLocaleLowerCase().includes(searchText);
+      return it.idClass.className.toLocaleLowerCase().includes(searchText);
     });
   }
 

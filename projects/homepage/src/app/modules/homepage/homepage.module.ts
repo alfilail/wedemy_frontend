@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
 import { ClassModule } from './class/class.module';
+import { HttpClientModule } from '@angular/common/http';
+import {Location} from '@angular/common';
 
 
 
@@ -12,7 +14,9 @@ import { ClassModule } from './class/class.module';
     CommonModule,
     AboutModule,
     HomeModule,
-    ClassModule
+    ClassModule,
+    // Location
+    // HttpClientModule
   ]
 })
 export class HomepageModule { }

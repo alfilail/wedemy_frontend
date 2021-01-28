@@ -8,7 +8,7 @@ import { PrimeNGModule } from '@bootcamp-homepage/shared/prime-ng/prime-ng.modul
 import { RouterModule } from '@angular/router';
 import { ClassFilterPipe } from '@bootcamp-homepage/shared/pipes/class-filter.pipe';
 import { ModuleFilterPipe } from '@bootcamp-homepage/shared/pipes/module-filter.pipe';
-
+// import {Location} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { ModuleFilterPipe } from '@bootcamp-homepage/shared/pipes/module-filter.
     CommonModule,
     ClassRoutingModule,
     PrimeNGModule,
-    RouterModule,
+    RouterModule
   ]
 })
 export class ClassModule { }
