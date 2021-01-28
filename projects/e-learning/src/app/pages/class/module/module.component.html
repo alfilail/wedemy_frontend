@@ -10,51 +10,56 @@
   </select>
 </div>
 
-<div class="row">
-  <div class="col-sm-12 course-section">
-    <div class="section-title d-flex justify-content-between align-items-center pl-3 py-2">
-      Java Basic
-      <div *ngIf="selectedView == viewType.OPERATION_VIEW">
-        <a [routerLink]="['../add-material']" class="btn btn-add">
-          Add Material
-        </a>
-      </div>
-    </div>
-
-    <ul class="section-list">
-      <li class="section-item d-flex justify-content-between py-2 align-items-center">
-        <a [routerLink]="['/instructor/class/material/']" class="item">
-          <div class="title-container">
-            <span class="material-icon">
-              <i class="fas fa-file-alt"></i>
-            </span>
-            <span class="material-name">
-              Mempelajari Dasar HTML 5
-            </span>
-          </div>
-        </a>
-        <div class="d-flex">
-          <ng-template [ngIf]="selectedView == viewType.OPERATION_VIEW">
-            <span class="material-icon">
-              <button class="btn btn-info rounded-circle">
-                <i class="fas fa-edit"></i>
-              </button>
-            </span>
-
-            <span class="material-icon">
-              <button class="btn btn-danger rounded-circle">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </span>
-
-            <!-- <span class="material-icon">
-                <button class="btn btn-success rounded-circle">
-                  <i class="fas fa-hand-paper"></i>
-                </button>
-              </span> -->
-          </ng-template>
+<ng-template ngFor let-module [ngForOf]="modules" let-i="index">
+  <div class="row">
+    <div class="col-sm-12 course-section">
+      <div class="section-title d-flex justify-content-between align-items-center pl-3 py-2">
+        {{module.module.idModule.moduleName}}
+        <div *ngIf="selectedView == viewType.OPERATION_VIEW">
+          <a [routerLink]="['../add-material']" class="btn btn-add">
+            Add Material
+          </a>
         </div>
-      </li>
-    </ul>
+      </div>
+
+      <ul class="section-list">
+        <ng-template ngFor let-material [ngForOf]="module.learningMaterials" let-i="index">
+          <li class="section-item d-flex justify-content-between py-2 align-items-center">
+            <a [routerLink]="['/instructor/class/material/']" class="item">
+              <div class="title-container">
+                <span class="material-icon">
+                  <i class="fas fa-file-alt"></i>
+                </span>
+                <span class="material-name">
+                  {{material.idLearningMaterial.learningMaterialName}}
+                </span>
+              </div>
+            </a>
+            <div class="d-flex">
+              <ng-template [ngIf]="selectedView == viewType.OPERATION_VIEW">
+                <span class="material-icon">
+                  <button class="btn btn-info rounded-circle">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                </span>
+
+                <span class="material-icon">
+                  <button class="btn btn-danger rounded-circle">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </span>
+
+                <!-- <span class="material-icon">
+                    <button class="btn btn-success rounded-circle">
+                      <i class="fas fa-hand-paper"></i>
+                    </button>
+                  </span> -->
+              </ng-template>
+            </div>
+          </li>
+        </ng-template>
+
+      </ul>
+    </div>
   </div>
-</div>
+</ng-template>

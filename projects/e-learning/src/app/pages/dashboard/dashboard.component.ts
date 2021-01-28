@@ -43,7 +43,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getUniqueInstructor(): void {
-    const uniqueInstructors = [...new Set(this.classes.map(item => item.instructor))];
+    // const uniqueInstructors = [...new Set(this.classes.map(item => item.instructor))];
+    // this.instructors = uniqueInstructors;
+    const uniqueInstructors = this.classes.filter((val, i, arr) => {
+      return arr.indexOf(arr.find(item => item.instructor === val.instructor)) === i;
+    })
     this.instructors = uniqueInstructors;
   }
 
