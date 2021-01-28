@@ -1,0 +1,46 @@
+<div class="course-sidebar position-fixed d-inline-block">
+  <img src="../../../../assets/img/default-course-image.png" class="w-100" alt="...">
+
+  <h2 class="course-title mx-4">Fullstack Javascript Web Developer Dalam Waktu 3 Bulan</h2>
+
+  <ul class="sidebar-nav list-unstyled">
+    <!-- Sidebar Nav -->
+    <li [routerLink]="['enrolled']" routerLinkActive="selected">
+      <a class="sidebar-nav-link">
+        <span class="lecture-sidebar-icon">
+          <i class="fa fa-list-alt"></i>
+        </span>
+        Class Module
+      </a>
+    </li>
+
+    <li [routerLink]="['instructor']" routerLinkActive="selected">
+      <a class="sidebar-nav-link">
+        <span class="lecture-sidebar-icon">
+          <i class="fa fa-user"></i>
+        </span>
+        Your Instructor
+      </a>
+    </li>
+
+    <li [routerLink]="['report']" routerLinkActive="selected">
+      <a class="sidebar-nav-link">
+        <span class="lecture-sidebar-icon">
+          <i class="fas fa-clipboard-list"></i>
+        </span>
+        Your Report
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="course-mainbar">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="navbar fixed-bottom navbar-light bg-white shadow-sm d-block d-md-none d-lg-none">
+  <a class="navbar-brand" href="#">Fixed bottom</a>
+</nav>
+<!-- End Bottom Navigation -->

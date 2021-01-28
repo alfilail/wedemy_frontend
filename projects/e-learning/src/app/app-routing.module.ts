@@ -1,58 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminBaseComponent } from './layouts/base/admin/admin-base.component';
-import { HomepageBaseComponent } from './layouts/base/homepage/homepage-base.component';
-import { ParticipantBaseComponent } from './layouts/base/participant-instructor/participant-base.component';
-import { HomePageBaseModule } from './modules/homepage/base/homepage-base.module';
+import { BaseComponent } from './layouts/base/base.component';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
-    component: HomepageBaseComponent,
-    loadChildren: () => import('@bootcamp-elearning/modules/homepage/homepage.module')
-      .then(m => m.HomepageModule)
-  },
-  {
-    path: 'admin',
-    component: AdminBaseComponent,
-    loadChildren: () => import('@bootcamp-elearning/modules/admin/admin.module')
-      .then(m => m.AdminModule)
-  },
-  {
-    path: 'participant',
-    component: ParticipantBaseComponent,
-    loadChildren: () => import('@bootcamp-elearning/modules/participant-instructor/participant.module')
-      .then(m => m.ParticipantModule)
-  },
-  {
     path: 'instructor',
-    component: ParticipantBaseComponent,
-    loadChildren: () => import('@bootcamp-elearning/modules/participant-instructor/instructor.module')
+    component: BaseComponent,
+    loadChildren: () => import('@bootcamp-elearning/modules/instructor.module')
       .then(m => m.InstructorModule)
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module')
-      .then(m => m.AuthModule)
-  },
-  {
-    path: '**',
-    loadChildren: () => import('./modules/page404/page404.module')
-      .then(m => m.Page404Module)
+    path: 'participant',
+    component: BaseComponent,
+    loadChildren: () => import('@bootcamp-elearning/modules/participant.module')
+      .then(m => m.ParticipantModule)
   }
-
-
 ];
+
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes),
-    HomePageBaseModule],
+  imports: [
+    RouterModule.forChild(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,31 @@
+li.tab-item:not(:last-child) {
+  margin-right: 26px;
+}
+
+li.tab-item {
+  margin-top: 20px;
+  padding: 12px 16px;
+  width: 120px;
+  text-align: center;
+  color: #c7c1c1;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #d8d8d831;
+}
+
+li.tab-item:hover {
+  color: #f4d242;
+  background-color: #f4d3423a;
+}
+
+li.tab-item.active {
+  color: #f4d242;
+  background-color: #f4d3423a;
+  cursor: default;
+}
+
+.comments {
+  background-color: #e7e4e46e;
+  padding: 10px 16px;
+  border-radius: 6px;
+}

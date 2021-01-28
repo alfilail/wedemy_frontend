@@ -1,0 +1,55 @@
+<section class="section-title">
+  <h2>Add Material</h2>
+</section>
+
+<div class="row">
+  
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label for="materialCode">Kode Materi</label>
+      <input type="text" class="form-control" id="materialCode" aria-describedby="materialCodeHelp">
+      <small id="materialCodeHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label for="materialName">Nama Materi</label>
+      <input type="text" class="form-control" id="materialName" aria-describedby="materialNameHelp">
+      <small id="materialNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+  </div>
+    
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label for="startDate">Tanggal Berlangsung</label>
+      <input type="date" class="form-control" id="startDate" aria-describedby="startDateHelp">
+      <small id="startDateHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label for="materialName">File</label>
+      <input type="file" class="form-control" id="materialName" aria-describedby="materialNameHelp">
+      <small id="materialNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="form-group">
+      <label for="materialName">Description</label>
+      <!-- <input type="text" class="form-control" id="materialName" aria-describedby="materialNameHelp">
+      <small id="materialNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      <p-editor [(ngModel)]="description" [style]="{'height':'200px'}">
+      </p-editor>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-danger mr-3">Batal</button>
+      <button class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+
+  
+</div>

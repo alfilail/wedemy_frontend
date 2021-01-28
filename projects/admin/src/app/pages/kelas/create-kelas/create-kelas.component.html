@@ -1,0 +1,113 @@
+<app-layout>
+
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 pb-5 justify-content-center">
+            <div class="card m-4">
+                <div class="card-header d-flex">
+                    <button class="btn btn-primary-outline" width="20px" routerLink="/user-tutor">
+                        <i class="fas fa-chevron-left fa-lg"></i>
+                    </button>
+                    <h5 class="m-2 pt-1 pb-1">Kembali</h5>
+                </div>
+                <div class="card-body">
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="code">Kode Kelas</label>
+                            <input id="code" type="text" pInputText>
+                        </div>
+                        <div class="p-field">
+                            <label for="name">Nama Kelas</label>
+                            <input id="name" type="text" pInputText>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="3" required autofocus></textarea>
+                        </div>
+                        <div class="p-field">
+                            <label for="kuota">Kuota</label>
+                            <input id="kuota" type="number" pInputText>
+                        </div>
+                        <div class="p-field">
+                            <label for="kodeSilabus">Kode Silabus</label>
+                            <select class="form-control" [(ngModel)]="namaSilabusSelect" ngDefaultControl>
+                                <option *ngFor="let namaSilabus of listKelas" [value]="namaSilabus"
+                                    [selected]="namaSilabus.kodeSilabus == namaSilabusSelect">
+                                    {{namaSilabus.kodeSilabus + ' - ' + namaSilabus.namaSilabus}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="p-field">
+                            <label for="startDate">Tanggal Mulai - Tanggal Selesai</label>
+                            <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
+                                inputId="navigators" [showIcon]="true" inputId="icon" [(ngModel)]="rangeDates"
+                                selectionMode="range" [readonlyInput]="true" inputId="range">
+                            </p-calendar>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <div class="m-2 mt-4">
+                            <button pButton pRipple label="Cancel" icon="pi pi-times"
+                                class="p-button-raised p-button-danger"></button>
+                        </div>
+                        <div class="mt-4">
+                            <button pButton pRipple label="Tambah" icon="pi pi-plus"
+                                class="p-button-raised p-button-success"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List  -->
+            <div class="card m-4">
+                <div class="card-header">
+                    <h5 class="m-2 pt-1 pb-1">Daftar Kelas</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col"> Code</th>
+                                <th scope="col">Desc Code</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Kuota</th>
+                                <th scope="col">Tanggal Mulai</th>
+                                <th scope="col">Tanggal Selesai</th>
+                                <th scope="col">Nama Silabus</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let kelas of listKelas; let i = index">
+                            <tr>
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{kelas.code}}</td>
+                                <td>{{kelas.desc}}</td>
+                                <td>{{kelas.name}}</td>
+                                <td>{{kelas.quota}}</td>
+                                <td>{{kelas.startDate}}</td>
+                                <td>{{kelas.endDate}}</td>
+                                <td>{{kelas.namaSilabus}}</td>
+                                <td>
+                                    <li class="list-inline-item">
+                                        <button class="btn btn-danger btn-sm my-2 rounded-0" type="button"
+                                            (click)="deleteList(i)"><i class="fas fa-trash-alt"></i></button>
+                                    </li>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group d-flex justify-content-end">
+                        <!-- <div *ngIf="isList; else noButton"> -->
+                        <div class="mt-4">
+                            <button pButton pRipple label="Simpan" icon="pi pi-plus"
+                                class="p-button-raised p-button-success "></button>
+                        </div>
+                        <ng-template #noButton>
+                            <button class=" btn btn-outline mt-4"></button>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout>

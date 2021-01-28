@@ -1,0 +1,176 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row content-item mx-auto flex-wrap-reverse">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="content-text p-5 mt-5">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus quibusdam vitae accusamus aliquam mollitia eveniet quasi quas dignissimos veniam neque velit fuga quam obcaecati tenetur molestiae similique exercitationem, sapiente
+                        dolorum!
+                    </p>
+                    <button pButton type="button" label="Belajar Sekarang"></button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="d-flex justify-content-around">
+                    <img class="" src="assets/img/header-img.png" [style]="{'width': '80%'}" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row sec1 p-3 my-5 shadow-lg rounded">
+            <div class="col-12 my-3 ">
+                <h2>Telah Dipercaya Oleh</h2>
+            </div>
+            <div class="col-12 my-3 partner-logo">
+                <img src="https://www.lawencon.com/wp-content/uploads/2016/11/lwcn-logo.png" alt="">
+                <img src="https://yt3.ggpht.com/ytc/AAUvwnhqbcSFYE8YYpfQNXD_pfFNOJGqvC0t68mwtK1o=s900-c-k-c0x00ffffff-no-rj" alt="">
+                <img src="https://images.solopos.com/2017/02/Gojek-1200x900.jpg" alt="">
+                <img src="https://www.lawencon.com/wp-content/uploads/2016/11/LinovCRM-Logo-Flat.png" alt="">
+                <img src="https://imgsrv.era.id/87NhFOZVm9zf1q1gfmNQblxLXJRKh_NhFy-UvL_92vE/fill/1280/720/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy8zMzUxNy8yMDIwMDcyNDEzMzMtbWFpbi5jcm9wcGVkXzE1OTU1NzM5ODEuanBn.jpg" alt="">
+                <img src="https://bpti.uhamka.ac.id/wp-content/uploads/2019/11/Logo-Baru-UHAMKA-Tanpa-Slogan.png" alt="">
+                <img src="https://i1.wp.com/www.glngirwn.com/wp-content/uploads/2020/03/logo-pepsi-1.jpg?resize=750%2C750&ssl=1" alt="">
+                <img src="https://wiki.latbangdjogja.web.id/images/thumb/9/99/Logo-BKKBN-Baru-2020.png/320px-Logo-BKKBN-Baru-2020.png" alt="">
+            </div>
+        </div>
+
+
+        <div class="row sec2 py-5 my-5">
+            <div class="col-12 my-3">
+                <h2>Kelas Favorit</h2>
+            </div>
+
+            <div class=" col-12 class-wrapper mt-5 d-flex flex-wrap justify-content-around">
+                <div class="card-deck">
+                    <div class="card shadow class-card" *ngFor="let c of class">
+                        <div class="card-img-wrapper">
+                            <img src="{{c.img}}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{c.name}}</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p-divider></p-divider>
+                            <p class="card-text text-left ml-2"><i class="pi pi-users mr-1"></i><small>{{c.quota}} peserta</small></p>
+                            <p class="card-text text-left ml-2"><i class="pi pi-book mr-1"></i><small>{{c.modul}}</small></p>
+                        </div>
+                        <div>
+                            <button pButton type="button" icon="pi pi-arrow-right" iconPos="left" label="Selengkapnya" class="mb-4"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="pb-5">
+            <div class="my-3 text-center">
+                <h2>Testimoni Alumni</h2>
+            </div>
+            <div id="carouselExampleControls" class="carousel slide mb-5 rounded" data-ride="carousel ">
+                <ol class="carousel-indicators mt-5 pt-5">
+                    <li data-target="#carouselExampleControls" data-slide-to="0 " class="active bg-dark "></li>
+                    <li data-target="#carouselExampleControls" data-slide-to="1 " class="bg-dark "></li>
+                    <li data-target="#carouselExampleControls" data-slide-to="2 " class="bg-dark "></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active ">
+                        <div class="col-12 ">
+                            <div class="card ">
+                                <div class="card-horizontal d-lg-flex ">
+                                    <div class=" img-square-wrapper ">
+                                        <img class="img-fluid" src="https://image.freepik.com/free-photo/young-redhead-student-man-cheerful-smiling-pointing-front_1187-17784.jpg ">
+                                    </div>
+                                    <div class="card-body flex-grow-1 ">
+                                        <h4 class="card-title ">Nur Alfilail</h4>
+                                        <p class="card-text ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nihil rerum deserunt? Nisi facere, tempore dolores culpa magni odio, qui distinctio blanditiis expedita sapiente voluptas maxime voluptates sit doloremque
+                                            corporis.
+                                        </p>
+                                        <p-divider></p-divider>
+                                        <div class="mb-5">
+                                            <small>
+                                              <p>Front End Developer - <b>PT. Lawencon International</b></p>
+                                              <p>Lulusan Front-end Web Developer Learning Path</p>
+                                          </small>
+                                        </div>
+                                        <div class="carousel-arrow fixed-bottom text-right pr-5">
+                                            <a class=" " href="#carouselExampleControls" role="button " data-slide="prev">
+                                                <i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i>
+                                            </a>
+                                            <a class="pl-1" href="#carouselExampleControls" role="button " data-slide="next">
+                                                <i class="pi pi-arrow-circle-right" style="font-size: 2rem"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="col-12 ">
+                            <div class="card ">
+                                <div class="card-horizontal d-lg-flex ">
+                                    <div class="img-square-wrapper ">
+                                        <img class="img-fluid " src="https://image.freepik.com/free-photo/young-student-girl-isolated-yellow-surprised-pointing-finger-side_1368-60201.jpg " alt="Card image cap ">
+                                    </div>
+                                    <div class="card-body">
+
+                                        <h4 class="card-title ">Anggi Alberto</h4>
+                                        <p class="card-text ">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <p-divider></p-divider>
+                                        <div class="mb-5">
+                                            <small>
+                                              <p>Front End Developer - <b>PT. Lawencon International</b></p>
+                                              <p>Lulusan Front-end Web Developer Learning Path</p>
+                                          </small>
+                                        </div>
+                                        <div class="carousel-arrow fixed-bottom text-right pr-5">
+                                            <a class=" " href="#carouselExampleControls" role="button " data-slide="prev">
+                                                <i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i>
+                                            </a>
+                                            <a class="pl-1" href="#carouselExampleControls" role="button " data-slide="next">
+                                                <i class="pi pi-arrow-circle-right" style="font-size: 2rem"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="col-12 ">
+                            <div class="card ">
+                                <div class="card-horizontal d-lg-flex ">
+                                    <div class="img-square-wrapper ">
+                                        <img class="img-fluid " src="https://image.freepik.com/free-photo/young-student-man-holding-books-surprised-pointing-himself-smiling-broadly_1187-19890.jpg " alt="Card image cap ">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">Imron Rosyadi</h4>
+                                        <p class="card-text ">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <p-divider></p-divider>
+                                        <div class="mb-5">
+                                            <small>
+                                              <p>Front End Developer - <b>PT. Lawencon International</b></p>
+                                              <p>Lulusan Front-end Web Developer Learning Path</p>
+                                            </small>
+                                        </div>
+                                        <div class="carousel-arrow fixed-bottom text-right pr-5">
+                                            <a class=" " href="#carouselExampleControls" role="button " data-slide="prev">
+                                                <i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i>
+                                            </a>
+                                            <a class="pl-1" href="#carouselExampleControls" role="button " data-slide="next">
+                                                <i class="pi pi-arrow-circle-right" style="font-size: 2rem"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

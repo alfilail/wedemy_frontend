@@ -1,0 +1,45 @@
+main {
+  font-family: Quicksand, sans-serif !important;
+  background-color: #f6f8fa;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.class-title {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Quicksand, sans-serif !important;
+  cursor: pointer;
+}
+
+.class-short-desc {
+  font-size: 13px;
+  font-weight: 600;
+  color: #bac0c2;
+}
+
+.instructor-name {
+  font-size: 14px;
+}
+
+.card-light:hover {
+  border-color: #f4d242 !important;
+  color: #f4d242 !important;
+  transition: ease-in-out .5s;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}

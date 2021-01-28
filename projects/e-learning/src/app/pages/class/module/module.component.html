@@ -1,0 +1,60 @@
+<section class="section-title">
+  <h2>Class Module</h2>
+</section>
+
+<div class="form-group d-flex justify-content-end">
+  <label for="">View :&nbsp;</label>
+  <select [(ngModel)]="selectedView" (ngModelChange)="onChangeOperation($event)" class="shadow-sm">
+    <option [value]="viewType.VIEW_ONLY">View Only</option>
+    <option [value]="viewType.OPERATION_VIEW">Operation View</option>
+  </select>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 course-section">
+    <div class="section-title d-flex justify-content-between align-items-center pl-3 py-2">
+      Java Basic
+      <div *ngIf="selectedView == viewType.OPERATION_VIEW">
+        <a [routerLink]="['../add-material']" class="btn btn-add">
+          Add Material
+        </a>
+      </div>
+    </div>
+
+    <ul class="section-list">
+      <li class="section-item d-flex justify-content-between py-2 align-items-center">
+        <a [routerLink]="['/instructor/class/material/']" class="item">
+          <div class="title-container">
+            <span class="material-icon">
+              <i class="fas fa-file-alt"></i>
+            </span>
+            <span class="material-name">
+              Mempelajari Dasar HTML 5
+            </span>
+          </div>
+        </a>
+        <div class="d-flex">
+          <ng-template [ngIf]="selectedView == viewType.OPERATION_VIEW">
+            <span class="material-icon">
+              <button class="btn btn-info rounded-circle">
+                <i class="fas fa-edit"></i>
+              </button>
+            </span>
+
+            <span class="material-icon">
+              <button class="btn btn-danger rounded-circle">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </span>
+
+            <!-- <span class="material-icon">
+                <button class="btn btn-success rounded-circle">
+                  <i class="fas fa-hand-paper"></i>
+                </button>
+              </span> -->
+          </ng-template>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

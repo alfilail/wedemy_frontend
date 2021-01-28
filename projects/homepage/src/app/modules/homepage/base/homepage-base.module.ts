@@ -1,0 +1,17 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { RouterModule } from '@angular/router';
+import { PartialModule } from '@bootcamp-homepage/modules/homepage/partial/partial.module';
+import { HomepageBaseComponent } from '@bootcamp-homepage/layouts/base/homepage/homepage-base.component';
+
+
+@NgModule({
+  declarations: [HomepageBaseComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    PartialModule
+  ]
+})
+export class HomepageBaseModule { }

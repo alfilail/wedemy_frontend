@@ -1,0 +1,8 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/font.scss";
+@import "../../../styles/variables.scss";
+
+.tables-wrapper {
+    padding: 0 8px;
+  }
+  

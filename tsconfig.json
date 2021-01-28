@@ -17,9 +17,18 @@
       "dom"
     ],
     "paths": {
+      "@bootcamp-homepage/*": [
+        "./projects/homepage/src/app/*"
+      ],
       "@bootcamp-elearning/*": [
         "./projects/e-learning/src/app/*"
-      ]
+      ],
+      "@bootcamp-core/*": [
+        "./projects/core/src/app/*"
+      ],
+      "@bootcamp-admin/*": [
+        "./projects/admin/src/app/*"
+      ],
     }
   }
 }

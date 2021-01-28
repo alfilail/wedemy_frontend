@@ -1,0 +1,29 @@
+/* Footer */
+
+footer {
+    background-color: #F1C21B;
+    color: white;
+}
+
+.footer-img-logo {
+    width: 40px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.left-footer {
+    background-color: white;
+    color: black;
+    width: fit-content;
+}
+
+footer {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.divider {
+    height: 3px;
+    background-color: grey;
+}

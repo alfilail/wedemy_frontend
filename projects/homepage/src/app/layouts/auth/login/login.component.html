@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div class="container center login-card mx-auto body">
+    <div class="row shadow p-3 mb-5 bg-white rounded">
+        <div class="col-12">
+            <h2 class="text-center h-text">
+                <b>LOGIN</b>
+            </h2>
+            <p-divider></p-divider>
+        </div>
+        <form class="col-12">
+            <div class="p-fluid">
+                <div class="p-field">
+                    <span class="p-float-label mt-4">
+                        <input class="rounded-pill" type="text" id="username" pInputText>
+                        <label class="pl-2" for="username">Username</label>
+                    </span>
+                </div>
+                <div class="p-field">
+                    <span class="p-float-label space-float">
+                        <input class="rounded-pill" type="password" id="password" pPassword>
+                        <label class="pl-2" for="password">Password</label>
+                    </span>
+                    <a routerLink="/auth/forgotpassword">
+                        <p class="text-right pt-1">Lupa password ?</p>
+                    </a>
+                </div>
+                <div class="text-center p-field mt-4">
+                    <button pButton type="button" label="L O G I N" class="btn-block p-button-rounded"></button>
+                </div>
+            </div>
+            <div class="form-group d-flex justify-content-center mt-3">
+                <p class="mr-2">Belum memiliki akun?</p>
+                <a routerLink="/auth/register">
+                    <p class="text-center">DAFTAR</p>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>

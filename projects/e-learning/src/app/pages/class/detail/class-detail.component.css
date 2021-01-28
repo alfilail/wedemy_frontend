@@ -1,0 +1,90 @@
+.course-sidebar {
+  width: 350px;
+  background-color: #f7f7f7;
+  height: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-right: 1px solid #d7dadb;
+  padding-bottom: 30px;
+  overflow: scroll;
+}
+
+.course-sidebar .course-title {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Merriweather", sans-serif;
+  line-height: 32px;
+  font-weight: 800;
+  color: #2b3636;
+  margin-bottom: 30px;
+}
+
+.course-sidebar ul.sidebar-nav li.selected {
+  border-left: 3px #000 solid;
+  font-weight: 600;
+}
+
+.course-sidebar ul.sidebar-nav li.selected a {
+  background: #ffffff;
+  border-right: 1px solid #fff;
+}
+
+.course-sidebar ul.sidebar-nav li.selected a:hover {
+  background-color: #fff;
+}
+
+.course-sidebar ul.sidebar-nav li a {
+  font-size: 16px;
+  padding: 13px 18px;
+  color: #2b3636;
+  display: block;
+  margin-top: 1px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.course-sidebar ul.sidebar-nav li a:hover {
+  background-color: #e6e6e6;
+
+}
+
+.course-sidebar ul.sidebar-nav li a span {
+  margin-right: 8px;
+}
+
+.course-sidebar ul.sidebar-nav li {
+  font-size: 17px;
+  padding: 0px;
+  font-family: "Merriweather", sans-serif
+}
+
+.course-mainbar {
+  margin-left: 350px;
+  background: #fff;
+  padding: 40px;
+  height: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .course-sidebar {
+    display: none !important;
+    width: 100%;
+  }
+
+  .course-mainbar {
+    margin-left: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 991px) {
+  .course-sidebar {
+    width: 300px !important;
+  }
+
+  .course-mainbar {
+    margin-left: 300px;
+  }
+}

@@ -1,0 +1,25 @@
+section.section-title {
+  font-family: "Merriweather", sans-serif;
+}
+
+.instructor-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.profile-wrapper {
+  font-family: "Montserrat", sans-serif;
+}
+
+.profile-wrapper .instructor-name {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.instructor-bio {
+  font-size: 15px;
+}
+
+/* @media screen and (min-width:) {} */
