@@ -7,7 +7,7 @@ import { Modules } from '@bootcamp-elearning/models/modules';
   styleUrls: ['./class-detail.component.css']
 })
 export class ClassDetailComponent implements OnInit {
-
+  description: string = '';
   searchText = '';
   modules: Modules[] = [
     {'id':'', 'moduleName':'Java Basic 1', 'code':''},

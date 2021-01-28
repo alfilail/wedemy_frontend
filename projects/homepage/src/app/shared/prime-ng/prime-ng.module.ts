@@ -19,6 +19,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
+import { EditorModule } from 'primeng/editor';
+import {SkeletonModule} from 'primeng/skeleton';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { InputMaskModule } from 'primeng/inputmask';
     ToolbarModule,
     ConfirmDialogModule,
     CalendarModule,
-    InputMaskModule
+    InputMaskModule,
+    EditorModule,
+    SkeletonModule
   ],
   exports: [
     CommonModule,
@@ -65,7 +69,9 @@ import { InputMaskModule } from 'primeng/inputmask';
     ToolbarModule,
     ConfirmDialogModule,
     CalendarModule,
-    InputMaskModule
+    InputMaskModule,
+    EditorModule,
+    SkeletonModule
   ]
 })
 export class PrimeNGModule { }

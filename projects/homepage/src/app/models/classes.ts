@@ -6,7 +6,7 @@ export class Classes extends BaseMaster {
     code: string;
     className: string;
     description: string;
-    thumbnailImg: Byte[] = [];
+    thumbnailImg: string;
     fileType: string;
     quota: number;
     idTutor: number;

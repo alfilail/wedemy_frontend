@@ -26,13 +26,13 @@
 
         <div class="col-lg-9">
             <section class="cards mb-5">
-                <article class="card mb-3 mr-auto" *ngFor="let c of class | classFilter: searchText">
+                <article class="card mb-3 mr-auto" *ngFor="let c of listClasses | classFilter: searchText">
                     <div class="row ml-1 mt-3">
                         <div class="col-auto img-square-wrapper">
-                            <img src="{{c.img}}" alt="">
+                            <img src="data:image/png;base64,{{c.thumbnailImg}}" alt="">
                         </div>
                         <div class="col-auto text-left">
-                            <h5>{{c.name}}</h5>
+                            <h5>{{c.className}}</h5>
                             <div>
                                 <span class="badge badge-success" *ngIf="c.status==1">Pendaftaran Dibuka</span>
                                 <span class="badge badge-secondary" *ngIf="c.status==2">Telah Berakhir</span>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="row ml-1">
                         <div class="pt-1 col-auto">
-                            <i class="pi pi-users"><me> 98 peserta</me></i>
+                            <i class="pi pi-users"><me> {{c.quota}} peserta</me></i>
                         </div>
                         <div class="pt-1 col-auto">
                             <i class="pi pi-book"><me> 50 modul</me></i>
@@ -52,11 +52,9 @@
                             <i class="pi pi-clock"><me> 20 jam</me></i>
                         </div>
                     </div>
-                    <div class="row mx-auto">
-                        <div class="pt-1 col-auto">
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus voluptatum, voluptas pariatur ducimus recusandae saepe modi dignissimos dolore a, corrupti assumenda impedit harum commodi alias odit delectus minus fuga
-                                culpa!
-                            </p>
+                    <div class="row ml-1">
+                        <div class="pt-1 col-auto text-left">
+                            <p>{{c.description}}</p>
                         </div>
                     </div>
                     <div class="row ml-auto mr-2">
