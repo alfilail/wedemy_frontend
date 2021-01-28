@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { AppComponent } from '@bootcamp-elearning/app.component'
 import { AppRoutingModule } from '@bootcamp-elearning/app-routing.module';
-import { BaseComponent } from './layouts/base/base.component';
+// import { BaseComponent } from './layouts/base/base.component';
 
 @NgModule({
   declarations: [
