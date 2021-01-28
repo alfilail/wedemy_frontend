@@ -1,18 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AuthService } from './auth.service';
 import { Classes } from '@bootcamp-homepage/models/classes';
+import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClassService {
+export class ModuleRegistrationService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  getAll(): Observable<Classes[]> {
+  getByIdClass(): Observable<Classes[]> {
     return this.http.get<Classes[]>('http://192.168.15.183:8080/class/all')
   }
-  
 }

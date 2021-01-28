@@ -21,14 +21,17 @@ export class ClassReadComponent implements OnInit {
   searchText = '';
   listClasses: Classes[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private classService: ClassService
+    ) { }
 
   ngOnInit(): void {
-    // this.classService.getAll()
-    //   .subscribe(res => {
-    //     this.listClasses = res;
-    //     console.log(res);
-    //   });
+    this.classService.getAll()
+      .subscribe(res => {
+        console.log(res);
+        this.listClasses = res;
+        // console.log(res);
+      });
   }
 
 }

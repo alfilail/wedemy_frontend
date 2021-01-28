@@ -1,20 +1,15 @@
 nav {
   font-family: Quicksand, sans-serif !important;
-  font-size: 18px !important;
-  font-weight: 700;
+  font-size: medium !important;
   color: #000000;
 }
 
-.nav-link-item {
-  color: #000000 !important;
+.nav-link-item.active {
+  color: #f4d242 !important;
 }
 
 .nav-link-item:hover {
   color: #f4d242 !important;
-}
-
-.dropdown-menu {
-  font-size: 14px !important;
 }
 
 .gravatar {
@@ -24,7 +19,6 @@ nav {
 
 .profile-name {
   font-weight: 400;
-  font-size: 14px;
   color: #000000;
   cursor: pointer;
 }
