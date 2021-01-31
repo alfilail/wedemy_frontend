@@ -30,6 +30,10 @@ export class AuthService {
     return localStorage.getItem('roleCode');
   }
 
+  getUserId(): string {
+    return localStorage.getItem('userId');
+  }
+
   clearToken(): void {
     localStorage.clear();
   }

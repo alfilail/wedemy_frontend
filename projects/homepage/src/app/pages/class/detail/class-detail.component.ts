@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ClassEnrollments } from '@bootcamp-homepage/models/class-enrollments';
 import { Classes } from '@bootcamp-homepage/models/classes';
 import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
 import { Modules } from '@bootcamp-homepage/models/modules';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
+import { ClassEnrollmentService } from '@bootcamp-homepage/services/class-enrollment.service';
 import { ClassService } from '@bootcamp-homepage/services/class.service';
 import { DetailClassService } from '@bootcamp-homepage/services/detail-class.service';
 import { ModuleRegistrationService } from '@bootcamp-homepage/services/module-registration.service';
@@ -16,30 +18,27 @@ import { ModuleRegistrationService } from '@bootcamp-homepage/services/module-re
 export class ClassDetailComponent implements OnInit {
   
   searchText = '';
-  modules: Modules[] = [
-    {'id':'', 'moduleName':'Java Basic 1', 'code':''},
-    {'id':'', 'moduleName':'Java Basic 2', 'code':''},
-    {'id':'', 'moduleName':'Java Basic 3', 'code':''},
-    {'id':'', 'moduleName':'Java OOP', 'code':''},
-    {'id':'', 'moduleName':'Java Features', 'code':''}
-  ];
-
   listModules: Modules[] = [];
   dtlClass: DetailClasses = new DetailClasses();
   param: string = "";
   countModule: number = 0;
   totalHours: number = 0;
   countMat: number = 0;
+  isLoggedOut: boolean;
+  display: boolean = false;
+  confirm: boolean = false;
+  classEnrollmentSelected: ClassEnrollments = new ClassEnrollments();
 
   constructor(private router: Router,
     private moduleRgsService: ModuleRegistrationService,
     private dtlClassService: DetailClassService,
     private route: ActivatedRoute,
-    private authService: AuthService) 
+    private authService: AuthService,
+    private classEnrollmentService: ClassEnrollmentService) 
   { }
 
   ngOnInit(): void {
-    console.log("Helo")
+    this.isLoggedOut = !this.authService.getToken();
     this.route.params.subscribe(params => {
       this.param = params['idClass'];
       console.log(this.param);
@@ -78,5 +77,33 @@ export class ClassDetailComponent implements OnInit {
     console.log('diff '+ endMnt)
     this.totalHours = this.countMat*(diff/60);
   }
+
+  enrollNow(): void {
+    if(this.isLoggedOut){
+      this.display = true;
+      // show dialog to login
+    } else if(!this.isLoggedOut){
+      //create enrollment class
+      this.confirm = true;
+      console.log("udah login")
+    }
+  }
+
+  enrollClass(): void {
+    this.classEnrollmentSelected.createdBy = this.authService.getUserId();
+    this.classEnrollmentSelected.idDetailClass.id = this.dtlClass.id; 
+    this.classEnrollmentSelected.idUser.id = this.authService.getUserId();
+    this.classEnrollmentService.insertClassEnrollment(this.classEnrollmentSelected)
+    .subscribe(res => {
+      console.log(this.classEnrollmentSelected);
+      console.log(res);
+    })
+  }
+
+  closeDialog(): void {
+    this.confirm = false;
+    this.display = false;
+  }
+
 
 }

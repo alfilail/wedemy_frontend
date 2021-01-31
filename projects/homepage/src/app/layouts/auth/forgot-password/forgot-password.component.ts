@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Profiles } from '@bootcamp-homepage/models/profiles';
+import { AuthService } from '@bootcamp-homepage/services/auth.service';
+import { UserService } from '@bootcamp-homepage/services/user.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor() { }
+  profile: Profiles = new Profiles();
+
+  constructor(private router: Router,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  resetPassword(): void {
+    console.log("helo "+this.profile.email)
+    this.userService.resetPassword(this.profile)
+    .subscribe(res => {
+      console.log(res);
+    })
   }
 
 }

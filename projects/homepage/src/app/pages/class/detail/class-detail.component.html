@@ -1,3 +1,17 @@
+<p-dialog header="Login" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p>Anda harus login terlebih dahulu untuk mendaftar di kelas ini</p>
+    <ng-template pTemplate="footer">
+        <button type="button" class="btn btn-outline-primary" (click)="closeDialog()">Batal</button>
+        <button type="button" class="btn btn-primary" routerLink="/auth/login"><b>LOGIN</b></button>
+    </ng-template>
+</p-dialog>
+<p-dialog header="Konfirmasi" [(visible)]="confirm" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p>Apakah Anda yakin ingin mendaftar di kelas ini ?</p>
+    <ng-template pTemplate="footer">
+        <button type="button" class="btn btn-outline-primary" (click)="closeDialog()">Tidak</button>
+        <button type="button" class="btn btn-primary px-4" (click)="enrollClass()">Ya</button>
+    </ng-template>
+</p-dialog>
 <div class="content">
     <div class="header">
     </div>
@@ -12,97 +26,101 @@
                 <h6 class="text-left ml-2"><i class="pi pi-users mr-1"></i>{{dtlClass.idClass.quota}} peserta</h6>
                 <h6 class="text-left ml-2"><i class="pi pi-book mr-1"></i>{{countModule}} modul</h6>
                 <h6 class="text-left ml-2"><i class="pi pi-clock mr-1"></i>{{totalHours}} jam</h6>
-            </div>
-            <button type="button" class="btn btn-primary btn-lg mt-5"><small><b>DAFTAR SEKARANG</b></small></button>
-
-            <div class="content-item align-items-end">
-                <div class="content-item-dtl mx-auto align-items-end text-right">
-                </div>
-            </div>
-        </span>
+                <span class="badge badge-success">Pendaftaran Dibuka</span>
+        <!-- <span class="badge badge-secondary" *ngIf="c.status==2">Telah Berakhir</span> -->
+        <!-- <span class="badge badge-danger" *ngIf="c.status==3">Kuota Penuh</span> -->
     </div>
+    <button type="button" class="btn btn-primary btn-lg mt-5" (click)="enrollNow()"><small><b>DAFTAR SEKARANG</b></small></button>
+    <button type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>PENDAFTARAN DITUTUP</b></small></button>
+    <button type="button" class="btn btn-light btn-lg mt-5" disabled><small><b>SUDAH TERDAFTAR</b></small></button>
+    <div class="content-item align-items-end">
+        <div class="content-item-dtl mx-auto align-items-end text-right">
+        </div>
+    </div>
+    </span>
+</div>
 
-    <div class="content-item container bg-white rounded shadow-lg">
-        <ul class="nav nav-tabs mt-5 pt-3" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Informasi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Silabus</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active p-4" id="tabs-1" role="tabpanel" [(ngModel)]="dtlClass" ngDefaultControl>
-                <div>
-                    <h4>Deskripsi</h4>
-                    <p-divider></p-divider>
-                    <p>{{dtlClass.idClass.description}}</p>
-                </div>
+<div class="content-item container bg-white rounded shadow-lg">
+    <ul class="nav nav-tabs mt-5 pt-3" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Informasi</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Silabus</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active p-4" id="tabs-1" role="tabpanel" [(ngModel)]="dtlClass" ngDefaultControl>
+            <div>
+                <h4>Deskripsi</h4>
+                <p-divider></p-divider>
+                <p>{{dtlClass.idClass.description}}</p>
+            </div>
 
-                <div class="mt-5">
-                    <h4>Jadwal</h4>
-                    <p-divider></p-divider>
-                    <table>
-                        <tr>
-                            <th>Tanggal mulai</th>
-                            <td> : </td>
-                            <td>{{dtlClass.startDate}}</td>
-                        </tr>
-                        <tr>
-                            <th>Tanggal selesai</th>
-                            <td>:</td>
-                            <td>{{dtlClass.endDate}}</td>
-                        </tr>
-                        <tr>
-                            <th>Jam</th>
-                            <td>:</td>
-                            <td>{{dtlClass.startTime}} - {{dtlClass.endTime}} WIB</td>
-                        </tr>
-                        <tr>
-                            <th>Kuota peserta</th>
-                            <td>:</td>
-                            <td>{{dtlClass.idClass.quota}} orang</td>
-                        </tr>
-                        <tr>
-                            <th>Peserta terdaftar</th>
-                            <td>:</td>
-                            <td>36 orang</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="mt-5">
-                    <h4>Profil Tutor</h4>
-                    <p-divider></p-divider>
+            <div class="mt-5">
+                <h4>Jadwal</h4>
+                <p-divider></p-divider>
+                <table>
+                    <tr>
+                        <th>Tanggal mulai</th>
+                        <td> : </td>
+                        <td>{{dtlClass.startDate}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal selesai</th>
+                        <td>:</td>
+                        <td>{{dtlClass.endDate}}</td>
+                    </tr>
+                    <tr>
+                        <th>Jam</th>
+                        <td>:</td>
+                        <td>{{dtlClass.startTime}} - {{dtlClass.endTime}} WIB</td>
+                    </tr>
+                    <tr>
+                        <th>Kuota peserta</th>
+                        <td>:</td>
+                        <td>{{dtlClass.idClass.quota}} orang</td>
+                    </tr>
+                    <tr>
+                        <th>Peserta terdaftar</th>
+                        <td>:</td>
+                        <td>{{dtlClass.totalParticipant}} orang</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="mt-5">
+                <h4>Profil Tutor</h4>
+                <p-divider></p-divider>
 
-                    <div class="tutor-profile d-lg-flex">
-                        <img class="shadow rounded mr-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhzo7gbZaTykghdNNM2jVByeXYd50nDm0tmA&usqp=CAU" alt="">
-                        <span>
+                <div class="tutor-profile d-lg-flex">
+                    <img class="shadow rounded mr-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhzo7gbZaTykghdNNM2jVByeXYd50nDm0tmA&usqp=CAU" alt="">
+                    <span>
                             <h5>{{dtlClass.idClass.idTutor.username}}</h5>
                             <p>CEO Samsan Tech</p>
                         </span>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane mx-auto p-4" id="tabs-2" role="tabpanel">
+            <div class="d-lg-flex d-md-flex justify-content-between">
+                <h4 class="align-self-end">Daftar Modul</h4>
+                <div class="form-group has-search align-self-end">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input type="email" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Cari Modul" autofocus>
+                </div>
+            </div>
+            <p-divider></p-divider>
+            <div class="modul mb-2 d-flex" *ngFor="let m of listModules | moduleFilter : searchText">
+                <div class="tag"></div>
+                <h6 class="mt-2 ml-2 align-self-center">{{m.idModule.moduleName}}</h6>
+                <div class="popover__wrapper ml-auto align-self-center mr-4">
+                    <i class="fa fa-lock popover__title" aria-hidden="true"></i>
+                    <div class="popover__content">
+                        <p class="popover__message">Silahkan daftar dahulu untuk dapat mengakses modul ini</p>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane mx-auto p-4" id="tabs-2" role="tabpanel">
-                <div class="d-lg-flex d-md-flex justify-content-between">
-                    <h4 class="align-self-end">Daftar Modul</h4>
-                    <div class="form-group has-search align-self-end">
-                        <span class="fa fa-search form-control-feedback"></span>
-                        <input type="email" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Cari Modul" autofocus>
-                    </div>
-                </div>
-                <p-divider></p-divider>
-                <div class="modul mb-2 d-flex" *ngFor="let m of listModules | moduleFilter : searchText">
-                    <div class="tag"></div>
-                    <h6 class="mt-2 ml-2 align-self-center">{{m.idModule.moduleName}}</h6>
-                    <div class="popover__wrapper ml-auto align-self-center mr-4">
-                        <i class="fa fa-lock popover__title" aria-hidden="true"></i>
-                        <div class="popover__content">
-                            <p class="popover__message">Silahkan daftar dahulu untuk dapat mengakses modul ini</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="modul mb-2 d-flex">
+            <!-- <div class="modul mb-2 d-flex">
                     <div class="tag"></div>
                     <h4 class="mt-2 ml-2 align-self-center"><b>Java Basic 2</b></h4>
                     <i class="fa fa-lock ml-auto align-self-center mr-4" aria-hidden="true"></i>
@@ -117,7 +135,7 @@
                     <h4 class="mt-2 ml-2 align-self-center"><b>Java Features</b></h4>
                     <i class="fa fa-lock ml-auto align-self-center mr-4" aria-hidden="true"></i>
                 </div> -->
-            </div>
-
         </div>
+
     </div>
+</div>

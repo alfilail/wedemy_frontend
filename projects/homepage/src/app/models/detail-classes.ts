@@ -9,5 +9,11 @@ export class DetailClasses {
     endDate: Date;
     startTime: Date;
     endTime: Date;
-    
+
+    status: string;
+    totalModules: number;
+    totalHours: number;
+    countMats: number;
+    totalParticipant: number;
+
 }

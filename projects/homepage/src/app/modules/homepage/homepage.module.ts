@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
 import { ClassModule } from './class/class.module';
@@ -14,9 +14,12 @@ import {Location} from '@angular/common';
     CommonModule,
     AboutModule,
     HomeModule,
-    ClassModule,
+    ClassModule
     // Location
     // HttpClientModule
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class HomepageModule { }

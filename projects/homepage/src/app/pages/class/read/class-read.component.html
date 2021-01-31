@@ -25,15 +25,15 @@
         </div>
 
         <div class="col-lg-9">
-            <section class="cards mb-5">
-                <article class="card mb-3 mr-auto" *ngFor="let c of listClasses | classFilter: searchText">
+            <section class="cards mb-5 mx-auto">
+                <article class="card mb-3 mr-auto pr-4" *ngFor="let c of listClasses | classFilter: searchText">
                     <div class="row ml-1 mt-3">
-                        <div class="col-auto img-square-wrapper">
+                        <div class="col-auto img-square-wrapper mb-2">
                             <img src="data:image/png;base64,{{c.idClass.thumbnailImg}}" alt="">
                         </div>
                         <div class="col-auto text-left">
                             <h5>{{c.idClass.className}}</h5>
-                            <div>
+                            <div class="mb-2">
                                 <span class="badge badge-success" *ngIf="c.status==1">Pendaftaran Dibuka</span>
                                 <span class="badge badge-secondary" *ngIf="c.status==2">Telah Berakhir</span>
                                 <span class="badge badge-danger" *ngIf="c.status==3">Kuota Penuh</span>
@@ -45,11 +45,11 @@
                             <i class="pi pi-users"><me> {{c.idClass.quota}} peserta</me></i>
                         </div>
                         <div class="pt-1 col-auto">
-                            <i class="pi pi-book"><me> 50 modul</me></i>
+                            <i class="pi pi-book"><me> {{c.totalModules}} modul</me></i>
 
                         </div>
                         <div class="pt-1 col-auto">
-                            <i class="pi pi-clock"><me> 20 jam</me></i>
+                            <i class="pi pi-clock"><me> {{c.totalHours}} jam</me></i>
                         </div>
                     </div>
                     <div class="row ml-1">
