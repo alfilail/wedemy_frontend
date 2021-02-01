@@ -20,8 +20,22 @@
 
 .icon {
     width: 100px;
+    margin-bottom: 20px;
 }
 
 .photo img {
     width: 200px;
+}
+
+p {
+    font-size: medium;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Quicksand', sans-serif !important;
 }

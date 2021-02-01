@@ -12,30 +12,30 @@
             <div class="p-fluid">
                 <div class="p-field p-col">
                     <span class="p-float-label">
-                        <input class="rounded-pill" type="text" id="fullname" pInputText>
+                        <input [(ngModel)]="participant.idProfile.fullName" [value]="participant.idProfile.fullName" class="rounded-pill" type="text" id="fullname" name="fullname" pInputText>
                         <label class="pl-2" for="fullname">Nama Lengkap</label>
                     </span>
                 </div>
                 <div class="p-field p-col">
                     <span class="p-float-label">
-                        <input class="rounded-pill" type="text" id="email" pInputText>
+                        <input [(ngModel)]="participant.idProfile.email" [value]="participant.idProfile.email" class="rounded-pill" type="text" id="email" name="email" pInputText>
                         <label class="pl-2" for="email">E-mail</label>
                     </span>
                 </div>
                 <div class="p-field p-col">
                     <span class="p-float-label">
-                        <input class="rounded-pill" type="text" id="username" pInputText>
+                        <input [(ngModel)]="participant.username" [value]="participant.username" class="rounded-pill" type="text" id="username" name="username" pInputText>
                         <label class="pl-2" for="username">Username</label>
                     </span>
                 </div>
                 <div class="p-field p-col">
                     <span class="p-float-label">
-                        <input class="rounded-pill" type="password" id="password" pPassword>
+                        <input [(ngModel)]="participant.userPassword" [value]="participant.userPassword" class="rounded-pill" type="password" id="password" name="password" pPassword>
                         <label class="pl-2" for="password">Password</label>
                     </span>
                 </div>
                 <div class="text-center p-field p-col-12 mt-3">
-                    <button pButton type="button" label="D A F T A R" class="btn-block p-button-rounded"></button>
+                    <button pButton type="button" label="D A F T A R" (click)="save()" class="btn-block p-button-rounded"></button>
                 </div>
                 <div class="form-group d-flex justify-content-center mt-3">
                     <p class="mr-2">Sudah memiliki akun?</p>
