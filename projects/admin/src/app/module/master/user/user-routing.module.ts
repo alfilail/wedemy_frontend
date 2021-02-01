@@ -20,7 +20,7 @@ const routes: Routes = [
     component: UserStudentComponent
   },
   {
-    path: 'create-tutor',
+    path: 'create/:user',
     component: CreateTutorComponent
   }
 ];

@@ -1,9 +1,8 @@
-import { BaseEntity } from "./base-entity";
+import { BaseMaster } from "@bootcamp-core/models/base-master";
 
-export class SubmissionStatus implements BaseEntity {
-    createdBy: string;
+export class SubmissionStatus extends BaseMaster {
 
     public code: string;
 
-    public submissionStatusesName: string;
+    public submissionStatusName: string;
 }

@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Classes } from '@bootcamp-admin/model/classes';
+import { DetailClasses } from '@bootcamp-admin/model/dtl-classes';
+import { ClassHelper } from '@bootcamp-admin/model/helper/class-helper';
+import { ModuleRegistrations } from '@bootcamp-admin/model/module-registrations';
+import { Modules } from '@bootcamp-admin/model/modules';
+import { Profiles } from '@bootcamp-admin/model/profiles';
+import { Users } from '@bootcamp-admin/model/users';
+import { ClassService } from '@bootcamp-admin/service/class.service';
+import { ModuleService } from '@bootcamp-admin/service/module.service';
+import { UserService } from '@bootcamp-admin/service/user.service';
+import * as moment from 'moment';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
@@ -8,39 +19,101 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class CreateKelasComponent implements OnInit {
 
+  formData: FormData;
+  file: String;
+
   productDialog: boolean;
-  rangeDates: Date[];
+  rangeDates: String[];
   submitted: boolean;
   statuses: any[];
-  uploadedFiles: any[] = [];
-  namaSilabusSelect: string;
-  listKelas = [
-    { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28', kodeSilabus: 'MD001JB-M01', namaSilabus: 'Java Basic' },
-    { code: 'C002S-JE01', name: 'Java Expert', desc: 'Kelas ini mempelajari tentang java secara expert', quota: '20', startDate: '2021-03-01', endDate: '2021-03-31', kodeSilabus: 'MD001JB-M02', namaSilabus: 'Java Featured' },
-    { code: 'C003S-FS01', name: 'Full Stack', desc: 'Kelas ini mempelajari agar menjadi seorang fullstack', quota: '15', startDate: '2021-04-01', endDate: '2021-04-30', kodeSilabus: 'MD002JE-M01', namaSilabus: 'Best Practice Java' },
-    { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28', kodeSilabus: 'MD002JE-M02', namaSilabus: 'Framework Java' },
-    { code: 'C002S-JE01', name: 'Java Expert', desc: 'Kelas ini mempelajari tentang java secara expert', quota: '20', startDate: '2021-03-01', endDate: '2021-03-31', kodeSilabus: 'MD003FS-M01', namaSilabus: 'Front End' },
-    { code: 'C003S-FS01', name: 'Full Stack', desc: 'Kelas ini mempelajari agar menjadi seorang fullstack', quota: '15', startDate: '2021-04-01', endDate: '2021-04-30', kodeSilabus: 'MD003FS-M02', namaSilabus: 'Back End' },
-    { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28', kodeSilabus: 'MD001JB-M02', namaSilabus: 'Java Featured' },
-    { code: 'C002S-JE01', name: 'Java Expert', desc: 'Kelas ini mempelajari tentang java secara expert', quota: '20', startDate: '2021-03-01', endDate: '2021-03-31', kodeSilabus: 'MD001JB-M02', namaSilabus: 'Java Featured' },
-    { code: 'C003S-FS01', name: 'Full Stack', desc: 'Kelas ini mempelajari agar menjadi seorang fullstack', quota: '15', startDate: '2021-04-01', endDate: '2021-04-30', kodeSilabus: 'MD001JB-M02', namaSilabus: 'Java Featured' },
-    { code: 'C001S-JB01', name: 'Java', desc: 'Kelas ini mempelajari seputar java', quota: '25', startDate: '2021-02-01', endDate: '2021-02-28', kodeSilabus: 'MD001JB-M02', namaSilabus: 'Java Featured' },
-    { code: 'C002S-JE01', name: 'Java Expert', desc: 'Kelas ini mempelajari tentang java secara expert', quota: '20', startDate: '2021-03-01', endDate: '2021-03-31', kodeSilabus: 'MD001JB-M02', namaSilabus: 'Java Featured' },
-    { code: 'C003S-FS01', name: 'Full Stack', desc: 'Kelas ini mempelajari agar menjadi seorang fullstack', quota: '15', startDate: '2021-04-01', endDate: '2021-04-30', kodeSilabus: 'MD001JB-M02', namaSilabus: 'Java Featured' }
-  ]
 
-  kelas: any[] = this.listKelas;
+  moduleSelect = new Modules();
+  tutorSelect: Users = new Users();
 
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  listTutors: Users[] = []
+  listModules: Modules[] = [];
+  listDtlClass: DetailClasses[] = []
+  listModuleRegistration: ModuleRegistrations[] = []
+
+  class = new Classes();
+  module = new Modules();
+  dtlClass = new DetailClasses();
+  moduleRegistration = new ModuleRegistrations();
+  classHelper = new ClassHelper();
+  profileTutor = new Profiles();
+  tutor: Users = new Users();
+
+  modules: Modules[] = [];
+
+  constructor(private tutorService: UserService, private classService: ClassService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
-
   ngOnInit(): void {
+    this.getModules()
+    this.getTutors()
+  }
+
+  getTutors(): void {
+    this.tutorService.getUserByCode('TTR').subscribe(val => {
+      this.listTutors = val
+      console.log(val)
+    })
+  }
+
+  getModules() {
+    this.moduleService.getModules().subscribe(val => {
+      this.listModules = val;
+      console.log(val)
+    })
+  }
+
+  formatDate(str: Date): string {
+    console.log(str)
+    let format = moment(str).format('DD/MM/YYYY');
+    // let date = new Date(format)
+    return format;
+  }
+
+
+  getFile(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      console.log(file);
+      let data: FormData = new FormData();
+      data.append('file', file);
+      this.formData = data;
+      this.file = file.name;
+    }
+  }
+
+
+  addClass() {
+
+    this.class.idTutor = this.tutorSelect
+    console.log(this.tutorSelect.idProfile.id)
+
+    this.dtlClass.idClass = this.class;
+
+    this.moduleRegistration.idModule = this.moduleSelect
+    this.moduleRegistration.idDetailClass = this.dtlClass
+    this.modules.push(this.moduleSelect)
+
+    this.listModuleRegistration.push(this.moduleRegistration);
+  }
+
+  saveClass() {
+    this.classHelper.detailClass = this.dtlClass
+    this.classHelper.clazz = this.class
+    this.classHelper.module = this.modules
+
+    this.formData.append("body", JSON.stringify(this.classHelper));
+    this.classService.insertClasses(this.formData).subscribe(val => { })
   }
 
   deleteList(index: number): void {
-    this.listKelas.splice(index, 1);
+    this.listModuleRegistration.splice(index, 1);
   }
 
 }

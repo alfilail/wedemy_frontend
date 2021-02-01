@@ -1,7 +1,6 @@
-import { BaseEntity } from "./base-entity";
+import { BaseMaster } from "@bootcamp-core/models/base-master";
 
-export class LearningMaterials implements BaseEntity {
-    createdBy: string;
+export class LearningMaterials extends BaseMaster {
     public code: string;
 
     public learningMaterialName: string;

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Users } from '@bootcamp-admin/model/users';
+import { UserService } from '@bootcamp-admin/service/user.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
@@ -13,22 +15,21 @@ export class UserStudentComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
+  listUsers: Users[] = []
 
-  listUsers = [
-    { username: 'admin1', roleCode: 'adm', name: 'Imron Rosyadi' },
-    { username: 'tutor1', roleCode: 'ttr', name: 'Nur Alfilail' },
-    { username: 'tutor2', roleCode: 'ttr', name: 'Atalya Yoseba' },
-    { username: 'student1', roleCode: 'std', name: 'Dina Kasturi' },
-    { username: 'student2', roleCode: 'std', name: 'Anggi Alberto' },
-  ]
-
-  user: any[] = this.listUsers;
-
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
+    this.getUserByCode();
+  }
+
+  getUserByCode(): void {
+    this.userService.getUserByCode('PCP').subscribe(val => {
+      this.listUsers = val;
+      console.log(val)
+    })
   }
 
   deleteSelectedProducts() {

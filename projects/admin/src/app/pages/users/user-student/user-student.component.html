@@ -7,6 +7,10 @@
         <div class="col-lg-12 col-md-12 col-sm-12 pb-5 justify-content-center">
             <div class="card">
                 <p-toolbar class="p-m-3">
+                    <ng-template pTemplate="left">
+                        <button pButton pRipple label="New" icon="pi pi-plus" routerLink="/admin/create-tutor"
+                            class="p-button-success p-mr-2"></button>
+                    </ng-template>
                     <ng-template pTemplate="right">
                         <div class="p-d-flex p-ai-center p-jc-between">
                             <span class="p-input-icon-left">
@@ -17,26 +21,53 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="user" [rows]="10" [paginator]="true" [globalFilterFields]="['username', 'code']"
-                    [rowHover]="true" dataKey="id" class="p-m-3"
+                <p-table #dt [value]="listUsers" [rows]="10" [paginator]="true" [scrollable]="true" [rowHover]="true"
+                    dataKey="id" class="p-m-3" [globalFilterFields]="['username']"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
+                    <ng-template pTemplate="colgroup" let-columns>
+                        <colgroup>
+                            <col style="width:200px">
+                            <col style="width:150px">
+                            <col style="width:200px">
+                            <col style="width:220px">
+                            <col style="width:200px">
+                            <col style="width:200px">
+                            <col style="width:200px">
+                            <col style="width:200px">
+                            <col style="width:100px">
+                        </colgroup>
+                    </ng-template>
                     <ng-template pTemplate="header">
                         <tr>
-                            <th pSortableColumn="code">Username<p-sortIcon field="code"></p-sortIcon>
+                            <th pSortableColumn="nik">NIK<p-sortIcon field="nama"></p-sortIcon>
                             </th>
-                            <th pSortableColumn="name">Kode Role<p-sortIcon field="name"></p-sortIcon>
+                            <th pSortableColumn="username">Username<p-sortIcon field="username"></p-sortIcon>
                             </th>
-                            <th pSortableColumn="desc">Nama<p-sortIcon field="desc"></p-sortIcon>
+                            <th pSortableColumn="nama">Nama<p-sortIcon field="nama"></p-sortIcon>
                             </th>
+                            <th pSortableColumn="email">E-mail<p-sortIcon field="email"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="alamat">Alamat<p-sortIcon field="alamat"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="tempatLahir">Tempat Lahir<p-sortIcon field="tempatLahir"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="tglLahir">Tanggal Lahir<p-sortIcon field="tglLahir"></p-sortIcon>
+                            </th>
+                            <th>Nomor Ponsel </th>
                             <th>Aksi</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-listUsers>
                         <tr>
+                            <td>{{listUsers.idProfile.idNumber}}</td>
                             <td>{{listUsers.username}}</td>
-                            <td>{{listUsers.roleCode}}</td>
-                            <td>{{listUsers.name}}</td>
+                            <td>{{listUsers.idProfile.fullName}}</td>
+                            <td>{{listUsers.idProfile.email}}</td>
+                            <td>{{listUsers.idProfile.address}}</td>
+                            <td>{{listUsers.idProfile.birthPlace}}</td>
+                            <td>{{listUsers.idProfile.birthDate}}</td>
+                            <td>{{listUsers.idProfile.phone}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                                     (click)="deleteProduct()"></button>
@@ -45,11 +76,13 @@
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            Terdapat {{listUsers ? listUsers.length : 0 }} Pelajar.
+                            Terdapat {{listUsers ? listUsers.length : 0 }} Admin.
                         </div>
                     </ng-template>
                 </p-table>
             </div>
+
+
 
             <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
         </div>

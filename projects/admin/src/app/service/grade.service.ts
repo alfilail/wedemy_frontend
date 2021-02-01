@@ -18,7 +18,10 @@ export class GradeService extends BaseService {
   }
 
   insertGrade(grade: Grades): Observable<Grades> {
-
     return this.http.post<Grades>(`${this.ipAddress}/grade`, grade)
+  }
+
+  deleteById(id: string): Observable<Grades> {
+    return this.http.delete<Grades>(`${this.ipAddress}/grade/${id}`)
   }
 }

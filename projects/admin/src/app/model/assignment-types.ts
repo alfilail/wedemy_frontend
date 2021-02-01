@@ -1,7 +1,6 @@
-import { BaseEntity } from "./base-entity";
+import { BaseMaster } from "@bootcamp-core/models/base-master";
 
-export class AssignmentTypes implements BaseEntity {
-    createdBy: string;
+export class AssignmentTypes extends BaseMaster {
     public code: string;
 
     public assignmentTypeName: string;

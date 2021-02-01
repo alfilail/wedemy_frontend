@@ -13,6 +13,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     ConfirmDialogModule,
     CalendarModule,
     InputMaskModule,
+    ToastModule
   ],
   exports: [
     TableModule,
@@ -42,6 +44,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     ConfirmDialogModule,
     CalendarModule,
     InputMaskModule,
+    ToastModule
   ]
 })
 export class PrimeModule { }

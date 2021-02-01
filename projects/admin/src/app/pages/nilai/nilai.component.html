@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
         <h1>Nilai</h1>
@@ -45,7 +46,7 @@
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success p-mr-2" (click)="editProduct()"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteProduct()"></button>
+                                    (click)="deleteGrade(listNilai.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -63,17 +64,17 @@
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="code">Kode Nilai</label>
-                        <input type="text" pInputText id="code" [(ngModel)]="nilai.code" required autofocus />
+                        <input type="text" pInputText id="code" [(ngModel)]="nilai.code" autofocus />
                         <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
                     </div>
                     <div class="p-field">
                         <label for="minScore">Nilai Minimum</label>
-                        <input type="text" pInputText id="minScore" [(ngModel)]="nilai.minScore" required autofocus />
+                        <input type="text" pInputText id="minScore" [(ngModel)]="nilai.minScore" autofocus />
                         <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
                     </div>
                     <div class="p-field">
                         <label for="maxScore">Nilai Maksimum</label>
-                        <input type="text" pInputText id="maxScore" [(ngModel)]="nilai.maxScore" required autofocus />
+                        <input type="text" pInputText id="maxScore" [(ngModel)]="nilai.maxScore" autofocus />
                     </div>
                     <div class="d-flex justify-content-end">
                         <div class="m-2">
@@ -91,6 +92,7 @@
 
             </p-dialog>
             <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
         </div>
     </div>
 </app-layout>

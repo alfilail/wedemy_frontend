@@ -15,4 +15,12 @@ export class UserService extends BaseService {
   getUsers(): Observable<Users[]> {
     return this.http.get<Users[]>(`${this.ipAddress}/user/all`);
   }
+
+  getUserByCode(code: string): Observable<Users[]> {
+    return this.http.get<Users[]>(`${this.ipAddress}/user/role/${code}`);
+  }
+
+  insertUsers(user: Users): Observable<Users> {
+    return this.http.post<Users>(`${this.ipAddress}/user`, user);
+  }
 }

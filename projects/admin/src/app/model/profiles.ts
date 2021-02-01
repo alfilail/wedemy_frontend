@@ -1,4 +1,6 @@
-export class Profiles {
+import { BaseMaster } from "@bootcamp-core/models/base-master";
+
+export class Profiles extends BaseMaster {
     public fullName: string;
 
     public idNumber: string;

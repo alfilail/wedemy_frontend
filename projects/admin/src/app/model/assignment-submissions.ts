@@ -12,11 +12,11 @@ export class AssignmentSubmissions {
 
     public submitDateTime: Date;
 
-    public idParticipant: Users;
+    public idParticipant: Users = new Users();
 
-    public idGrade: Grades;
+    public idGrade: Grades = new Grades();
 
-    public idSubmissionStatus: SubmissionStatus;
+    public idSubmissionStatus: SubmissionStatus = new SubmissionStatus();
 
-    public idAssignments: Assignments;
+    public idAssignments: Assignments = new Assignments();
 }

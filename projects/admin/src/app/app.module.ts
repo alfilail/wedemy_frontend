@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -14,7 +13,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptService } from './shared/http-intercept.service';
-import { PersetujuanAbsenComponent } from './pages/persetujuan-absen/persetujuan-absen.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -34,7 +33,7 @@ import { PersetujuanAbsenComponent } from './pages/persetujuan-absen/persetujuan
     MatButtonModule,
     HttpClientModule
   ],
-  providers: [MessageService, ConfirmationService,
+  providers: [MessageService, ConfirmationService, DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptService, multi: true }],
   bootstrap: [AppComponent]
 })

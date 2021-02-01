@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Users } from '../../../model/users';
 import { UserService } from '../../../service/user.service';
@@ -18,12 +19,23 @@ export class UserTutorComponent implements OnInit {
   user: Users;
   listUsers: Users[] = [];
 
-  constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUserByCode();
+  }
+
+  getUserByCode(): void {
+    this.userService.getUserByCode('TTR').subscribe(val => {
+      this.listUsers = val;
+      console.log(val)
+    })
+  }
+
+  createTutor() {
+    this.route.navigateByUrl(`/admin/create/${'tutor'}`)
   }
 
   getUsers(): void {

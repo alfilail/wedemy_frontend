@@ -65,8 +65,10 @@
                     </div>
                     <div class="p-field">
                         <label for="name">Nama Status</label>
-                        <input type="text" pInputText id="name" [(ngModel)]="approvement.name" required autofocus />
-                        <small class="p-error" *ngIf="submitted && !approvement.name">Name is required.</small>
+                        <input type="text" pInputText id="name" [(ngModel)]="approvement.approvementName" required
+                            autofocus />
+                        <small class="p-error" *ngIf="submitted && !approvement.approvementName">Name is
+                            required.</small>
                     </div>
                     <div class="d-flex justify-content-end">
                         <div class="m-2">

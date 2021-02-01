@@ -27,8 +27,9 @@ export class NilaiComponent implements OnInit {
   }
 
   insertNilai(): void {
-    this.gradeService.insertGrade(this.nilai).subscribe(val => { });
+    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
     this.productDialog = false;
+    this.gradeService.insertGrade(this.nilai).subscribe(val => { });
   }
 
   getNilai(): void {
@@ -38,33 +39,20 @@ export class NilaiComponent implements OnInit {
     })
   }
 
-  deleteSelectedProducts() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        // this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        // this.selectedProducts = null;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-      }
-    });
-  }
-
   editProduct() {
     // this.product = {...product};
     this.productDialog = true;
   }
 
-  deleteProduct() {
+  deleteGrade(id: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // this.products = this.products.filter(val => val.id !== product.id);
-        // this.product = {};
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.gradeService.deleteById(id).subscribe(val => {
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
+        })
       }
     });
   }
@@ -72,38 +60,6 @@ export class NilaiComponent implements OnInit {
   hideDialog() {
     this.productDialog = false;
     this.submitted = false;
-  }
-
-  saveProduct() {
-    this.submitted = true;
-
-    // if (this.product.name.trim()) {
-    // if (this.product.id) {
-    // this.products[this.findIndexById(this.product.id)] = this.product;
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-    // }
-    // else {
-    // this.product.id = this.createId();
-    // this.product.image = 'product-placeholder.svg';
-    // this.products.push(this.product);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    // }
-
-    // this.products = [...this.products];
-    this.productDialog = false;
-    // this.product = {};
-  }
-  // }
-
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.listNilai.length; i++) {
-      if (this.listNilai[i].code === id) {
-        index = i;
-        break;
-      }
-    }
-    return index;
   }
 
   openNew() {

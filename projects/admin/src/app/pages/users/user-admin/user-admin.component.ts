@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Profiles } from '../../../model/profiles';
 import { Roles } from '../../../model/roles';
@@ -19,17 +20,30 @@ export class UserAdminComponent implements OnInit {
   statuses: any[];
   user: Users;
   listUsers: Users[] = [];
+  isSuperAdmin: boolean;
 
-  constructor(private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getUserByCode();
+    this.isSuperAdmin = false;
   }
 
   getUsers(): void {
     this.userService.getUsers().subscribe(val => {
+      this.listUsers = val;
+      console.log(val)
+    })
+  }
+
+  createAdmin() {
+    this.route.navigateByUrl(`/admin/create/${'admin'}`)
+  }
+
+  getUserByCode(): void {
+    this.userService.getUserByCode('ADM').subscribe(val => {
       this.listUsers = val;
       console.log(val)
     })

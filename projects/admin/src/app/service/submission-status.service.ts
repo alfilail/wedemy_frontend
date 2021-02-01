@@ -18,6 +18,6 @@ export class SubmissionStatusService extends BaseService {
   }
 
   insertSubmissionStatus(submissionStatus: SubmissionStatus): Observable<SubmissionStatus> {
-    return this.http.post<SubmissionStatus>(`${this.ipAddress}/module`, submissionStatus)
+    return this.http.post<SubmissionStatus>(`${this.ipAddress}/submission-status`, submissionStatus)
   }
 }
