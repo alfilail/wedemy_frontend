@@ -5,30 +5,30 @@
 
   <ul class="sidebar-nav list-unstyled">
     <!-- Sidebar Nav -->
-    <li [routerLink]="['enrolled']" routerLinkActive="selected">
+    <li [routerLink]="['enrolled', idDetailClass]" routerLinkActive="selected">
       <a class="sidebar-nav-link">
         <span class="lecture-sidebar-icon">
-          <i class="fa fa-list-alt"></i>
+          <i class="fas fa-list-alt"></i>
         </span>
-        Class Module
+        Kurikulum Kelas
       </a>
     </li>
 
-    <li [routerLink]="['instructor']" routerLinkActive="selected">
+    <li [routerLink]="['instructor',  idDetailClass]" routerLinkActive="selected">
       <a class="sidebar-nav-link">
         <span class="lecture-sidebar-icon">
-          <i class="fa fa-user"></i>
+          <i class="fas fa-user"></i>
         </span>
-        Your Instructor
+        Instruktur
       </a>
     </li>
 
-    <li [routerLink]="['report']" routerLinkActive="selected">
+    <li [routerLink]="['report',  idDetailClass]" routerLinkActive="selected">
       <a class="sidebar-nav-link">
         <span class="lecture-sidebar-icon">
           <i class="fas fa-clipboard-list"></i>
         </span>
-        Your Report
+        Laporan
       </a>
     </li>
   </ul>

@@ -7,6 +7,7 @@ import { AngMaterialModule } from '../../../shared/ang-material/ang-material.mod
 import { PrimeModule } from '../../../shared/prime/prime.module';
 import { SharedModule } from '../../../shared/shared.module';
 import * as moment from 'moment';
+
 @NgModule({
   declarations: [
     KelasComponent,

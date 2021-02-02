@@ -1,5 +1,5 @@
 <section class="section-title">
-  <h2>Class Module</h2>
+  <h2>Kurikulum Kelas</h2>
 </section>
 
 <div class="form-group d-flex justify-content-end">
@@ -16,7 +16,7 @@
       <div class="section-title d-flex justify-content-between align-items-center pl-3 py-2">
         {{module.module.idModule.moduleName}}
         <div *ngIf="selectedView == viewType.OPERATION_VIEW">
-          <a [routerLink]="['../add-material']" class="btn btn-add">
+          <a [routerLink]="['../../add-material', module.module.id]" class="btn btn-add">
             Add Material
           </a>
         </div>
@@ -30,9 +30,11 @@
                 <span class="material-icon">
                   <i class="fas fa-file-alt"></i>
                 </span>
-                <span class="material-name">
-                  {{material.idLearningMaterial.learningMaterialName}}
-                </span>
+                <a [routerLink]="['../../../material', material.id]">
+                  <span class="material-name">
+                    {{material.idLearningMaterial.learningMaterialName}}
+                  </span>
+                </a>
               </div>
             </a>
             <div class="d-flex">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ClassService } from '@bootcamp-elearning/services/class.service';
 import { VIEW_TYPE } from '../../../constants/view-type';
 
@@ -8,24 +9,31 @@ import { VIEW_TYPE } from '../../../constants/view-type';
   styleUrls: ['./module.component.css']
 })
 export class ModuleComponent implements OnInit {
-  viewType = VIEW_TYPE;
+  idDetailClass: string;
 
+  viewType = VIEW_TYPE;
   selectedView = VIEW_TYPE.VIEW_ONLY;
 
   modules: any[] = [];
 
-  constructor(private classService: ClassService) { }
+
+
+  constructor(private route: ActivatedRoute,
+    private classService: ClassService) { }
 
   ngOnInit(): void {
-    this.getDetail()
+    this.route.params.subscribe(params => {
+      this.getDetail(params['idDetailClass']);
+      this.idDetailClass = params['idDetailClass'];
+    })
 
   }
 
-  getDetail(): void {
-    this.classService.getDetail().subscribe(
+  getDetail(idDetailClass: string): void {
+    this.classService.getDetail(idDetailClass).subscribe(
       res => {
         this.modules = res
-        console.log(this.modules[0].learningMaterials);
+        console.log(res);
 
       },
       err => { console.log(err) }

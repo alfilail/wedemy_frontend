@@ -1,1 +1,40 @@
-<p>material-read works!</p>
+<div class="container px-5 mt-5">
+  <div class="row main-material">
+    <div class="d-flex h-100 w-100 justify-content-between mb-5 align-items-center">
+      <h5 class="material-title">
+        <i class="fas fa-file-alt mr-2"></i>
+        {{material.idLearningMaterial.learningMaterialName}}
+      </h5>
+      <button [routerLink]="['/instructor/class/enrolled']" class="btn btn-primary">
+        Kembali
+      </button>
+    </div>
+    <div class="content-class">
+      <h1>Learn the Basics of HyperText Markup Language (HTML)</h1>
+      <h2>Learnings</h2>
+      <div [innerHTML]="material.idLearningMaterial.description"></div>
+      
+      <ul>
+        <li>
+          HTML adalah struktur penglihatan (view structure): header, paragraf, tombol, dll (heading, paragraph, button,
+          etc)
+        </li>
+        <li>
+          CSS adalah gaya presentasi (presentational style): warna, ukuan, posisi, dll (color, size, position, etc)
+        </li>
+        <li>
+          JavaScript adalah sifat fungsionalnya (functional behavior): klik, masukan, perhitungan, dll (click, input,
+          calculation, etc)
+        </li>
+      </ul>
+    </div>
+    <div class="col text-center">
+      <ul class="row justify-content-center list-unstyled">
+        <li [routerLink]="['/instructor/class/material']" routerLinkActive="active" class="tab-item">FORUM</li>
+        <li [routerLink]="['presence-assignment']" routerLinkActive="active" class="tab-item">PRESENCE & ASSIGNMENT</li>
+        <li [routerLink]="['answer']" routerLinkActive="active" class="tab-item">ANSWER</li>
+      </ul>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

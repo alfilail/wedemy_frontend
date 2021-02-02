@@ -11,10 +11,10 @@ const routes: Routes = [
     path: 'class',
     component: ClassDetailComponent,
     children: [
-      { path: 'enrolled', component: ModuleComponent },
-      { path: 'instructor', component: InstructorComponent },
-      { path: 'report', component: ReportReadComponent },
-      { path: 'add-material', component: MaterialAddComponent }
+      { path: 'enrolled/:idDetailClass', component: ModuleComponent },
+      { path: 'instructor/:idDetailClass', component: InstructorComponent },
+      { path: 'report/:idDetailClass', component: ReportReadComponent },
+      { path: 'add-material/:idModuleRegistration', component: MaterialAddComponent }
     ]
   }
 ];

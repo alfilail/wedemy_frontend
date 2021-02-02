@@ -9,6 +9,7 @@ import { PresenceAssignmentComponent } from '../../pages/material/presence-assig
 import { TableModule } from 'primeng/table';
 import { EditorModule } from 'primeng/editor';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MaterialRoutingModule,
     TableModule,
     EditorModule,

@@ -9,7 +9,9 @@ export class ClassService {
 
   constructor(private http: HttpClient) { }
 
-  getDetail(): Observable<any[]> {
-    return this.http.get<any[]>('http://192.168.15.183:8080/module-registration/module-and-materials/ded75595-d761-4d1e-967d-2d7376308fbe')
+  getDetail(idDetailClass: string): Observable<any[]> {
+    // return this.http.get<any[]>(`http://192.168.13.48:8080/module-registration/module-and-materials/${idDetailClass}`)
+    return this.http.get<any[]>(`http://192.168.15.199:8080/module-registration/module-and-materials/${idDetailClass}`)
+
   }
 }
