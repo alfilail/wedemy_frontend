@@ -23,4 +23,9 @@ export class UserService extends BaseService {
   insertUsers(user: Users): Observable<Users> {
     return this.http.post<Users>(`${this.ipAddress}/user`, user);
   }
+
+  deleteById(id: string): Observable<Users> {
+    return this.http.delete<Users>(`${this.ipAddress}/user/${id}`)
+  }
+
 }

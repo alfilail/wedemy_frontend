@@ -84,14 +84,14 @@
                                 (click)="hideDialog()"></button>
                         </div>
                         <div class="mt-2">
-                            <button pButton pRipple label="Simpan" icon="pi pi-check"
-                                class="p-button-raised p-button-rounded p-button-success"
-                                (click)="insertNilai()"></button>
-                            <ng-template *ngIf="update">
+                            <ng-template #insert>
                                 <button pButton pRipple label="Simpan" icon="pi pi-check"
                                     class="p-button-raised p-button-rounded p-button-success"
-                                    (click)="updateNilai()"></button>
+                                    (click)="insertNilai()"></button>
                             </ng-template>
+                            <button pButton pRipple label="Simpan" *ngIf="update; else insert" icon="pi pi-check"
+                                class="p-button-raised p-button-rounded p-button-success"
+                                (click)="updateNilai()"></button>
                         </div>
                     </div>
                 </ng-template>

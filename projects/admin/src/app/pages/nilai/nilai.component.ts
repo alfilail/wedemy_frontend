@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Grades } from '../../model/grades';
 import { GradeService } from '../../service/grade.service';
@@ -20,7 +20,6 @@ export class NilaiComponent implements OnInit {
   listNilai: Grades[] = []
 
   constructor(private gradeService: GradeService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-
   }
 
   ngOnInit(): void {
@@ -28,16 +27,21 @@ export class NilaiComponent implements OnInit {
   }
 
   insertNilai(): void {
+    console.log('insert')
+
     this.gradeService.insertGrade(this.nilai).subscribe(val => {
       this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
       this.productDialog = false;
+      this.listNilai.push(this.nilai);
     });
   }
 
   updateNilai(): void {
+    console.log('update')
     this.gradeService.updateGrade(this.nilai).subscribe(val => {
       this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
       this.productDialog = false;
+      this.update = false;
     });
   }
 
@@ -49,6 +53,8 @@ export class NilaiComponent implements OnInit {
   }
 
   editProduct(grade: Grades) {
+    grade.createdAt = null;
+    grade.updatedAt = null;
     this.nilai = { ...grade };
     this.productDialog = true;
     this.update = true;
@@ -73,11 +79,8 @@ export class NilaiComponent implements OnInit {
   }
 
   openNew() {
-    this.nilai.code = null;
-    this.nilai.maxScore = null;
-    this.nilai.minScore = null;
-
-    // this.nilai=null
+    this.nilai = new Grades()
+    this.update = false;
     this.productDialog = true;
   }
 

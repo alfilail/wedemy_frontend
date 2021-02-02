@@ -55,6 +55,8 @@
                             <th pSortableColumn="tglLahir">Tanggal Lahir<p-sortIcon field="tglLahir"></p-sortIcon>
                             </th>
                             <th>Nomor Ponsel </th>
+                            <th>Nomor Ponsel </th>
+
                             <th>Aksi</th>
                         </tr>
                     </ng-template>
@@ -68,9 +70,10 @@
                             <td>{{listUsers.idProfile.birthPlace}}</td>
                             <td>{{listUsers.idProfile.birthDate}}</td>
                             <td>{{listUsers.idProfile.phone}}</td>
+                            <td>{{listUsers.id}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteProduct()"></button>
+                                    (click)="deleteUser(listUsers.id)"></button>
                             </td>
                         </tr>
                     </ng-template>

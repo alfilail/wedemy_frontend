@@ -1,6 +1,7 @@
+<p-toast></p-toast>
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
-        <h1>Jenis Tugas</h1>
+        <h1>Jenis Materi</h1>
     </mat-toolbar>
 
     <div class="container-fluid">
@@ -40,9 +41,10 @@
                             <td>{{listJenisTugas.learningMaterialTypeName}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success p-mr-2" (click)="editProduct()"></button>
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editLearningMaterialType(listJenisTugas)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteProduct()"></button>
+                                    (click)="deleteLearningMaterialType(listJenisTugas.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -77,9 +79,14 @@
                                 (click)="hideDialog()"></button>
                         </div>
                         <div class="mt-2">
-                            <button pButton pRipple label="Simpan" icon="pi pi-check"
+                            <ng-template #insert>
+                                <button pButton pRipple label="Simpan" icon="pi pi-check"
+                                    class="p-button-raised p-button-rounded p-button-success"
+                                    (click)="insertLearningMaterialType()"></button>
+                            </ng-template>
+                            <button pButton pRipple label="Simpan" *ngIf="update; else insert" icon="pi pi-check"
                                 class="p-button-raised p-button-rounded p-button-success"
-                                (click)="insertLearningMaterialType()"></button>
+                                (click)="updateLearningMaterialType()"></button>
                         </div>
                     </div>
                 </ng-template>

@@ -20,4 +20,12 @@ export class ModuleService extends BaseService {
   insertModules(module: Modules): Observable<Modules> {
     return this.http.post<Modules>(`${this.ipAddress}/module`, module)
   }
+
+  updateModule(module: Modules): Observable<Modules> {
+    return this.http.put<Modules>(`${this.ipAddress}/module`, module)
+  }
+
+  deleteById(id: string, idUser: string): Observable<Modules> {
+    return this.http.delete<Modules>(`${this.ipAddress}/module?id=${id}&idUser=${idUser}`)
+  }
 }

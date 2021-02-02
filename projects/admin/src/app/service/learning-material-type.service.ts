@@ -20,4 +20,12 @@ export class LearningMaterialTypeService extends BaseService {
   insertLearningMaterialTypes(learningMaterialType: LearningMaterialTypes): Observable<LearningMaterialTypes> {
     return this.http.post<LearningMaterialTypes>(`${this.ipAddress}/learning-material-type`, learningMaterialType)
   }
+
+  updateLearningMaterialType(learningMaterialType: LearningMaterialTypes): Observable<LearningMaterialTypes> {
+    return this.http.put<LearningMaterialTypes>(`${this.ipAddress}/learning-material-type`, learningMaterialType)
+  }
+
+  deleteById(id: string): Observable<LearningMaterialTypes> {
+    return this.http.delete<LearningMaterialTypes>(`${this.ipAddress}/learning-material-type/${id}`)
+  }
 }

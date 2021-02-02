@@ -15,7 +15,7 @@ export class StatusTugasComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
-
+  update: boolean;
   listStatusTugas: SubmissionStatus[] = [];
   statusTugas = new SubmissionStatus();
 
@@ -28,8 +28,19 @@ export class StatusTugasComponent implements OnInit {
   }
 
   insertSubmissionStatus() {
-    this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => { })
-    this.productDialog = false;
+    this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Status Tugas telah dibuat.', life: 3000 });
+      this.productDialog = false;
+      // this.listStatusTugas.push(this.statusTugas);
+    })
+  }
+
+  updateSubmissionStatus() {
+    console.log('update')
+    this.submissionStatusService.updateSubmissionStatus(this.statusTugas).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Status Tugas telah dibuat.', life: 3000 });
+      this.productDialog = false; this.update = false;
+    })
   }
 
   getSubmissionStatus() {
@@ -39,33 +50,22 @@ export class StatusTugasComponent implements OnInit {
     })
   }
 
-  deleteSelectedProducts() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        // this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        // this.selectedProducts = null;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-      }
-    });
+  editSubStatus(statusTugas: SubmissionStatus) {
+    statusTugas.createdAt = null;
+    statusTugas.updatedAt = null;
+    this.statusTugas = { ...statusTugas };
+    this.productDialog = true; this.update = true;
   }
 
-  editProduct() {
-    // this.product = {...product};
-    this.productDialog = true;
-  }
-
-  deleteProduct() {
+  deleteSubmissionStatus(id: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // this.products = this.products.filter(val => val.id !== product.id);
-        // this.product = {};
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.submissionStatusService.deleteById(id).subscribe(val => {
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
+        })
       }
     });
   }
@@ -77,7 +77,8 @@ export class StatusTugasComponent implements OnInit {
 
 
   openNew() {
-    this.productDialog = true;
+    this.statusTugas = new SubmissionStatus();
+    this.productDialog = true; this.update = false;
   }
 
 }
