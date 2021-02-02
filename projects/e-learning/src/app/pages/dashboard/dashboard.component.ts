@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '@bootcamp-elearning/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,57 +8,93 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   query: string = '';
-  classes = [
-    {
-      name: 'Fullstack Javascript Web Developer Dalam Waktu 3 Bulan',
-      desc: 'Raih Impian Menjadi Web Developer hanya dalam 3 Bulan !',
-      instructor: 'Anggi Alberto'
-    },
-    {
-      name: 'Fullstack Java Web Developer Dalam Waktu 3 Bulan',
-      desc: 'Raih Impian Menjadi Web Developer hanya dalam 3 Bulan !',
-      instructor: 'Ibon'
-    },
-    {
-      name: 'Fullstack Ruby Web Developer Dalam Waktu 3 Bulan',
-      desc: 'Raih Impian Menjadi Web Developer hanya dalam 3 Bulan !',
-      instructor: 'Alpi'
-    },
-    {
-      name: 'Fullstack Python Web Developer Dalam Waktu 3 Bulan',
-      desc: 'Raih Impian Menjadi Web Developer hanya dalam 3 Bulan !',
-      instructor: 'Alpi'
-    }
-  ];
-  instructors = [];
+  classes: any[] = [];
+  instructors: any[] = [];
 
-  results: any[] = this.classes;
+  results: any[] = [];
   selectedInstructor = 'Semua';
 
-  constructor() { }
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    this.getUniqueInstructor();
-    console.log(this.instructors);
+    this.getMyClass();
+  }
 
+  getMyClass(): void {
+    this.dashboardService.getMyClass().subscribe(
+      res => {
+        this.classes = res;
+        this.results = res;
+        // this.getUniqueInstructor();
+        console.log(res);
+
+      },
+      err => { console.log(err) }
+    )
   }
 
   getUniqueInstructor(): void {
-    // const uniqueInstructors = [...new Set(this.classes.map(item => item.instructor))];
-    // this.instructors = uniqueInstructors;
-    const uniqueInstructors = this.classes.filter((val, i, arr) => {
-      return arr.indexOf(arr.find(item => item.instructor === val.instructor)) === i;
-    })
-    this.instructors = uniqueInstructors;
+    // const uniqueInstructors = this.classes.filter((val, i, arr) => {
+    //   return arr.indexOf(
+    //     arr.find(item =>
+    //       item
+    //         .idDetailClass
+    //         .idClass
+    //         .idTutor
+    //         .idProfile
+    //         .fullName === val
+    //           .idDetailClass
+    //           .idClass
+    //           .idTutor
+    //           .idProfile
+    //         .fullName
+    //     )
+    //   ) === i;
+    // })
+
+    // const [{
+    //   idDetailClass: {
+    //     idClass: { idTutor }
+    //   }
+    // }] = uniqueInstructors
+    // console.log('Unique Instructor');
+    // console.log(idTutor);
+
+    // this.instructors = idTutor;
+    // console.log('getUniqueInstructor');
+
+    // const uniqueInstructors = [...new Set(this.classes.map(item => item.idDetailClass
+    //   .idClass
+    //   .idTutor
+    //   .idProfile.fullName))];
+    // console.log(uniqueInstructors);
+
+    // const uniqueInstructors = [];
+    // const tmp = new Map();
+    // for(const item of this.classes) {
+    //   if(!tmp.has(item)) { 
+    //     tmp.set(item.idDetailclass)
+    //   }
+    // }
+
+
   }
 
   search(): void {
-    this.results = this.classes.filter((val) => {
+    this.results = this.classes.filter((item) => {
       if (this.selectedInstructor == 'Semua') {
-        return val.name.toLowerCase().indexOf(this.query.toLowerCase()) !== -1;
+        return item
+          .idDetailClass
+          .idClass
+          .className
+          .toLowerCase().indexOf(this.query.toLowerCase()) !== -1;
       } else {
-        return val.name.toLowerCase().indexOf(this.query.toLowerCase()) !== -1
-          && val.instructor.toLowerCase().indexOf(this.selectedInstructor.toLowerCase()) !== -1;
+        return item
+          .idDetailClass
+          .idClass
+          .className
+          .toLowerCase().indexOf(this.query.toLowerCase()) !== -1
+          && item.instructor.toLowerCase().indexOf(this.selectedInstructor.toLowerCase()) !== -1;
       }
     })
   }

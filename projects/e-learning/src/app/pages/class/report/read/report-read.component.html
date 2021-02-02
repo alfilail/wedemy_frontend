@@ -1,5 +1,5 @@
 <section class="section-title">
-  <h2>Your Report</h2>
+  <h2>Laporan</h2>
 </section>
 
 
@@ -10,10 +10,10 @@
   [globalFilterFields]="['name','averageValue']">
   <ng-template pTemplate="caption">
     <div class="table-header p-d-flex p-jc-between">
-      List of Participant
+      Daftar Peserta
       <span class="p-input-icon-right">
         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-          placeholder="Global Search" />
+          placeholder="Cari peserta" />
       </span>
     </div>
   </ng-template>

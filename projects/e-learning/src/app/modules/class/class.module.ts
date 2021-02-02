@@ -16,7 +16,6 @@ import { ReportReadComponent } from '@bootcamp-elearning/pages/class/report/read
 import { ReportDetailComponent } from '@bootcamp-elearning/pages/class/report/detail/report-detail.component';
 
 
-
 @NgModule({
   declarations: [
     ClassDetailComponent,
