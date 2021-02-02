@@ -12,6 +12,7 @@ import { UserService } from '@bootcamp-homepage/services/user.service';
 export class ForgotPasswordComponent implements OnInit {
 
   profile: Profiles = new Profiles();
+  successDialog: boolean = false;
 
   constructor(private router: Router,
     private userService: UserService,
@@ -26,6 +27,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.userService.resetPassword(this.profile)
     .subscribe(res => {
       console.log(res);
+      this.successDialog = true;
     })
   }
 

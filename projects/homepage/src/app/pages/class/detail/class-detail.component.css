@@ -21,6 +21,7 @@
 
 .header {
     height: 250px;
+    /* background-color: #FFECB3; */
     background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
 }
 
@@ -64,8 +65,8 @@ body {
 }
 
 .tutor-profile img {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
 }
 
 .has-search .form-control {

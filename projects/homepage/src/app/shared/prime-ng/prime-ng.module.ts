@@ -22,6 +22,8 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { EditorModule } from 'primeng/editor';
 import {SkeletonModule} from 'primeng/skeleton';
 import {ToastModule} from 'primeng/toast';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import {ToastModule} from 'primeng/toast';
     InputMaskModule,
     EditorModule,
     SkeletonModule,
-    ToastModule
+    ToastModule,
+    MessagesModule,
+    MessageModule
   ],
   exports: [
     CommonModule,

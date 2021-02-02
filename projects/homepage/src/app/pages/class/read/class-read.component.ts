@@ -19,6 +19,7 @@ export class ClassReadComponent implements OnInit {
   countModule: number = 0;
   totalHours: number = 0;
   countMat: number = 0;
+  
 
   constructor(private router: Router,
     private dtlClassService: DetailClassService,
@@ -76,18 +77,15 @@ export class ClassReadComponent implements OnInit {
     let todayFormatted = new Date(this.datepipe.transform(today, 'yyyy-MM-dd'))
 
     let end = new Date(c.endDate);
+    let start = new Date(c.startDate);
 
     // cek kuota masih ada apa gak
     if(todayFormatted < end) {
       c.status = '1';
       console.log("pendaftaran dibuka");
-    } else if (todayFormatted >= end) {
+    } else if (todayFormatted >= start) {
       c.status = '2';
       console.log("telah berakhir");
     }
-    console.log('today: '+todayFormatted);
-    console.log('start: '+c.startDate);
-    console.log('end: '+c.endDate);
   }
-
 }

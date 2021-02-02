@@ -40,14 +40,14 @@ export class HeaderComponent implements OnInit {
   logout(): void{
     this.authService.clearToken();
     this.isLoggedOut = true;
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/auth/login');
   }
 
   dashboard(): void{
     if(this.authService.getRole() == ROLE.PARTICIPANT){
       this.router.navigateByUrl('/participant/dashboard');
     } else if(this.authService.getRole() == ROLE.TUTOR){
-      this.router.navigateByUrl('/intructor/dashboard');
+      this.router.navigateByUrl('/instructor/dashboard');
     }
   }
 
