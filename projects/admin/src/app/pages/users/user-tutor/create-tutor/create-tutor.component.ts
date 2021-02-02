@@ -4,6 +4,7 @@ import { Profiles } from '@bootcamp-admin/model/profiles';
 import { Roles } from '@bootcamp-admin/model/roles';
 import { Users } from '@bootcamp-admin/model/users';
 import { UserService } from '@bootcamp-admin/service/user.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-create-tutor',
@@ -22,7 +23,7 @@ export class CreateTutorComponent implements OnInit {
   role = new Roles();
   roleUser: string;
 
-  constructor(private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
+  constructor(private messageService: MessageService, private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
 
   }
 
@@ -44,7 +45,14 @@ export class CreateTutorComponent implements OnInit {
     this.user.idRole = this.role;
 
     console.log(this.user.idProfile.birthDate)
-    this.userService.insertUsers(this.user).subscribe(val => { })
+    this.userService.insertUsers(this.user).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User telah dibuat.', life: 3000 });
+      if (this.roleUser == 'tutor') {
+        this.route.navigateByUrl('/admin/user-tutor')
+      } else {
+        this.route.navigateByUrl('/admin/user-admin')
+      }
+    })
   }
 
   backButton() {

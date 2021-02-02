@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
         <h1>Status Tugas</h1>
@@ -40,9 +41,10 @@
                             <td>{{listStatusTugas.submissionStatusName}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success p-mr-2" (click)="editProduct()"></button>
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editSubStatus(listStatusTugas)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteProduct()"></button>
+                                    (click)="deleteSubmissionStatus(listStatusTugas.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -76,9 +78,14 @@
                                 (click)="hideDialog()"></button>
                         </div>
                         <div class="mt-2">
-                            <button pButton pRipple label="Simpan" icon="pi pi-check"
+                            <ng-template #insert>
+                                <button pButton pRipple label="Simpan" icon="pi pi-check"
+                                    class="p-button-raised p-button-rounded p-button-success"
+                                    (click)="insertSubmissionStatus()"></button>
+                            </ng-template>
+                            <button pButton pRipple label="Simpan" *ngIf="update; else insert" icon="pi pi-check"
                                 class="p-button-raised p-button-rounded p-button-success"
-                                (click)="insertSubmissionStatus()"></button>
+                                (click)="updateSubmissionStatus()"></button>
                         </div>
                     </div>
                 </ng-template>

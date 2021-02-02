@@ -18,7 +18,7 @@ export class JenisTugasComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
-
+  update: boolean;
 
   listJenisTugas: LearningMaterialTypes[] = []
   learningMaterialType = new LearningMaterialTypes();
@@ -32,8 +32,20 @@ export class JenisTugasComponent implements OnInit {
   }
 
   insertLearningMaterialType() {
-    this.learningMaterialTypeService.insertLearningMaterialTypes(this.learningMaterialType).subscribe(val => { })
-    this.productDialog = false;
+    this.learningMaterialTypeService.insertLearningMaterialTypes(this.learningMaterialType).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dibuat.', life: 3000 });
+      this.productDialog = false;
+      this.listJenisTugas.push(this.learningMaterialType);
+    })
+  }
+
+  updateLearningMaterialType() {
+    console.log('update')
+    this.learningMaterialTypeService.updateLearningMaterialType(this.learningMaterialType).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dibuat.', life: 3000 });
+      this.productDialog = false; this.update = false;
+      this.update = false;
+    })
   }
 
   getLearningMaterialTypes() {
@@ -42,33 +54,24 @@ export class JenisTugasComponent implements OnInit {
       console.log(val)
     })
   }
-  deleteSelectedProducts() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        // this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        // this.selectedProducts = null;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-      }
-    });
-  }
 
-  editProduct() {
-    // this.product = {...product};
+  editLearningMaterialType(learningMaterialType: LearningMaterialTypes) {
+    learningMaterialType.createdAt = null;
+    learningMaterialType.updatedAt = null;
+    this.learningMaterialType = { ...learningMaterialType };
     this.productDialog = true;
+    this.update = true;
   }
 
-  deleteProduct() {
+  deleteLearningMaterialType(id: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // this.products = this.products.filter(val => val.id !== product.id);
-        // this.product = {};
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.learningMaterialTypeService.deleteById(id).subscribe(val => {
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dihapus.', life: 3000 });
+        })
       }
     });
   }
@@ -78,40 +81,10 @@ export class JenisTugasComponent implements OnInit {
     this.submitted = false;
   }
 
-  saveProduct() {
-    this.submitted = true;
-
-    // if (this.product.name.trim()) {
-    // if (this.product.id) {
-    // this.products[this.findIndexById(this.product.id)] = this.product;
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-    // }
-    // else {
-    // this.product.id = this.createId();
-    // this.product.image = 'product-placeholder.svg';
-    // this.products.push(this.product);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    // }
-
-    // this.products = [...this.products];
-    this.productDialog = false;
-    // this.product = {};
-  }
-  // }
-
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.listJenisTugas.length; i++) {
-      if (this.listJenisTugas[i].code === id) {
-        index = i;
-        break;
-      }
-    }
-    return index;
-  }
-
   openNew() {
+    this.learningMaterialType = new LearningMaterialTypes();
     this.productDialog = true;
+    this.update = false;
   }
 
 }

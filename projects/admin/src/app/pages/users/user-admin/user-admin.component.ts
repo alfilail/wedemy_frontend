@@ -35,6 +35,7 @@ export class UserAdminComponent implements OnInit {
     this.userService.getUsers().subscribe(val => {
       this.listUsers = val;
       console.log(val)
+      console.log(this.listUsers[0].id)
     })
   }
 
@@ -49,13 +50,15 @@ export class UserAdminComponent implements OnInit {
     })
   }
 
-  deleteSelectedProducts() {
+  deleteUser(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
+      message: 'Are you sure you want to delete ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+        this.userService.deleteById(id).subscribe(val => {
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
+        })
       }
     });
   }

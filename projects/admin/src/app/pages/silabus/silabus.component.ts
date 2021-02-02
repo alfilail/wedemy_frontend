@@ -15,7 +15,7 @@ export class SilabusComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
-
+  update: boolean;
   listSilabus: Modules[] = [];
   module = new Modules();
 
@@ -28,8 +28,19 @@ export class SilabusComponent implements OnInit {
   }
 
   insertModule(): void {
-    this.moduleService.insertModules(this.module).subscribe(val => { })
-    this.productDialog = false;
+    this.moduleService.insertModules(this.module).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Silabus telah dibuat', life: 3000 });
+      this.productDialog = false;
+      this.listSilabus.push(this.module)
+    })
+  }
+
+  updateModule(): void {
+    console.log('update')
+    this.moduleService.updateModule(this.module).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Silabus telah dibuat', life: 3000 });
+      this.productDialog = false; this.update = false;
+    })
   }
 
   getModules(): void {
@@ -39,33 +50,22 @@ export class SilabusComponent implements OnInit {
     })
   }
 
-  deleteSelectedProducts() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        // this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        // this.selectedProducts = null;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-      }
-    });
+  editModule(module: Modules) {
+    module.createdAt = null;
+    module.updatedAt = null;
+    this.module = { ...module };
+    this.productDialog = true; this.update = true;
   }
 
-  editProduct() {
-    // this.product = {...product};
-    this.productDialog = true;
-  }
-
-  deleteProduct() {
+  deleteModule(id: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // this.products = this.products.filter(val => val.id !== product.id);
-        // this.product = {};
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.moduleService.deleteById(id, '31f587f7-ee4f-40b3-bc10-51fb850f3685').subscribe(val => {
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
+        })
       }
     });
   }
@@ -75,39 +75,8 @@ export class SilabusComponent implements OnInit {
     this.submitted = false;
   }
 
-  saveProduct() {
-    this.submitted = true;
-
-    // if (this.product.name.trim()) {
-    // if (this.product.id) {
-    // this.products[this.findIndexById(this.product.id)] = this.product;
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-    // }
-    // else {
-    // this.product.id = this.createId();
-    // this.product.image = 'product-placeholder.svg';
-    // this.products.push(this.product);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    // }
-
-    // this.products = [...this.products];
-    this.productDialog = false;
-    // this.product = {};
-  }
-  // }
-
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.listSilabus.length; i++) {
-      if (this.listSilabus[i].code === id) {
-        index = i;
-        break;
-      }
-    }
-    return index;
-  }
-
   openNew() {
-    this.productDialog = true;
+    this.module = new Modules()
+    this.productDialog = true; this.update = false;
   }
 }

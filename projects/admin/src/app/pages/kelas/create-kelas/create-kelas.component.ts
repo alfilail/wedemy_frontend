@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Classes } from '@bootcamp-admin/model/classes';
 import { DetailClasses } from '@bootcamp-admin/model/dtl-classes';
 import { ClassHelper } from '@bootcamp-admin/model/helper/class-helper';
@@ -47,7 +48,7 @@ export class CreateKelasComponent implements OnInit {
 
   modules: Modules[] = [];
 
-  constructor(private tutorService: UserService, private classService: ClassService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private route: Router, private tutorService: UserService, private classService: ClassService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
@@ -66,20 +67,38 @@ export class CreateKelasComponent implements OnInit {
   onSelectEnd($event) {
     let hour = new Date($event).getHours();
     let min = new Date($event).getMinutes();
-    if (min < 10) {
-      this.endTimeValue = `${hour}:0${min}`;
+
+    if (hour < 10) {
+      if (min < 10) {
+        this.endTimeValue = `0${hour}:0${min}`;
+      } else {
+        this.endTimeValue = `0${hour}:${min}`;
+      }
     } else {
-      this.endTimeValue = `${hour}:${min}`;
+      if (min < 10) {
+        this.endTimeValue = `${hour}:0${min}`;
+      } else {
+        this.endTimeValue = `${hour}:${min}`;
+      }
     }
   }
 
   onSelectStart($event) {
     let hour = new Date($event).getHours();
     let min = new Date($event).getMinutes();
-    if (min < 10) {
-      this.startTimeValue = `${hour}:0${min}`;
+
+    if (hour < 10) {
+      if (min < 10) {
+        this.startTimeValue = `0${hour}:0${min}`;
+      } else {
+        this.startTimeValue = `0${hour}:${min}`;
+      }
     } else {
-      this.startTimeValue = `${hour}:${min}`;
+      if (min < 10) {
+        this.startTimeValue = `${hour}:0${min}`;
+      } else {
+        this.startTimeValue = `${hour}:${min}`;
+      }
     }
   }
 
@@ -117,12 +136,22 @@ export class CreateKelasComponent implements OnInit {
     this.dtlClass.startTime = this.startTimeValue
     this.dtlClass.endDate = this.formatDate(this.rangeDates[0])
     this.dtlClass.startDate = this.formatDate(this.rangeDates[1])
+    console.log(this.startTimeValue)
+    console.log(this.endTimeValue)
 
     this.moduleRegistration.idModule = this.moduleSelect
     this.moduleRegistration.idDetailClass = this.dtlClass
-    this.modules.push(this.moduleSelect)
 
+    this.modules.push(this.moduleSelect)
     this.listModuleRegistration.push(this.moduleRegistration);
+
+    this.modules.forEach(val => {
+      console.log(val, " modules not delete")
+    })
+
+    this.listModuleRegistration.forEach(val => {
+      console.log(val, " list module not delete")
+    })
   }
 
   saveClass() {
@@ -131,11 +160,23 @@ export class CreateKelasComponent implements OnInit {
     this.classHelper.module = this.modules
 
     this.formData.append("body", JSON.stringify(this.classHelper));
-    this.classService.insertClasses(this.formData).subscribe(val => { })
+    this.classService.insertClasses(this.formData).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
+      this.route.navigateByUrl("/admin/kelas")
+    })
   }
 
   deleteList(index: number): void {
+    this.modules.splice(index, 1)
     this.listModuleRegistration.splice(index, 1);
+
+    this.modules.forEach(val => {
+      console.log(val, " modules delete")
+    })
+
+    this.listModuleRegistration.forEach(val => {
+      console.log(val, " list module delete")
+    })
   }
 
 }

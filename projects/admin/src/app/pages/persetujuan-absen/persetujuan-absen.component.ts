@@ -14,7 +14,7 @@ export class PersetujuanAbsenComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
-
+  update: boolean = false;
   listApprovements: Approvements[] = []
   approvement = new Approvements();
 
@@ -27,9 +27,20 @@ export class PersetujuanAbsenComponent implements OnInit {
   }
 
   insertApprovement(): void {
-    this.submitted = true;
-    this.aprovementService.insertApprovement(this.approvement).subscribe(val => { })
-    this.productDialog = false;
+    this.aprovementService.insertApprovement(this.approvement).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
+      this.productDialog = false;
+      this.listApprovements.push(this.approvement)
+    })
+  }
+
+  updateApprovement(): void {
+    console.log('update')
+    this.aprovementService.updateApprovement(this.approvement).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
+      this.productDialog = false;
+      this.update = false;
+    })
   }
 
   getApprovements(): void {
@@ -39,33 +50,22 @@ export class PersetujuanAbsenComponent implements OnInit {
     })
   }
 
-  deleteSelectedProducts() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        // this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        // this.selectedProducts = null;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-      }
-    });
+  editApprovement(approvement: Approvements) {
+    approvement.createdAt = null;
+    approvement.updatedAt = null;
+    this.approvement = { ...approvement };
+    this.productDialog = true; this.update = true;
   }
 
-  editProduct() {
-    // this.product = {...product};
-    this.productDialog = true;
-  }
-
-  deleteProduct() {
+  deleteApprovement(id: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // this.products = this.products.filter(val => val.id !== product.id);
-        // this.product = {};
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.aprovementService.deleteById(id).subscribe(val => {
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Persetujuan Absen telah dihapus.', life: 3000 });
+        })
       }
     });
   }
@@ -75,30 +75,10 @@ export class PersetujuanAbsenComponent implements OnInit {
     this.submitted = false;
   }
 
-  saveProduct() {
-    this.submitted = true;
-
-    // if (this.product.name.trim()) {
-    // if (this.product.id) {
-    // this.products[this.findIndexById(this.product.id)] = this.product;
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-    // }
-    // else {
-    // this.product.id = this.createId();
-    // this.product.image = 'product-placeholder.svg';
-    // this.products.push(this.product);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    // }
-
-    // this.products = [...this.products];
-    this.productDialog = false;
-    // this.product = {};
-  }
-  // }
-
   openNew() {
+    this.approvement = new Approvements();
     this.productDialog = true;
-    this.submitted = false;
+    this.submitted = false; this.update = false;
   }
 
 }

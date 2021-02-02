@@ -20,4 +20,12 @@ export class ApprovementService extends BaseService {
   insertApprovement(approvement: Approvements): Observable<Approvements> {
     return this.http.post<Approvements>(`${this.ipAddress}/approvement`, approvement)
   }
+
+  updateApprovement(approvement: Approvements): Observable<Approvements> {
+    return this.http.put<Approvements>(`${this.ipAddress}/approvement`, approvement);
+  }
+
+  deleteById(id: string): Observable<Approvements> {
+    return this.http.delete<Approvements>(`${this.ipAddress}/approvement/${id}`)
+  }
 }

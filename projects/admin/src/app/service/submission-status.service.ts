@@ -20,4 +20,12 @@ export class SubmissionStatusService extends BaseService {
   insertSubmissionStatus(submissionStatus: SubmissionStatus): Observable<SubmissionStatus> {
     return this.http.post<SubmissionStatus>(`${this.ipAddress}/submission-status`, submissionStatus)
   }
+
+  updateSubmissionStatus(submissionStatus: SubmissionStatus): Observable<SubmissionStatus> {
+    return this.http.put<SubmissionStatus>(`${this.ipAddress}/submission-status`, submissionStatus)
+  }
+
+  deleteById(id: string): Observable<SubmissionStatus> {
+    return this.http.delete<SubmissionStatus>(`${this.ipAddress}/submission-status/${id}`)
+  }
 }
