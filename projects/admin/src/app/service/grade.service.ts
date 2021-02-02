@@ -24,4 +24,8 @@ export class GradeService extends BaseService {
   deleteById(id: string): Observable<Grades> {
     return this.http.delete<Grades>(`${this.ipAddress}/grade/${id}`)
   }
+
+  updateGrade(grade: Grades): Observable<Grades> {
+    return this.http.put<Grades>(`${this.ipAddress}/grade/`, grade);
+  }
 }

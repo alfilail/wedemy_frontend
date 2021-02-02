@@ -44,7 +44,8 @@
                             <td>{{listNilai.maxScore}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success p-mr-2" (click)="editProduct()"></button>
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editProduct(listNilai)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                                     (click)="deleteGrade(listNilai.id)"></button>
                             </td>
@@ -86,6 +87,11 @@
                             <button pButton pRipple label="Simpan" icon="pi pi-check"
                                 class="p-button-raised p-button-rounded p-button-success"
                                 (click)="insertNilai()"></button>
+                            <ng-template *ngIf="update">
+                                <button pButton pRipple label="Simpan" icon="pi pi-check"
+                                    class="p-button-raised p-button-rounded p-button-success"
+                                    (click)="updateNilai()"></button>
+                            </ng-template>
                         </div>
                     </div>
                 </ng-template>

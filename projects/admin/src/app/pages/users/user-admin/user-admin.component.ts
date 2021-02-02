@@ -28,7 +28,7 @@ export class UserAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserByCode();
-    this.isSuperAdmin = false;
+    this.isSuperAdmin = true;
   }
 
   getUsers(): void {

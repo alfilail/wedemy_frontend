@@ -14,6 +14,7 @@ export class NilaiComponent implements OnInit {
   productDialog: boolean;
   rangeDates: Date[];
   submitted: boolean;
+  update: boolean;
 
   nilai = new Grades();
   listNilai: Grades[] = []
@@ -27,9 +28,17 @@ export class NilaiComponent implements OnInit {
   }
 
   insertNilai(): void {
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
-    this.productDialog = false;
-    this.gradeService.insertGrade(this.nilai).subscribe(val => { });
+    this.gradeService.insertGrade(this.nilai).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
+      this.productDialog = false;
+    });
+  }
+
+  updateNilai(): void {
+    this.gradeService.updateGrade(this.nilai).subscribe(val => {
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
+      this.productDialog = false;
+    });
   }
 
   getNilai(): void {
@@ -39,9 +48,10 @@ export class NilaiComponent implements OnInit {
     })
   }
 
-  editProduct() {
-    // this.product = {...product};
+  editProduct(grade: Grades) {
+    this.nilai = { ...grade };
     this.productDialog = true;
+    this.update = true;
   }
 
   deleteGrade(id: string) {
@@ -63,6 +73,11 @@ export class NilaiComponent implements OnInit {
   }
 
   openNew() {
+    this.nilai.code = null;
+    this.nilai.maxScore = null;
+    this.nilai.minScore = null;
+
+    // this.nilai=null
     this.productDialog = true;
   }
 

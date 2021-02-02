@@ -7,11 +7,12 @@ export class DetailClasses extends BaseMaster {
 
     public code: string;
 
-    public startDate: Date;
+    public startDate: string;
 
-    public endDate: Date;
+    public endDate: string;
 
-    public startTime: Time;
+    public startTime: string;
 
-    public endTime: Time;
+    public endTime: string;
+
 }

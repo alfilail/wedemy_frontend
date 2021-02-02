@@ -21,9 +21,11 @@ export class CreateKelasComponent implements OnInit {
 
   formData: FormData;
   file: String;
+  endTimeValue: string;
+  startTimeValue: string;
 
   productDialog: boolean;
-  rangeDates: String[];
+  rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
 
@@ -61,6 +63,26 @@ export class CreateKelasComponent implements OnInit {
     })
   }
 
+  onSelectEnd($event) {
+    let hour = new Date($event).getHours();
+    let min = new Date($event).getMinutes();
+    if (min < 10) {
+      this.endTimeValue = `${hour}:0${min}`;
+    } else {
+      this.endTimeValue = `${hour}:${min}`;
+    }
+  }
+
+  onSelectStart($event) {
+    let hour = new Date($event).getHours();
+    let min = new Date($event).getMinutes();
+    if (min < 10) {
+      this.startTimeValue = `${hour}:0${min}`;
+    } else {
+      this.startTimeValue = `${hour}:${min}`;
+    }
+  }
+
   getModules() {
     this.moduleService.getModules().subscribe(val => {
       this.listModules = val;
@@ -69,9 +91,7 @@ export class CreateKelasComponent implements OnInit {
   }
 
   formatDate(str: Date): string {
-    console.log(str)
-    let format = moment(str).format('DD/MM/YYYY');
-    // let date = new Date(format)
+    let format = moment(str).format('YYYY-MM-DD');
     return format;
   }
 
@@ -88,13 +108,15 @@ export class CreateKelasComponent implements OnInit {
     }
   }
 
-
   addClass() {
 
     this.class.idTutor = this.tutorSelect
-    console.log(this.tutorSelect.idProfile.id)
 
     this.dtlClass.idClass = this.class;
+    this.dtlClass.endTime = this.endTimeValue
+    this.dtlClass.startTime = this.startTimeValue
+    this.dtlClass.endDate = this.formatDate(this.rangeDates[0])
+    this.dtlClass.startDate = this.formatDate(this.rangeDates[1])
 
     this.moduleRegistration.idModule = this.moduleSelect
     this.moduleRegistration.idDetailClass = this.dtlClass
