@@ -134,8 +134,8 @@ export class CreateKelasComponent implements OnInit {
     this.dtlClass.idClass = this.class;
     this.dtlClass.endTime = this.endTimeValue
     this.dtlClass.startTime = this.startTimeValue
-    this.dtlClass.endDate = this.formatDate(this.rangeDates[0])
-    this.dtlClass.startDate = this.formatDate(this.rangeDates[1])
+    this.dtlClass.startDate = this.formatDate(this.rangeDates[0])
+    this.dtlClass.endDate = this.formatDate(this.rangeDates[1])
     console.log(this.startTimeValue)
     console.log(this.endTimeValue)
 

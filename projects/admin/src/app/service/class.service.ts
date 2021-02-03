@@ -21,4 +21,9 @@ export class ClassService extends BaseService {
   insertClasses(formData: FormData): Observable<any> {
     return this.http.post<any>(`${this.ipAddress}/class`, formData)
   }
+
+  deleteById(id: string): Observable<Classes> {
+    return this.http.delete<Classes>(`${this.ipAddress}/class/${id}`)
+  }
+
 }
