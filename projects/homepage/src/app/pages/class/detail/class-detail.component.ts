@@ -33,7 +33,7 @@ export class ClassDetailComponent implements OnInit {
   confirm: boolean = false;
   classEnrollmentSelected: ClassEnrollments = new ClassEnrollments();
   enrolled: boolean = false; /* To check if participant is already enrolled the class */
-  showRegisterButton: boolean = true; 
+  showRegisterButton: boolean = false; 
   isEnrolled: boolean = false;
   isEnded: boolean = false;
   isFull: boolean = false;
@@ -67,6 +67,7 @@ export class ClassDetailComponent implements OnInit {
           this.checkEnded();
           this.checkEnrolled();
           this.checkTutor();
+          this.checkRegis();
         })
       })
     });
@@ -187,5 +188,18 @@ export class ClassDetailComponent implements OnInit {
       this.isEnrolled = false;
       this.isEnded = false;
     }
+  }
+
+  checkRegis(): void {
+    if(this.isLoggedOut){
+      this.showRegisterButton = true;
+      this.isTutor = false;
+      this.isFull = false;
+      this.isEnrolled = false;
+      this.isEnded = false;
+    } else if(!this.isLoggedOut){
+      
+    }
+
   }
 }
