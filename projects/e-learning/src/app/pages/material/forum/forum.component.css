@@ -25,7 +25,11 @@ li.tab-item.active {
 }
 
 .comments {
-  background-color: #e7e4e46e;
-  padding: 10px 16px;
+  background-color: #d8c8c895;
+  padding: 26px 16px 0 16px;
   border-radius: 6px;
+}
+
+.comments {
+  font-size: medium;
 }
