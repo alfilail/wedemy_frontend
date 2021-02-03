@@ -22,8 +22,8 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="listNilai" [rows]="10" [paginator]="true" [globalFilterFields]="['code']"
-                    [rowHover]="true" dataKey="id" class="p-m-3"
+                <p-table #dt [value]="listNilai" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['code', 'minScore', 'maxScore']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">

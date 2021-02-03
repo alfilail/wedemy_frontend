@@ -23,7 +23,7 @@
                     </ng-template>
                 </p-toolbar>
                 <p-table #dt [value]="listSilabus" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['name', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
+                    [globalFilterFields]="['moduleName', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">

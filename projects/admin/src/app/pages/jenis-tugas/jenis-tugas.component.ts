@@ -43,7 +43,7 @@ export class JenisTugasComponent implements OnInit {
     console.log('update')
     this.learningMaterialTypeService.updateLearningMaterialType(this.learningMaterialType).subscribe(val => {
       this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dibuat.', life: 3000 });
-      this.productDialog = false; this.update = false;
+      this.productDialog = false;
       this.update = false;
     })
   }

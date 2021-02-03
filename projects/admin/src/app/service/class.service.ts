@@ -26,4 +26,7 @@ export class ClassService extends BaseService {
     return this.http.delete<Classes>(`${this.ipAddress}/class/${id}`)
   }
 
+
+
+
 }

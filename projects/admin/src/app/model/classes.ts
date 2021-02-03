@@ -1,18 +1,13 @@
 import { BaseMaster } from "@bootcamp-core/models/base-master";
+import { Files } from "./files";
 import { Users } from "./users";
 
 export class Classes extends BaseMaster {
-    public code: string;
-
-    public className: string;
-
-    public description: string;
-
-    public thumbnailImg: string;
-
-    public fileType: string;
-
-    public quota: number;
-
-    public idTutor: Users = new Users();
+    code: string;
+    className: string;
+    description: string;
+    thumbnailImg: string;
+    idFile: Files = new Files();
+    quota: number;
+    idTutor: Users = new Users();
 }

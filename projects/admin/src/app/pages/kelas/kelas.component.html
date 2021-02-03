@@ -22,13 +22,13 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="listKelas" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['code', 'pengajar']" [rowHover]="true" dataKey="id" class="p-m-3"
+                <p-table #dt [value]="listKelas" [rows]="10" [paginator]="true" [globalFilterFields]="['code']"
+                    [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th p-columnFilter="pengajar" field="pengajar" pSortableColumn="pengajar">Pengajar
+                            <th field="pengajar" pSortableColumn="pengajar">Pengajar
                                 <p-sortIcon field="pengajar"></p-sortIcon>
                             </th>
                             <th pSortableColumn="code">Kode Kelas<p-sortIcon field="code"></p-sortIcon>
@@ -57,7 +57,8 @@
                             <td>{{listKelas.idClass.code}}</td>
                             <td>{{listKelas.idClass.className}}</td>
                             <td>{{listKelas.idClass.description}}</td>
-                            <td><img [src]="'../../../../../assets/img/java.png'" width="100" class="p-shadow-4" /></td>
+                            <td><img src="data:image/png;base64,{{listKelas.idClass.idFile.file}}" width="100"
+                                    class="p-shadow-4" /></td>
                             <td>{{listKelas.idClass.quota}}</td>
                             <td>{{listKelas.startDate}}</td>
                             <td>{{listKelas.endDate}}</td>

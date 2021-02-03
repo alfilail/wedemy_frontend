@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
-        <h1>Jenis Materi</h1>
+        <h1>Jenis Silabus</h1>
     </mat-toolbar>
 
     <div class="container-fluid">
@@ -23,8 +23,8 @@
                     </ng-template>
                 </p-toolbar>
                 <p-table #dt [value]="listJenisTugas" [rows]="10" [paginator]="true"
-                    [globalFilterFields]="['name', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [globalFilterFields]="['learningMaterialTypeName', 'code']" [rowHover]="true" dataKey="id"
+                    class="p-m-3" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>

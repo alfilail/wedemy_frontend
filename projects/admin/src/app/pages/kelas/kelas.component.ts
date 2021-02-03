@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DetailClasses } from '@bootcamp-admin/model/dtl-classes';
 import { DtlClassService } from '@bootcamp-admin/service/dtl-class.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Classes } from '../../model/classes';
 import { ClassService } from '../../service/class.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-kelas',
@@ -24,7 +24,6 @@ export class KelasComponent implements OnInit {
   listKelas: DetailClasses[] = [];
 
   constructor(private classService: ClassService, private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-
   }
 
   ngOnInit(): void {
