@@ -8,7 +8,11 @@ export class BaseService {
   // api: string = "http://192.168.15.199:8080"; //alfi lrp
   //api: string = "http://192.168.13.244:8080"; //nisa bootcamp
   //api: string = "http://192.168.13.48:8080"; //alfi bootcamp 
+<<<<<<< HEAD
   api: string = "http://192.168.13.66:8080"
+=======
+
+>>>>>>> b3c4190714d62293ddb5ce5eeca9df1d969de4e9
 
   constructor() { }
 }
