@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { EditorModule } from 'primeng/editor';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { DateAgoPipe } from '@bootcamp-elearning/shared/pipes/date-ago.pipe';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     MaterialReadComponent,
     AnswerComponent,
     ForumComponent,
-    PresenceAssignmentComponent
+    PresenceAssignmentComponent,
+    DateAgoPipe
   ],
   imports: [
     CommonModule,
