@@ -22,13 +22,14 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="listKelas" [rows]="10" [paginator]="true" [globalFilterFields]="['name', 'code']"
-                    [rowHover]="true" dataKey="id" class="p-m-3"
+                <p-table #dt [value]="listKelas" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['code', 'pengajar']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th pSortableColumn="code">Pengajar<p-sortIcon field="code"></p-sortIcon>
+                            <th p-columnFilter="pengajar" field="pengajar" pSortableColumn="pengajar">Pengajar
+                                <p-sortIcon field="pengajar"></p-sortIcon>
                             </th>
                             <th pSortableColumn="code">Kode Kelas<p-sortIcon field="code"></p-sortIcon>
                             </th>
@@ -43,6 +44,10 @@
                             </th>
                             <th pSortableColumn="endDate">Tanggal Selesai<p-sortIcon field="endDate"></p-sortIcon>
                             </th>
+                            <th pSortableColumn="startTime">Jam Mulai<p-sortIcon field="startTime"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="endTime">Jam Selesai<p-sortIcon field="endTime"></p-sortIcon>
+                            </th>
                             <th>Aksi</th>
                         </tr>
                     </ng-template>
@@ -56,11 +61,13 @@
                             <td>{{listKelas.idClass.quota}}</td>
                             <td>{{listKelas.startDate}}</td>
                             <td>{{listKelas.endDate}}</td>
+                            <td>{{listKelas.startTime}}</td>
+                            <td>{{listKelas.endTime}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success p-mr-2" (click)="editProduct()"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteProduct()"></button>
+                                    (click)="deleteClass(listKelas.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
