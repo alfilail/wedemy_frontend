@@ -20,10 +20,10 @@ export class KelasComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
-
+  selectedClass: DetailClasses[] = []
   listKelas: DetailClasses[] = [];
 
-  constructor(private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private classService: ClassService, private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
@@ -52,19 +52,18 @@ export class KelasComponent implements OnInit {
   }
 
   editProduct() {
-    // this.product = {...product};
-    this.productDialog = true;
+
   }
 
-  deleteProduct() {
+  deleteClass(id: string) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // this.products = this.products.filter(val => val.id !== product.id);
-        // this.product = {};
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.classService.deleteById(id).subscribe(val => {
+          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Kelas telah dihapus.', life: 3000 });
+        })
       }
     });
   }

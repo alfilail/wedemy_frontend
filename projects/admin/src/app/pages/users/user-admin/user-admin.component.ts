@@ -28,6 +28,7 @@ export class UserAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserByCode();
+    // this.getUsers();
     this.isSuperAdmin = true;
   }
 
@@ -35,7 +36,6 @@ export class UserAdminComponent implements OnInit {
     this.userService.getUsers().subscribe(val => {
       this.listUsers = val;
       console.log(val)
-      console.log(this.listUsers[0].id)
     })
   }
 
@@ -66,19 +66,6 @@ export class UserAdminComponent implements OnInit {
   editProduct(user: Users) {
     this.user = { ...user };
     this.productDialog = true;
-  }
-
-  deleteProduct() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        // this.products = this.products.filter(val => val.id !== product.id);
-        // this.product = {};
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-      }
-    });
   }
 
   hideDialog() {
