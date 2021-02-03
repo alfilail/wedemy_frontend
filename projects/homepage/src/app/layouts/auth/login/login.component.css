@@ -43,3 +43,23 @@ h5,
 h6 {
     font-family: 'Quicksand', sans-serif !important;
 }
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

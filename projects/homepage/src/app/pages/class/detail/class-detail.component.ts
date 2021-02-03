@@ -1,5 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RoleService } from '@bootcamp-admin/service/role.service';
+import { ROLE } from '@bootcamp-homepage/constants/roles';
+import { RegisterComponent } from '@bootcamp-homepage/layouts/auth/register/register.component';
 import { ClassEnrollments } from '@bootcamp-homepage/models/class-enrollments';
 import { Classes } from '@bootcamp-homepage/models/classes';
 import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
@@ -28,12 +32,19 @@ export class ClassDetailComponent implements OnInit {
   display: boolean = false;
   confirm: boolean = false;
   classEnrollmentSelected: ClassEnrollments = new ClassEnrollments();
+  enrolled: boolean = false; /* To check if participant is already enrolled the class */
+  showRegisterButton: boolean = true; 
+  isEnrolled: boolean = false;
+  isEnded: boolean = false;
+  isFull: boolean = false;
+  isTutor: boolean = false;
 
   constructor(private router: Router,
     private moduleRgsService: ModuleRegistrationService,
     private dtlClassService: DetailClassService,
     private route: ActivatedRoute,
     private authService: AuthService,
+    public datepipe: DatePipe,
     private classEnrollmentService: ClassEnrollmentService) 
   { }
 
@@ -52,6 +63,10 @@ export class ClassDetailComponent implements OnInit {
           console.log('mymy1 '+this.countMat)
           // this.userRole = this.authService.getRole();
           console.log(res);
+          this.checkQuota();
+          this.checkEnded();
+          this.checkEnrolled();
+          this.checkTutor();
         })
       })
     });
@@ -81,11 +96,8 @@ export class ClassDetailComponent implements OnInit {
   enrollNow(): void {
     if(this.isLoggedOut){
       this.display = true;
-      // show dialog to login
     } else if(!this.isLoggedOut){
-      //create enrollment class
       this.confirm = true;
-      console.log("udah login")
     }
   }
 
@@ -97,6 +109,11 @@ export class ClassDetailComponent implements OnInit {
     .subscribe(res => {
       console.log(this.classEnrollmentSelected);
       console.log(res);
+      this.closeDialog();
+      // this.showRegisterButton = false;
+      // this.isEnded = false;
+      // this.isFull = false;
+      this.ngOnInit();
     })
   }
 
@@ -105,5 +122,70 @@ export class ClassDetailComponent implements OnInit {
     this.display = false;
   }
 
+  checkEnrolled(): void {
+    let idUser: string = this.authService.getUserId();
+    let idDtlClass: string = this.dtlClass.id;
+    if (idUser != null){
+    this.classEnrollmentService.findClassEnrollment(idDtlClass, idUser)
+    .subscribe(res => {
+      if (res != null){
+        this.isEnrolled = true;
+        this.showRegisterButton = false;
+        this.isEnded = false;
+        this.isFull = false;
+        this.isTutor = false;
+      }
+    });
+  }
+    this.isEnrolled = false;
+  }
 
+  checkEnded(): void {
+    let today: Date = new Date();
+    today.setHours(0, 0, 0, 0);
+    let todayFormatted = new Date(this.datepipe.transform(today, 'yyyy-MM-dd'))
+
+    let end = new Date(this.dtlClass.endDate);
+    let start = new Date(this.dtlClass.startDate);
+
+    if(todayFormatted < start) {
+      this.isEnded = false;
+    } else if (todayFormatted >= start) {
+      this.isEnded = true;
+      this.showRegisterButton = false;
+      this.isEnrolled = false;
+      this.isFull = false;
+      this.isTutor = false;
+    }
+  }
+
+  checkQuota(): void {
+    let quotaClass = this.dtlClass.idClass.quota;
+    let totalParticipant = this.dtlClass.totalParticipant;
+
+    if(totalParticipant >= quotaClass) {
+      this.isFull = true;
+      this.showRegisterButton = false;
+      this.isEnrolled = false;
+      this.isEnded = false;
+      this.isTutor = false;
+    } else if (totalParticipant < quotaClass) {
+      this.isFull = false;
+      // this.showRegisterButton = true;
+    }
+  }
+
+  classDashboard(): void {
+    this.router.navigateByUrl(`/participant/class/enrolled/${this.dtlClass.id}`);
+  }
+
+  checkTutor(): void {
+    if (this.authService.getRole() == ROLE.TUTOR) {
+      this.isTutor = true;
+      this.isFull = false;
+      this.showRegisterButton = false;
+      this.isEnrolled = false;
+      this.isEnded = false;
+    }
+  }
 }

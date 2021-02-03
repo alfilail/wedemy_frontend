@@ -81,8 +81,17 @@
     flex-wrap: wrap;
 }
 
+.bg-custom {
+    background-color: #FFECB3;
+    color: #6d5100;
+}
+
 .card {
-    max-width: 410px;
+    width: 410px;
+}
+
+.filter {
+    position: sticky;
 }
 
 .img-square-wrapper {

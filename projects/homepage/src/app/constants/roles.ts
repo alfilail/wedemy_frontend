@@ -1,5 +1,6 @@
 export const ROLE = {
     PARTICIPANT: 'PCP',
     TUTOR: 'TTR',
-    ADMIN: 'ADM'
+    ADMIN: 'ADM',
+    SPRADMIN: 'SPA',
 }
