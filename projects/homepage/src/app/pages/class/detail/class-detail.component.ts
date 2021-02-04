@@ -111,10 +111,11 @@ export class ClassDetailComponent implements OnInit {
       console.log(this.classEnrollmentSelected);
       console.log(res);
       this.closeDialog();
-      // this.showRegisterButton = false;
-      // this.isEnded = false;
-      // this.isFull = false;
-      this.ngOnInit();
+      this.isEnrolled = true;
+      this.showRegisterButton = false;
+      this.isTutor = false;
+      this.isFull = false;
+      this.isEnded = false;
     })
   }
 
@@ -197,9 +198,12 @@ export class ClassDetailComponent implements OnInit {
       this.isFull = false;
       this.isEnrolled = false;
       this.isEnded = false;
-    } else if(!this.isLoggedOut){
-      
-    }
-
+    } else if(!this.isEnrolled && !this.isFull && !this.isLoggedOut && !this.isTutor){
+      this.showRegisterButton = true;
+      this.isTutor = false;
+      this.isFull = false;
+      this.isEnrolled = false;
+      this.isEnded = false;
+    } 
   }
 }

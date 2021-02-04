@@ -152,3 +152,7 @@ h6 {
 me {
     font-family: 'Quicksand', sans-serif !important;
 }
+
+.class-name {
+    word-wrap: break-word !important;
+}

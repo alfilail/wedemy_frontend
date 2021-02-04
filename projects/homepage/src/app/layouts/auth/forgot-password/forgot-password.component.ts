@@ -12,7 +12,7 @@ import { UserService } from '@bootcamp-homepage/services/user.service';
 export class ForgotPasswordComponent implements OnInit {
 
   profile: Profiles = new Profiles();
-  successDialog: boolean = false;
+  successDialog: boolean = true;
 
   constructor(private router: Router,
     private userService: UserService,

@@ -21,5 +21,9 @@ export class DetailClassService extends BaseService{
   getById(idDtlClass: string): Observable<DetailClasses> {
     return this.http.get<DetailClasses>(`${this.api}/detail-class/${idDtlClass}`)
   }
+
+  getPopularClass(): Observable<DetailClasses[]> {
+    return this.http.get<DetailClasses[]>(`${this.api}/detail-class/popular`)
+  }
   
 }

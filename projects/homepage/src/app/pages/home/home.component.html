@@ -36,19 +36,19 @@
 
             <div class=" col-12 class-wrapper mt-5 d-flex flex-wrap justify-content-around">
                 <div class="card-deck">
-                    <div class="card shadow class-card" *ngFor="let c of class">
+                    <div class="card shadow class-card" *ngFor="let c of listTopClasses">
                         <div class="card-img-wrapper">
-                            <img src="{{c.img}}" class="card-img-top" alt="...">
+                            <img src="data:image/png;base64,{{c.idClass.idFile.file}}" class="card-img-top" alt="...">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{c.name}}</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 class="card-title">{{c.idClass.className}}</h5>
+                            <p class="card-text">{{c.idClass.description}}</p>
                             <!-- <p-divider></p-divider> -->
                             <!-- <p class="card-text text-left ml-2"><i class="pi pi-users mr-1"></i><small>{{c.quota}} peserta</small></p> -->
                             <!-- <p class="card-text text-left ml-2"><i class="pi pi-book mr-1"></i><small>{{c.modul}}</small></p> -->
                         </div>
                         <div>
-                            <button pButton type="button" icon="pi pi-arrow-right" iconPos="left" label="Selengkapnya" class="mb-4"></button>
+                            <button pButton type="button" icon="pi pi-arrow-right" iconPos="left" label="Selengkapnya" routerLink="/class/{{c.id}}" class="mb-4"></button>
                         </div>
                     </div>
                 </div>

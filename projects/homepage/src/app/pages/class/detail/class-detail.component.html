@@ -14,29 +14,27 @@
 </p-dialog>
 <div class="content">
     <div class="header">
+        <!-- <div class="container back bg-danger">
+            <button pButton pRipple type="button" label="Primary" class="p-button-outlined"></button>
+        </div> -->
     </div>
-    <div class="header-item mx-auto px-auto d-lg-flex px-lg-5" [(ngModel)]="dtlClass" ngDefaultControl>
-        <div class="text-center">
-            <img class="shadow rounded" src="data:image/png;base64,{{dtlClass.idClass.idFile.file}}" alt="">
-
+    <div class="header-item container mx-auto px-auto p-d-lg-flex p-jc-start" [(ngModel)]="dtlClass" ngDefaultControl>
+        <div class="img-square-wrapper p-mx-auto p-mx-lg-0">
+            <img class="shadow rounded p-mx-auto" src="data:image/png;base64,{{dtlClass.idClass.idFile.file}}" alt="">
         </div>
         <span class="info pl-3">
-            <h2>{{dtlClass.idClass.className}}</h2>
+            <h2><b>{{dtlClass.idClass.className}}</b></h2>
             <div>
                 <h6 class="text-left ml-2"><i class="pi pi-users mr-1"></i>{{dtlClass.idClass.quota}} peserta</h6>
                 <h6 class="text-left ml-2"><i class="pi pi-book mr-1"></i>{{countModule}} modul</h6>
                 <h6 class="text-left ml-2"><i class="pi pi-clock mr-1"></i>{{totalHours}} jam</h6>
-    </div>
-    <button *ngIf="showRegisterButton" type="button" class="btn btn-primary btn-lg mt-5" (click)="enrollNow()"><small><b>DAFTAR SEKARANG</b></small></button>
-    <button *ngIf="isEnded" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>PENDAFTARAN DITUTUP</b></small></button>
-    <button *ngIf="isEnrolled" type="button" class="btn btn-primary btn-lg mt-5" (click)="classDashboard()"><small><b>LIHAT KELAS</b></small></button>
-    <button *ngIf="isFull" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>KUOTA PENUH</b></small></button>
-    <button *ngIf="isTutor" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>TIDAK TERSEDIA</b></small></button>
-    <div class="content-item align-items-end">
-        <div class="content-item-dtl mx-auto align-items-end text-right">
-        </div>
-    </div>
-    </span>
+             </div>
+            <button *ngIf="showRegisterButton" type="button" class="btn btn-primary btn-lg mt-5" (click)="enrollNow()"><small><b>DAFTAR SEKARANG</b></small></button>
+            <button *ngIf="isEnded" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>PENDAFTARAN DITUTUP</b></small></button>
+            <button *ngIf="isEnrolled" type="button" class="btn btn-primary btn-lg mt-5" (click)="classDashboard()"><small><b>LIHAT KELAS</b></small></button>
+            <button *ngIf="isFull" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>KUOTA PENUH</b></small></button>
+            <button *ngIf="isTutor" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>TIDAK TERSEDIA</b></small></button>    
+        </span>
     </div>
 
     <div class="content-item container bg-white rounded shadow-lg">

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
+import { DetailClassService } from '@bootcamp-homepage/services/detail-class.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +15,17 @@ export class HomeComponent implements OnInit {
     {'img':'https://hackernoon.com/hn-images/1*fKb9TdxSYjVzWindUWaGUg.png','quota': 98, 'name': 'Angular', 'modul': '101 modul'}
   ]
 
-  constructor() { }
+  listTopClasses : DetailClasses[] = [];
+
+  constructor(
+    private dtlClassService: DetailClassService,
+  ) { }
 
   ngOnInit(): void {
+    this.dtlClassService.getPopularClass().subscribe(res => {
+      this.listTopClasses = res;
+      console.log(res);
+    })
   }
 
 }

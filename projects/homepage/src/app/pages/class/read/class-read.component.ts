@@ -1,11 +1,14 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Classes } from '@bootcamp-homepage/models/classes';
 import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
 import { ClassService } from '@bootcamp-homepage/services/class.service';
 import { DetailClassService } from '@bootcamp-homepage/services/detail-class.service';
 import { ModuleRegistrationService } from '@bootcamp-homepage/services/module-registration.service';
+import { Observable } from 'rxjs';
+import { Permissions } from '@bootcamp-homepage/shared/guards/classes/permissions';
+import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
 @Component({
   selector: 'app-class-read',
@@ -25,7 +28,7 @@ export class ClassReadComponent implements OnInit {
     private dtlClassService: DetailClassService,
     private moduleRgsService: ModuleRegistrationService,
     public datepipe: DatePipe
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.dtlClassService.getAll()
