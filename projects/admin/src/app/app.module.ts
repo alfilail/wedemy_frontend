@@ -12,9 +12,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpInterceptService } from './shared/http-intercept.service';
 import { DatePipe } from '@angular/common';
-
 
 @NgModule({
   declarations: [
@@ -31,10 +29,9 @@ import { DatePipe } from '@angular/common';
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [MessageService, ConfirmationService, DatePipe,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptService, multi: true }],
+  providers: [ConfirmationService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

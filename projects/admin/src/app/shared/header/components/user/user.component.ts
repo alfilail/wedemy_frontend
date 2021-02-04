@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { routes } from '../../../../consts';
 
 @Component({
@@ -13,12 +14,13 @@ export class UserComponent {
   public routes: typeof routes = routes;
   public flatlogicEmail: string = "https://flatlogic.com";
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private auth: AuthService) {
 
   }
 
   public signOutEmit(): void {
-    this.signOut.emit();
+    this.auth.clearToken();
+    this.route.navigateByUrl('/home')
   }
 
   onClick() {

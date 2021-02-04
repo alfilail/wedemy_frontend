@@ -41,47 +41,47 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.participant.idRole.code = ROLE.PARTICIPANT;
-    this.callToast();
+    // this.callToast();
   }
 
   save() {
-    if (this.fullnameValid && this.emailValid && this.usernameValid && this.passwordValid){
+    if (this.fullnameValid && this.emailValid && this.usernameValid && this.passwordValid) {
       this.userService.insertUser(this.participant)
-      .subscribe(val => {
-        // this.toast.successToast("Akun Anda berhasil dibuat! Silahkan login untuk masuk.")
-        this.showConfirm();
-        // this.router.navigateByUrl("/auth/login")
-        console.log(val);
-      }, (err => {this.toast.errorToast("Register gagal")}))
+        .subscribe(val => {
+          // this.toast.successToast("Akun Anda berhasil dibuat! Silahkan login untuk masuk.")
+          this.showConfirm();
+          // this.router.navigateByUrl("/auth/login")
+          console.log(val);
+        }, (err => { this.toast.errorToast("Register gagal") }))
     } else {
       this.toast.errorToast("Data tidak valid");
     }
-      
+
   }
 
   ngOnDestroy(): void {
-    if(this.successObs){
+    if (this.successObs) {
       this.successObs.unsubscribe();
     }
 
-    if(this.errorObs){
+    if (this.errorObs) {
       this.errorObs.unsubscribe();
     }
   }
 
-  callToast():void {
-    this.successObs = this.toast.successObs.subscribe(val => {
-      this.msg.add({ severity : 'success', summary : 'Success', detail : val, sticky: true });
-    });
+  // callToast():void {
+  //   this.successObs = this.toast.successObs.subscribe(val => {
+  //     this.msg.add({ severity : 'success', summary : 'Success', detail : val, sticky: true });
+  //   });
 
-    this.errorObs = this.toast.errorObs.subscribe(val => {
-      this.msg.add({ severity : 'error', summary : 'Error', detail : val, sticky: true })
-    })
-  }
+  //   this.errorObs = this.toast.errorObs.subscribe(val => {
+  //     this.msg.add({ severity : 'error', summary : 'Error', detail : val, sticky: true })
+  //   })
+  // }
 
   showConfirm() {
     this.msg.clear();
-    this.msg.add({key: 'success', sticky: true, severity:'success', summary:'Akun Anda berhasil dibuat!', detail:'Silahkan login untuk masuk.'});
+    this.msg.add({ key: 'success', sticky: true, severity: 'success', summary: 'Akun Anda berhasil dibuat!', detail: 'Silahkan login untuk masuk.' });
   }
 
   onConfirm() {
@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
   }
 
   fullnameValidation(event: string): void {
-    if(event.length == 0) {
+    if (event.length == 0) {
       this.fullnameValid = false;
       this.fullnameErrorMsg = "Nama lengkap tidak boleh kosong";
     } else {
@@ -103,7 +103,7 @@ export class RegisterComponent implements OnInit {
   }
 
   emailValidation(event: string): void {
-    if(event.length == 0) {
+    if (event.length == 0) {
       this.emailValid = false;
       this.emailErrorMsg = "Email tidak boleh kosong";
     } else {
@@ -118,7 +118,7 @@ export class RegisterComponent implements OnInit {
   }
 
   usernameValidation(event: string): void {
-    if(event.length == 0) {
+    if (event.length == 0) {
       this.usernameValid = false;
       this.usernameErrorMsg = "Username tidak boleh kosong";
     } else {
@@ -127,7 +127,7 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordValidation(event: string): void {
-    if(event.length < 8) {
+    if (event.length < 8) {
       this.passwordValid = false;
       this.passwordErrorMsg = "Password minimal 8 karakter"
     } else {

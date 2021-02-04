@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Grades } from '../model/grades';
 import { BaseService } from './base.service';
 import { Subject } from 'rxjs';
+import { Responses } from '@bootcamp-admin/model/response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,16 @@ export class GradeService extends BaseService {
     super();
   }
 
-  getGrades(): Observable<Grades[]> {
-    return this.http.get<Grades[]>(`${this.ipAddress}/grade/all`)
+  getGrades(): Observable<Responses<Grades[]>> {
+    return this.http.get<Responses<Grades[]>>(`${this.ipAddress}/grade/all`)
   }
 
   insertGrade(grade: Grades): Observable<Grades> {
     return this.http.post<Grades>(`${this.ipAddress}/grade`, grade)
   }
 
-  deleteById(id: string): Observable<Grades> {
-    return this.http.delete<Grades>(`${this.ipAddress}/grade/${id}`)
+  deleteById(id: string, idUser: string): Observable<Grades> {
+    return this.http.delete<Grades>(`${this.ipAddress}/grade?id=${id}&idUser=${idUser}`)
   }
 
   updateGrade(grade: Grades): Observable<Grades> {
