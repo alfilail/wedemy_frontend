@@ -18,6 +18,10 @@ export class BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('INI DIA');
+
+    console.log(this.authService.getUserId());
+
     this.isLoggedIn();
   }
 

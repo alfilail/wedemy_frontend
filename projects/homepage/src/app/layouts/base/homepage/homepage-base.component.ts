@@ -19,6 +19,8 @@ export class HomepageBaseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
     // this.callToast();
   }
 
