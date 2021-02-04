@@ -16,8 +16,8 @@ import { Subscription } from 'rxjs';
 export class RegisterComponent implements OnInit {
 
   participant: Users = new Users();
-  private successObs: Subscription;
-  private errorObs: Subscription;
+  // private successObs: Subscription;
+  // private errorObs: Subscription;
 
   fullnameValid: boolean = true;
   fullnameErrorMsg: string;
@@ -35,8 +35,8 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private toast: ToastService,
-    private msg: MessageService
+    // private toast: ToastService,
+    // private msg: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -45,29 +45,39 @@ export class RegisterComponent implements OnInit {
   }
 
   save() {
+    // if (this.fullnameValid && this.emailValid && this.usernameValid && this.passwordValid) {
+    //   this.userService.insertUser(this.participant)
+    //     .subscribe(val => {
+    //       // this.toast.successToast("Akun Anda berhasil dibuat! Silahkan login untuk masuk.")
+    //       this.showConfirm();
+    //       // this.router.navigateByUrl("/auth/login")
+    //       console.log(val);
+    //     }, (err => { this.toast.errorToast("Register gagal") }))
+    // } else {
+    //   this.toast.errorToast("Data tidak valid");
+    // }
+
     if (this.fullnameValid && this.emailValid && this.usernameValid && this.passwordValid) {
       this.userService.insertUser(this.participant)
         .subscribe(val => {
-          // this.toast.successToast("Akun Anda berhasil dibuat! Silahkan login untuk masuk.")
-          this.showConfirm();
-          // this.router.navigateByUrl("/auth/login")
+          // this.showConfirm();
           console.log(val);
-        }, (err => { this.toast.errorToast("Register gagal") }))
+        })
     } else {
-      this.toast.errorToast("Data tidak valid");
+      // this.toast.errorToast("Data tidak valid");
     }
 
   }
 
-  ngOnDestroy(): void {
-    if (this.successObs) {
-      this.successObs.unsubscribe();
-    }
+  // ngOnDestroy(): void {
+  //   if (this.successObs) {
+  //     this.successObs.unsubscribe();
+  //   }
 
-    if (this.errorObs) {
-      this.errorObs.unsubscribe();
-    }
-  }
+  //   if (this.errorObs) {
+  //     this.errorObs.unsubscribe();
+  //   }
+  // }
 
   // callToast():void {
   //   this.successObs = this.toast.successObs.subscribe(val => {
@@ -79,19 +89,19 @@ export class RegisterComponent implements OnInit {
   //   })
   // }
 
-  showConfirm() {
-    this.msg.clear();
-    this.msg.add({ key: 'success', sticky: true, severity: 'success', summary: 'Akun Anda berhasil dibuat!', detail: 'Silahkan login untuk masuk.' });
-  }
+  // showConfirm() {
+  //   this.msg.clear();
+  //   this.msg.add({ key: 'success', sticky: true, severity: 'success', summary: 'Akun Anda berhasil dibuat!', detail: 'Silahkan login untuk masuk.' });
+  // }
 
-  onConfirm() {
-    this.router.navigateByUrl("/auth/login");
-    this.msg.clear('success');
-  }
+  // onConfirm() {
+  //   this.router.navigateByUrl("/auth/login");
+  //   this.msg.clear('success');
+  // }
 
-  onReject() {
-    this.msg.clear('success');
-  }
+  // onReject() {
+  //   this.msg.clear('success');
+  // }
 
   fullnameValidation(event: string): void {
     if (event.length == 0) {

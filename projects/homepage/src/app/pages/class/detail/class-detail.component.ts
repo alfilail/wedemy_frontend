@@ -52,17 +52,12 @@ export class ClassDetailComponent implements OnInit {
     this.isLoggedOut = !this.authService.getToken();
     this.route.params.subscribe(params => {
       this.param = params['idClass'];
-      console.log(this.param);
       this.dtlClassService.getById(this.param).subscribe(val => {
-        this.dtlClass = val;
-        console.log(val)        
+        this.dtlClass = val.data; 
         this.moduleRgsService.getByIdClass(this.param).subscribe(res => {
           this.listModules = res;
           this.countModule = this.listModules.length;
           this.countTotalMats();
-          console.log('mymy1 '+this.countMat)
-          // this.userRole = this.authService.getRole();
-          console.log(res);
           this.checkQuota();
           this.checkEnded();
           this.checkEnrolled();
@@ -78,7 +73,6 @@ export class ClassDetailComponent implements OnInit {
     .subscribe(res => {
       res.forEach(module => {
         module.learningMaterials.forEach(m => this.countMat++);
-        console.log('mymy '+this.countMat);
       })
       this.countTotalHours(this.dtlClass.endTime, this.dtlClass.startTime);
     })
@@ -90,7 +84,6 @@ export class ClassDetailComponent implements OnInit {
     let start = startTime.split(':');
     let startMnt = start[0]*60 + start[1]*1;
     let diff = endMnt-startMnt;
-    console.log('diff '+ endMnt)
     this.totalHours = this.countMat*(diff/60);
   }
 
@@ -108,7 +101,6 @@ export class ClassDetailComponent implements OnInit {
     this.classEnrollmentSelected.idUser.id = this.authService.getUserId();
     this.classEnrollmentService.insertClassEnrollment(this.classEnrollmentSelected)
     .subscribe(res => {
-      console.log(this.classEnrollmentSelected);
       console.log(res);
       this.closeDialog();
       this.isEnrolled = true;

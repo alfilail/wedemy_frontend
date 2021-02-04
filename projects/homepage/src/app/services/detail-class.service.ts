@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
+import { Responses } from '@bootcamp-homepage/models/responses';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { BaseService } from './base.service';
@@ -14,16 +15,16 @@ export class DetailClassService extends BaseService{
     super();
   }
 
-  getAll(): Observable<DetailClasses[]> {
-    return this.http.get<DetailClasses[]>(`${this.api}/detail-class/all`)
+  getAll(): Observable<Responses<DetailClasses[]>> {
+    return this.http.get<Responses<DetailClasses[]>>(`${this.api}/detail-class/all`)
   }
 
-  getById(idDtlClass: string): Observable<DetailClasses> {
-    return this.http.get<DetailClasses>(`${this.api}/detail-class/${idDtlClass}`)
+  getById(idDtlClass: string): Observable<Responses<DetailClasses>> {
+    return this.http.get<Responses<DetailClasses>>(`${this.api}/detail-class/${idDtlClass}`)
   }
 
-  getPopularClass(): Observable<DetailClasses[]> {
-    return this.http.get<DetailClasses[]>(`${this.api}/detail-class/popular`)
+  getPopularClass(): Observable<Responses<DetailClasses[]>> {
+    return this.http.get<Responses<DetailClasses[]>>(`${this.api}/detail-class/popular`)
   }
   
 }

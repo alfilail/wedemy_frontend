@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit {
     
     if (!this.isLoggedOut){
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
-        this.user = res;
-        this.getFirstName(res.idProfile.fullName);
+        this.user = res.data;
+        this.getFirstName(res.data.idProfile.fullName);
       })
     }
     

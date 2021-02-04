@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.dtlClassService.getPopularClass().subscribe(res => {
-      this.listTopClasses = res;
+      this.listTopClasses = res.data;
       console.log(res);
     })
   }

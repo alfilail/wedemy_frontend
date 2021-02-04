@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.userService.login(this.user).subscribe(val => {
-      console.log(val);
+      console.log("hai "+ val.token);
       this.authService.saveToken(val.token);
       this.authService.saveProfile(val.profile, this.user);
       console.log(this.authService.getRole());

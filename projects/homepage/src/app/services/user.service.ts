@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Profiles } from '@bootcamp-homepage/models/profiles';
+import { Responses } from '@bootcamp-homepage/models/responses';
 import { Users } from '@bootcamp-homepage/models/users';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -15,8 +16,8 @@ export class UserService extends BaseService{
     super();
   }
 
-  insertUser(participant: Users): Observable<Users> {
-    return this.http.post<Users>(`${this.api}/user`, participant)
+  insertUser(participant: Users): Observable<Responses<Users>> {
+    return this.http.post<Responses<Users>>(`${this.api}/user`, participant)
   }
 
   login(user: Users): Observable<any> {
@@ -32,7 +33,7 @@ export class UserService extends BaseService{
     return this.http.patch<Profiles>(`${this.api}/user/forget-password`, profile)
   }
 
-  getUserById(userId: string): Observable<Users> {
-    return this.http.get<Users>(`${this.api}/user/${userId}`)
+  getUserById(userId: string): Observable<Responses<Users>> {
+    return this.http.get<Responses<Users>>(`${this.api}/user/${userId}`)
   }
 }

@@ -33,8 +33,7 @@ export class ClassReadComponent implements OnInit {
   ngOnInit(): void {
     this.dtlClassService.getAll()
       .subscribe(res => {
-        console.log(res);
-        this.listClasses = res;
+        this.listClasses = res.data;
         this.listClasses.forEach(c => {
           this.moduleRgsService.getByIdClass(c.id).subscribe(mdl => {
             c.totalModules = mdl.length;
@@ -45,7 +44,6 @@ export class ClassReadComponent implements OnInit {
             this.countTotalMats(c);
           })
         })
-        // console.log(res);
       });
   }
 
@@ -58,7 +56,6 @@ export class ClassReadComponent implements OnInit {
     .subscribe(res => {
       res.forEach(module => {
         module.learningMaterials.forEach(m => c.countMats++);
-        console.log('mymy '+ c.countMats);
       })
       this.countTotalHours(c, c.endTime, c.startTime);
     })
@@ -70,7 +67,6 @@ export class ClassReadComponent implements OnInit {
     let start = startTime.split(':');
     let startMnt = start[0]*60 + start[1]*1;
     let diff = endMnt-startMnt;
-    console.log('diff '+ endMnt)
     c.totalHours = c.countMats * (diff/60)
   }
 
