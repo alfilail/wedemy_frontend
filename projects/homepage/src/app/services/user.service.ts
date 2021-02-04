@@ -10,7 +10,7 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends BaseService{
+export class UserService extends BaseService {
 
   constructor(private http: HttpClient, private authService: AuthService) {
     super();
@@ -21,16 +21,16 @@ export class UserService extends BaseService{
   }
 
   login(user: Users): Observable<any> {
-    return this.http.post<any>(`${this.api}/api/login`, 
-    {
-      username : user.username,
-      userPassword : user.userPassword
-    }
+    return this.http.post<any>(`${this.api}/api/login`,
+      {
+        username: user.username,
+        userPassword: user.userPassword
+      }
     )
   }
 
-  resetPassword(profile: Profiles): Observable<Profiles> {
-    return this.http.patch<Profiles>(`${this.api}/user/forget-password`, profile)
+  resetPassword(profile: Profiles): Observable<Responses<Profiles>> {
+    return this.http.patch<Responses<Profiles>>(`${this.api}/user/forget-password`, profile)
   }
 
   getUserById(userId: string): Observable<Responses<Users>> {

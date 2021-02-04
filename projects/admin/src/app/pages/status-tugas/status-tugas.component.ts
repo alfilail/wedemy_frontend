@@ -31,7 +31,6 @@ export class StatusTugasComponent implements OnInit {
 
   insertSubmissionStatus() {
     this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Status Tugas telah dibuat.', life: 3000 });
       this.productDialog = false;
       this.listStatusTugas.push(this.statusTugas);
     })
@@ -40,14 +39,13 @@ export class StatusTugasComponent implements OnInit {
   updateSubmissionStatus() {
     console.log('update')
     this.submissionStatusService.updateSubmissionStatus(this.statusTugas).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Status Tugas telah dibuat.', life: 3000 });
       this.productDialog = false; this.update = false;
     })
   }
 
   getSubmissionStatus() {
     this.submissionStatusService.getSubmissionStatus().subscribe(val => {
-      this.listStatusTugas = val;
+      this.listStatusTugas = val.data;
       console.log(val)
     })
   }
@@ -65,9 +63,7 @@ export class StatusTugasComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.submissionStatusService.deleteById(id, this.idUser).subscribe(val => {
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
-        })
+        this.submissionStatusService.deleteById(id, this.idUser).subscribe(val => { })
       }
     });
   }

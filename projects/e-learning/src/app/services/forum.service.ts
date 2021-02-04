@@ -11,10 +11,14 @@ export class ForumService {
   constructor(private http: HttpClient) { }
 
   getForum(idDetailModuleRegistration: string): Observable<any[]> {
-    return this.http.get<any[]>(`http://192.168.15.199:8080/forum/material/${idDetailModuleRegistration}`)
+    return this.http.get<any[]>(`http://192.168.15.236:8080/forum/material/${idDetailModuleRegistration}`)
   }
 
   postForum(data: Forum): Observable<any[]> {
-    return this.http.post<any[]>(`http://192.168.15.199:8080/forum/`, data)
+    return this.http.post<any[]>(`http://192.168.15.236:8080/forum/`, data)
+  }
+
+  replyPostForum(data: any): Observable<any> {
+    return this.http.post<any>(`http://192.168.15.236:8080/detail-forum/`, data)
   }
 }

@@ -34,7 +34,7 @@ export class UserAdminComponent implements OnInit {
 
   getUsers(): void {
     this.userService.getUsers().subscribe(val => {
-      this.listUsers = val;
+      this.listUsers = val.data;
       console.log(val)
     })
   }
@@ -45,7 +45,7 @@ export class UserAdminComponent implements OnInit {
 
   getUserByCode(): void {
     this.userService.getUserByCode('ADM').subscribe(val => {
-      this.listUsers = val;
+      this.listUsers = val.data;
       console.log(val)
     })
   }
@@ -56,9 +56,7 @@ export class UserAdminComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.userService.deleteById(id).subscribe(val => {
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
-        })
+        this.userService.deleteById(id).subscribe(val => { })
       }
     });
   }

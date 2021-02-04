@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Classes } from '@bootcamp-admin/model/classes';
 import { DetailClasses } from '@bootcamp-admin/model/dtl-classes';
 import { ClassHelper } from '@bootcamp-admin/model/helper/class-helper';
@@ -8,6 +8,7 @@ import { Modules } from '@bootcamp-admin/model/modules';
 import { Profiles } from '@bootcamp-admin/model/profiles';
 import { Users } from '@bootcamp-admin/model/users';
 import { ClassService } from '@bootcamp-admin/service/class.service';
+import { DtlClassService } from '@bootcamp-admin/service/dtl-class.service';
 import { ModuleService } from '@bootcamp-admin/service/module.service';
 import { UserService } from '@bootcamp-admin/service/user.service';
 import * as moment from 'moment';
@@ -24,6 +25,7 @@ export class CreateKelasComponent implements OnInit {
   file: String;
   endTimeValue: string;
   startTimeValue: string;
+  isCreate: boolean;
 
   productDialog: boolean;
   rangeDates: Date[];
@@ -38,6 +40,7 @@ export class CreateKelasComponent implements OnInit {
   listDtlClass: DetailClasses[] = []
   listModuleRegistration: ModuleRegistrations[] = []
 
+  insertedClass = new DetailClasses();
   class = new Classes();
   module = new Modules();
   dtlClass = new DetailClasses();
@@ -46,20 +49,38 @@ export class CreateKelasComponent implements OnInit {
   profileTutor = new Profiles();
   tutor: Users = new Users();
 
+  statusActivity: string;
   modules: Modules[] = [];
 
-  constructor(private route: Router, private tutorService: UserService, private classService: ClassService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private dtlClassService: DtlClassService, private activeRoute: ActivatedRoute, private route: Router, private tutorService: UserService, private classService: ClassService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
-    this.getModules()
-    this.getTutors()
+    this.activeRoute.params.subscribe(params => {
+      this.statusActivity = params['activity']
+      this.getModules()
+      this.getTutors()
+      if (this.statusActivity == 'create') {
+        this.isCreate = true;
+      } else {
+        this.isCreate = false;
+        this.getClass();
+        // this.rangeDates.push(new Date(this.insertedClass.startDate))
+        // this.rangeDates.push(new Date(this.insertedClass.endDate))
+      }
+    })
+  }
+
+  getClass(): void {
+    this.dtlClassService.getDetailClassById(this.statusActivity).subscribe(val => {
+      this.insertedClass = val.data;
+    })
   }
 
   getTutors(): void {
     this.tutorService.getUserByCode('TTR').subscribe(val => {
-      this.listTutors = val
+      this.listTutors = val.data
       console.log(val)
     })
   }
@@ -104,7 +125,7 @@ export class CreateKelasComponent implements OnInit {
 
   getModules() {
     this.moduleService.getModules().subscribe(val => {
-      this.listModules = val;
+      this.listModules = val.data;
       console.log(val)
     })
   }

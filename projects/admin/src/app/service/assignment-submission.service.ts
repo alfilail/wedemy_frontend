@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Responses } from '@bootcamp-admin/model/response';
 import { Observable } from 'rxjs';
 import { AssignmentSubmissions } from '../model/assignment-submissions';
 import { BaseService } from './base.service';
@@ -13,11 +14,11 @@ export class AssignmentSubmissionService extends BaseService {
     super();
   }
 
-  getAssignmentSubmissions(): Observable<AssignmentSubmissions[]> {
-    return this.http.get<AssignmentSubmissions[]>(`${this.ipAddress}/assignment-submission/all`)
+  getAssignmentSubmissions(): Observable<Responses<AssignmentSubmissions[]>> {
+    return this.http.get<Responses<AssignmentSubmissions[]>>(`${this.ipAddress}/assignment-submission/all`)
   }
 
-  deleteById(id: string, idUser: string): Observable<AssignmentSubmissions> {
-    return this.http.delete<AssignmentSubmissions>(`${this.ipAddress}/assignment-submission?id=${id}&idUser=${idUser}`)
+  deleteById(id: string, idUser: string): Observable<Responses<AssignmentSubmissions>> {
+    return this.http.delete<Responses<AssignmentSubmissions>>(`${this.ipAddress}/assignment-submission?id=${id}&idUser=${idUser}`)
   }
 }

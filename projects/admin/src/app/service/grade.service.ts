@@ -19,16 +19,16 @@ export class GradeService extends BaseService {
     return this.http.get<Responses<Grades[]>>(`${this.ipAddress}/grade/all`)
   }
 
-  insertGrade(grade: Grades): Observable<Grades> {
-    return this.http.post<Grades>(`${this.ipAddress}/grade`, grade)
+  insertGrade(grade: Grades): Observable<Responses<Grades>> {
+    return this.http.post<Responses<Grades>>(`${this.ipAddress}/grade`, grade)
   }
 
-  deleteById(id: string, idUser: string): Observable<Grades> {
-    return this.http.delete<Grades>(`${this.ipAddress}/grade?id=${id}&idUser=${idUser}`)
+  deleteById(id: string, idUser: string): Observable<Responses<Grades>> {
+    return this.http.delete<Responses<Grades>>(`${this.ipAddress}/grade?id=${id}&idUser=${idUser}`)
   }
 
-  updateGrade(grade: Grades): Observable<Grades> {
-    return this.http.put<Grades>(`${this.ipAddress}/grade/`, grade);
+  updateGrade(grade: Grades): Observable<Responses<Grades>> {
+    return this.http.put<Responses<Grades>>(`${this.ipAddress}/grade/`, grade);
   }
 
 }

@@ -36,7 +36,8 @@ export class ClassReadComponent implements OnInit {
         this.listClasses = res.data;
         this.listClasses.forEach(c => {
           this.moduleRgsService.getByIdClass(c.id).subscribe(mdl => {
-            c.totalModules = mdl.length;
+            console.log("helo:( "+mdl);
+            c.totalModules = 0; //mdl.length;
             c.totalHours = 0;
             c.countMats = 0;
             c.status = "";
@@ -54,7 +55,7 @@ export class ClassReadComponent implements OnInit {
   countTotalMats(c: DetailClasses): void{
     this.moduleRgsService.getModuleAndLearningMaterialsByIdDtlClass(c.id)
     .subscribe(res => {
-      res.forEach(module => {
+      res.data.forEach(module => {
         module.learningMaterials.forEach(m => c.countMats++);
       })
       this.countTotalHours(c, c.endTime, c.startTime);

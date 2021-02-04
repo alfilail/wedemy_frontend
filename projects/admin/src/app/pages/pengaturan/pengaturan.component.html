@@ -41,15 +41,18 @@
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="fullname">Nama Lengkap</label>
-                                        <input type="text" class="form-control mt-2" id="fullname">
+                                        <input type="text" class="form-control mt-2" id="fullname"
+                                            [value]="user.idProfile.fullName">
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="username">Username</label>
-                                        <input type="text" class="form-control mt-2" id="username">
+                                        <input type="text" class="form-control mt-2" id="username"
+                                            [value]="user.username" [(ngModel)]="user.username" name="username">
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="email">E-mail</label>
-                                        <input type="email" class="form-control mt-2" id="email">
+                                        <input type="email" class="form-control mt-2" disabled id="email"
+                                            [value]="user.idProfile.email">
                                     </div>
                                 </form>
                                 <div class="d-flex justify-content-end">
@@ -69,15 +72,16 @@
                                 <div class="p-fluid">
                                     <div class="p-field">
                                         <label for="noTlp">No. Telepon</label>
-                                        <input id="noTlp" type="text" pInputText>
+                                        <input id="noTlp" type="text" pInputText [value]="user.idProfile.phone">
                                     </div>
                                     <div class="p-field">
                                         <label for="alamat">Alamat</label>
-                                        <input id="alamat" type="text" pInputText>
+                                        <input id="alamat" type="text" pInputText [value]="user.idProfile.address">
                                     </div>
                                     <div class="p-field">
                                         <label for="tmptLahir">Tempat Lahir</label>
-                                        <input id="tmptLahir" type="text" pInputText>
+                                        <input id="tmptLahir" type="text" pInputText
+                                            [value]="user.idProfile.birthPlace">
                                     </div>
                                     <div class="p-field">
                                         <label for="startDate">Tanggal Lahir</label>

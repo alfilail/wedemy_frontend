@@ -10,23 +10,17 @@
       </button>
     </div>
     <div class="content-class">
-      <!-- <h1>Learn the Basics of HyperText Markup Language (HTML)</h1>
-      <h2>Learnings</h2> -->
-      <div [innerHTML]="material.idLearningMaterial.description"></div>
-      
-      <!-- <ul>
-        <li>
-          HTML adalah struktur penglihatan (view structure): header, paragraf, tombol, dll (heading, paragraph, button,
-          etc)
-        </li>
-        <li>
-          CSS adalah gaya presentasi (presentational style): warna, ukuan, posisi, dll (color, size, position, etc)
-        </li>
-        <li>
-          JavaScript adalah sifat fungsionalnya (functional behavior): klik, masukan, perhitungan, dll (click, input,
-          calculation, etc)
-        </li>
-      </ul>
+      <!-- <ng-template [ngIf]="!isLoading">
+        <p-skeleton styleClass="p-mb-2" width="100%" height="1rem"></p-skeleton>  
+        <p-skeleton styleClass="p-mb-2" width="100%" height="1rem"></p-skeleton>  
+        <p-skeleton styleClass="p-mb-2" width="80%" height="1rem"></p-skeleton>  
+        <p-skeleton styleClass="p-mb-2" width="70%" height="1rem"></p-skeleton>  
+        <p-skeleton styleClass="p-mb-2" width="50%" height="1rem"></p-skeleton>  
+        <p-skeleton styleClass="p-mb-2" width="40%" height="1rem"></p-skeleton>  
+      </ng-template> -->
+      <div [innerHTML]="material.idLearningMaterial.description">
+        
+      </div>
     </div>
     <div class="col text-center">
       <ul class="row justify-content-center list-unstyled">

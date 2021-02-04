@@ -10,7 +10,7 @@ const routes: Routes = [
     component: KelasComponent
   },
   {
-    path: 'tambah-kelas',
+    path: 'kelas/:activity',
     component: CreateKelasComponent
   }
 ];

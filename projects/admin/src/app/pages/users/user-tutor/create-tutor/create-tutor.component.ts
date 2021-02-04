@@ -23,7 +23,7 @@ export class CreateTutorComponent implements OnInit {
   role = new Roles();
   roleUser: string;
 
-  constructor(private messageService: MessageService, private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
+  constructor(private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
 
   }
 
@@ -46,7 +46,6 @@ export class CreateTutorComponent implements OnInit {
 
     console.log(this.user.idProfile.birthDate)
     this.userService.insertUsers(this.user).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'User telah dibuat.', life: 3000 });
       if (this.roleUser == 'tutor') {
         this.route.navigateByUrl('/admin/user-tutor')
       } else {

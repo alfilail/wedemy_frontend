@@ -23,14 +23,14 @@
             alt="albertoanggi@gmail.com">
         </div>
         <p class="profile-name my-auto ml-3 ml-md-lg-0 ml-lg-0 dropdown-toggle" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hai, Anggi</p>
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hai, {{this.user.idProfile.fullName | titlecase}}</p>
 
         <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Dashboard</a>
           <a class="dropdown-item" href="#">Profil Saya</a>
           <a class="dropdown-item" href="#">Pengaturan</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Keluar</a>
+          <a class="dropdown-item" (click)="logout()">Keluar</a>
         </div>
       </div>
     </div>

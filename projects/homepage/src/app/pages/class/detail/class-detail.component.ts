@@ -55,6 +55,7 @@ export class ClassDetailComponent implements OnInit {
       this.dtlClassService.getById(this.param).subscribe(val => {
         this.dtlClass = val.data; 
         this.moduleRgsService.getByIdClass(this.param).subscribe(res => {
+          console.log("giuuu "+res)
           this.listModules = res;
           this.countModule = this.listModules.length;
           this.countTotalMats();
@@ -71,7 +72,7 @@ export class ClassDetailComponent implements OnInit {
   countTotalMats(): void{
     this.moduleRgsService.getModuleAndLearningMaterialsByIdDtlClass(this.param)
     .subscribe(res => {
-      res.forEach(module => {
+      res.data.forEach(module => {
         module.learningMaterials.forEach(m => this.countMat++);
       })
       this.countTotalHours(this.dtlClass.endTime, this.dtlClass.startTime);

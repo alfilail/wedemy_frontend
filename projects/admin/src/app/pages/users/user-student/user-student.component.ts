@@ -27,7 +27,7 @@ export class UserStudentComponent implements OnInit {
 
   getUserByCode(): void {
     this.userService.getUserByCode('PCP').subscribe(val => {
-      this.listUsers = val;
+      this.listUsers = val.data;
       console.log(val)
     })
   }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Responses } from '@bootcamp-admin/model/response';
 import { Observable } from 'rxjs';
 import { SubmissionStatus } from '../model/submission-status';
 import { BaseService } from './base.service';
@@ -13,19 +14,19 @@ export class SubmissionStatusService extends BaseService {
     super();
   }
 
-  getSubmissionStatus(): Observable<SubmissionStatus[]> {
-    return this.http.get<SubmissionStatus[]>(`${this.ipAddress}/submission-status/all`)
+  getSubmissionStatus(): Observable<Responses<SubmissionStatus[]>> {
+    return this.http.get<Responses<SubmissionStatus[]>>(`${this.ipAddress}/submission-status/all`)
   }
 
-  insertSubmissionStatus(submissionStatus: SubmissionStatus): Observable<SubmissionStatus> {
-    return this.http.post<SubmissionStatus>(`${this.ipAddress}/submission-status`, submissionStatus)
+  insertSubmissionStatus(submissionStatus: SubmissionStatus): Observable<Responses<SubmissionStatus>> {
+    return this.http.post<Responses<SubmissionStatus>>(`${this.ipAddress}/submission-status`, submissionStatus)
   }
 
-  updateSubmissionStatus(submissionStatus: SubmissionStatus): Observable<SubmissionStatus> {
-    return this.http.put<SubmissionStatus>(`${this.ipAddress}/submission-status`, submissionStatus)
+  updateSubmissionStatus(submissionStatus: SubmissionStatus): Observable<Responses<SubmissionStatus>> {
+    return this.http.put<Responses<SubmissionStatus>>(`${this.ipAddress}/submission-status`, submissionStatus)
   }
 
-  deleteById(id: string, idUser: string): Observable<SubmissionStatus> {
-    return this.http.delete<SubmissionStatus>(`${this.ipAddress}/submission-status?id=${id}&idUser=${idUser}`)
+  deleteById(id: string, idUser: string): Observable<Responses<SubmissionStatus>> {
+    return this.http.delete<Responses<SubmissionStatus>>(`${this.ipAddress}/submission-status?id=${id}&idUser=${idUser}`)
   }
 }

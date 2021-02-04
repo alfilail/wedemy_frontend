@@ -3,9 +3,8 @@ import { DetailClasses } from '@bootcamp-admin/model/dtl-classes';
 import { DtlClassService } from '@bootcamp-admin/service/dtl-class.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ClassService } from '../../service/class.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '@bootcamp-admin/service/auth.service';
-import { Class } from '@bootcamp-elearning/models/class';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-kelas',
@@ -24,25 +23,35 @@ export class KelasComponent implements OnInit {
   statuses: any[];
   selectedClass: DetailClasses[] = []
   listKelas: DetailClasses[] = [];
+  isActive: boolean;
+
+  kelas: DetailClasses = new DetailClasses();
   idUser: string;
 
-  constructor(private classService: ClassService, private auth: AuthService, private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private route: Router, private classService: ClassService, private auth: AuthService, private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.idUser = auth.getUserId()
   }
 
   ngOnInit(): void {
     this.getClasses();
+    this.isActive = true;
   }
 
   getClasses() {
     this.dtlClsService.getDetailClasses().subscribe(val => {
-      this.listKelas = val;
+      this.listKelas = val.data;
       console.log(val)
     })
   }
 
-  editProduct() {
+  editClass(kelas: DetailClasses) {
+    kelas.createdAt = null;
+    kelas.updatedAt = null;
+    this.kelas = { ...kelas };
 
+    this.dtlClsService.getDetailClassById(kelas.id).subscribe(val => {
+      this.route.navigateByUrl(`admin/kelas/${val.data.id}`);
+    })
   }
 
   deleteClass(id: string) {
@@ -51,9 +60,7 @@ export class KelasComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.classService.deleteById(id, this.idUser).subscribe(val => {
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Kelas telah dihapus.', life: 3000 });
-        })
+        this.classService.deleteById(id, this.idUser).subscribe(val => { })
       }
     });
   }
@@ -64,7 +71,10 @@ export class KelasComponent implements OnInit {
   }
 
   openNew() {
-
     this.productDialog = true;
+  }
+
+  createKelas() {
+    this.route.navigateByUrl(`admin/kelas/${'create'}`);
   }
 }

@@ -29,7 +29,7 @@ export class UserTutorComponent implements OnInit {
 
   getUserByCode(): void {
     this.userService.getUserByCode('TTR').subscribe(val => {
-      this.listUsers = val;
+      this.listUsers = val.data;
       console.log(val)
     })
   }
@@ -40,7 +40,7 @@ export class UserTutorComponent implements OnInit {
 
   getUsers(): void {
     this.userService.getUsers().subscribe(val => {
-      this.listUsers = val;
+      this.listUsers = val.data;
       console.log(val)
     })
   }

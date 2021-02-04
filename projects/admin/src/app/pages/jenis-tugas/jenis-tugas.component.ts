@@ -35,7 +35,6 @@ export class JenisTugasComponent implements OnInit {
 
   insertLearningMaterialType() {
     this.learningMaterialTypeService.insertLearningMaterialTypes(this.learningMaterialType).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dibuat.', life: 3000 });
       this.productDialog = false;
       this.listJenisTugas.push(this.learningMaterialType);
     })
@@ -44,7 +43,6 @@ export class JenisTugasComponent implements OnInit {
   updateLearningMaterialType() {
     console.log('update')
     this.learningMaterialTypeService.updateLearningMaterialType(this.learningMaterialType).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dibuat.', life: 3000 });
       this.productDialog = false;
       this.update = false;
     })
@@ -52,7 +50,7 @@ export class JenisTugasComponent implements OnInit {
 
   getLearningMaterialTypes() {
     this.learningMaterialTypeService.getLearningMaterialTypes().subscribe(val => {
-      this.listJenisTugas = val;
+      this.listJenisTugas = val.data;
       console.log(val)
     })
   }
@@ -72,7 +70,6 @@ export class JenisTugasComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.learningMaterialTypeService.deleteById(id, this.idUser).subscribe(val => {
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dihapus.', life: 3000 });
         })
       }
     });

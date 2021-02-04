@@ -2,7 +2,7 @@
   <h2>Kurikulum Kelas</h2>
 </section>
 
-<div class="form-group d-flex justify-content-end">
+<div *ngIf="roleCode === roles.TUTOR" class="form-group d-flex justify-content-end">
   <label for="">View :&nbsp;</label>
   <select [(ngModel)]="selectedView" (ngModelChange)="onChangeOperation($event)" class="shadow-sm">
     <option [value]="viewType.VIEW_ONLY">View Only</option>
@@ -30,9 +30,9 @@
                 <span class="material-icon">
                   <i class="fas fa-file-alt"></i>
                 </span>
-                <a [routerLink]="['../../../material', material.id]">
+                <a routerLink="../../../material/{{material.learningMaterial.id}}/forum">
                   <span class="material-name">
-                    {{material.idLearningMaterial.learningMaterialName}}
+                    {{material.learningMaterial.idLearningMaterial.learningMaterialName}}
                   </span>
                 </a>
               </div>

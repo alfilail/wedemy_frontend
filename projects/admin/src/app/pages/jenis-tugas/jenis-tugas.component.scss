@@ -7,18 +7,34 @@
   color: $sidebar-icon-color;
 }
 
-:host::ng-deep .p-datepicker  {
-  margin-top: 470px;
-  height: 430px;
+@media (max-width: 576px) {
+  .card{
+    width: 600px;
   }
 
-  @media (max-width: 576px) {
-    .card{
-      width: 600px;
-    }
-  }
-
-  
   :host::ng-deep .p-dialog{
     width: auto !important;
   }
+}
+
+@media (max-width: 768px) {
+
+  :host::ng-deep .p-dialog{
+    width: 500px;
+    height: auto !important;
+  
+    p-dialog-content{
+      width: 500px;
+    }
+
+  }
+}
+
+:host::ng-deep .p-dialog{
+  width: 500px;
+
+  p-dialog-content{
+    width: 500px;
+    height: 330px;
+  }
+}

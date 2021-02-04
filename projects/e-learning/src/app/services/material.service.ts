@@ -11,14 +11,14 @@ export class MaterialService {
   constructor(private http: HttpClient) { }
 
   getMaterial(idDetailModuleRegistration: string): Observable<any> {
-    return this.http.get<any[]>(`http://192.168.15.199:8080/detail-module-rgs/${idDetailModuleRegistration}`)
+    return this.http.get<any[]>(`http://192.168.15.236:8080/detail-module-rgs/${idDetailModuleRegistration}`)
   }
 
   getMaterialTypes(): Observable<LearningMaterialType[]> {
-    return this.http.get<LearningMaterialType[]>('http://192.168.15.199:8080/learning-material-type/all')
+    return this.http.get<LearningMaterialType[]>('http://192.168.15.236:8080/learning-material-type/all')
   }
 
   saveMaterial(data: any): Observable<any> {
-    return this.http.post<any>('http://192.168.15.199:8080/learning-material', data);
+    return this.http.post<any>('http://192.168.15.236:8080/learning-material', data);
   }
 }

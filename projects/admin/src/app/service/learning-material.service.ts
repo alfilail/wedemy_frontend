@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Responses } from '@bootcamp-admin/model/response';
 import { Observable } from 'rxjs';
 import { LearningMaterials } from '../model/learning-materials';
 import { BaseService } from './base.service';
@@ -13,19 +14,19 @@ export class LearningMaterialService extends BaseService {
     super();
   }
 
-  getLearningMaterials(): Observable<LearningMaterials[]> {
-    return this.http.get<LearningMaterials[]>(`${this.ipAddress}/learning-material/all`)
+  getLearningMaterials(): Observable<Responses<LearningMaterials[]>> {
+    return this.http.get<Responses<LearningMaterials[]>>(`${this.ipAddress}/learning-material/all`)
   }
 
-  insertLearningMaterials(learningMaterial: LearningMaterials): Observable<LearningMaterials> {
-    return this.http.post<LearningMaterials>(`${this.ipAddress}/learning-material`, learningMaterial)
+  insertLearningMaterials(learningMaterial: LearningMaterials): Observable<Responses<LearningMaterials>> {
+    return this.http.post<Responses<LearningMaterials>>(`${this.ipAddress}/learning-material`, learningMaterial)
   }
 
-  updateLearningMaterial(learningMaterial: LearningMaterials): Observable<LearningMaterials> {
-    return this.http.put<LearningMaterials>(`${this.ipAddress}/learning-material`, learningMaterial)
+  updateLearningMaterial(learningMaterial: LearningMaterials): Observable<Responses<LearningMaterials>> {
+    return this.http.put<Responses<LearningMaterials>>(`${this.ipAddress}/learning-material`, learningMaterial)
   }
 
-  deleteById(id: string, idUser: string): Observable<LearningMaterials> {
-    return this.http.delete<LearningMaterials>(`${this.ipAddress}/learning-material?id=${id}&idUser=${idUser}`)
+  deleteById(id: string, idUser: string): Observable<Responses<LearningMaterials>> {
+    return this.http.delete<Responses<LearningMaterials>>(`${this.ipAddress}/learning-material?id=${id}&idUser=${idUser}`)
   }
 }

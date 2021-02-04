@@ -20,7 +20,11 @@ export class ModuleRegistrationService extends BaseService {
     return this.http.get<Modules[]>(`${this.api}/module-registration/dtl-class/${iddtlclass}`)
   }
 
-  getModuleAndLearningMaterialsByIdDtlClass(idDtlClass: string): Observable<ModuleAndLearningMaterials[]> {
-    return this.http.get<ModuleAndLearningMaterials[]>(`${this.api}/module-registration/module-and-materials/${idDtlClass}`)
+  // getModuleAndLearningMaterialsByIdDtlClass(idDtlClass: string): Observable<ModuleAndLearningMaterials[]> {
+  //   return this.http.get<ModuleAndLearningMaterials[]>(`${this.api}/module-registration/module-and-materials/${idDtlClass}`)
+  // }
+
+  getModuleAndLearningMaterialsByIdDtlClass(idDtlClass: string): Observable<any> {
+    return this.http.get<any>(`${this.api}/module-registration/module-and-materials/${idDtlClass}`)
   }
 }

@@ -39,7 +39,6 @@ export class PersetujuanAbsenComponent implements OnInit {
   updateApprovement(): void {
     console.log('update')
     this.aprovementService.updateApprovement(this.approvement).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
       this.productDialog = false;
       this.update = false;
     })
@@ -47,7 +46,7 @@ export class PersetujuanAbsenComponent implements OnInit {
 
   getApprovements(): void {
     this.aprovementService.getApprovements().subscribe(val => {
-      this.listApprovements = val;
+      this.listApprovements = val.data;
       console.log(val)
     })
   }
@@ -65,9 +64,7 @@ export class PersetujuanAbsenComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.aprovementService.deleteById(id, this.idUser).subscribe(val => {
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Persetujuan Absen telah dihapus.', life: 3000 });
-        })
+        this.aprovementService.deleteById(id, this.idUser).subscribe(val => { })
       }
     });
   }
