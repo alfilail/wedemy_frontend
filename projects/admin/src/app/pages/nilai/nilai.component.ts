@@ -33,7 +33,6 @@ export class NilaiComponent implements OnInit {
     console.log('insert')
 
     this.gradeService.insertGrade(this.nilai).subscribe(val => {
-      // this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
       this.productDialog = false;
       this.listNilai.push(this.nilai);
     });
@@ -42,7 +41,6 @@ export class NilaiComponent implements OnInit {
   updateNilai(): void {
     console.log('update')
     this.gradeService.updateGrade(this.nilai).subscribe(val => {
-      // this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
       this.productDialog = false;
       this.update = false;
     });
@@ -69,9 +67,7 @@ export class NilaiComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.gradeService.deleteById(id, this.idUser).subscribe(val => {
-          // this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
-        })
+        this.gradeService.deleteById(id, this.idUser).subscribe(val => { })
       }
     });
   }

@@ -31,7 +31,6 @@ export class SilabusComponent implements OnInit {
 
   insertModule(): void {
     this.moduleService.insertModules(this.module).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Silabus telah dibuat', life: 3000 });
       this.productDialog = false;
       this.listSilabus.push(this.module)
     })
@@ -40,14 +39,13 @@ export class SilabusComponent implements OnInit {
   updateModule(): void {
     console.log('update')
     this.moduleService.updateModule(this.module).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Silabus telah dibuat', life: 3000 });
       this.productDialog = false; this.update = false;
     })
   }
 
   getModules(): void {
     this.moduleService.getModules().subscribe(val => {
-      this.listSilabus = val;
+      this.listSilabus = val.data;
       console.log(val)
     })
   }
@@ -65,9 +63,7 @@ export class SilabusComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.moduleService.deleteById(id, this.idUser).subscribe(val => {
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
-        })
+        this.moduleService.deleteById(id, this.idUser).subscribe(val => { })
       }
     });
   }

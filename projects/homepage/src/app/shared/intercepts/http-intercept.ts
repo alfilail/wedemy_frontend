@@ -22,17 +22,17 @@ export class HttpIntercept implements HttpInterceptor {
                 event => {
                     if (event instanceof HttpResponse) {
                         console.log('request succeeded');
-                        console.log(event)
-                        if (event.body.ok == false) {
-                            this.toast.errorToast(event.body.message)
-                        } else if (event.body.ok == true && event.body.message) {
-                            this.toast.successToast(event.body.message)
+                        if (event.body.ok == true && event.body.message) {
+                            if (event.body.message != 'Data berhasil diambil') {
+                                this.toast.successToast(event.body.message)
+                            }
                         }
                     }
                 },
                 error => {
                     if (error instanceof HttpErrorResponse) {
                         console.log('request failed');
+                        this.toast.errorToast(error.error.message)
                     }
                 }
             ))

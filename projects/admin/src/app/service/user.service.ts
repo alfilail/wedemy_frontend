@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Responses } from '@bootcamp-admin/model/response';
 import { Observable } from 'rxjs';
 import { Users } from '../model/users';
 import { BaseService } from './base.service';
@@ -12,24 +13,24 @@ export class UserService extends BaseService {
     super();
   }
 
-  getUsers(): Observable<Users[]> {
-    return this.http.get<Users[]>(`${this.ipAddress}/user/all`);
+  getUsers(): Observable<Responses<Users[]>> {
+    return this.http.get<Responses<Users[]>>(`${this.ipAddress}/user/all`);
   }
 
-  getUserByCode(code: string): Observable<Users[]> {
-    return this.http.get<Users[]>(`${this.ipAddress}/user/role/${code}`);
+  getUserByCode(code: string): Observable<Responses<Users[]>> {
+    return this.http.get<Responses<Users[]>>(`${this.ipAddress}/user/role/${code}`);
   }
 
-  getUserById(id: string): Observable<Users> {
-    return this.http.get<Users>(`${this.ipAddress}/user/${id}`);
+  getUserById(id: string): Observable<Responses<Users>> {
+    return this.http.get<Responses<Users>>(`${this.ipAddress}/user/${id}`);
   }
 
-  insertUsers(user: Users): Observable<Users> {
-    return this.http.post<Users>(`${this.ipAddress}/user`, user);
+  insertUsers(user: Users): Observable<Responses<Users>> {
+    return this.http.post<Responses<Users>>(`${this.ipAddress}/user`, user);
   }
 
-  deleteById(id: string): Observable<Users> {
-    return this.http.delete<Users>(`${this.ipAddress}/user/${id}`)
+  deleteById(id: string): Observable<Responses<Users>> {
+    return this.http.delete<Responses<Users>>(`${this.ipAddress}/user/${id}`)
   }
 
 }

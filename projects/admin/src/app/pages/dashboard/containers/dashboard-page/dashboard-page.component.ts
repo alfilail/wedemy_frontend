@@ -20,7 +20,7 @@ export class DashboardPageComponent {
     let id = this.auth.getUserId();
 
     this.userService.getUserById(id).subscribe(val => {
-      this.user = val;
+      this.user = val.data;
       console.log(val)
     })
   }
