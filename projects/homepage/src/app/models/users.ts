@@ -4,9 +4,9 @@ import { BaseMaster } from "@bootcamp-core/models/base-master";
 
 export class Users extends BaseMaster {
 
-    username: string;
-    userPassword: string;
-    idProfile: Profiles = new Profiles();
-    idRole: Roles = new Roles();
+    username?: string;
+    userPassword?: string;
+    idProfile?: Profiles = new Profiles();
+    idRole?: Roles = new Roles();
 
 }

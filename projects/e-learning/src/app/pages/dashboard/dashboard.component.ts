@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '@bootcamp-elearning/services/dashboard.service';
+import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,14 +15,17 @@ export class DashboardComponent implements OnInit {
   results: any[] = [];
   selectedInstructor = 'Semua';
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getMyClass();
   }
 
   getMyClass(): void {
-    this.dashboardService.getMyClass().subscribe(
+    let userId: string = this.authService.getUserId();
+    let rolecode: string = this.authService.getRole();
+    this.dashboardService.getMyClass(userId, rolecode).subscribe(
       res => {
         this.classes = res;
         this.results = res;
@@ -84,13 +88,11 @@ export class DashboardComponent implements OnInit {
     this.results = this.classes.filter((item) => {
       if (this.selectedInstructor == 'Semua') {
         return item
-          .idDetailClass
           .idClass
           .className
           .toLowerCase().indexOf(this.query.toLowerCase()) !== -1;
       } else {
         return item
-          .idDetailClass
           .idClass
           .className
           .toLowerCase().indexOf(this.query.toLowerCase()) !== -1

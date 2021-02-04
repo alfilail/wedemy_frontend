@@ -9,7 +9,7 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends BaseService{
+export class UserService extends BaseService {
 
   constructor(private http: HttpClient, private authService: AuthService) {
     super();
@@ -20,11 +20,11 @@ export class UserService extends BaseService{
   }
 
   login(user: Users): Observable<any> {
-    return this.http.post<any>(`${this.api}/api/login`, 
-    {
-      username : user.username,
-      userPassword : user.userPassword
-    }
+    return this.http.post<any>(`${this.api}/api/login`,
+      {
+        username: user.username,
+        userPassword: user.userPassword
+      }
     )
   }
 

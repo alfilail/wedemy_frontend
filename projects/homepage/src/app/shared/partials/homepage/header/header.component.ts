@@ -25,33 +25,33 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedOut = !this.authService.getToken();
-    
-    if (!this.isLoggedOut){
+
+    if (!this.isLoggedOut) {
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
         this.user = res;
         this.getFirstName(res.idProfile.fullName);
       })
     }
-    
+
     console.log(this.isLoggedOut);
 
   }
 
-  logout(): void{
+  logout(): void {
     this.authService.clearToken();
     this.isLoggedOut = true;
     this.router.navigateByUrl('/auth/login');
   }
 
-  dashboard(): void{
-    if(this.authService.getRole() == ROLE.PARTICIPANT){
+  dashboard(): void {
+    if (this.authService.getRole() == ROLE.PARTICIPANT) {
       this.router.navigateByUrl('/participant/dashboard');
-    } else if(this.authService.getRole() == ROLE.TUTOR){
+    } else if (this.authService.getRole() == ROLE.TUTOR) {
       this.router.navigateByUrl('/instructor/dashboard');
     }
   }
 
-  getFirstName(fullName: any): void{
+  getFirstName(fullName: any): void {
     let names = fullName.split(' ');
     this.firstName = names[0][0].toUpperCase() + names[0].slice(1);
   }

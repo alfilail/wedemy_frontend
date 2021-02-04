@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SkeletonModule } from 'primeng/skeleton';
 
 import { MaterialRoutingModule } from './material-routing.module';
 import { MaterialReadComponent } from '../../pages/material/read/material-read.component';
@@ -27,7 +28,8 @@ import { DateAgoPipe } from '@bootcamp-elearning/shared/pipes/date-ago.pipe';
     MaterialRoutingModule,
     TableModule,
     EditorModule,
-    FormsModule
+    FormsModule,
+    SkeletonModule
   ]
 })
 export class MaterialModule { }
