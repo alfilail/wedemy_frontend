@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Modules } from '../../model/modules';
 import { ModuleService } from '../../service/module.service';
@@ -18,9 +19,10 @@ export class SilabusComponent implements OnInit {
   update: boolean;
   listSilabus: Modules[] = [];
   module = new Modules();
+  idUser: string
 
-  constructor(private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-
+  constructor(private auth: AuthService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+    this.idUser = auth.getUserId()
   }
 
   ngOnInit(): void {
@@ -63,7 +65,7 @@ export class SilabusComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.moduleService.deleteById(id, '31f587f7-ee4f-40b3-bc10-51fb850f3685').subscribe(val => {
+        this.moduleService.deleteById(id, this.idUser).subscribe(val => {
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
         })
       }

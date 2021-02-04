@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DetailClasses } from '@bootcamp-admin/model/dtl-classes';
 import { DtlClassService } from '@bootcamp-admin/service/dtl-class.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Classes } from '../../model/classes';
 import { ClassService } from '../../service/class.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
+import { Class } from '@bootcamp-elearning/models/class';
 
 @Component({
   selector: 'app-kelas',
@@ -22,9 +24,10 @@ export class KelasComponent implements OnInit {
   statuses: any[];
   selectedClass: DetailClasses[] = []
   listKelas: DetailClasses[] = [];
+  idUser: string;
 
-  constructor(private classService: ClassService, private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-
+  constructor(private classService: ClassService, private auth: AuthService, private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+    this.idUser = auth.getUserId()
   }
 
   ngOnInit(): void {
@@ -38,19 +41,6 @@ export class KelasComponent implements OnInit {
     })
   }
 
-  deleteSelectedProducts() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected products?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        // this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        // this.selectedProducts = null;
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-      }
-    });
-  }
-
   editProduct() {
 
   }
@@ -61,7 +51,7 @@ export class KelasComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.classService.deleteById(id).subscribe(val => {
+        this.classService.deleteById(id, this.idUser).subscribe(val => {
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Kelas telah dihapus.', life: 3000 });
         })
       }

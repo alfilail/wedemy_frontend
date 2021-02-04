@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { SubmissionStatus } from '../../model/submission-status';
 import { SubmissionStatusService } from '../../service/submission-status.service';
@@ -18,9 +19,10 @@ export class StatusTugasComponent implements OnInit {
   update: boolean;
   listStatusTugas: SubmissionStatus[] = [];
   statusTugas = new SubmissionStatus();
+  idUser: string;
 
-  constructor(private submissionStatusService: SubmissionStatusService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-
+  constructor(private auth: AuthService, private submissionStatusService: SubmissionStatusService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+    this.idUser = auth.getUserId()
   }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class StatusTugasComponent implements OnInit {
     this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => {
       this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Status Tugas telah dibuat.', life: 3000 });
       this.productDialog = false;
-      // this.listStatusTugas.push(this.statusTugas);
+      this.listStatusTugas.push(this.statusTugas);
     })
   }
 
@@ -63,7 +65,7 @@ export class StatusTugasComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.submissionStatusService.deleteById(id).subscribe(val => {
+        this.submissionStatusService.deleteById(id, this.idUser).subscribe(val => {
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
         })
       }

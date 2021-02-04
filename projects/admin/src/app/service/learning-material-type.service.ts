@@ -25,7 +25,7 @@ export class LearningMaterialTypeService extends BaseService {
     return this.http.put<LearningMaterialTypes>(`${this.ipAddress}/learning-material-type`, learningMaterialType)
   }
 
-  deleteById(id: string): Observable<LearningMaterialTypes> {
-    return this.http.delete<LearningMaterialTypes>(`${this.ipAddress}/learning-material-type/${id}`)
+  deleteById(id: string, idUser: string): Observable<LearningMaterialTypes> {
+    return this.http.delete<LearningMaterialTypes>(`${this.ipAddress}/learning-material-type?id=${id}&idUser=${idUser}`)
   }
 }

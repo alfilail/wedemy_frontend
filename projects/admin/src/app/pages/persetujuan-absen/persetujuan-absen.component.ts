@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Approvements } from '@bootcamp-admin/model/approvements';
 import { ApprovementService } from '@bootcamp-admin/service/approvement.service';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
@@ -17,9 +18,10 @@ export class PersetujuanAbsenComponent implements OnInit {
   update: boolean = false;
   listApprovements: Approvements[] = []
   approvement = new Approvements();
+  idUser: string;
 
-  constructor(private aprovementService: ApprovementService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-
+  constructor(private auth: AuthService, private aprovementService: ApprovementService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+    this.idUser = auth.getUserId()
   }
 
   ngOnInit(): void {
@@ -63,7 +65,7 @@ export class PersetujuanAbsenComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.aprovementService.deleteById(id).subscribe(val => {
+        this.aprovementService.deleteById(id, this.idUser).subscribe(val => {
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Persetujuan Absen telah dihapus.', life: 3000 });
         })
       }

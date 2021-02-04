@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LearningMaterialTypes } from '@bootcamp-admin/model/learning-material-types';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { LearningMaterialTypeService } from '../../service/learning-material-type.service';
 
@@ -22,9 +23,10 @@ export class JenisTugasComponent implements OnInit {
 
   listJenisTugas: LearningMaterialTypes[] = []
   learningMaterialType = new LearningMaterialTypes();
+  idUser: string;
 
-  constructor(private learningMaterialTypeService: LearningMaterialTypeService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-
+  constructor(private auth: AuthService, private learningMaterialTypeService: LearningMaterialTypeService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+    this.idUser = auth.getUserId()
   }
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class JenisTugasComponent implements OnInit {
     console.log('update')
     this.learningMaterialTypeService.updateLearningMaterialType(this.learningMaterialType).subscribe(val => {
       this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dibuat.', life: 3000 });
-      this.productDialog = false; this.update = false;
+      this.productDialog = false;
       this.update = false;
     })
   }
@@ -69,7 +71,7 @@ export class JenisTugasComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.learningMaterialTypeService.deleteById(id).subscribe(val => {
+        this.learningMaterialTypeService.deleteById(id, this.idUser).subscribe(val => {
           this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Jenis Materi telah dihapus.', life: 3000 });
         })
       }

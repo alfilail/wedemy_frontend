@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardPageComponent } from './containers';
 import { SharedModule } from '../../shared/shared.module';
 import { DashboardService } from './services';
+import { PrimeModule } from '@bootcamp-admin/shared/prime/prime.module';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { DashboardService } from './services';
     MatSelectModule,
     MatInputModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    PrimeModule
   ],
   providers: [
     DashboardService

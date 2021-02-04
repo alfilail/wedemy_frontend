@@ -25,7 +25,7 @@ export class ApprovementService extends BaseService {
     return this.http.put<Approvements>(`${this.ipAddress}/approvement`, approvement);
   }
 
-  deleteById(id: string): Observable<Approvements> {
-    return this.http.delete<Approvements>(`${this.ipAddress}/approvement/${id}`)
+  deleteById(id: string, idUser: string): Observable<Approvements> {
+    return this.http.delete<Approvements>(`${this.ipAddress}/approvement?id=${id}&idUser=${idUser}`)
   }
 }

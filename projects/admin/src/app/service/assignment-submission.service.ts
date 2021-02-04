@@ -17,7 +17,7 @@ export class AssignmentSubmissionService extends BaseService {
     return this.http.get<AssignmentSubmissions[]>(`${this.ipAddress}/assignment-submission/all`)
   }
 
-  deleteById(id: string): Observable<AssignmentSubmissions> {
-    return this.http.delete<AssignmentSubmissions>(`${this.ipAddress}/assignment-submission/${id}`)
+  deleteById(id: string, idUser: string): Observable<AssignmentSubmissions> {
+    return this.http.delete<AssignmentSubmissions>(`${this.ipAddress}/assignment-submission?id=${id}&idUser=${idUser}`)
   }
 }

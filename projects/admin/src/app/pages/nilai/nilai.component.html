@@ -1,4 +1,3 @@
-<p-toast></p-toast>
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
         <h1>Nilai</h1>
@@ -22,12 +21,13 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="listNilai" [rows]="10" [paginator]="true" [globalFilterFields]="['code']"
-                    [rowHover]="true" dataKey="id" class="p-m-3"
+                <p-table #dt [value]="listNilai" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['code', 'minScore', 'maxScore']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
+                            <th>no</th>
                             <th pSortableColumn="code">Kode Nilai<p-sortIcon field="code"></p-sortIcon>
                             </th>
                             <th pSortableColumn="name">Nilai Minimun<p-sortIcon field="name"></p-sortIcon>
@@ -39,6 +39,7 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-listNilai>
                         <tr>
+                            <!-- <td>{{i}}</td> -->
                             <td>{{listNilai.code}}</td>
                             <td>{{listNilai.minScore}}</td>
                             <td>{{listNilai.maxScore}}</td>
