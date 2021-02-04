@@ -15,4 +15,20 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
+  clearToken(): void {
+    localStorage.clear();
+  }
+
+  getUsername(): string {
+    return localStorage.getItem('userName');
+  }
+
+  getRole(): string {
+    return localStorage.getItem('roleCode');
+  }
+
+  getUserId(): string {
+    return localStorage.getItem('userId');
+  }
+
 }

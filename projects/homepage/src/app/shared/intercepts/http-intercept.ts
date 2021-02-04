@@ -1,12 +1,13 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { tap } from 'rxjs/operators'
 import { AuthService } from "@bootcamp-homepage/services/auth.service";
-
+import { ToastService } from "@bootcamp-homepage/services/toast.service";
 @Injectable()
 export class HttpIntercept implements HttpInterceptor {
 
-    constructor(private auth: AuthService) {
+    constructor(private toast: ToastService, private auth: AuthService) {
 
     }
 
@@ -14,11 +15,27 @@ export class HttpIntercept implements HttpInterceptor {
         let token = this.auth.getToken();
 
         let reqNew = req.clone({
-            setHeaders : {'Authorization' : `Bearer ${token}`}
+            setHeaders: { 'Authorization': `Bearer ${token}` }
         });
-        console.log(req.url);
-        console.log(req.body);
-        return next.handle(reqNew);
+        return next.handle(reqNew).pipe(
+            tap(
+                event => {
+                    if (event instanceof HttpResponse) {
+                        console.log('request succeeded');
+                        console.log(event)
+                        if (event.body.ok == false) {
+                            this.toast.errorToast(event.body.message)
+                        } else if (event.body.ok == true && event.body.message) {
+                            this.toast.successToast(event.body.message)
+                        }
+                    }
+                },
+                error => {
+                    if (error instanceof HttpErrorResponse) {
+                        console.log('request failed');
+                    }
+                }
+            ))
     }
 
 }

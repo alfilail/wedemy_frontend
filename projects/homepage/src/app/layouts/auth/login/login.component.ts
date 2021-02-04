@@ -24,11 +24,10 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private toast: ToastService,
-    private msg: MessageService) 
-  { }
+    private msg: MessageService) { }
 
   ngOnInit(): void {
-    this.callToast();
+    // this.callToast();
   }
 
   login(): void {
@@ -49,13 +48,13 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  callToast():void {
-    this.successObs = this.toast.successObs.subscribe(val => {
-      this.msg.add({ severity : 'success', summary : 'Success', detail : val, sticky: true });
-    });
+  // callToast():void {
+  //   this.successObs = this.toast.successObs.subscribe(val => {
+  //     this.msg.add({ severity : 'success', summary : 'Success', detail : val, sticky: true });
+  //   });
 
-    this.errorObs = this.toast.errorObs.subscribe(val => {
-      this.msg.add({ severity : 'error', summary : 'Error', detail : val, sticky: true })
-    })
-  }
+  //   this.errorObs = this.toast.errorObs.subscribe(val => {
+  //     this.msg.add({ severity : 'error', summary : 'Error', detail : val, sticky: true })
+  //   })
+  // }
 }
