@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     if (this.authService.getToken) {
       this.userService.getUserById(this.authService.getUserId()).subscribe(
         res => {
-          this.user = res;
+          this.user = res.data;
           console.log(res);
         },
         err => {

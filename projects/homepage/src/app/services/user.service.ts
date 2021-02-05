@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Response } from '@bootcamp-elearning/models/responses/response';
 import { Profiles } from '@bootcamp-homepage/models/profiles';
 import { Users } from '@bootcamp-homepage/models/users';
 import { Observable } from 'rxjs';
@@ -32,7 +33,7 @@ export class UserService extends BaseService {
     return this.http.patch<Profiles>(`${this.api}/user/forget-password`, profile)
   }
 
-  getUserById(userId: string): Observable<Users> {
-    return this.http.get<Users>(`${this.api}/user/${userId}`)
+  getUserById(userId: string): Observable<Response<Users>> {
+    return this.http.get<Response<Users>>(`${this.api}/user/${userId}`)
   }
 }

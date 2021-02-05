@@ -9,7 +9,7 @@
         Kembali
       </button>
     </div>
-    <div class="content-class">
+    <div class="content-class w-100">
       <!-- <ng-template [ngIf]="!isLoading">
         <p-skeleton styleClass="p-mb-2" width="100%" height="1rem"></p-skeleton>  
         <p-skeleton styleClass="p-mb-2" width="100%" height="1rem"></p-skeleton>  
@@ -18,7 +18,7 @@
         <p-skeleton styleClass="p-mb-2" width="50%" height="1rem"></p-skeleton>  
         <p-skeleton styleClass="p-mb-2" width="40%" height="1rem"></p-skeleton>  
       </ng-template> -->
-      <div [innerHTML]="material.idLearningMaterial.description">
+      <div class="content" [innerHTML]="material.idLearningMaterial.description">
         
       </div>
     </div>
@@ -27,7 +27,7 @@
         <li [routerLink]="['/instructor/class/material']" routerLinkActive="active" class="tab-item">FORUM</li>
         <li [routerLink]="['presence-assignment']" routerLinkActive="active" class="tab-item">PRESENCE & ASSIGNMENT</li>
         <li [routerLink]="['answer']" routerLinkActive="active" class="tab-item">ANSWER</li>
-      </ul> -->
+      </ul>
     </div>
   </div>
   <router-outlet></router-outlet>

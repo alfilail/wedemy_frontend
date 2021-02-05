@@ -27,8 +27,8 @@ export class DashboardComponent implements OnInit {
     let rolecode: string = this.authService.getRole();
     this.dashboardService.getMyClass(userId, rolecode).subscribe(
       res => {
-        this.classes = res;
-        this.results = res;
+        this.classes = res.data;
+        this.results = res.data;
         // this.getUniqueInstructor();
         console.log(res);
 
