@@ -16,7 +16,7 @@ export class DetailClassService extends BaseService{
   }
 
   getAll(): Observable<Responses<DetailClasses[]>> {
-    return this.http.get<Responses<DetailClasses[]>>(`${this.api}/detail-class/all`)
+    return this.http.get<Responses<DetailClasses[]>>(`${this.api}/detail-class/active`)
   }
 
   getById(idDtlClass: string): Observable<Responses<DetailClasses>> {

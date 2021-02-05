@@ -8,6 +8,19 @@ nav {
     font-family: 'Quicksand', sans-serif;
 }
 
+.active {
+    color: #f4d242 !important;
+}
+
+.profile-pic {
+    width: 34px;
+    height: 34px;
+}
+
+.nav-link:hover {
+    color: #f4d242 !important;
+}
+
 .nav-logo {
     height: 40px;
 }

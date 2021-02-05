@@ -34,16 +34,14 @@ export class ModuleComponent implements OnInit {
   }
 
   getDetail(idDtlClass: string): void {
-    console.log('Masuk getDetail()');
     let idUser = this.authService.getUserId();
-    console.log(this.authService.getUserId());
     let params = {
       idUser,
       idDtlClass
     }
     this.classService.getDetail(params).subscribe(
       res => {
-        this.modules = res
+        this.modules = res.data;
         console.log(res);
 
       },

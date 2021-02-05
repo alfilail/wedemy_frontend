@@ -4,26 +4,26 @@
 }
 
 .main-material .material-title {
-  font-family: "Merriweather", sans-serif;
+  font-family: "Quicksand", sans-serif;
+  font-size: x-large;
   font-weight: bold;
 }
 
 
 /* Styling Content */
-.content-class {
-  font-family: "Montserrat", sans-serif !important;
-  line-height: 36px;
-  width: 100%;
-}
 
 
-h1 {
+.content-class .content h1 {
   font-size: 27px;
 }
 
-h2 {
+.content-class .content h2 {
   font-size: 24px;
   font-weight: 600;
+}
+
+.content-class .content p {
+  font-size: 27px;
 }
 
 /* End Styling  */

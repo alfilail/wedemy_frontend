@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Classes } from '@bootcamp-homepage/models/classes';
 import { ModuleAndLearningMaterials } from '@bootcamp-homepage/models/module-and-learning-material';
 import { Modules } from '@bootcamp-homepage/models/modules';
+import { Responses } from '@bootcamp-homepage/models/responses';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { BaseService } from './base.service';
@@ -16,8 +17,8 @@ export class ModuleRegistrationService extends BaseService {
     super();
   }
 
-  getByIdClass(iddtlclass: string): Observable<Modules[]> {
-    return this.http.get<Modules[]>(`${this.api}/module-registration/dtl-class/${iddtlclass}`)
+  getByIdClass(iddtlclass: string): Observable<Responses<Modules[]>> {
+    return this.http.get<Responses<Modules[]>>(`${this.api}/module-registration/dtl-class/${iddtlclass}`)
   }
 
   // getModuleAndLearningMaterialsByIdDtlClass(idDtlClass: string): Observable<ModuleAndLearningMaterials[]> {

@@ -38,6 +38,11 @@
               </div>
             </a>
             <div class="d-flex">
+              <span class="material-icon">
+                <button class="btn btn-success rounded-circle">
+                  <i class="fas fa-hand-paper"></i>
+                </button>
+              </span>
               <ng-template [ngIf]="selectedView == viewType.OPERATION_VIEW">
                 <span class="material-icon">
                   <button class="btn btn-info rounded-circle">
@@ -50,12 +55,6 @@
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </span>
-
-                <!-- <span class="material-icon">
-                    <button class="btn btn-success rounded-circle">
-                      <i class="fas fa-hand-paper"></i>
-                    </button>
-                  </span> -->
               </ng-template>
             </div>
           </li>

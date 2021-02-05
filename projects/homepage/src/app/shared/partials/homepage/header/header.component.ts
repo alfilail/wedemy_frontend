@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   user: Users = new Users();
   isLoggedOut: boolean;
   firstName: string;
+  url: any;
 
   constructor(
     private userService: UserService,
@@ -28,8 +29,12 @@ export class HeaderComponent implements OnInit {
 
     if (!this.isLoggedOut) {
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
+        console.log("haihai"+this.authService.getUserId())
         this.user = res.data;
+        console.log("INI HEADER HOMEPAGE");
+        console.log(res);
         this.getFirstName(res.data.idProfile.fullName);
+        this.url = 'data:image/png;base64,'+this.user.idProfile.idFile.file;
       })
     }
   }
@@ -45,6 +50,22 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl('/participant/dashboard');
     } else if (this.authService.getRole() == ROLE.TUTOR) {
       this.router.navigateByUrl('/instructor/dashboard');
+    }
+  }
+
+  myProfile(): void {
+    if (this.authService.getRole() == ROLE.PARTICIPANT) {
+      this.router.navigateByUrl('/participant/profile');
+    } else if (this.authService.getRole() == ROLE.TUTOR) {
+      this.router.navigateByUrl('/instructor/profile');
+    }
+  }
+
+  setting(): void {
+    if (this.authService.getRole() == ROLE.PARTICIPANT) {
+      this.router.navigateByUrl('/participant/setting');
+    } else if (this.authService.getRole() == ROLE.TUTOR) {
+      this.router.navigateByUrl('/instructor/setting');
     }
   }
 

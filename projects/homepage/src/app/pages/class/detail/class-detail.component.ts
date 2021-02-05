@@ -56,7 +56,7 @@ export class ClassDetailComponent implements OnInit {
         this.dtlClass = val.data; 
         this.moduleRgsService.getByIdClass(this.param).subscribe(res => {
           console.log("giuuu "+res)
-          this.listModules = res;
+          this.listModules = res.data;
           this.countModule = this.listModules.length;
           this.countTotalMats();
           this.checkQuota();
