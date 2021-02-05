@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ModuleComponent } from '../module/module.component';
 
 @Component({
   selector: 'app-class-detail',
   templateUrl: './class-detail.component.html',
   styleUrls: ['./class-detail.component.css']
 })
-export class ClassDetailComponent implements OnInit {
+export class ClassDetailComponent implements OnInit, AfterViewInit {
+  @ViewChild(ModuleComponent) modules;
 
   idDetailClass: string;
 
@@ -16,4 +18,7 @@ export class ClassDetailComponent implements OnInit {
     this.idDetailClass = this.route.firstChild.snapshot.params['idDetailClass'];
   }
 
+  ngAfterViewInit(): void {
+    // throw new Error('Method not implemented.');
+  }
 }

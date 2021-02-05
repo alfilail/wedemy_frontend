@@ -30,22 +30,31 @@
                 <span class="material-icon">
                   <i class="fas fa-file-alt"></i>
                 </span>
-                <a routerLink="../../../material/{{material.learningMaterial.id}}/forum">
+                <a routerLink="../../../material/{{material.learningMaterial.id}}/forum" class.disabled="true">
                   <span class="material-name">
                     {{material.learningMaterial.idLearningMaterial.learningMaterialName}}
                   </span>
                 </a>
               </div>
             </a>
+          
             <div class="d-flex">
-              <span class="material-icon">
-                <button class="btn btn-success rounded-circle">
-                  <i class="fas fa-hand-paper"></i>
-                </button>
-              </span>
+              
+              <div *ngIf="material.statusPresent.type === 'badge' else btn" class="material-icon">
+                <span class="badge badge-{{material.statusPresent.style}}"> {{material.statusPresent.msg}}</span>
+              </div>
+
+              <ng-template #btn>
+                <div class="material-icon">
+                  <button class="btn btn-{{material.statusPresent.style}}">
+                    {{material.statusPresent.msg}}
+                  </button>
+                </div>
+              </ng-template>
+
               <ng-template [ngIf]="selectedView == viewType.OPERATION_VIEW">
                 <span class="material-icon">
-                  <button class="btn btn-info rounded-circle">
+                  <button class="btn btn-info rounded">
                     <i class="fas fa-edit"></i>
                   </button>
                 </span>
