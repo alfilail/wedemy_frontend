@@ -50,7 +50,7 @@ export class KelasComponent implements OnInit {
     this.kelas = { ...kelas };
 
     this.dtlClsService.getDetailClassById(kelas.id).subscribe(val => {
-      this.route.navigateByUrl(`admin/kelas/${val.data.id}`);
+      this.route.navigateByUrl(`admin/kelas/${val.data.idClass.id}`);
     })
   }
 

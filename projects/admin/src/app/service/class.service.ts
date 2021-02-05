@@ -16,7 +16,7 @@ export class ClassService extends BaseService {
   }
 
   getClasses(): Observable<Responses<Classes[]>> {
-    return this.http.get<Responses<Classes[]>>(`${this.ipAddress}/class/all`)
+    return this.http.get<Responses<Classes[]>>(`${this.ipAddress}/class/active`)
   }
 
   insertClasses(formData: FormData): Observable<any> {
@@ -27,7 +27,15 @@ export class ClassService extends BaseService {
     return this.http.delete<Responses<Classes>>(`${this.ipAddress}/class?id=${id}&idUser=${idUser}`)
   }
 
+  updateClass(formData: FormData): Observable<any> {
+    return this.http.put<any>(`${this.ipAddress}/class`, formData)
+  }
 
+  getClassById(id: string): Observable<Responses<Classes>> {
+    return this.http.get<Responses<Classes>>(`${this.ipAddress}/class/${id}`)
+  }
 
-
+  getClassInactive(): Observable<Responses<Classes[]>> {
+    return this.http.get<Responses<Classes[]>>(`${this.ipAddress}/class/inactive`)
+  }
 }

@@ -23,7 +23,34 @@ export class CreateTutorComponent implements OnInit {
   role = new Roles();
   roleUser: string;
 
-  constructor(private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
+  usernameValid: boolean;
+  usernameErrMsg: string;
+
+  passwordValid: boolean;
+  passErrMsg: string;
+
+  nomorKtpValid: boolean;
+  nomorKtpErrMsg: string;
+
+  namaValid: boolean;
+  namaErrMsg: string;
+
+  alamatValid: boolean;
+  alamatErrMsg: string;
+
+  emailValid: boolean;
+  emailErrMsg: string;
+
+  numPhoneValid: boolean;
+  numPhoneErrMsg: string;
+
+  birthPlaceValid: boolean;
+  birthPlaceErrMsg: string;
+
+  birthDateValid: boolean;
+  birthDateErrMsg: string;
+
+  constructor(private messageService: MessageService, private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
 
   }
 
@@ -35,23 +62,31 @@ export class CreateTutorComponent implements OnInit {
 
   insertUser(): void {
     console.log(this.roleUser)
-    if (this.roleUser == 'tutor') {
-      this.role.code = 'TTR';
+
+    if (this.passwordValid && this.emailValid && this.namaValid
+      && this.alamatValid && this.birthDateValid && this.birthPlaceValid
+      && this.nomorKtpValid && this.numPhoneErrMsg && this.emailValid) {
+      if (this.roleUser == 'tutor') {
+        this.role.code = 'TTR';
+      } else {
+        this.role.code = 'ADM';
+      }
+
+      this.user.idProfile = this.profile;
+      this.user.idRole = this.role;
+
+      console.log(this.user.idProfile.birthDate)
+      this.userService.insertUsers(this.user).subscribe(val => {
+        if (this.roleUser == 'tutor') {
+          this.route.navigateByUrl('/admin/user-tutor')
+        } else {
+          this.route.navigateByUrl('/admin/user-admin')
+        }
+      })
     } else {
-      this.role.code = 'ADM';
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
     }
 
-    this.user.idProfile = this.profile;
-    this.user.idRole = this.role;
-
-    console.log(this.user.idProfile.birthDate)
-    this.userService.insertUsers(this.user).subscribe(val => {
-      if (this.roleUser == 'tutor') {
-        this.route.navigateByUrl('/admin/user-tutor')
-      } else {
-        this.route.navigateByUrl('/admin/user-admin')
-      }
-    })
   }
 
   backButton() {
@@ -62,5 +97,62 @@ export class CreateTutorComponent implements OnInit {
     }
   }
 
+  validation(event: string, col: string): void {
+    if (event.length == 0) {
+      if (col == 'username') {
+        this.usernameValid = false;
+        this.usernameErrMsg = 'username tidak boleh kosong'
+      } else if (col == 'email') {
+        this.emailValid = false;
+        this.emailErrMsg = 'email tidak boleh kosong'
+      } else if (col == 'ktp') {
+        this.nomorKtpValid = false;
+        this.nomorKtpErrMsg = 'nomor ktp tidak boleh kosong'
+      } else if (col == 'nama') {
+        this.namaValid = false;
+        this.namaErrMsg = 'nama tidak boleh kosong'
+      } else if (col == 'alamat') {
+        this.alamatValid = false;
+        this.alamatErrMsg = 'alamat tidak boleh kosong'
+      } else if (col == 'numPhone') {
+        this.numPhoneValid = false;
+        this.numPhoneErrMsg = 'nomor ponsel tidak boleh kosong'
+      } else if (col == 'birthPlace') {
+        this.birthPlaceValid = false;
+        this.birthPlaceErrMsg = 'tempat lahir tidak boleh kosong'
+      } else if (col == 'birthDate') {
+        this.birthDateValid = false;
+        this.birthDateErrMsg = 'tanggal lahir tidak boleh kosong'
+      } else if (col == 'password') {
+        this.passwordValid = false;
+        this.passErrMsg = 'password tidak boleh kosong'
+      }
+    } else {
+      if (col == 'email') {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(event)) {
+          this.emailValid = false;
+          this.emailErrMsg = "Alamat email tidak valid";
+        } else {
+          this.emailValid = true
+        }
+      } else if (col == 'password') {
+        if (event.length < 8) {
+          this.passwordValid = false;
+          this.passErrMsg = 'password minimal 8 karakter'
+        } else {
+          this.passwordValid = true;
+        }
+      }
+
+      this.usernameValid;
+      this.nomorKtpValid;
+      this.namaValid;
+      this.alamatValid;
+      this.numPhoneValid;
+      this.birthPlaceValid;
+      this.birthDateValid;
+    }
+  }
 
 }

@@ -40,6 +40,8 @@ export class SilabusComponent implements OnInit {
     console.log('update')
     this.moduleService.updateModule(this.module).subscribe(val => {
       this.productDialog = false; this.update = false;
+      this.removeSilabus(this.module.id)
+      this.listSilabus.push(this.module)
     })
   }
 
@@ -59,11 +61,11 @@ export class SilabusComponent implements OnInit {
 
   deleteModule(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ?',
+      message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.moduleService.deleteById(id, this.idUser).subscribe(val => { })
+        this.moduleService.deleteById(id, this.idUser).subscribe(val => { this.removeSilabus(id) })
       }
     });
   }
@@ -77,4 +79,13 @@ export class SilabusComponent implements OnInit {
     this.module = new Modules()
     this.productDialog = true; this.update = false;
   }
+
+  removeSilabus(id: string): void {
+    this.listSilabus.forEach((value, index) => {
+      if (value.id == id) {
+        this.listSilabus.splice(index, 1);
+      }
+    })
+  }
+
 }

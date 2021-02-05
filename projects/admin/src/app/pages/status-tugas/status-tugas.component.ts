@@ -40,6 +40,8 @@ export class StatusTugasComponent implements OnInit {
     console.log('update')
     this.submissionStatusService.updateSubmissionStatus(this.statusTugas).subscribe(val => {
       this.productDialog = false; this.update = false;
+      this.removeStatusTugas(this.statusTugas.id)
+      this.listStatusTugas.push(this.statusTugas)
     })
   }
 
@@ -59,11 +61,11 @@ export class StatusTugasComponent implements OnInit {
 
   deleteSubmissionStatus(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ?',
+      message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.submissionStatusService.deleteById(id, this.idUser).subscribe(val => { })
+        this.submissionStatusService.deleteById(id, this.idUser).subscribe(val => { this.removeStatusTugas(id) })
       }
     });
   }
@@ -79,4 +81,11 @@ export class StatusTugasComponent implements OnInit {
     this.productDialog = true; this.update = false;
   }
 
+  removeStatusTugas(id: string): void {
+    this.listStatusTugas.forEach((value, index) => {
+      if (value.id == id) {
+        this.listStatusTugas.splice(index, 1);
+      }
+    })
+  }
 }

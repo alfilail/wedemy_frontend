@@ -7,7 +7,7 @@ export class Profiles extends BaseMaster {
 
     public birthPlace: string;
 
-    public birthDate: Date;
+    public birthDate: string;
 
     public phone: string;
 

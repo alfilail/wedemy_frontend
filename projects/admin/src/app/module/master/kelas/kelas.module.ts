@@ -7,11 +7,13 @@ import { AngMaterialModule } from '../../../shared/ang-material/ang-material.mod
 import { PrimeModule } from '../../../shared/prime/prime.module';
 import { SharedModule } from '../../../shared/shared.module';
 import * as moment from 'moment';
+import { DisableClassComponent } from '@bootcamp-admin/pages/kelas/disable-class/disable-class.component';
 
 @NgModule({
   declarations: [
     KelasComponent,
-    CreateKelasComponent
+    CreateKelasComponent,
+    DisableClassComponent
   ],
   imports: [
     CommonModule,
