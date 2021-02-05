@@ -15,6 +15,9 @@ import * as moment from 'moment';
 })
 export class PengaturanComponent implements OnInit {
 
+  formData: FormData;
+  file: String;
+
   active: string;
   user: Users = new Users();
   birthDate: Date = new Date();
@@ -27,6 +30,8 @@ export class PengaturanComponent implements OnInit {
   pass: string;
   passConf: string;
 
+  defaultImg: string = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+
   constructor(private messageService: MessageService, private userService: UserService, private auth: AuthService, private router: Router, private profileService: ProfileService) {
 
   }
@@ -37,7 +42,7 @@ export class PengaturanComponent implements OnInit {
     this.username = this.auth.getUsername();
     this.getProfile();
     this.getUser();
-    console.log(this.profile.idNumber)
+    console.log(this.profile.idFile.file, 'heehhe')
   }
 
   click(url: string) {
@@ -60,7 +65,11 @@ export class PengaturanComponent implements OnInit {
   updateProfile() {
     this.profile.birthDate = this.formatDate(this.birthDate)
     this.profile.id = this.auth.getProfileId();
-    this.profileService.updateProfile(this.profile).subscribe(val => { })
+
+    this.formData.append("body", JSON.stringify(this.profile));
+    this.profileService.updateProfil(this.formData).subscribe(val => {
+
+    })
   }
 
   updatePassword(): void {
@@ -75,6 +84,18 @@ export class PengaturanComponent implements OnInit {
   formatDate(str: Date): string {
     let format = moment(str).format('YYYY-MM-DD');
     return format;
+  }
+
+  getFile(event) {
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      console.log(file);
+      let data: FormData = new FormData();
+      data.append('file', file);
+      this.formData = data;
+      this.file = file.name;
+    }
   }
 
 }

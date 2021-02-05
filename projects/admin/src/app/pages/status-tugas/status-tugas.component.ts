@@ -21,6 +21,12 @@ export class StatusTugasComponent implements OnInit {
   statusTugas = new SubmissionStatus();
   idUser: string;
 
+  codeValid: boolean;
+  codeErrMsg: string;
+
+  nameValid: boolean;
+  nameErrMsg: string;
+
   constructor(private auth: AuthService, private submissionStatusService: SubmissionStatusService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.idUser = auth.getUserId()
   }
@@ -87,5 +93,24 @@ export class StatusTugasComponent implements OnInit {
         this.listStatusTugas.splice(index, 1);
       }
     })
+  }
+
+  validation(event: string, col: string): void {
+    if (event.length == 0) {
+      if (col == 'code') {
+        this.codeValid = false;
+        this.codeErrMsg = 'kode tidak boleh kosong'
+      } else if (col == 'name') {
+        this.nameValid = false;
+        this.nameErrMsg = 'nama tidak boleh kosong'
+      }
+    } else {
+      if (col == 'code') {
+        this.codeValid = true;
+      } else if (col == 'name') {
+        this.nameValid = true;
+      }
+    }
+
   }
 }

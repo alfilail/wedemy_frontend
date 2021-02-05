@@ -21,6 +21,15 @@ export class NilaiComponent implements OnInit {
   nilai = new Grades();
   listNilai: Grades[] = []
 
+  codeValid: boolean;
+  codeErrMsg: string;
+
+  nilaiMin: boolean;
+  nilaiMinErrMsg: string;
+
+  nilaiMax: boolean;
+  nilaiMaxErrMsg: string;
+
   constructor(private auth: AuthService, private gradeService: GradeService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.idUser = auth.getUserId();
   }
@@ -91,5 +100,39 @@ export class NilaiComponent implements OnInit {
         this.listNilai.splice(index, 1);
       }
     })
+  }
+
+  validation(event: string, col: string): void {
+    if (event.length == 0) {
+      if (col == 'code') {
+        this.codeValid = false;
+        this.codeErrMsg = 'kode tidak boleh kosong'
+      } else if (col == 'nilaiMin') {
+        this.nilaiMin = false;
+        this.nilaiMinErrMsg = 'nilai minimum tidak boleh kosong'
+      } else if (col == 'nilaiMax') {
+        this.nilaiMax = false;
+        this.nilaiMaxErrMsg = 'nilai maksimum tidak boleh kosong'
+      }
+    } else {
+      if (col == 'code') {
+        this.codeValid = true;
+      } else if (col == 'nilaiMin') {
+        if (isNaN(Number(event))) {
+          this.nilaiMin = false;
+          this.nilaiMinErrMsg = 'tidak bisa memasukan huruf'
+        } else {
+          this.nilaiMin = true;
+        }
+      } else if (col == 'nilaiMax') {
+        if (isNaN(Number(event))) {
+          this.nilaiMax = false;
+          this.nilaiMaxErrMsg = 'tidak bisa memasukan huruf'
+        } else {
+          this.nilaiMax = true;
+        }
+      }
+    }
+
   }
 }

@@ -21,6 +21,11 @@ export class SilabusComponent implements OnInit {
   module = new Modules();
   idUser: string
 
+  codeValid: boolean;
+  codeErrMsg: string;
+
+  nameValid: boolean;
+  nameErrMsg: string;
   constructor(private auth: AuthService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.idUser = auth.getUserId()
   }
@@ -88,4 +93,22 @@ export class SilabusComponent implements OnInit {
     })
   }
 
+  validation(event: string, col: string): void {
+    if (event.length == 0) {
+      if (col == 'code') {
+        this.codeValid = false;
+        this.codeErrMsg = 'kode tidak boleh kosong'
+      } else if (col == 'name') {
+        this.nameValid = false;
+        this.nameErrMsg = 'nama tidak boleh kosong'
+      }
+    } else {
+      if (col == 'code') {
+        this.codeValid = true;
+      } else if (col == 'name') {
+        this.nameValid = true;
+      }
+    }
+
+  }
 }
