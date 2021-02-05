@@ -34,13 +34,11 @@ export class UserStudentComponent implements OnInit {
 
   deleteUser(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ?',
+      message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.userService.deleteById(id).subscribe(val => {
-          this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dihapus.', life: 3000 });
-        })
+        this.userService.deleteById(id).subscribe(val => { this.removeUser(id) })
       }
     });
   }
@@ -52,5 +50,13 @@ export class UserStudentComponent implements OnInit {
 
   openNew() {
     this.productDialog = true;
+  }
+
+  removeUser(id: string): void {
+    this.listUsers.forEach((value, index) => {
+      if (value.id == id) {
+        this.listUsers.splice(index, 1);
+      }
+    })
   }
 }

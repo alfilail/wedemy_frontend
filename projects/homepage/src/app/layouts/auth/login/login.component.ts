@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       } else if (this.authService.getRole() == ROLE.TUTOR) {
         this.router.navigateByUrl('/');
       } else if (this.authService.getRole() == ROLE.SPRADMIN) {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/admin/dashboard');
       }
     })
   }

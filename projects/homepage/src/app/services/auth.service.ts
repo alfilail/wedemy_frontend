@@ -16,6 +16,7 @@ export class AuthService {
     localStorage.setItem('userId', val.userId);
     localStorage.setItem('roleCode', val.roleCode);
     localStorage.setItem('userName', user.username);
+    localStorage.setItem('profileId', val.profileId)
   }
 
   getToken(): string {
@@ -32,6 +33,10 @@ export class AuthService {
 
   getUserId(): string {
     return localStorage.getItem('userId');
+  }
+
+  getProfileId(): string {
+    return localStorage.getItem('profileId');
   }
 
   clearToken(): void {

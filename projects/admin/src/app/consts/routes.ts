@@ -4,7 +4,8 @@ export enum routes {
 
   PENGAJAR = '/admin/pengajar',
   JENISTUGAS = '/admin/jenis-tugas',
-  KELAS = '/admin/kelas',
+  KELASAKTIF = '/admin/kelas-aktif',
+  KELASNONAKTIF = '/admin/kelas-nonaktif',
   NILAI = '/admin/nilai',
   SILABUS = '/admin/silabus',
   STATUSTUGAS = '/admin/status-tugas',

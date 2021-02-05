@@ -43,6 +43,8 @@ export class NilaiComponent implements OnInit {
     this.gradeService.updateGrade(this.nilai).subscribe(val => {
       this.productDialog = false;
       this.update = false;
+      this.removeNilai(this.nilai.id)
+      this.listNilai.push(this.nilai)
     });
   }
 
@@ -63,11 +65,11 @@ export class NilaiComponent implements OnInit {
 
   deleteGrade(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ?',
+      message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.gradeService.deleteById(id, this.idUser).subscribe(val => { })
+        this.gradeService.deleteById(id, this.idUser).subscribe(val => { this.removeNilai(id); })
       }
     });
   }
@@ -83,4 +85,11 @@ export class NilaiComponent implements OnInit {
     this.productDialog = true;
   }
 
+  removeNilai(id: string): void {
+    this.listNilai.forEach((value, index) => {
+      if (value.id == id) {
+        this.listNilai.splice(index, 1);
+      }
+    })
+  }
 }

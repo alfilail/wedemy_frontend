@@ -45,6 +45,8 @@ export class JenisTugasComponent implements OnInit {
     this.learningMaterialTypeService.updateLearningMaterialType(this.learningMaterialType).subscribe(val => {
       this.productDialog = false;
       this.update = false;
+      this.removeJenisTugas(this.learningMaterialType.id)
+      this.listJenisTugas.push(this.learningMaterialType)
     })
   }
 
@@ -65,11 +67,12 @@ export class JenisTugasComponent implements OnInit {
 
   deleteLearningMaterialType(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ?',
+      message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.learningMaterialTypeService.deleteById(id, this.idUser).subscribe(val => {
+          this.removeJenisTugas(id);
         })
       }
     });
@@ -86,4 +89,11 @@ export class JenisTugasComponent implements OnInit {
     this.update = false;
   }
 
+  removeJenisTugas(id: string): void {
+    this.listJenisTugas.forEach((value, index) => {
+      if (value.id == id) {
+        this.listJenisTugas.splice(index, 1);
+      }
+    })
+  }
 }

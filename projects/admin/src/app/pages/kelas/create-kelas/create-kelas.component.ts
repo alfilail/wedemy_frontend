@@ -28,7 +28,7 @@ export class CreateKelasComponent implements OnInit {
   isCreate: boolean;
 
   productDialog: boolean;
-  rangeDates: Date[];
+  rangeDates?: Date[];
   submitted: boolean;
   statuses: any[];
 
@@ -40,7 +40,7 @@ export class CreateKelasComponent implements OnInit {
   listDtlClass: DetailClasses[] = []
   listModuleRegistration: ModuleRegistrations[] = []
 
-  insertedClass = new DetailClasses();
+  // insertedClass = new Classes();
   class = new Classes();
   module = new Modules();
   dtlClass = new DetailClasses();
@@ -73,8 +73,8 @@ export class CreateKelasComponent implements OnInit {
   }
 
   getClass(): void {
-    this.dtlClassService.getDetailClassById(this.statusActivity).subscribe(val => {
-      this.insertedClass = val.data;
+    this.classService.getClassById(this.statusActivity).subscribe(val => {
+      this.class = val.data;
     })
   }
 
@@ -153,26 +153,38 @@ export class CreateKelasComponent implements OnInit {
     this.class.idTutor = this.tutorSelect
 
     this.dtlClass.idClass = this.class;
+
     this.dtlClass.endTime = this.endTimeValue
+
     this.dtlClass.startTime = this.startTimeValue
-    this.dtlClass.startDate = this.formatDate(this.rangeDates[0])
-    this.dtlClass.endDate = this.formatDate(this.rangeDates[1])
+
+    if (this.rangeDates != undefined) {
+      this.dtlClass.startDate = this.formatDate(this.rangeDates[0])
+      this.dtlClass.endDate = this.formatDate(this.rangeDates[1])
+    }
+
     console.log(this.startTimeValue)
     console.log(this.endTimeValue)
 
-    this.moduleRegistration.idModule = this.moduleSelect
-    this.moduleRegistration.idDetailClass = this.dtlClass
+    if (this.statusActivity == 'create') {
+      console.log('insert')
+      this.moduleRegistration.idModule = this.moduleSelect
+      this.moduleRegistration.idDetailClass = this.dtlClass
 
-    this.modules.push(this.moduleSelect)
-    this.listModuleRegistration.push(this.moduleRegistration);
+      this.modules.push(this.moduleSelect)
+      this.listModuleRegistration.push(this.moduleRegistration);
 
-    this.modules.forEach(val => {
-      console.log(val, " modules not delete")
-    })
+      this.modules.forEach(val => {
+        console.log(val, " modules not delete")
+      })
 
-    this.listModuleRegistration.forEach(val => {
-      console.log(val, " list module not delete")
-    })
+      this.listModuleRegistration.forEach(val => {
+        console.log(val, " list module not delete")
+      })
+    } else {
+      console.log('update')
+      this.updateClass();
+    }
   }
 
   saveClass() {
@@ -182,7 +194,6 @@ export class CreateKelasComponent implements OnInit {
 
     this.formData.append("body", JSON.stringify(this.classHelper));
     this.classService.insertClasses(this.formData).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
       this.route.navigateByUrl("/admin/kelas")
     })
   }
@@ -197,6 +208,15 @@ export class CreateKelasComponent implements OnInit {
 
     this.listModuleRegistration.forEach(val => {
       console.log(val, " list module delete")
+    })
+  }
+
+  updateClass() {
+    this.class.id = this.statusActivity
+    this.formData.append("body", JSON.stringify(this.class));
+
+    this.classService.updateClass(this.formData).subscribe(val => {
+      this.route.navigateByUrl('/admin/kelas-aktif')
     })
   }
 

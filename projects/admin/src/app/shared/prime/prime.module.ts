@@ -13,6 +13,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
+import { PasswordModule } from 'primeng/password';
 // import { ToastModule } from 'primeng/toast';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     ConfirmDialogModule,
     CalendarModule,
     InputMaskModule,
+    PasswordModule
     // ToastModule
   ],
   exports: [
@@ -44,6 +46,7 @@ import { InputMaskModule } from 'primeng/inputmask';
     ConfirmDialogModule,
     CalendarModule,
     InputMaskModule,
+    PasswordModule
     // ToastModule
   ]
 })

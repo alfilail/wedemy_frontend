@@ -1,6 +1,6 @@
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
-        <h1>Kelas</h1>
+        <h1>Kelas Aktif</h1>
     </mat-toolbar>
 
     <div class="container-fluid">
@@ -25,24 +25,9 @@
                     [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
-                    <ng-template pTemplate="colgroup" let-columns>
-                        <colgroup>
-                            <col style="width:200px">
-                            <col style="width:150px">
-                            <col style="width:200px">
-                            <col style="width:220px">
-                            <col style="width:200px">
-                            <col style="width:120px">
-                            <col style="width:200px">
-                            <col style="width:200px">
-                            <col style="width:100px">
-                            <col style="width:100px">
-                            <col style="width:170px">
-                        </colgroup>
-                    </ng-template>
                     <ng-template pTemplate="header">
                         <tr>
-                            <th pSortableColumn="pengajar">Pengajar
+                            <th field="pengajar" pSortableColumn="pengajar">Pengajar
                                 <p-sortIcon field="pengajar"></p-sortIcon>
                             </th>
                             <th pSortableColumn="code">Kode Kelas<p-sortIcon field="code"></p-sortIcon>
@@ -82,8 +67,6 @@
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success p-mr-2"
                                     (click)="editClass(listKelas)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                                    (click)="deleteClass(listKelas.id)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -95,7 +78,9 @@
                 </p-table>
             </div>
 
-            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+
+            <p-confirmDialog> </p-confirmDialog>
         </div>
     </div>
 </app-layout>
