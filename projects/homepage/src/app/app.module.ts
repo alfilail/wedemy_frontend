@@ -10,6 +10,9 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { PrimeNGModule } from './shared/prime-ng/prime-ng.module';
 import * as moment from 'moment';
+import { RouterModule } from '@angular/router';
+import { CanActivateTeam } from './shared/guards/classes/can-activate-team';
+import { Permissions } from '@bootcamp-homepage/shared/guards/classes/permissions';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,7 @@ import * as moment from 'moment';
   providers: [
     MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpIntercept, multi: true },
-
+    CanActivateTeam, Permissions
   ],
   bootstrap: [AppComponent]
 })

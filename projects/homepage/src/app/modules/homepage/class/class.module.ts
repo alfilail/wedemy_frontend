@@ -8,6 +8,9 @@ import { PrimeNGModule } from '@bootcamp-homepage/shared/prime-ng/prime-ng.modul
 import { RouterModule } from '@angular/router';
 import { ClassFilterPipe } from '@bootcamp-homepage/shared/pipes/class-filter.pipe';
 import { ModuleFilterPipe } from '@bootcamp-homepage/shared/pipes/module-filter.pipe';
+import { CanActivateTeam } from '@bootcamp-homepage/shared/guards/classes/can-activate-team';
+import { Permissions } from '@bootcamp-homepage/shared/guards/classes/permissions';
+
 // import {Location} from '@angular/common';
 
 @NgModule({
@@ -22,6 +25,7 @@ import { ModuleFilterPipe } from '@bootcamp-homepage/shared/pipes/module-filter.
     ClassRoutingModule,
     PrimeNGModule,
     RouterModule
-  ]
+  ],
+  providers: [CanActivateTeam, Permissions]
 })
 export class ClassModule { }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardPageComponent } from '@bootcamp-admin/pages/dashboard/containers';
 import { HomepageBaseComponent } from '@bootcamp-homepage/layouts/base/homepage/homepage-base.component';
 import { HomepageBaseModule } from './modules/homepage/base/homepage-base.module';
+import { CanActivateTeam } from './shared/guards/classes/can-activate-team';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('@bootcamp-admin/app.module')
-      .then(m => m.AppModule)
+      .then(m => m.AppModule),
+    canActivate: [CanActivateTeam]
   },
   {
     path: '',

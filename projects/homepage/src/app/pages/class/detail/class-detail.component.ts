@@ -33,7 +33,7 @@ export class ClassDetailComponent implements OnInit {
   confirm: boolean = false;
   classEnrollmentSelected: ClassEnrollments = new ClassEnrollments();
   enrolled: boolean = false; /* To check if participant is already enrolled the class */
-  showRegisterButton: boolean = true; 
+  showRegisterButton: boolean = false; 
   isEnrolled: boolean = false;
   isEnded: boolean = false;
   isFull: boolean = false;
@@ -52,21 +52,18 @@ export class ClassDetailComponent implements OnInit {
     this.isLoggedOut = !this.authService.getToken();
     this.route.params.subscribe(params => {
       this.param = params['idClass'];
-      console.log(this.param);
       this.dtlClassService.getById(this.param).subscribe(val => {
-        this.dtlClass = val;
-        console.log(val)        
+        this.dtlClass = val.data; 
         this.moduleRgsService.getByIdClass(this.param).subscribe(res => {
-          this.listModules = res;
+          console.log("giuuu "+res)
+          this.listModules = res.data;
           this.countModule = this.listModules.length;
           this.countTotalMats();
-          console.log('mymy1 '+this.countMat)
-          // this.userRole = this.authService.getRole();
-          console.log(res);
           this.checkQuota();
           this.checkEnded();
           this.checkEnrolled();
           this.checkTutor();
+          this.checkRegis();
         })
       })
     });
@@ -75,9 +72,8 @@ export class ClassDetailComponent implements OnInit {
   countTotalMats(): void{
     this.moduleRgsService.getModuleAndLearningMaterialsByIdDtlClass(this.param)
     .subscribe(res => {
-      res.forEach(module => {
+      res.data.forEach(module => {
         module.learningMaterials.forEach(m => this.countMat++);
-        console.log('mymy '+this.countMat);
       })
       this.countTotalHours(this.dtlClass.endTime, this.dtlClass.startTime);
     })
@@ -89,7 +85,6 @@ export class ClassDetailComponent implements OnInit {
     let start = startTime.split(':');
     let startMnt = start[0]*60 + start[1]*1;
     let diff = endMnt-startMnt;
-    console.log('diff '+ endMnt)
     this.totalHours = this.countMat*(diff/60);
   }
 
@@ -107,13 +102,13 @@ export class ClassDetailComponent implements OnInit {
     this.classEnrollmentSelected.idUser.id = this.authService.getUserId();
     this.classEnrollmentService.insertClassEnrollment(this.classEnrollmentSelected)
     .subscribe(res => {
-      console.log(this.classEnrollmentSelected);
       console.log(res);
       this.closeDialog();
-      // this.showRegisterButton = false;
-      // this.isEnded = false;
-      // this.isFull = false;
-      this.ngOnInit();
+      this.isEnrolled = true;
+      this.showRegisterButton = false;
+      this.isTutor = false;
+      this.isFull = false;
+      this.isEnded = false;
     })
   }
 
@@ -187,5 +182,21 @@ export class ClassDetailComponent implements OnInit {
       this.isEnrolled = false;
       this.isEnded = false;
     }
+  }
+
+  checkRegis(): void {
+    if(this.isLoggedOut){
+      this.showRegisterButton = true;
+      this.isTutor = false;
+      this.isFull = false;
+      this.isEnrolled = false;
+      this.isEnded = false;
+    } else if(!this.isEnrolled && !this.isFull && !this.isLoggedOut && !this.isTutor){
+      this.showRegisterButton = true;
+      this.isTutor = false;
+      this.isFull = false;
+      this.isEnrolled = false;
+      this.isEnded = false;
+    } 
   }
 }
