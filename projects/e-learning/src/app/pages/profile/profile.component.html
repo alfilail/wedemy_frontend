@@ -49,7 +49,7 @@
     </div>
 </div>
 
-<p-dialog header="Edit Profile" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+<p-dialog header="Edit Informasi Profil" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
     <form (ngSubmit)="onSubmit()">
         <div class="p-fluid">
             <div class="text-center mb-4">
@@ -96,7 +96,8 @@
                 <input [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.address" [value]="myAccount.idProfile.address" placeholder="{{myAccount.idProfile.address ? myAccount.idProfile.address : 'Masukkan Alamat'}}" id="address" type="text" pInputText>
             </div>
         </div>
-        <p-button icon="pi pi-check" type="submit" label="Save" styleClass="p-button-text"></p-button>
-
+        <div class="text-right">
+            <p-button icon="pi pi-check" type="submit" label="Simpan" styleClass="p-button-text"></p-button>
+        </div>
     </form>
 </p-dialog>

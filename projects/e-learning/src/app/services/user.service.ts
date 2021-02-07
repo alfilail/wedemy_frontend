@@ -36,4 +36,9 @@ export class UserService extends BaseService{
   getUserById(userId: string): Observable<Response<User>> {
     return this.http.get<Response<User>>(`${this.api}/user/${userId}`)
   }
+
+  updateUser(user: User): Observable<Response<User>> {
+    return this.http.patch<Response<User>>(`${this.api}/user`, user);
+  }
+  
 }

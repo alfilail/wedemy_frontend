@@ -15,9 +15,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   myAccount: User = new User();
-  selectedFile: any;
   displayMaximizable: boolean;
-  profilePic : File;
   defaultImg: string = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
   url: any = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
   uploadForm: FormGroup; 
