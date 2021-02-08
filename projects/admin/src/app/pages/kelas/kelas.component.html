@@ -8,7 +8,7 @@
             <div class="card">
                 <p-toolbar class="p-m-3">
                     <ng-template pTemplate="left">
-                        <button pButton pRipple label="New" icon="pi pi-plus" (click)="createKelas()"
+                        <button pButton pRipple label="Tambah" icon="pi pi-plus" (click)="createKelas()"
                             class="p-button-success p-mr-2"></button>
                     </ng-template>
                     <ng-template pTemplate="right">
@@ -67,6 +67,9 @@
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success p-mr-2"
                                     (click)="editClass(listKelas)"></button>
+                                <button pButton pRipple icon="pi pi-eye"
+                                    class="p-button-rounded p-button-warning p-mr-2"
+                                    (click)="viewDtlClass(listKelas.idClass.code)"></button>
                             </td>
                         </tr>
                     </ng-template>

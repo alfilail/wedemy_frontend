@@ -9,15 +9,11 @@ import * as moment from 'moment';
 import { DtlClassService } from '@bootcamp-admin/service/dtl-class.service';
 
 @Component({
-  selector: 'app-disable-class',
-  templateUrl: './disable-class.component.html',
-  styleUrls: ['./disable-class.component.scss'],
-  styles: [`:host ::ng-deep .p-dialog .product-image {
-    width: 150px;
-    margin: 0 auto 2rem auto;
-    display: block;}`]
+  selector: 'app-dtl-kelas',
+  templateUrl: './dtl-kelas.component.html',
+  styleUrls: ['./dtl-kelas.component.scss']
 })
-export class DisableClassComponent implements OnInit {
+export class DtlKelasComponent implements OnInit {
 
   productDialog: boolean;
   rangeDates: Date[];
@@ -135,8 +131,6 @@ export class DisableClassComponent implements OnInit {
     this.kelas = { ...kelas }
     this.productDialog = true;
   }
-
-
 
 
 }
