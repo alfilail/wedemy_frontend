@@ -14,11 +14,14 @@
                             <div class="p-field col-lg-6">
                                 <label for="code">Kode Kelas</label>
                                 <input id="code" type="text" pInputText [value]="class.code" [(ngModel)]="class.code">
+                                <small *ngIf="!codeValid" class="p-error">{{codeErrMsg}}</small>
                             </div>
                             <div class="p-field col-lg-6">
                                 <label for="name">Nama Kelas</label>
                                 <input id="name" type="text" pInputText [value]="class.className"
                                     [(ngModel)]="class.className">
+                                <small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
+
                             </div>
                         </div>
                         <div class="d-flex">
@@ -26,6 +29,8 @@
                                 <label for="description" class="form-label">Description</label>
                                 <textarea class="form-control" id="description" [value]="class.description" rows="3"
                                     [(ngModel)]="class.description" autofocus></textarea>
+                                <small *ngIf="!descValid" class="p-error">{{descErrMsg}}</small>
+
                             </div>
                             <div class="p-field mt-3 col-lg-6">
                                 <label for="kodeSilabus">Tutor</label>
@@ -43,6 +48,7 @@
                                 <label for="kuota">Kuota</label>
                                 <input id="kuota" type="number" [value]="class.quota" [(ngModel)]="class.quota"
                                     pInputText>
+                                <small *ngIf="!kuotaValid" class="p-error">{{kuotaErrMsg}}</small>
                             </div>
                             <div class="p-field col-lg-6">
                                 <label for="kuota">Gambar Tnumbnail</label>
@@ -68,7 +74,6 @@
                             <div class="d-flex">
                                 <div class="p-field mt-3 col-lg-6" *ngIf="isCreate">
                                     <label for="startDate">Tanggal Mulai - Tanggal Selesai</label>
-                                    <!-- <input type="date" [(ngModel)]="dtlClass.endDate"> -->
                                     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
                                         [showIcon]="true" inputId="icon" [(ngModel)]="rangeDates" selectionMode="range"
                                         [readonlyInput]="true">
@@ -136,11 +141,6 @@
                                 <td>{{class.detailClass.endDate}}</td>
                                 <td>{{class.detailClass.startTime}}</td>
                                 <td>{{class.detailClass.endTime}}</td>
-                                <!-- <td>
-                                    <div *ngFor="let module of class.module">
-                                        {{module.moduleName}}
-                                    </div>
-                                </td> -->
                                 <td>{{class.module[i].moduleName}} </td>
                                 <td>{{class.clazz.idTutor.idProfile.fullName}}</td>
                                 <td>
