@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DetailClassInformation } from '@bootcamp-homepage/models/detail-class-information';
 import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
 import { Responses } from '@bootcamp-homepage/models/responses';
 import { Observable } from 'rxjs';
@@ -27,4 +28,7 @@ export class DetailClassService extends BaseService{
     return this.http.get<Responses<DetailClasses[]>>(`${this.api}/detail-class/popular`)
   }
   
+  getInformation(idDtlClass: string): Observable<Responses<DetailClassInformation>> {
+    return this.http.get<Responses<DetailClassInformation>>(`${this.api}/detail-class/information/${idDtlClass}`)
+  }
 }

@@ -123,8 +123,20 @@ body {
     .card-wrapper {
         width: 100%;
     }
-    .sec1 {
+    /* .sec1 {
         font-size: 20px;
+    } */
+    .sec1 {
+        text-align: center;
+        margin: 0px;
+        width: 100%;
+        float: center;
+        z-index: 1;
+        position: relative;
+        left: 50%;
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+        font-size: 28px;
     }
 }
 

@@ -5,7 +5,7 @@
             </h5>
             <div class="p-fluid">
                 <div class="my-3"></div>
-                <button pButton pRipple (click)="showUsernameDialog()" type="button" label="Ubah Nama Pengguna" class="p-button-outlined text-left"><i class="pi pi-user mr-3"></i></button>
+                <!-- <button pButton pRipple (click)="showUsernameDialog()" type="button" label="Ubah Nama Pengguna" class="p-button-outlined text-left"><i class="pi pi-user mr-3"></i></button> -->
                 <div class="my-3"></div>
                 <button pButton pRipple (click)="showPasswordDialog()" type="button" label="Ubah Kata Sandi" class="p-button-outlined text-left"><i class="pi pi-key mr-3"></i></button>
             </div>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Simpan" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="changeUsername()" label="Simpan" styleClass="p-button-text"></p-button>
     </ng-template>
 </p-dialog>
 
@@ -49,6 +49,6 @@
         </div>
     </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Simpan" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="changePassword()" label="Simpan" styleClass="p-button-text"></p-button>
     </ng-template>
 </p-dialog>

@@ -22,6 +22,9 @@ export class ProfileComponent implements OnInit {
   formData = new FormData();
   file: String;
 
+  phoneIsValid: boolean;
+  phoneErrMsg: string;
+
   constructor(
     private userService: UserService,
     private authService: AuthService,
@@ -31,7 +34,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
-      console.log(res);
+      console.log(res.data);
       this.myAccount = res.data;
     })
   }
@@ -69,13 +72,31 @@ export class ProfileComponent implements OnInit {
       let birthDateFormatted = this.datepipe.transform(this.myAccount.idProfile.birthDate, 'yyyy-MM-dd')
       this.myAccount.idProfile.birthDate = birthDateFormatted.toString();
     } 
- 
+    this.myAccount.idProfile.updatedBy = this.authService.getUserId();
+
     this.formData.append('body', JSON.stringify(this.myAccount.idProfile));
     console.log(this.formData.get('body'))
     this.profileService.updateProfile(this.formData).subscribe(res => {
       this.myAccount.idProfile = res.data;
+      this.displayMaximizable = false;
+      window.location.reload();
     })
   }
 
+
+  phoneValidation(event: string): void {
+    if(/^[0-9]*$/.test(event) && event.length >= 10){
+      this.phoneIsValid = true;
+    } else {
+      this.phoneIsValid = false;
+      if (!/^[0-9]*$/.test(event)){
+        this.phoneErrMsg = "Masukkan angka saja"
+      }
+      if (event.length < 10) {
+        this.phoneErrMsg = "Minimal 10 angka"
+
+      }
+    }
+  }
 
 }

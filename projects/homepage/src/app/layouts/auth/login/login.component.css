@@ -1,6 +1,6 @@
 .center {
     margin: 0;
-    margin-top: 100px;
+    margin-top: 70px;
     margin-bottom: auto;
 }
 
@@ -45,10 +45,15 @@ h6 {
 }
 
 #page-container {
-    position: relative;
-    min-height: 100vh;
+    /* position: fixed; */
+    height: 100vh;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    /* background-color: lightskyblue; */
 }
 
+
+/* 
 #content-wrap {
     margin: 0;
     position: absolute;
@@ -57,9 +62,11 @@ h6 {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+*/
 
-#footer {
-    position: absolute;
+
+/* #footer {
+    position: sticky;
     bottom: 0;
     width: 100%;
-}
+} */

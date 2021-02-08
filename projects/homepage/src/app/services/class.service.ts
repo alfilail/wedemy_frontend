@@ -16,7 +16,7 @@ export class ClassService extends BaseService {
   }
 
   getAll(): Observable<Responses<Classes[]>> {
-    return this.http.get<Responses<Classes[]>>(`${this.api}/class/all`)
+    return this.http.get<Responses<Classes[]>>(`${this.api}/class/active`)
   }
 
   getById(id: string): Observable<Classes> {

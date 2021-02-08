@@ -35,14 +35,10 @@ export class ClassReadComponent implements OnInit {
       .subscribe(res => {
         this.listClasses = res.data;
         this.listClasses.forEach(c => {
-          this.moduleRgsService.getByIdClass(c.id).subscribe(mdl => {
-            console.log("helo:( "+mdl);
-            c.totalModules = 0; //mdl.length;
-            c.totalHours = 0;
-            c.countMats = 0;
-            c.status = "";
+          this.dtlClassService.getInformation(c.id).subscribe(info => {
+            c.totalHours = info.data.totalHours;
+            c.totalModules = info.data.modules.length;
             this.showStatus(c);
-            this.countTotalMats(c);
           })
         })
       });
@@ -52,24 +48,6 @@ export class ClassReadComponent implements OnInit {
     this.router.navigateByUrl(`/class/${id}`);
   }
 
-  countTotalMats(c: DetailClasses): void{
-    this.moduleRgsService.getModuleAndLearningMaterialsByIdDtlClass(c.id)
-    .subscribe(res => {
-      res.data.forEach(module => {
-        module.learningMaterials.forEach(m => c.countMats++);
-      })
-      this.countTotalHours(c, c.endTime, c.startTime);
-    })
-  }
-
-  countTotalHours(c: DetailClasses, endTime: any, startTime: any): void{
-    let end = endTime.split(':');
-    let endMnt = end[0]*60 + end[1]*1;
-    let start = startTime.split(':');
-    let startMnt = start[0]*60 + start[1]*1;
-    let diff = endMnt-startMnt;
-    c.totalHours = c.countMats * (diff/60)
-  }
 
   showStatus(c: DetailClasses): void{
     let today: Date = new Date();
@@ -81,10 +59,10 @@ export class ClassReadComponent implements OnInit {
 
     // cek kuota masih ada apa gak
     if(todayFormatted < end) {
-      c.status = '1';
+      c.status = 1;
       console.log("pendaftaran dibuka");
     } else if (todayFormatted >= start) {
-      c.status = '2';
+      c.status = 2;
       console.log("telah berakhir");
     }
   }
