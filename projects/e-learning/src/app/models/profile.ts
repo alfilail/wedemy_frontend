@@ -1,4 +1,5 @@
 import { BaseMaster } from "@bootcamp-core/models/base-master";
+import { Files } from "./files";
 
 export class Profile extends BaseMaster {
   fullName?: string;
@@ -6,6 +7,7 @@ export class Profile extends BaseMaster {
   birthPlace?: string;
   birthDate?: string; // pattern = yyyy-MM-dd
   phone?: string;
-  addrees?: string;
+  address?: string;
   email?: string;
+  idFile: Files = new Files();
 }

@@ -21,6 +21,24 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class CreateKelasComponent implements OnInit {
 
+  codeValid: boolean;
+  codeErrMsg: string;
+
+  nameValid: boolean;
+  nameErrMsg: string;
+
+  descValid: boolean;
+  descErrMsg: string;
+
+  kuotaValid: boolean;
+  kuotaErrMsg: string;
+
+  jamMulaiValid: boolean;
+  jamMulaiErrMsg: string;
+
+  jamSelesaiValid: boolean;
+  jamSelesaiErrMsg: string;
+
   formData: FormData;
   file: String;
   endTimeValue: string;
@@ -28,7 +46,7 @@ export class CreateKelasComponent implements OnInit {
   isCreate: boolean;
 
   productDialog: boolean;
-  rangeDates: Date[];
+  rangeDates?: Date[];
   submitted: boolean;
   statuses: any[];
 
@@ -38,11 +56,10 @@ export class CreateKelasComponent implements OnInit {
   listTutors: Users[] = []
   listModules: Modules[] = [];
   listDtlClass: DetailClasses[] = []
-  listModuleRegistration: ModuleRegistrations[] = []
+  listClass: ClassHelper[] = []
 
-  insertedClass = new DetailClasses();
   class = new Classes();
-  module = new Modules();
+
   dtlClass = new DetailClasses();
   moduleRegistration = new ModuleRegistrations();
   classHelper = new ClassHelper();
@@ -66,20 +83,18 @@ export class CreateKelasComponent implements OnInit {
       } else {
         this.isCreate = false;
         this.getClass();
-        // this.rangeDates.push(new Date(this.insertedClass.startDate))
-        // this.rangeDates.push(new Date(this.insertedClass.endDate))
       }
     })
   }
 
   getClass(): void {
-    this.dtlClassService.getDetailClassById(this.statusActivity).subscribe(val => {
-      this.insertedClass = val.data;
+    this.classService.getClassById(this.statusActivity).subscribe(val => {
+      this.class = val.data;
     })
   }
 
   getTutors(): void {
-    this.tutorService.getUserByCode('TTR').subscribe(val => {
+    this.tutorService.getUserByCode('ADM').subscribe(val => {
       this.listTutors = val.data
       console.log(val)
     })
@@ -150,54 +165,91 @@ export class CreateKelasComponent implements OnInit {
 
   addClass() {
 
-    this.class.idTutor = this.tutorSelect
+    let kelas = new Classes();
+    kelas = this.class
+    kelas.idTutor = this.tutorSelect
 
-    this.dtlClass.idClass = this.class;
-    this.dtlClass.endTime = this.endTimeValue
-    this.dtlClass.startTime = this.startTimeValue
-    this.dtlClass.startDate = this.formatDate(this.rangeDates[0])
-    this.dtlClass.endDate = this.formatDate(this.rangeDates[1])
+    let dtlClass = new DetailClasses();
+    dtlClass.idClass = kelas;
+    dtlClass.endTime = this.endTimeValue
+    dtlClass.startTime = this.startTimeValue
+
+    if (this.rangeDates != undefined) {
+      dtlClass.startDate = this.formatDate(this.rangeDates[0])
+      dtlClass.endDate = this.formatDate(this.rangeDates[1])
+    }
+
     console.log(this.startTimeValue)
     console.log(this.endTimeValue)
 
-    this.moduleRegistration.idModule = this.moduleSelect
-    this.moduleRegistration.idDetailClass = this.dtlClass
+    if (this.startTimeValue > this.endTimeValue) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Jam berakhir tidak boleh lebih awal" })
+    } else {
+      if (this.statusActivity == 'create') {
+        console.log('insert')
 
-    this.modules.push(this.moduleSelect)
-    this.listModuleRegistration.push(this.moduleRegistration);
+        this.modules.push(this.moduleSelect)
 
-    this.modules.forEach(val => {
-      console.log(val, " modules not delete")
-    })
+        let classHelper = new ClassHelper();
+        classHelper.detailClass = dtlClass
+        classHelper.clazz = kelas
+        classHelper.module = this.modules
 
-    this.listModuleRegistration.forEach(val => {
-      console.log(val, " list module not delete")
-    })
+        this.listClass.push(classHelper)
+        this.classHelper = classHelper
+      } else {
+        console.log('update')
+        this.updateClass();
+      }
+    }
   }
 
   saveClass() {
-    this.classHelper.detailClass = this.dtlClass
-    this.classHelper.clazz = this.class
-    this.classHelper.module = this.modules
-
+    console.log(this.classHelper)
     this.formData.append("body", JSON.stringify(this.classHelper));
     this.classService.insertClasses(this.formData).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
-      this.route.navigateByUrl("/admin/kelas")
+      this.route.navigateByUrl("/admin/kelas-aktif")
     })
   }
 
   deleteList(index: number): void {
-    this.modules.splice(index, 1)
-    this.listModuleRegistration.splice(index, 1);
+    this.listClass.splice(index, 1)
+  }
 
-    this.modules.forEach(val => {
-      console.log(val, " modules delete")
-    })
+  updateClass() {
+    this.class.id = this.statusActivity
+    this.formData.append("body", JSON.stringify(this.listClass));
 
-    this.listModuleRegistration.forEach(val => {
-      console.log(val, " list module delete")
+    this.classService.updateClass(this.formData).subscribe(val => {
+      this.route.navigateByUrl('/admin/kelas-aktif')
     })
   }
 
+  validate(event: string, col: string) {
+    if (event.length == 0) {
+      if (col == 'code') {
+        this.codeValid = false;
+        this.codeErrMsg = 'kode tidak boleh kosong'
+      } else if (col == 'nama') {
+        this.nameValid = false;
+        this.nameErrMsg = 'nama tidak boleh kosong'
+      } else if (col == 'desc') {
+        this.descValid = false;
+        this.descErrMsg = 'deskripsi tidak boleh kosong'
+      } else if (col == 'kuota') {
+        this.kuotaValid = false;
+        this.kuotaErrMsg = 'kuota peserta tidak boleh kosong'
+      }
+    } else {
+      if (col == 'code') {
+        this.codeValid = true;
+      } else if (col == 'nama') {
+        this.nameValid = true;
+      } else if (col == 'desc') {
+        this.descValid = true;
+      } else if (col == 'kuota') {
+        this.kuotaValid = true;
+      }
+    }
+  }
 }

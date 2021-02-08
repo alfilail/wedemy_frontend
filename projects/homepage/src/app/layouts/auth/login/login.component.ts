@@ -16,23 +16,18 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   user: Users = new Users();
-  private successObs: Subscription;
-  private errorObs: Subscription;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService,
-    private toast: ToastService,
-    private msg: MessageService) { }
+    private authService: AuthService,) { }
 
   ngOnInit(): void {
-    // this.callToast();
   }
 
   login(): void {
     this.userService.login(this.user).subscribe(val => {
-      console.log(val);
+      console.log("logged in")
       this.authService.saveToken(val.token);
       this.authService.saveProfile(val.profile, this.user);
       console.log(this.authService.getRole());
@@ -43,18 +38,9 @@ export class LoginComponent implements OnInit {
       } else if (this.authService.getRole() == ROLE.TUTOR) {
         this.router.navigateByUrl('/');
       } else if (this.authService.getRole() == ROLE.SPRADMIN) {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/admin/dashboard');
       }
     })
   }
 
-  // callToast():void {
-  //   this.successObs = this.toast.successObs.subscribe(val => {
-  //     this.msg.add({ severity : 'success', summary : 'Success', detail : val, sticky: true });
-  //   });
-
-  //   this.errorObs = this.toast.errorObs.subscribe(val => {
-  //     this.msg.add({ severity : 'error', summary : 'Error', detail : val, sticky: true })
-  //   })
-  // }
 }

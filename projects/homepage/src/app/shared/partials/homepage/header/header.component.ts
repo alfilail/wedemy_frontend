@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   user: Users = new Users();
   isLoggedOut: boolean;
   firstName: string;
+  url: any;
+  defaultImg: string = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
 
   constructor(
     private userService: UserService,
@@ -30,15 +32,10 @@ export class HeaderComponent implements OnInit {
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
         this.user = res.data;
         console.log("INI HEADER HOMEPAGE");
-
-        console.log(res);
-
         this.getFirstName(res.data.idProfile.fullName);
+        // this.url = 'data:image/png;base64,'+this.user.idProfile.idFile.file;
       })
     }
-
-    console.log(this.isLoggedOut);
-
   }
 
   logout(): void {
@@ -52,6 +49,22 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl('/participant/dashboard');
     } else if (this.authService.getRole() == ROLE.TUTOR) {
       this.router.navigateByUrl('/instructor/dashboard');
+    }
+  }
+
+  myProfile(): void {
+    if (this.authService.getRole() == ROLE.PARTICIPANT) {
+      this.router.navigateByUrl('/participant/profile');
+    } else if (this.authService.getRole() == ROLE.TUTOR) {
+      this.router.navigateByUrl('/instructor/profile');
+    }
+  }
+
+  setting(): void {
+    if (this.authService.getRole() == ROLE.PARTICIPANT) {
+      this.router.navigateByUrl('/participant/setting');
+    } else if (this.authService.getRole() == ROLE.TUTOR) {
+      this.router.navigateByUrl('/instructor/setting');
     }
   }
 

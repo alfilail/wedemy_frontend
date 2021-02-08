@@ -9,6 +9,6 @@ import { Title } from '@angular/platform-browser';
     CommonModule,
     AppRoutingModule,
   ],
-  providers: [Title],
+  providers: [Title]
 })
 export class AppModule { }

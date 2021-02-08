@@ -20,6 +20,12 @@ export class PersetujuanAbsenComponent implements OnInit {
   approvement = new Approvements();
   idUser: string;
 
+  codeValid: boolean;
+  codeErrMsg: string;
+
+  nameValid: boolean;
+  nameErrMsg: string;
+
   constructor(private auth: AuthService, private aprovementService: ApprovementService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.idUser = auth.getUserId()
   }
@@ -41,6 +47,8 @@ export class PersetujuanAbsenComponent implements OnInit {
     this.aprovementService.updateApprovement(this.approvement).subscribe(val => {
       this.productDialog = false;
       this.update = false;
+      this.removeApprovement(this.approvement.id)
+      this.listApprovements.push(this.approvement)
     })
   }
 
@@ -60,11 +68,11 @@ export class PersetujuanAbsenComponent implements OnInit {
 
   deleteApprovement(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ?',
+      message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.aprovementService.deleteById(id, this.idUser).subscribe(val => { })
+        this.aprovementService.deleteById(id, this.idUser).subscribe(val => { this.removeApprovement(id) })
       }
     });
   }
@@ -80,4 +88,30 @@ export class PersetujuanAbsenComponent implements OnInit {
     this.submitted = false; this.update = false;
   }
 
+  removeApprovement(id: string): void {
+    this.listApprovements.forEach((value, index) => {
+      if (value.id == id) {
+        this.listApprovements.splice(index, 1);
+      }
+    })
+  }
+
+  validation(event: string, col: string): void {
+    if (event.length == 0) {
+      if (col == 'code') {
+        this.codeValid = false;
+        this.codeErrMsg = 'kode tidak boleh kosong'
+      } else if (col == 'name') {
+        this.nameValid = false;
+        this.nameErrMsg = 'nama tidak boleh kosong'
+      }
+    } else {
+      if (col == 'code') {
+        this.codeValid = true;
+      } else if (col == 'name') {
+        this.nameValid = true;
+      }
+    }
+
+  }
 }

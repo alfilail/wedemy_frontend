@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Profiles } from '../../../model/profiles';
-import { Roles } from '../../../model/roles';
 import { Users } from '../../../model/users';
 import { UserService } from '../../../service/user.service';
 
@@ -22,21 +21,17 @@ export class UserAdminComponent implements OnInit {
   listUsers: Users[] = [];
   isSuperAdmin: boolean;
 
-  constructor(private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private auth: AuthService, private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
     this.getUserByCode();
-    // this.getUsers();
-    this.isSuperAdmin = false;
-  }
-
-  getUsers(): void {
-    this.userService.getUsers().subscribe(val => {
-      this.listUsers = val.data;
-      console.log(val)
-    })
+    if (this.auth.getRole() == 'ADM') {
+      this.isSuperAdmin = false;
+    } else {
+      this.isSuperAdmin = true;
+    }
   }
 
   createAdmin() {
@@ -52,11 +47,11 @@ export class UserAdminComponent implements OnInit {
 
   deleteUser(id: string) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ?',
+      message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.userService.deleteById(id).subscribe(val => { })
+        this.userService.deleteById(id).subscribe(val => { this.removeUser(id) })
       }
     });
   }
@@ -71,41 +66,15 @@ export class UserAdminComponent implements OnInit {
     this.submitted = false;
   }
 
-  saveProduct() {
-    this.submitted = true;
-
-    // if (this.product.name.trim()) {
-    // if (this.product.id) {
-    // this.products[this.findIndexById(this.product.id)] = this.product;
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-    // }
-    // else {
-    // this.product.id = this.createId();
-    // this.product.image = 'product-placeholder.svg';
-    // this.products.push(this.product);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    // }
-
-    // this.products = [...this.products];
-    this.productDialog = false;
-    // this.product = {};
-  }
-  // }
-
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.listUsers.length; i++) {
-      if (this.listUsers[i].username === id) {
-        index = i;
-        break;
-      }
-    }
-    return index;
-  }
-
   openNew() {
     this.productDialog = true;
   }
 
-
+  removeUser(id: string): void {
+    this.listUsers.forEach((value, index) => {
+      if (value.id == id) {
+        this.listUsers.splice(index, 1);
+      }
+    })
+  }
 }

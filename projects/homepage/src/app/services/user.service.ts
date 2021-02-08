@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Response } from '@bootcamp-elearning/models/responses/response';
 import { Profiles } from '@bootcamp-homepage/models/profiles';
+import { Responses } from '@bootcamp-homepage/models/responses';
 import { Users } from '@bootcamp-homepage/models/users';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -16,8 +17,8 @@ export class UserService extends BaseService {
     super();
   }
 
-  insertUser(participant: Users): Observable<Users> {
-    return this.http.post<Users>(`${this.api}/user`, participant)
+  insertUser(participant: Users): Observable<Responses<Users>> {
+    return this.http.post<Responses<Users>>(`${this.api}/user`, participant)
   }
 
   login(user: Users): Observable<any> {
@@ -29,11 +30,15 @@ export class UserService extends BaseService {
     )
   }
 
-  resetPassword(profile: Profiles): Observable<Profiles> {
-    return this.http.patch<Profiles>(`${this.api}/user/forget-password`, profile)
+  resetPassword(profile: Profiles): Observable<Responses<Profiles>> {
+    return this.http.patch<Responses<Profiles>>(`${this.api}/user/forget-password`, profile)
   }
 
   getUserById(userId: string): Observable<Response<Users>> {
     return this.http.get<Response<Users>>(`${this.api}/user/${userId}`)
+  }
+
+  getUserByRoleCode(roleCode: string): Observable<Response<Users[]>> {
+    return this.http.get<Response<Users[]>>(`${this.api}/user/role/${roleCode}`)
   }
 }

@@ -33,4 +33,8 @@ export class UserService extends BaseService {
     return this.http.delete<Responses<Users>>(`${this.ipAddress}/user/${id}`)
   }
 
+  updateUser(user: Users): Observable<Responses<Users>> {
+    return this.http.patch<Responses<Users>>(`${this.ipAddress}/user`, user);
+  }
+
 }

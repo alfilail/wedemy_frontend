@@ -50,7 +50,7 @@ export class KelasComponent implements OnInit {
     this.kelas = { ...kelas };
 
     this.dtlClsService.getDetailClassById(kelas.id).subscribe(val => {
-      this.route.navigateByUrl(`admin/kelas/${val.data.id}`);
+      this.route.navigateByUrl(`admin/kelas/${val.data.idClass.id}`);
     })
   }
 
@@ -76,5 +76,9 @@ export class KelasComponent implements OnInit {
 
   createKelas() {
     this.route.navigateByUrl(`admin/kelas/${'create'}`);
+  }
+
+  viewDtlClass(code: string) {
+    this.route.navigateByUrl(`admin/kelas-detail/${code}`)
   }
 }

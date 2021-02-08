@@ -1,19 +1,18 @@
 .content {
     font-family: 'Quicksand', sans-serif;
-    margin-top: 70px;
+    margin-top: 90px;
     background-color: #FFFFFF;
-    width: 100%;
-    position: relative;
-    left: 50%;
+    /* width: 100%; */
+    /* position: relative; */
+    /* left: 50%;
     -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-    padding: 0px;
+    transform: translateX(-50%); */
+    /* padding: 0px; */
 }
 
-.section {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+.header {
+    padding-left: 1rem;
+    padding-right: 0.5rem;
 }
 
 
@@ -76,9 +75,10 @@
 }
 
 .cards {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
+    padding-top: 1rem;
 }
 
 .bg-custom {
@@ -87,11 +87,22 @@
 }
 
 .card {
-    width: 410px;
+    margin-top: 1rem;
 }
 
 .filter {
-    position: sticky;
+    width: 100%;
+    margin: 0rem !important;
+    padding: 0rem !important;
+    /* position: sticky; */
+}
+
+.box {
+    background-color: var(--surface-e);
+    /* text-align: center; */
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    /* box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12); */
 }
 
 .img-square-wrapper {
@@ -140,4 +151,8 @@ h6 {
 
 me {
     font-family: 'Quicksand', sans-serif !important;
+}
+
+.class-name {
+    word-wrap: break-word !important;
 }

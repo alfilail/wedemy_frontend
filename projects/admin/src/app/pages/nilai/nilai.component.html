@@ -30,7 +30,7 @@
                             <!-- <th>no</th> -->
                             <th pSortableColumn="code">Kode Nilai<p-sortIcon field="code"></p-sortIcon>
                             </th>
-                            <th pSortableColumn="name">Nilai MinimuM<p-sortIcon field="name"></p-sortIcon>
+                            <th pSortableColumn="name">Nilai Minimum<p-sortIcon field="name"></p-sortIcon>
                             </th>
                             <th pSortableColumn="desc">Nilai Maksimum<p-sortIcon field="desc"></p-sortIcon>
                             </th>
@@ -66,17 +66,21 @@
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="code">Kode Nilai</label>
-                        <input type="text" pInputText id="code" [(ngModel)]="nilai.code" autofocus />
-                        <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
+                        <input type="text" required pInputText (ngModelChange)="validation($event,'code')" id="code"
+                            [(ngModel)]="nilai.code" />
+                        <small *ngIf="!codeValid" class="p-error">{{codeErrMsg}}</small>
                     </div>
                     <div class="p-field">
                         <label for="minScore">Nilai Minimum</label>
-                        <input type="text" pInputText id="minScore" [(ngModel)]="nilai.minScore" autofocus />
-                        <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
+                        <input type="text" required pInputText (ngModelChange)="validation($event,'nilaiMin')"
+                            id="minScore" [(ngModel)]="nilai.minScore" />
+                        <small *ngIf="!nilaiMin" class="p-error">{{nilaiMinErrMsg}}</small>
                     </div>
                     <div class="p-field">
                         <label for="maxScore">Nilai Maksimum</label>
-                        <input type="text" pInputText id="maxScore" [(ngModel)]="nilai.maxScore" autofocus />
+                        <input type="text" required pInputText (ngModelChange)="validation($event,'nilaiMax')"
+                            id="maxScore" [(ngModel)]="nilai.maxScore" />
+                        <small *ngIf="!nilaiMax" class="p-error">{{nilaiMaxErrMsg}}</small>
                     </div>
                     <div class="d-flex justify-content-end">
                         <div class="m-2">

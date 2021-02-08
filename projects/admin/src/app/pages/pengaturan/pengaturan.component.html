@@ -1,6 +1,6 @@
 <app-layout>
 
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-5 d-flex">
         <div class="col-lg-12 col-md-12 col-sm-6 p-4">
             <div class="card">
                 <div class="card-body">
@@ -31,34 +31,35 @@
                                         <label for="foto">Foto Diri</label>
                                         <div class="d-flex mt-2">
                                             <div class="col-lg-2 ">
-                                                <img src="https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3"
+                                                <img src="{{profile.idFile.file ? 'data:image/png;base64,'+profile.idFile.file : defaultImg}}"
                                                     alt="" width="100px" height="100px">
                                             </div>
                                             <div class="col-lg-5 ">
-                                                <input type="file" class="form-control" id="customFile" />
+                                                <input type="file" class="form-control" id="customFile"
+                                                    (change)="getFile($event)" accept=".png, .jpg, .jpeg" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="fullname">Nama Lengkap</label>
                                         <input type="text" class="form-control mt-2" id="fullname"
-                                            [value]="user.idProfile.fullName">
+                                            [value]="profile.fullName" name="fullname" [(ngModel)]="profile.fullName">
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="username">Username</label>
-                                        <input type="text" class="form-control mt-2" id="username"
-                                            [value]="user.username" [(ngModel)]="user.username" name="username">
+                                        <input type="text" class="form-control mt-2" id="username" [value]="username"
+                                            disabled name="username">
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="email">E-mail</label>
                                         <input type="email" class="form-control mt-2" disabled id="email"
-                                            [value]="user.idProfile.email">
+                                            [value]="profile.email">
                                     </div>
                                 </form>
                                 <div class="d-flex justify-content-end">
                                     <div class="mt-4">
                                         <button pButton pRipple label="Simpan" icon="pi pi-plus"
-                                            class="p-button-raised p-button-success"></button>
+                                            class="p-button-raised p-button-success" (click)="updateProfile()"></button>
                                     </div>
                                 </div>
                             </div>
@@ -70,29 +71,42 @@
                                 <h4 class="card-title">Data Pribadi</h4>
                                 <hr>
                                 <div class="p-fluid">
-                                    <div class="p-field">
-                                        <label for="noTlp">No. Telepon</label>
-                                        <input id="noTlp" type="text" pInputText [value]="user.idProfile.phone">
+                                    <div class="d-flex">
+                                        <div class="p-field  col-lg-4 col-md-4">
+                                            <label for="noTlp">Nomor KTP</label>
+                                            <input id="ktp" type="text" pInputText name="ktp"
+                                                [(ngModel)]="profile.idNumber" [value]="profile.idNumber">
+                                        </div>
+                                        <div class="p-field  col-lg-4 col-md-4">
+                                            <label for="noTlp">No. Telepon</label>
+                                            <input id="noTlp" type="text" pInputText name="noTlp"
+                                                [(ngModel)]="profile.phone" [value]="profile.phone">
+                                        </div>
+                                        <div class="p-field  col-lg-4 col-md-4">
+                                            <label for="alamat">Alamat</label>
+                                            <input id="alamat" type="text" pInputText name="alamat"
+                                                [(ngModel)]="profile.address" [value]="profile.address">
+                                        </div>
                                     </div>
-                                    <div class="p-field">
-                                        <label for="alamat">Alamat</label>
-                                        <input id="alamat" type="text" pInputText [value]="user.idProfile.address">
+                                    <div class="d-flex">
+                                        <div class="p-field col-lg-6 col-md-6">
+                                            <label for="tmptLahir">Tempat Lahir</label>
+                                            <input id="tmptLahir" type="text" name="tmptLahir" pInputText
+                                                [(ngModel)]="profile.birthPlace" [value]="profile.birthPlace">
+                                        </div>
+                                        <div class="p-field  col-lg-6 col-md-6">
+                                            <label for="startDate">Tanggal Lahir</label>
+                                            <p-calendar [monthNavigator]="true" [(ngModel)]="birthDate" name="birthDate"
+                                                [yearNavigator]="true" yearRange="1990:2021" inputId="navigators"
+                                                [showIcon]="true" inputId="icon"></p-calendar>
+                                        </div>
                                     </div>
-                                    <div class="p-field">
-                                        <label for="tmptLahir">Tempat Lahir</label>
-                                        <input id="tmptLahir" type="text" pInputText
-                                            [value]="user.idProfile.birthPlace">
-                                    </div>
-                                    <div class="p-field">
-                                        <label for="startDate">Tanggal Lahir</label>
-                                        <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="1990:2021"
-                                            inputId="navigators" [showIcon]="true" inputId="icon"></p-calendar>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <div class="mt-4">
-                                        <button pButton pRipple label="Simpan" icon="pi pi-plus"
-                                            class="p-button-raised p-button-success"></button>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="mt-4">
+                                            <button pButton pRipple label="Simpan" icon="pi pi-plus"
+                                                class="p-button-raised p-button-success"
+                                                (click)="updateProfile()"></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -104,19 +118,24 @@
                                 <h4 class="card-title">Ubah Sandi</h4>
                                 <hr>
                                 <form>
-                                    <div class="form-group mt-3">
-                                        <label for="newPass">Password Baru</label>
-                                        <input type="password" class="form-control mt-2" id="newPass">
-                                    </div>
-                                    <div class="form-group mt-3">
-                                        <label for="oldPass">Konfirmasi Password Baru</label>
-                                        <input type="password" class="form-control mt-2" id="oldPass">
+                                    <div class="d-flex">
+                                        <div class="form-group mt-3 col-lg-6 col-md-6">
+                                            <label for="newPass">Password Baru</label>
+                                            <input pPassword type="password" class="form-control mt-2" name="newPass"
+                                                id="newPass" [(ngModel)]="pass">
+                                        </div>
+                                        <div class="form-group mt-3 col-lg-6 col-md-6">
+                                            <label for="oldPass">Konfirmasi Password Baru</label>
+                                            <input type="password" [(ngModel)]="passConf" name="oldPass"
+                                                class="form-control mt-2" id="oldPass">
+                                        </div>
                                     </div>
                                 </form>
                                 <div class="d-flex justify-content-end">
                                     <div class="mt-4">
                                         <button pButton pRipple label="Simpan" icon="pi pi-plus"
-                                            class="p-button-raised p-button-success"></button>
+                                            class="p-button-raised p-button-success"
+                                            (click)="updatePassword()"></button>
                                     </div>
                                 </div>
                             </div>

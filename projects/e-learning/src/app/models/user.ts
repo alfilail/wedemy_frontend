@@ -5,6 +5,6 @@ import { Role } from "./role";
 export class User extends BaseMaster {
   username?: string;
   userPassword?: string;
-  idProfile?: Profile;
+  idProfile?: Profile = new Profile();
   idRole?: Role;
 }
