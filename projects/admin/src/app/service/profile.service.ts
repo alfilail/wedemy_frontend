@@ -22,6 +22,10 @@ export class ProfileService extends BaseService {
     return this.http.put<Responses<Profiles>>(`${this.ipAddress}/profile`, profile)
   }
 
+  updateProfil(formData: FormData): Observable<any> {
+    return this.http.put<any>(`${this.ipAddress}/profile`, formData)
+  }
+
   getProfileById(id: string): Observable<Responses<Profiles>> {
     return this.http.get<Responses<Profiles>>(`${this.ipAddress}/profile/${id}`)
   }

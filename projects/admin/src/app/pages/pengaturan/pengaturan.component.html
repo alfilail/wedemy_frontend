@@ -31,11 +31,12 @@
                                         <label for="foto">Foto Diri</label>
                                         <div class="d-flex mt-2">
                                             <div class="col-lg-2 ">
-                                                <img src="https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3"
+                                                <img src="{{profile.idFile.file ? 'data:image/png;base64,'+profile.idFile.file : defaultImg}}"
                                                     alt="" width="100px" height="100px">
                                             </div>
                                             <div class="col-lg-5 ">
-                                                <input type="file" class="form-control" id="customFile" />
+                                                <input type="file" class="form-control" id="customFile"
+                                                    (change)="getFile($event)" accept=".png, .jpg, .jpeg" />
                                             </div>
                                         </div>
                                     </div>

@@ -61,14 +61,15 @@
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="code">Kode</label>
-                        <input type="text" pInputText id="code" required autofocus [(ngModel)]="statusTugas.code" />
-                        <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
+                        <input type="text" id="code" required pInputText (ngModelChange)="validation($event,'code')"
+                            [(ngModel)]="statusTugas.code" />
+                        <small *ngIf="!codeValid" class="p-error">{{codeErrMsg}}</small>
                     </div>
                     <div class="p-field">
                         <label for="name">Nama Status</label>
-                        <input type="text" pInputText id="name" required autofocus
+                        <input type="text" id="name" required pInputText (ngModelChange)="validation($event,'name')"
                             [(ngModel)]="statusTugas.submissionStatusName" />
-                        <!-- <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small> -->
+                        <small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
                     </div>
                     <div class="d-flex justify-content-end">
                         <div class="m-2">

@@ -143,15 +143,54 @@ export class CreateTutorComponent implements OnInit {
         } else {
           this.passwordValid = true;
         }
+      } else if (col == 'username') {
+        if (event.length < 6) {
+          this.usernameValid = false;
+          this.usernameErrMsg = 'username terlalu pendek'
+        } else {
+          this.usernameValid = true;
+        }
+      } else if (col == 'ktp') {
+        if (event.length < 16 || event.length > 16) {
+          this.nomorKtpValid = false;
+          this.nomorKtpErrMsg = 'nomor ktp harus memiliki 16 karakter'
+        } else {
+          this.nomorKtpValid = true;
+        }
+      } else if (col == 'nama') {
+        if (event.length < 4) {
+          this.namaValid = false;
+          this.namaErrMsg = 'nama terlalu pendek'
+        } else {
+          this.namaValid = true;
+        }
+      } else if (col == 'alamat') {
+        if (event.length < 10) {
+          this.alamatValid = false;
+          this.alamatErrMsg = 'alamat tidak boleh kosong'
+        } else {
+          this.alamatValid = true;
+        }
+      } else if (col == 'numPhone') {
+        if (event.length < 11) {
+          this.numPhoneValid = false;
+          this.numPhoneErrMsg = 'nomor ponsel minimal 11 karakter'
+        } else if (event.length > 12) {
+          this.numPhoneValid = false;
+          this.numPhoneErrMsg = 'nomor ponsel tidak bisa lebih dari 12 karakter'
+        } else {
+          this.numPhoneValid = true;
+        }
+      } else if (col == 'birthPlace') {
+        if (event.length < 3) {
+          this.birthPlaceValid = false;
+          this.birthPlaceErrMsg = 'tempat lahir terlalu pendek'
+        } else {
+          this.birthPlaceValid = true;
+        }
+      } else if (col == 'birthDate') {
+        this.birthDateValid = true;
       }
-
-      this.usernameValid;
-      this.nomorKtpValid;
-      this.namaValid;
-      this.alamatValid;
-      this.numPhoneValid;
-      this.birthPlaceValid;
-      this.birthDateValid;
     }
   }
 

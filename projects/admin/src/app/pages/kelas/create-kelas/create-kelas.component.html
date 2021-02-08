@@ -14,11 +14,14 @@
                             <div class="p-field col-lg-6">
                                 <label for="code">Kode Kelas</label>
                                 <input id="code" type="text" pInputText [value]="class.code" [(ngModel)]="class.code">
+                                <small *ngIf="!codeValid" class="p-error">{{codeErrMsg}}</small>
                             </div>
                             <div class="p-field col-lg-6">
                                 <label for="name">Nama Kelas</label>
                                 <input id="name" type="text" pInputText [value]="class.className"
                                     [(ngModel)]="class.className">
+                                <small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
+
                             </div>
                         </div>
                         <div class="d-flex">
@@ -26,6 +29,8 @@
                                 <label for="description" class="form-label">Description</label>
                                 <textarea class="form-control" id="description" [value]="class.description" rows="3"
                                     [(ngModel)]="class.description" autofocus></textarea>
+                                <small *ngIf="!descValid" class="p-error">{{descErrMsg}}</small>
+
                             </div>
                             <div class="p-field mt-3 col-lg-6">
                                 <label for="kodeSilabus">Tutor</label>
@@ -43,6 +48,7 @@
                                 <label for="kuota">Kuota</label>
                                 <input id="kuota" type="number" [value]="class.quota" [(ngModel)]="class.quota"
                                     pInputText>
+                                <small *ngIf="!kuotaValid" class="p-error">{{kuotaErrMsg}}</small>
                             </div>
                             <div class="p-field col-lg-6">
                                 <label for="kuota">Gambar Tnumbnail</label>
@@ -54,14 +60,12 @@
                             <div class="d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-6" *ngIf="isCreate">
                                     <label for="startDate">Jam Mulai</label>
-                                    <!-- <input type="time" [(ngModel)]="dtlClass.startTime"> -->
                                     <p-calendar [timeOnly]="true" (onSelect)="onSelectStart($event)"
                                         [(ngModel)]="dtlClass.startTime">
                                     </p-calendar>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6" *ngIf="isCreate">
                                     <label for="startDate">Jam Selesai</label>
-                                    <!-- <input type="time" [(ngModel)]="dtlClass.endTime"> -->
                                     <p-calendar [timeOnly]="true" (onSelect)="onSelectEnd($event)"
                                         [(ngModel)]="dtlClass.endTime">
                                     </p-calendar>
@@ -70,7 +74,6 @@
                             <div class="d-flex">
                                 <div class="p-field mt-3 col-lg-6" *ngIf="isCreate">
                                     <label for="startDate">Tanggal Mulai - Tanggal Selesai</label>
-                                    <!-- <input type="date" [(ngModel)]="dtlClass.endDate"> -->
                                     <p-calendar [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
                                         [showIcon]="true" inputId="icon" [(ngModel)]="rangeDates" selectionMode="range"
                                         [readonlyInput]="true">
@@ -120,22 +123,26 @@
                                 <th scope="col">Kuota</th>
                                 <th scope="col">Tanggal Mulai</th>
                                 <th scope="col">Tanggal Selesai</th>
+                                <th scope="col">Jam Mulai</th>
+                                <th scope="col">Jam Selesai</th>
                                 <th scope="col">Nama Silabus</th>
                                 <th scope="col">Nama Tutor</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody *ngFor="let moduleRegist of listModuleRegistration; let i = index">
+                        <tbody *ngFor="let class of listClass; let i = index">
                             <tr>
                                 <th scope="row">{{i+1}}</th>
-                                <td>{{moduleRegist.idDetailClass.idClass.code}}</td>
-                                <td>{{moduleRegist.idDetailClass.idClass.description}}</td>
-                                <td>{{moduleRegist.idDetailClass.idClass.className}}</td>
-                                <td>{{moduleRegist.idDetailClass.idClass.quota}}</td>
-                                <td>{{moduleRegist.idDetailClass.startDate}}</td>
-                                <td>{{moduleRegist.idDetailClass.endDate}}</td>
-                                <td>{{moduleRegist.idModule.moduleName}}</td>
-                                <td>{{moduleRegist.idDetailClass.idClass.idTutor.idProfile.fullName}}</td>
+                                <td>{{class.clazz.code}}</td>
+                                <td>{{class.clazz.description}}</td>
+                                <td>{{class.clazz.className}}</td>
+                                <td>{{class.clazz.quota}}</td>
+                                <td>{{class.detailClass.startDate}}</td>
+                                <td>{{class.detailClass.endDate}}</td>
+                                <td>{{class.detailClass.startTime}}</td>
+                                <td>{{class.detailClass.endTime}}</td>
+                                <td>{{class.module[i].moduleName}} </td>
+                                <td>{{class.clazz.idTutor.idProfile.fullName}}</td>
                                 <td>
                                     <li class="list-inline-item">
                                         <button class="btn btn-danger btn-sm my-2 rounded-0" type="button"
