@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { Forum } from '@bootcamp-elearning/models/forum';
 import { ForumService } from '@bootcamp-elearning/services/forum.service';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-forum',
@@ -19,24 +21,26 @@ export class ForumComponent implements OnInit {
 
   isShowReplyEditor: number = -1;
 
-
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
-    private forumService: ForumService) { }
+    private forumService: ForumService) {
+  }
 
   ngOnInit(): void {
-    this.route.parent.params.subscribe(
-      (params) => {
-        this.idDetailModuleRegistration = params['idDetailModuleRegistration'];
+    this.route
+      .queryParams
+      .subscribe(params => {
+        this.idDetailModuleRegistration = params['idDtlModuleRgs'];
         this.getForum(this.idDetailModuleRegistration);
-      }
-    )
+      });
   }
 
   getForum(idDetailModuleRegistration: string): void {
     this.forumService.getForum(idDetailModuleRegistration).subscribe(
       res => {
         this.forums = res;
+        console.log('SINI FORUM');
+
         console.log(res);
       },
       err => {

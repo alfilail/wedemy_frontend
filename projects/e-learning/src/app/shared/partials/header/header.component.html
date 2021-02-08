@@ -3,11 +3,13 @@
   <div class="container">
     <a [routerLink]="['home']" class="navbar-brand ml-3 ml-lg-0 d-flex justify-content-center">
       <img src="assets/img/logo.png" alt="Logo" style="width: 40px; height: 40px;">
-      <b class="ml-1 pt-2 " style="font-size: 26px;">WEDEMY</b>
+      <b class="ml-1 align-self-center" style="font-size: 25px;">WEDEMY</b>
     </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navMobile">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+  
 
     <!-- Menu (Navbar Alternative) -->
     <div class="collapse navbar-collapse" id="navMobile">
@@ -23,7 +25,8 @@
             alt="albertoanggi@gmail.com">
         </div>
         <p class="profile-name my-auto ml-3 ml-md-lg-0 ml-lg-0 dropdown-toggle" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hai, {{this.user.idProfile.fullName | titlecase}}</p>
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hai,
+          {{this.user.idProfile.fullName | titlecase}}</p>
 
         <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Dashboard</a>

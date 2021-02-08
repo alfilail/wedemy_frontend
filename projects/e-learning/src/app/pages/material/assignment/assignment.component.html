@@ -1,8 +1,8 @@
-<p-table #dt [value]="participants" [scrollable]="true" [(selection)]="selectedParticipants" dataKey="id"
+<p-table #dt [value]="assignments" [scrollable]="true" [(selection)]="selectedAssignment" dataKey="id"
   styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
   [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
-  [globalFilterFields]="['name','averageValue']">
+  [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','averageValue']">
   <ng-template pTemplate="caption">
     <div class="table-header p-d-flex p-jc-between">
       List of Participant
@@ -14,41 +14,42 @@
   </ng-template>
   <ng-template pTemplate="colgroup" let-columns>
     <colgroup>
-      <col style="width: 26px;">
-      <col style="width: 70px;">
       <col style="width: 50px;">
-      <col style="width: 250px;">
-      <col style="width: 240px;">
+      <col style="width: 100px;">
+      <col style="width: 100px;">
+      <col style="width: 100px;">
+      <col style="width: 100px;">
     </colgroup>
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
       <th>No</th>
       <th>Nama Peserta</th>
+      <th>Waktu</th>
+      <th>Berkas</th>
       <th>Nilai</th>
-      <th>Tugas</th>
-      <th>Aksi</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-participant let-i="rowIndex">
+  <ng-template pTemplate="body" let-assignment let-i="rowIndex">
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">{{i + 1}}</span>
       </td>
       <td>
-        <span class="p-column-title">{{participant.name}}</span>
+        <span class="p-column-title">{{assignment.idAssignmentSubmission.idParticipant.idProfile.fullName}}</span>
       </td>
       <td>
-        <input style="width: 40px; border-color:transparent;" type="text">
+        <span class="p-column-title">{{assignment.idAssignmentSubmission.submitTime}}</span>
       </td>
       <td>
-        filewlihoeirgo34hgo8h3o4gh.docx
+        <span class="p-column-title">{{assignment.idAssignmentSubmission.submitTime}}</span>
       </td>
+
       <td>
-        <button pButton type="button" class="p-button-info p-mr-2" icon="pi pi-eye"></button>
-        <button pButton type="button" class="p-button-info" icon="pi pi-eye"></button>
-        <!-- ojrjgjeprgjperjpgjerpgjerpojg -->
+        <input type="number" min="0" max="100" value="{{assignment.score}}">
+        <span>tidak bisaspijgpigpsjdpjsdpgjpsdjgposdjgpodsjpgoj</span>
       </td>
+      
     </tr>
   </ng-template>
 </p-table>

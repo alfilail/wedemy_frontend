@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LearningMaterial } from '@bootcamp-elearning/models/learning-material';
 import { ClassService } from '@bootcamp-elearning/services/class.service';
 import { ROLE } from '@bootcamp-homepage/constants/roles';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { VIEW_TYPE } from '../../../constants/view-type';
 import * as moment from 'moment';
 import { fakedata } from './fakedata';
+import { PresenceService } from '@bootcamp-elearning/services/presence.service';
 
 @Component({
   selector: 'app-module',
   templateUrl: './module.component.html',
-  styleUrls: ['./module.component.css']
+  styleUrls: ['./module.component.css'],
 })
 export class ModuleComponent implements OnInit {
   idDetailClass: string;
   roleCode: string;
-
-  statusPresent: any[];
 
   roles = ROLE;
   viewType = VIEW_TYPE;
@@ -27,15 +25,15 @@ export class ModuleComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
-    private classService: ClassService) { }
+    private classService: ClassService,
+    private presenceService: PresenceService) { }
 
   ngOnInit(): void {
     this.roleCode = this.authService.getRole();
     this.route.params.subscribe(params => {
-      this.getDetail(params['idDetailClass']);
       this.idDetailClass = params['idDetailClass'];
+      this.getDetail(this.idDetailClass);
     })
-
   }
 
   getDetail(idDtlClass: string): void {
@@ -59,12 +57,12 @@ export class ModuleComponent implements OnInit {
   }
 
   checkPresent(): void {
-    this.modules.forEach(val => {
-      let startTime = val.module.idDetailClass.startTime;
-      let endTime = val.module.idDetailClass.endTime;
+    let startTime = this.modules.detailClass.startTime;
+    let endTime = this.modules.detailClass.endTime;
+    this.modules.modulesAndMaterials.forEach(val => {
       val.learningMaterials.forEach(learningMaterial => {
-
         if (this.roleCode === ROLE.PARTICIPANT) {
+          console.log('Role anda adalah Participant');
           // if (true) {
           if (!learningMaterial.doesParticipantPresent) {
             if (learningMaterial.isUserOnTime) {
@@ -131,10 +129,12 @@ export class ModuleComponent implements OnInit {
               console.log('Menunggu konfirmasi tutor');
             }
           }
-
         } else {
+          console.log('Role anda adalah Tutor');
           if (!learningMaterial.doesTutorPresent) {
+            console.log('Role anda adalah Tutor: doesTutorPresent');
             if (learningMaterial.isUserOnTime) {
+              console.log('Role anda adalah Tutor: isUserOntime');
               // Button Absen
               learningMaterial.statusPresent = {
                 type: 'btn',
@@ -143,12 +143,16 @@ export class ModuleComponent implements OnInit {
               }
               console.log('Bisa Absen');
             } else {
-              let scheduleDate = learningMaterial.idLearningMaterial.scheduleDate;
+              console.log('Role anda adalah Tutor: NOT isUserOntime');
+              let scheduleDate = learningMaterial.learningMaterial.scheduleDate;
               let scheduleStarDateTime = moment(`${scheduleDate} ${startTime}`, "YYYY-MM-DD HH:mm");
               let scheduleEndDateTime = moment(`${scheduleDate} ${endTime}`, "YYYY-MM-DD HH:mm");
               let dateTimeNow = moment(new Date());
+              dateTimeNow.add(7, 'hours')
               if (dateTimeNow.diff(scheduleStarDateTime, 'seconds') >= 0) {
+                console.log('Role anda adalah Tutor: dateTimeNow.diff(scheduleStarDateTime, seconds) >= 0)');
                 if (dateTimeNow.diff(scheduleEndDateTime, 'seconds') > 0) {
+                  console.log('Role anda adalah Tutor: dateTimeNow.diff(scheduleEndDateTime, seconds) > 0');
                   // Kelas Kadaluarsa
                   learningMaterial.statusPresent = {
                     type: 'badge',
@@ -181,6 +185,25 @@ export class ModuleComponent implements OnInit {
     })
   }
 
+  present(idDetailModuleRegistration: string): void {
+    let data = {
+      idDetailModuleRegistration: {
+        id: idDetailModuleRegistration
+      },
+      idUser: {
+        id: this.authService.getUserId()
+      }
+    }
+
+    this.presenceService.presence(data).subscribe(
+      res => {
+
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
 
   onChangeOperation(e): void {
     this.selectedView = e;
