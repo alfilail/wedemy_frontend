@@ -60,27 +60,27 @@
                     <table>
                         <tr>
                             <th>Tanggal mulai</th>
-                            <td> : </td>
-                            <td>{{dtlClass.startDate}}</td>
+                            <td> &nbsp; : &nbsp;&nbsp;&nbsp; </td>
+                            <td>{{dtlClass.startDate | date:'longDate'}}</td>
                         </tr>
                         <tr>
                             <th>Tanggal selesai</th>
-                            <td>:</td>
-                            <td>{{dtlClass.endDate}}</td>
+                            <td>&nbsp; : &nbsp;&nbsp;&nbsp;</td>
+                            <td>{{dtlClass.endDate | date:'longDate'}}</td>
                         </tr>
                         <tr>
                             <th>Jam</th>
-                            <td>:</td>
+                            <td>&nbsp; : &nbsp;&nbsp;&nbsp;</td>
                             <td>{{dtlClass.startTime}} - {{dtlClass.endTime}} WIB</td>
                         </tr>
                         <tr>
                             <th>Kuota peserta</th>
-                            <td>:</td>
+                            <td>&nbsp; : &nbsp;&nbsp;&nbsp;</td>
                             <td>{{dtlClass.idClass.quota}} orang</td>
                         </tr>
                         <tr>
                             <th>Peserta terdaftar</th>
-                            <td>:</td>
+                            <td>&nbsp; : &nbsp;&nbsp;&nbsp;</td>
                             <td>{{dtlClass.totalParticipant}} orang</td>
                         </tr>
                     </table>
@@ -90,9 +90,7 @@
                     <p-divider></p-divider>
 
                     <div class="tutor-profile d-lg-flex">
-                        <!-- <img class="shadow rounded mr-3" src="{{dtlClass.idClass.idTutor.idProfile.idFile ? 'data:image/png;base64,'+dtlClass.idClass.idTutor.idProfile.idFile.file : defaultImg}}" alt=""> -->
-
-                        <img class="shadow rounded mr-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhzo7gbZaTykghdNNM2jVByeXYd50nDm0tmA&usqp=CAU" alt="">
+                        <img class="shadow rounded mr-3" src="{{dtlClass.idClass.idTutor.idProfile.idFile ? 'data:image/png;base64,'+dtlClass.idClass.idTutor.idProfile.idFile.file : defaultImg}}" alt="">
                         <span>
                             <h5>{{dtlClass.idClass.idTutor.idProfile.fullName}}</h5>
                             <p><i class="pi pi-envelope mr-2"></i>{{dtlClass.idClass.idTutor.idProfile.email}}</p>
@@ -112,18 +110,6 @@
                 <div class="modul mb-2 d-flex" *ngFor="let m of listModules | moduleFilter : searchText">
                     <div class="tag"></div>
                     <h6 class="mt-2 ml-2 align-self-center">{{m.idModule.moduleName}}</h6>
-                    <!-- <div *ngIf="!isEnrolled" class="popover__wrapper ml-auto align-self-center mr-4">
-                        <i class="fa fa-lock popover__title" aria-hidden="true"></i>
-                        <div class="popover__content">
-                            <p class="popover__message">Silahkan daftar dahulu untuk dapat mengakses modul ini</p>
-                        </div>
-                    </div>
-                    <div *ngIf="isEnrolled" class="popover__wrapper ml-auto align-self-center mr-4">
-                        <i class="fa fa-external-link popover__title" aria-hidden="true"></i>
-                        <div class="popover__content">
-                            <p class="popover__message">Lihat di dashboard</p>
-                        </div>
-                    </div> -->
                 </div>
             </div>
 
