@@ -31,7 +31,7 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('@bootcamp-admin/app.module')
       .then(m => m.AppModule),
-    canActivate: [CanActivateTeam]
+    // canActivate: [CanActivateTeam]
   },
   {
     path: '',

@@ -29,12 +29,12 @@ export class HeaderComponent implements OnInit {
 
     if (!this.isLoggedOut) {
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
-        console.log("haihai"+this.authService.getUserId())
+        console.log("haihai" + this.authService.getUserId())
         this.user = res.data;
         console.log("INI HEADER HOMEPAGE");
         console.log(res);
         this.getFirstName(res.data.idProfile.fullName);
-        this.url = 'data:image/png;base64,'+this.user.idProfile.idFile.file;
+        this.url = 'data:image/png;base64,' + this.user.idProfile.idFile.file;
       })
     }
   }
@@ -50,6 +50,8 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl('/participant/dashboard');
     } else if (this.authService.getRole() == ROLE.TUTOR) {
       this.router.navigateByUrl('/instructor/dashboard');
+    } else if ((this.authService.getRole() == ROLE.ADMIN) || (this.authService.getRole() == ROLE.SPRADMIN)) {
+      this.router.navigateByUrl('/admin/dashboard')
     }
   }
 

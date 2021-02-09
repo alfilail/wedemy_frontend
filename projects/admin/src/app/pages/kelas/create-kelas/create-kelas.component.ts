@@ -7,6 +7,7 @@ import { ModuleRegistrations } from '@bootcamp-admin/model/module-registrations'
 import { Modules } from '@bootcamp-admin/model/modules';
 import { Profiles } from '@bootcamp-admin/model/profiles';
 import { Users } from '@bootcamp-admin/model/users';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { ClassService } from '@bootcamp-admin/service/class.service';
 import { DtlClassService } from '@bootcamp-admin/service/dtl-class.service';
 import { ModuleService } from '@bootcamp-admin/service/module.service';
@@ -69,7 +70,9 @@ export class CreateKelasComponent implements OnInit {
   statusActivity: string;
   modules: Modules[] = [];
 
-  constructor(private dtlClassService: DtlClassService, private activeRoute: ActivatedRoute, private route: Router, private tutorService: UserService, private classService: ClassService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  idUser: string;
+
+  constructor(private auth: AuthService, private activeRoute: ActivatedRoute, private route: Router, private tutorService: UserService, private classService: ClassService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
@@ -78,6 +81,7 @@ export class CreateKelasComponent implements OnInit {
       this.statusActivity = params['activity']
       this.getModules()
       this.getTutors()
+      this.idUser = this.auth.getProfileId()
       if (this.statusActivity == 'create') {
         this.isCreate = true;
       } else {
@@ -167,6 +171,7 @@ export class CreateKelasComponent implements OnInit {
 
     let kelas = new Classes();
     kelas = this.class
+    kelas.createdBy = this.idUser
     kelas.idTutor = this.tutorSelect
 
     let dtlClass = new DetailClasses();
@@ -206,6 +211,7 @@ export class CreateKelasComponent implements OnInit {
 
   saveClass() {
     console.log(this.classHelper)
+
     this.formData.append("body", JSON.stringify(this.classHelper));
     this.classService.insertClasses(this.formData).subscribe(val => {
       this.route.navigateByUrl("/admin/kelas-aktif")
@@ -218,6 +224,7 @@ export class CreateKelasComponent implements OnInit {
 
   updateClass() {
     this.class.id = this.statusActivity
+    this.class.updatedBy = this.idUser
     this.formData.append("body", JSON.stringify(this.listClass));
 
     this.classService.updateClass(this.formData).subscribe(val => {

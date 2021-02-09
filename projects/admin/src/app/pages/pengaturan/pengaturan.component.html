@@ -31,12 +31,15 @@
                                         <label for="foto">Foto Diri</label>
                                         <div class="d-flex mt-2">
                                             <div class="col-lg-2 ">
-                                                <img src="{{profile.idFile.file ? 'data:image/png;base64,'+profile.idFile.file : defaultImg}}"
-                                                    alt="" width="100px" height="100px">
-                                            </div>
-                                            <div class="col-lg-5 ">
-                                                <input type="file" class="form-control" id="customFile"
-                                                    (change)="getFile($event)" accept=".png, .jpg, .jpeg" />
+                                                <label for="fileToUpload">
+                                                    <div class="profile-pic" style="background-image: url({{url}})">
+                                                        <span class="fa fa-camera"></span>
+                                                        <!-- <span>Change Image</span> -->
+                                                    </div>
+                                                </label>
+                                                <input (change)="getFile($event)" class="form-control"
+                                                    accept=".png, .jpg, .jpeg" type="File" name="fileToUpload"
+                                                    id="fileToUpload">
                                             </div>
                                         </div>
                                     </div>

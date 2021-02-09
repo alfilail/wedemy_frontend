@@ -17,7 +17,7 @@ export class UserComponent {
   public flatlogicEmail: string = "https://flatlogic.com";
   idProfile: string;
   profile: Profiles = new Profiles();
-  defaultImg: string = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+  url: any = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
 
   constructor(private profileService: ProfileService, private route: Router, private auth: AuthService) {
 
@@ -40,6 +40,9 @@ export class UserComponent {
   getProfile(): void {
     this.profileService.getProfileById(this.idProfile).subscribe(val => {
       this.profile = val.data;
+      if (val.data.idFile.file) {
+        this.url = 'data:image/png;base64,' + val.data.idFile.file
+      }
     })
   }
 }

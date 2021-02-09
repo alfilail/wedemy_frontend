@@ -28,22 +28,28 @@ export class StatusTugasComponent implements OnInit {
   nameErrMsg: string;
 
   constructor(private auth: AuthService, private submissionStatusService: SubmissionStatusService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-    this.idUser = auth.getUserId()
   }
 
   ngOnInit(): void {
     this.getSubmissionStatus();
+    this.idUser = this.auth.getUserId()
   }
 
   insertSubmissionStatus() {
-    this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => {
-      this.productDialog = false;
-      this.listStatusTugas.push(this.statusTugas);
-    })
+    if (this.codeValid == true && this.nameValid == true) {
+      this.statusTugas.createdBy = this.idUser
+      this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => {
+        this.productDialog = false;
+        this.listStatusTugas.push(this.statusTugas);
+      })
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
+    }
   }
 
   updateSubmissionStatus() {
     console.log('update')
+    this.statusTugas.updatedBy = this.idUser
     this.submissionStatusService.updateSubmissionStatus(this.statusTugas).subscribe(val => {
       this.productDialog = false; this.update = false;
       this.removeStatusTugas(this.statusTugas.id)

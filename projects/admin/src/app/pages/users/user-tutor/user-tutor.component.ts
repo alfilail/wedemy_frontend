@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Users } from '../../../model/users';
 import { UserService } from '../../../service/user.service';
@@ -15,16 +16,17 @@ export class UserTutorComponent implements OnInit {
   rangeDates: Date[];
   submitted: boolean;
   statuses: any[];
-
+  idUser: string;
   user: Users;
   listUsers: Users[] = [];
 
-  constructor(private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private auth: AuthService, private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
     this.getUserByCode();
+    this.idUser = this.auth.getUserId();
   }
 
   getUserByCode(): void {
@@ -44,7 +46,7 @@ export class UserTutorComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.userService.deleteById(id).subscribe(val => { this.removeUser(id) })
+        this.userService.deleteById(id, this.idUser).subscribe(val => { this.removeUser(id) })
       }
     });
   }

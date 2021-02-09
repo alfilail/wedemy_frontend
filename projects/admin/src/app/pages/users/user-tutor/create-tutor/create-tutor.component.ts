@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Profiles } from '@bootcamp-admin/model/profiles';
 import { Roles } from '@bootcamp-admin/model/roles';
 import { Users } from '@bootcamp-admin/model/users';
+import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { UserService } from '@bootcamp-admin/service/user.service';
 import { MessageService } from 'primeng/api';
 
@@ -50,13 +51,15 @@ export class CreateTutorComponent implements OnInit {
   birthDateValid: boolean;
   birthDateErrMsg: string;
 
-  constructor(private messageService: MessageService, private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
+  idUser: string
+  constructor(private auth: AuthService, private messageService: MessageService, private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
       this.roleUser = params['user']
+      this.idUser = this.auth.getProfileId()
     })
   }
 
@@ -72,10 +75,11 @@ export class CreateTutorComponent implements OnInit {
         this.role.code = 'ADM';
       }
 
+      this.user.createdBy = this.idUser
       this.user.idProfile = this.profile;
       this.user.idRole = this.role;
 
-      console.log(this.user.idProfile.birthDate)
+      console.log(this.user)
       this.userService.insertUsers(this.user).subscribe(val => {
         if (this.roleUser == 'tutor') {
           this.route.navigateByUrl('/admin/user-tutor')
@@ -86,8 +90,8 @@ export class CreateTutorComponent implements OnInit {
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
     }
-
   }
+
 
   backButton() {
     if (this.roleUser == 'tutor') {
@@ -97,7 +101,7 @@ export class CreateTutorComponent implements OnInit {
     }
   }
 
-  validation(event: string, col: string): void {
+  validation(event: string, col: any): void {
     if (event.length == 0) {
       if (col == 'username') {
         this.usernameValid = false;
@@ -167,7 +171,7 @@ export class CreateTutorComponent implements OnInit {
       } else if (col == 'alamat') {
         if (event.length < 10) {
           this.alamatValid = false;
-          this.alamatErrMsg = 'alamat tidak boleh kosong'
+          this.alamatErrMsg = 'alamat tidak boleh kurang dari 10 karakter'
         } else {
           this.alamatValid = true;
         }
