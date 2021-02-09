@@ -10,7 +10,7 @@
   </select>
 </div>
 
-<ng-template ngFor let-module [ngForOf]="modules" let-i="index">
+<ng-template ngFor let-module [ngForOf]="modules.modulesAndMaterials" let-i="index">
   <div class="row">
     <div class="col-sm-12 course-section">
       <div class="section-title d-flex justify-content-between align-items-center pl-3 py-2">
@@ -30,9 +30,9 @@
                 <span class="material-icon">
                   <i class="fas fa-file-alt"></i>
                 </span>
-                <a routerLink="../../../material/{{material.learningMaterial.id}}/forum" class.disabled="true">
+                <a [routerLink]="['../../../material']" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: material.learningMaterial.id}">
                   <span class="material-name">
-                    {{material.learningMaterial.idLearningMaterial.learningMaterialName}}
+                    {{ material.learningMaterial.idLearningMaterial.learningMaterialName }}
                   </span>
                 </a>
               </div>
@@ -46,8 +46,8 @@
 
               <ng-template #btn>
                 <div class="material-icon">
-                  <button class="btn btn-{{material.statusPresent.style}}">
-                    {{material.statusPresent.msg}}
+                  <button (click)="present(material.learningMaterial.id)" class="btn btn-{{material.statusPresent.style}}">
+                    {{ material.statusPresent.msg }}
                   </button>
                 </div>
               </ng-template>

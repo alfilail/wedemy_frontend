@@ -16,18 +16,13 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   user: Users = new Users();
-  private successObs: Subscription;
-  private errorObs: Subscription;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService,
-    private toast: ToastService,
-    private msg: MessageService) { }
+    private authService: AuthService,) { }
 
   ngOnInit(): void {
-    // this.callToast();
   }
 
   login(): void {
@@ -48,13 +43,4 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // callToast():void {
-  //   this.successObs = this.toast.successObs.subscribe(val => {
-  //     this.msg.add({ severity : 'success', summary : 'Success', detail : val, sticky: true });
-  //   });
-
-  //   this.errorObs = this.toast.errorObs.subscribe(val => {
-  //     this.msg.add({ severity : 'error', summary : 'Error', detail : val, sticky: true })
-  //   })
-  // }
 }

@@ -37,4 +37,8 @@ export class UserService extends BaseService {
   getUserById(userId: string): Observable<Response<Users>> {
     return this.http.get<Response<Users>>(`${this.api}/user/${userId}`)
   }
+
+  getUserByRoleCode(roleCode: string): Observable<Response<Users[]>> {
+    return this.http.get<Response<Users[]>>(`${this.api}/user/role/${roleCode}`)
+  }
 }

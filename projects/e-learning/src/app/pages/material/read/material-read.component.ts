@@ -1,7 +1,14 @@
 import { Location } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { File } from '@bootcamp-elearning/models/file';
 import { MaterialService } from '@bootcamp-elearning/services/material.service';
+import { ROLE } from '@bootcamp-core/constants/role';
+import { AuthService } from '@bootcamp-homepage/services/auth.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/internal/operators/map';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-material-read',
@@ -9,36 +16,50 @@ import { MaterialService } from '@bootcamp-elearning/services/material.service';
   styleUrls: ['./material-read.component.css']
 })
 export class MaterialReadComponent implements OnInit {
-  isLoading: boolean = true;
+
+  roleCode: string;
+  roles = ROLE;
 
   material: any;
   idDetailModuleRegistration: string;
+  idDetailClass: string;
 
-  constructor(private location: Location,
+  constructor(private sanitizer: DomSanitizer,
+    private location: Location,
     private route: ActivatedRoute,
-    private materialService: MaterialService) { }
+    private materialService: MaterialService,
+    private authService: AuthService) { }
 
-  async ngOnInit(): Promise<void> {
-    this.route.params.subscribe(
-      params => {
-        this.idDetailModuleRegistration = params['idDetailModuleRegistration'];
+  ngOnInit(): void {
+    this.roleCode = this.authService.getRole();
+    this.route
+      .queryParams
+      .subscribe(params => {
+        this.idDetailModuleRegistration = params['idDtlModuleRgs'];
+        this.idDetailClass = params['idDtlClass'];
         this.getMaterial();
-      }
-    )
+      });
   }
 
-  async getMaterial(): Promise<void> {
+  getMaterial(): void {
     this.materialService.getMaterial(this.idDetailModuleRegistration).subscribe(
       res => {
         this.material = res;
-        this.isLoading = false;
         console.log(res);
-
       },
       err => {
         console.log(err);
       }
     )
+  }
+
+  downloadFile(data: File) {
+    const source = `data:${data.type};base64,${data.file}`;
+    const blob = new Blob([data.file], { type: data.type });
+    const url = window.URL.createObjectURL(blob);
+    let fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    return fileUrl
+
   }
 
 }

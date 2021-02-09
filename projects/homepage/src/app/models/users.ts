@@ -6,7 +6,7 @@ export class Users extends BaseMaster {
 
     username?: string;
     userPassword?: string;
-    idProfile?: Profiles = new Profiles();
-    idRole?: Roles = new Roles();
+    idProfile: Profiles = new Profiles();
+    idRole: Roles = new Roles();
 
 }

@@ -16,8 +16,6 @@ import { Subscription } from 'rxjs';
 export class RegisterComponent implements OnInit {
 
   participant: Users = new Users();
-  // private successObs: Subscription;
-  // private errorObs: Subscription;
 
   fullnameValid: boolean = true;
   fullnameErrorMsg: string;
@@ -31,77 +29,46 @@ export class RegisterComponent implements OnInit {
   passwordValid: boolean = true;
   passwordErrorMsg: string;
 
+  defaultImg = "/assets/img/profile-default"
+
+  file: string;
+  formData = new FormData();
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
-    // private toast: ToastService,
-    // private msg: MessageService
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.participant.idRole.code = ROLE.PARTICIPANT;
-    // this.callToast();
   }
 
-  save() {
-    // if (this.fullnameValid && this.emailValid && this.usernameValid && this.passwordValid) {
-    //   this.userService.insertUser(this.participant)
-    //     .subscribe(val => {
-    //       // this.toast.successToast("Akun Anda berhasil dibuat! Silahkan login untuk masuk.")
-    //       this.showConfirm();
-    //       // this.router.navigateByUrl("/auth/login")
-    //       console.log(val);
-    //     }, (err => { this.toast.errorToast("Register gagal") }))
-    // } else {
-    //   this.toast.errorToast("Data tidak valid");
-    // }
+  onSelectFile(event) { 
 
-    if (this.fullnameValid && this.emailValid && this.usernameValid && this.passwordValid) {
-      this.userService.insertUser(this.participant)
-        .subscribe(val => {
-          // this.showConfirm();
-          console.log(val);
-        })
-    } else {
-      // this.toast.errorToast("Data tidak valid");
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      console.log(file);
+      let data: FormData = new FormData();
+      data.append('file', file);
+      this.formData = data;
+      this.file = file.name;
     }
 
   }
 
-  // ngOnDestroy(): void {
-  //   if (this.successObs) {
-  //     this.successObs.unsubscribe();
-  //   }
+  save() {
+    
+    if (this.fullnameValid && this.emailValid && this.usernameValid && this.passwordValid) {
+      this.userService.insertUser(this.participant)
+        .subscribe(val => {
+          console.log(val);
+        })
+    } 
 
-  //   if (this.errorObs) {
-  //     this.errorObs.unsubscribe();
-  //   }
-  // }
+  }
 
-  // callToast():void {
-  //   this.successObs = this.toast.successObs.subscribe(val => {
-  //     this.msg.add({ severity : 'success', summary : 'Success', detail : val, sticky: true });
-  //   });
-
-  //   this.errorObs = this.toast.errorObs.subscribe(val => {
-  //     this.msg.add({ severity : 'error', summary : 'Error', detail : val, sticky: true })
-  //   })
-  // }
-
-  // showConfirm() {
-  //   this.msg.clear();
-  //   this.msg.add({ key: 'success', sticky: true, severity: 'success', summary: 'Akun Anda berhasil dibuat!', detail: 'Silahkan login untuk masuk.' });
-  // }
-
-  // onConfirm() {
-  //   this.router.navigateByUrl("/auth/login");
-  //   this.msg.clear('success');
-  // }
-
-  // onReject() {
-  //   this.msg.clear('success');
-  // }
 
   fullnameValidation(event: string): void {
     if (event.length == 0) {

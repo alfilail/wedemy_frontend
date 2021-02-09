@@ -6,6 +6,6 @@ export class ClassEnrollments extends BaseTransaction {
 
     idDetailClass: DetailClasses = new DetailClasses();
     idUser: Users = new Users();
-    isOngoing: boolean;
+    isOngoing?: boolean;
     
 }
