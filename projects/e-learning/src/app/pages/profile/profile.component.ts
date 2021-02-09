@@ -16,8 +16,8 @@ export class ProfileComponent implements OnInit {
 
   myAccount: User = new User();
   displayMaximizable: boolean;
-  defaultImg: string = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
-  url: any = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+  defaultImg: string = "/assets/img/profile-default.jpeg";
+  url: any = "/assets/img/profile-default.jpeg";
   uploadForm: FormGroup; 
   formData = new FormData();
   file: String;

@@ -15,8 +15,7 @@ export class HeaderComponent implements OnInit {
   user: Users = new Users();
   isLoggedOut: boolean;
   firstName: string;
-  url: any;
-  defaultImg: string = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
+  defaultImg: string = "/assets/img/profile-default.jpeg";
 
   constructor(
     private userService: UserService,
@@ -30,10 +29,17 @@ export class HeaderComponent implements OnInit {
 
     if (!this.isLoggedOut) {
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
+<<<<<<< HEAD
         this.user = res.data;
         console.log("INI HEADER HOMEPAGE");
         this.getFirstName(res.data.idProfile.fullName);
         // this.url = 'data:image/png;base64,'+this.user.idProfile.idFile.file;
+=======
+        console.log("haihai" + this.authService.getUserId())
+        this.user = res.data;
+        console.log("INI HEADER HOMEPAGE");
+        this.getFirstName(res.data.idProfile.fullName);
+>>>>>>> 00e8cc4e8928cf341e9f7b914e020554c26789cf
       })
     }
   }

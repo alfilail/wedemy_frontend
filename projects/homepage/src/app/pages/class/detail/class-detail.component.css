@@ -30,6 +30,10 @@
     margin-top: -150px;
 }
 
+tr {
+    height: 2rem;
+}
+
 .img-square-wrapper {
     position: relative;
     width: 100%;
