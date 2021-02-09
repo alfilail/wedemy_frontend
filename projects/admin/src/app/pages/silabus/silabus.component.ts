@@ -86,7 +86,8 @@ export class SilabusComponent implements OnInit {
 
   hideDialog() {
     this.productDialog = false;
-    this.submitted = false;
+    this.codeValid = true;
+    this.nameValid = true;
   }
 
   openNew() {

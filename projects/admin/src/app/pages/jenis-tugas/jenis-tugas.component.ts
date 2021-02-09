@@ -93,6 +93,8 @@ export class JenisTugasComponent implements OnInit {
 
   hideDialog() {
     this.productDialog = false;
+    this.codeValid = true;
+    this.nameValid = true;
   }
 
   openNew() {

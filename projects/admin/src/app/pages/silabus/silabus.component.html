@@ -57,7 +57,7 @@
 
 
             <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tambah Silabus" [modal]="true"
-                styleClass="p-fluid">
+                styleClass="p-fluid" (onHide)="hideDialog()">
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="name">Kode Silabus</label>

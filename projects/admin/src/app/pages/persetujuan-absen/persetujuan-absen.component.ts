@@ -82,7 +82,8 @@ export class PersetujuanAbsenComponent implements OnInit {
 
   hideDialog() {
     this.productDialog = false;
-    this.submitted = false;
+    this.codeValid = true;
+    this.nameValid = true;
   }
 
   openNew() {
@@ -115,6 +116,10 @@ export class PersetujuanAbsenComponent implements OnInit {
         this.nameValid = true;
       }
     }
+  }
 
+  keyDownFunction(e) {
+    e.preventDefault();
+    this.productDialog = false;
   }
 }

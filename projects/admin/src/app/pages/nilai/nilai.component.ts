@@ -86,6 +86,9 @@ export class NilaiComponent implements OnInit {
   hideDialog() {
     this.productDialog = false;
     this.submitted = false;
+    this.codeValid = true;
+    this.nilaiMax = true;
+    this.nilaiMin = true;
   }
 
   openNew() {

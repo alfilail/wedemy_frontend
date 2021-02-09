@@ -57,20 +57,20 @@
 
 
             <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tambah Jenis Tugas" [modal]="true"
-                styleClass="p-fluid">
+                styleClass="p-fluid" (onHide)="hideDialog()">
                 <ng-template pTemplate="content">
                     <form name="jenisTugasForm">
                         <div class="p-field">
                             <label for="code">Kode</label>
                             <input type="text" name="code" required pInputText
-                                (ngModelChange)="validation($event,'code')" id="code" required autofocus
+                                (ngModelChange)="validation($event,'code')" id="code"
                                 [(ngModel)]="learningMaterialType.code" /><small *ngIf="!codeValid"
                                 class="p-error">{{codeErrMsg}}</small>
                         </div>
                         <div class="p-field">
                             <label for="type">Tipe</label>
                             <input type="text" name="type" required pInputText
-                                (ngModelChange)="validation($event,'name')" id="type" required autofocus
+                                (ngModelChange)="validation($event,'name')" id="type"
                                 [(ngModel)]="learningMaterialType.learningMaterialTypeName" /><small *ngIf="!nameValid"
                                 class="p-error">{{nameErrMsg}}</small>
                         </div>
