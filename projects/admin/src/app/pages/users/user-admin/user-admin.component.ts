@@ -21,12 +21,15 @@ export class UserAdminComponent implements OnInit {
   listUsers: Users[] = [];
   isSuperAdmin: boolean;
 
+  idUser: string
+
   constructor(private auth: AuthService, private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
 
   ngOnInit(): void {
     this.getUserByCode();
+    this.idUser = this.auth.getUserId()
     if (this.auth.getRole() == 'ADM') {
       this.isSuperAdmin = false;
     } else {
@@ -46,12 +49,13 @@ export class UserAdminComponent implements OnInit {
   }
 
   deleteUser(id: string) {
+    console.log(this.idUser)
     this.confirmationService.confirm({
       message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.userService.deleteById(id).subscribe(val => { this.removeUser(id) })
+        this.userService.deleteById(id, this.idUser).subscribe(val => { this.removeUser(id) })
       }
     });
   }

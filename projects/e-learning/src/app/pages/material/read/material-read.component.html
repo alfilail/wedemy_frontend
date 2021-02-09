@@ -19,14 +19,24 @@
         <p-skeleton styleClass="p-mb-2" width="40%" height="1rem"></p-skeleton>  
       </ng-template> -->
       <div class="content" [innerHTML]="material.idLearningMaterial.description">
-        
       </div>
+      <a [href]="downloadFile(material.idLearningMaterial.idFile)" download="file.txt">
+        File
+      </a>
+      
     </div>
     <div class="col text-center">
       <ul class="row justify-content-center list-unstyled">
-        <li [routerLink]="['/instructor/class/material']" routerLinkActive="active" class="tab-item">FORUM</li>
-        <li [routerLink]="['presence-assignment']" routerLinkActive="active" class="tab-item">PRESENCE & ASSIGNMENT</li>
-        <li [routerLink]="['answer']" routerLinkActive="active" class="tab-item">ANSWER</li>
+        <li routerLink="forum" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">FORUM</li>
+
+        <ng-template [ngIf]="roleCode === roles.PARTICIPANT">
+          <li routerLink="answer" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">ANSWER</li>
+        </ng-template>
+
+        <ng-template [ngIf]="roleCode === roles.TUTOR">
+          <li routerLink="presence" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">PRESENCE</li>
+          <li routerLink="assignment" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">ASSIGNMENT</li>
+        </ng-template>
       </ul>
     </div>
   </div>

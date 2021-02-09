@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   user: Users = new Users();
   isLoggedOut: boolean;
   firstName: string;
-  url: any;
   defaultImg: string = "/assets/img/profile-default.jpeg";
 
   constructor(
@@ -30,10 +29,10 @@ export class HeaderComponent implements OnInit {
 
     if (!this.isLoggedOut) {
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
+        console.log("haihai" + this.authService.getUserId())
         this.user = res.data;
         console.log("INI HEADER HOMEPAGE");
         this.getFirstName(res.data.idProfile.fullName);
-        // this.url = 'data:image/png;base64,'+this.user.idProfile.idFile.file;
       })
     }
   }
@@ -49,6 +48,8 @@ export class HeaderComponent implements OnInit {
       this.router.navigateByUrl('/participant/dashboard');
     } else if (this.authService.getRole() == ROLE.TUTOR) {
       this.router.navigateByUrl('/instructor/dashboard');
+    } else if ((this.authService.getRole() == ROLE.ADMIN) || (this.authService.getRole() == ROLE.SPRADMIN)) {
+      this.router.navigateByUrl('/admin/dashboard')
     }
   }
 

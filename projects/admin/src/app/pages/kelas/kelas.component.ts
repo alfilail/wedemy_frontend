@@ -78,7 +78,7 @@ export class KelasComponent implements OnInit {
     this.route.navigateByUrl(`admin/kelas/${'create'}`);
   }
 
-  viewDtlClass(code: string) {
-    this.route.navigateByUrl(`admin/kelas-detail/${code}`)
+  viewDtlClass(idClass: string) {
+    this.route.navigateByUrl(`admin/kelas-detail/${idClass}`)
   }
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DetailModuleRegistration } from '@bootcamp-elearning/models/detail-module-registration';
 import { LearningMaterialType } from '@bootcamp-elearning/models/learning-material-type';
 import { MaterialService } from '@bootcamp-elearning/services/material.service';
+import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
 @Component({
   selector: 'app-material-add',
@@ -26,7 +27,8 @@ export class MaterialAddComponent implements OnInit {
   idModuleRegistration: string;
 
 
-  constructor(private location: Location,
+  constructor(private authService: AuthService,
+    private location: Location,
     private materialService: MaterialService,
     private route: ActivatedRoute) { }
 
@@ -64,7 +66,7 @@ export class MaterialAddComponent implements OnInit {
     this.detailModuleRegistration.orderNumber = 100;
     this.detailModuleRegistration.scheduleDate = this.startDate;
     this.detailModuleRegistration.idLearningMaterial = {
-      createdBy: "867e7cf8-ae28-4239-bcf2-b8acd235c121",
+      createdBy: this.authService.getUserId(),
       code: this.materialCode,
       learningMaterialName: this.materialName,
       description: this.description,
