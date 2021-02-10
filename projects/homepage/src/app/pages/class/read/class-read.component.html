@@ -23,7 +23,13 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-12 p-md-9 p-lg-9">
+        <div *ngIf="loading" class="p-col-12 p-md-9 p-lg-9 mt-1 pt-3 text-center">
+            <p-progressSpinner styleClass="custom-spinner" strokeWidth="5" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+
+        </div>
+
+
+        <div *ngIf="!loading" class="p-col-12 p-md-9 p-lg-9">
             <section class="cards p-grid p-formgrid p-fluid">
                 <div class="p-col-12 p-md-6 p-lg-6" *ngFor="let c of listClasses | classFilter: searchText">
                     <div class="box border">

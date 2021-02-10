@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import METHOD from '@bootcamp-core/constants/method';
 import { AnswerService } from '@bootcamp-elearning/services/answer.service';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
@@ -9,6 +10,8 @@ import { AuthService } from '@bootcamp-homepage/services/auth.service';
   styleUrls: ['./answer.component.css']
 })
 export class AnswerComponent implements OnInit {
+  answer: any;
+
   formData: FormData = new FormData();
 
   idDetailModuleRegistration: string;
@@ -36,44 +39,52 @@ export class AnswerComponent implements OnInit {
       idDtlModuleRgs: this.idDetailModuleRegistration,
       idParticipant: this.authService.getUserId()
     }
-    console.log(param);
-
 
     this.answerService.getAnswer(param).subscribe(
       res => {
+        console.log('Berhasil mengambil data answer');
+        this.answer = res.data;
         console.log(res);
       },
       err => {
         console.log(err);
-
       }
     )
   }
 
   uploadAnswer(): void {
-    let payload = {
+    console.log('Tombol Upload di click');
 
-      idDetailModuleRegistration: {
-        id: this.idDetailModuleRegistration
-      },
-      idParticipant: {
-        id: this.authService.getUserId()
+    let payload: Object;
+    let method: string;
+    if (!this.answer) {
+      payload = {
+        idDetailModuleRegistration: {
+          id: this.idDetailModuleRegistration
+        },
+        idParticipant: {
+          id: this.authService.getUserId()
+        }
       }
+      method = METHOD.POST;
+    } else {
+      payload = {
+        idFile: {
+          id: this.answer.idFile.id
+        }
+      }
+      method = METHOD.PATCH;
     }
 
     this.formData.append('body', JSON.stringify(payload));
-    this.answerService.uploadAnswer(this.formData).subscribe(
+    this.answerService.uploadAnswer(this.formData, method).subscribe(
       res => {
         console.log(res);
-
       },
       err => {
         console.log(err);
-
       }
     )
   }
-
-
 
 }
