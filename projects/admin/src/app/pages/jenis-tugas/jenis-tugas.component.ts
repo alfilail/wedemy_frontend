@@ -33,22 +33,28 @@ export class JenisTugasComponent implements OnInit {
   nameErrMsg: string;
 
   constructor(private auth: AuthService, private learningMaterialTypeService: LearningMaterialTypeService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-    this.idUser = auth.getUserId()
   }
 
   ngOnInit(): void {
     this.getLearningMaterialTypes()
+    this.idUser = this.auth.getUserId()
   }
 
   insertLearningMaterialType() {
-    this.learningMaterialTypeService.insertLearningMaterialTypes(this.learningMaterialType).subscribe(val => {
-      this.productDialog = false;
-      this.listJenisTugas.push(this.learningMaterialType);
-    })
+    if (this.codeValid == true && this.nameValid == true) {
+      this.learningMaterialType.createdBy = this.idUser
+      this.learningMaterialTypeService.insertLearningMaterialTypes(this.learningMaterialType).subscribe(val => {
+        this.productDialog = false;
+        this.listJenisTugas.push(this.learningMaterialType);
+      })
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
+    }
   }
 
   updateLearningMaterialType() {
     console.log('update')
+    this.learningMaterialType.updatedBy = this.idUser
     this.learningMaterialTypeService.updateLearningMaterialType(this.learningMaterialType).subscribe(val => {
       this.productDialog = false;
       this.update = false;
@@ -87,7 +93,8 @@ export class JenisTugasComponent implements OnInit {
 
   hideDialog() {
     this.productDialog = false;
-    this.submitted = false;
+    this.codeValid = true;
+    this.nameValid = true;
   }
 
   openNew() {

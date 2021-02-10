@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService extends BaseService{
+export class ProfileService extends BaseService {
 
   constructor(private http: HttpClient, private authService: AuthService) {
     super();

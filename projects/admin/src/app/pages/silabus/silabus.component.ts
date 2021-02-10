@@ -35,13 +35,22 @@ export class SilabusComponent implements OnInit {
   }
 
   insertModule(): void {
-    this.moduleService.insertModules(this.module).subscribe(val => {
-      this.productDialog = false;
-      this.listSilabus.push(this.module)
-    })
+    console.log(this.module)
+    if (this.codeValid == true && this.nameValid == true) {
+      this.module.createdBy = this.idUser;
+      this.moduleService.insertModules(this.module).subscribe(val => {
+        this.productDialog = false;
+        this.listSilabus.push(this.module)
+      })
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
+
+    }
   }
 
   updateModule(): void {
+    this.module.updatedBy = this.idUser
+    console.log(this.module)
     console.log('update')
     this.moduleService.updateModule(this.module).subscribe(val => {
       this.productDialog = false; this.update = false;
@@ -77,7 +86,8 @@ export class SilabusComponent implements OnInit {
 
   hideDialog() {
     this.productDialog = false;
-    this.submitted = false;
+    this.codeValid = true;
+    this.nameValid = true;
   }
 
   openNew() {

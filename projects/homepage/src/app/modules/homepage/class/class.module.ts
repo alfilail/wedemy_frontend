@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClassRoutingModule } from './class-routing.module';
@@ -10,8 +10,9 @@ import { ClassFilterPipe } from '@bootcamp-homepage/shared/pipes/class-filter.pi
 import { ModuleFilterPipe } from '@bootcamp-homepage/shared/pipes/module-filter.pipe';
 import { CanActivateTeam } from '@bootcamp-homepage/shared/guards/classes/can-activate-team';
 import { Permissions } from '@bootcamp-homepage/shared/guards/classes/permissions';
-
-// import {Location} from '@angular/common';
+import { registerLocaleData } from '@angular/common';
+import localeId from '@angular/common/locales/id'; 
+registerLocaleData(localeId, 'id'); 
 
 @NgModule({
   declarations: [
@@ -26,6 +27,10 @@ import { Permissions } from '@bootcamp-homepage/shared/guards/classes/permission
     PrimeNGModule,
     RouterModule
   ],
-  providers: [CanActivateTeam, Permissions]
+  providers: [
+    CanActivateTeam, 
+    Permissions,
+    { provide: LOCALE_ID, useValue: "id-ID" },
+  ]
 })
 export class ClassModule { }

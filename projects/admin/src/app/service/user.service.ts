@@ -29,8 +29,8 @@ export class UserService extends BaseService {
     return this.http.post<Responses<Users>>(`${this.ipAddress}/user`, user);
   }
 
-  deleteById(id: string): Observable<Responses<Users>> {
-    return this.http.delete<Responses<Users>>(`${this.ipAddress}/user/${id}`)
+  deleteById(id: string, idUser: string): Observable<Responses<Users>> {
+    return this.http.delete<Responses<Users>>(`${this.ipAddress}/user?id=${id}&idUser=${idUser}`)
   }
 
   updateUser(user: Users): Observable<Responses<Users>> {

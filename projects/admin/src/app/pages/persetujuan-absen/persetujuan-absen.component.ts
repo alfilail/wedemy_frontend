@@ -35,11 +35,14 @@ export class PersetujuanAbsenComponent implements OnInit {
   }
 
   insertApprovement(): void {
-    this.aprovementService.insertApprovement(this.approvement).subscribe(val => {
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Nilai telah dibuat.', life: 3000 });
-      this.productDialog = false;
-      this.listApprovements.push(this.approvement)
-    })
+    if (this.codeValid == true && this.nameValid == true) {
+      this.aprovementService.insertApprovement(this.approvement).subscribe(val => {
+        this.productDialog = false;
+        this.listApprovements.push(this.approvement)
+      })
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
+    }
   }
 
   updateApprovement(): void {
@@ -79,7 +82,8 @@ export class PersetujuanAbsenComponent implements OnInit {
 
   hideDialog() {
     this.productDialog = false;
-    this.submitted = false;
+    this.codeValid = true;
+    this.nameValid = true;
   }
 
   openNew() {
@@ -112,6 +116,10 @@ export class PersetujuanAbsenComponent implements OnInit {
         this.nameValid = true;
       }
     }
+  }
 
+  keyDownFunction(e) {
+    e.preventDefault();
+    this.productDialog = false;
   }
 }

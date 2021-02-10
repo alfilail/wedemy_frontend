@@ -25,7 +25,8 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('@bootcamp-homepage/modules/auth/auth.module')
-      .then(m => m.AuthModule)
+      .then(m => m.AuthModule),
+    canActivate: [CanActivateTeam]
   },
   {
     path: 'admin',

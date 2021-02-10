@@ -38,4 +38,6 @@ export class ClassService extends BaseService {
   getClassInactive(): Observable<Responses<Classes[]>> {
     return this.http.get<Responses<Classes[]>>(`${this.ipAddress}/class/inactive`)
   }
+
+
 }

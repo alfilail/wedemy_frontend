@@ -4,12 +4,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&display=swap');
 
 .header {
+  // background-color: $header-background-color;
   background-color: $header-background-color;
   display: flex;
   justify-content: space-between;
   position: fixed;
   z-index: 2;
   height: $header-height;
+  box-shadow: 0 0 20px rgba(202, 202, 202, 0.8);
 
   &__title {
     display: flex;
@@ -17,7 +19,9 @@
   }
 
   &__title-button {
-    background-color: $header-button-background-color;
+    // background-color: $header-button-background-color;
+    background-color: $white;
+
     box-shadow: none;
 
     &:hover {
@@ -30,7 +34,7 @@
   }
 
   &__title-button-icon {
-    color: $header-button-font-color;
+  color: $header-button-font-color;
    margin-bottom: 3px;
    margin-right: 2px;
   }
@@ -55,6 +59,7 @@
 h6{
   margin-top: 9px;
   margin-left: 2px;
+  color: black;
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
 }

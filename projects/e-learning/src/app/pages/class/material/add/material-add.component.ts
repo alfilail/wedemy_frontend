@@ -26,6 +26,19 @@ export class MaterialAddComponent implements OnInit {
   description: string;
   idModuleRegistration: string;
 
+  mtrCodeErrMsg: string;
+  mtrNameErrMsg: string;
+  startDateErrMsg: string;
+
+  mtrCodeIsValid: boolean;
+  mtrNameIsValid: boolean;
+  startDateIsValid: boolean;
+
+  selectedFileName: any = "Pilih file";
+
+  mtrCodeClass: string = ""
+  mtrNameClass: string = ""
+  startDateClass: string = ""
 
   constructor(private authService: AuthService,
     private location: Location,
@@ -56,6 +69,8 @@ export class MaterialAddComponent implements OnInit {
   setFile(event: any): void {
     let fileList = event.target.files;
     if (fileList) this.formData.append('file', fileList[0]);
+    
+    this.selectedFileName = fileList[0].name;
   }
 
   back(): void {
@@ -89,6 +104,47 @@ export class MaterialAddComponent implements OnInit {
       }
     );
 
+  }
+
+  mtrCodeValidation(event: string): void {
+    if (event.length == 0) {
+      this.mtrCodeErrMsg = "Kode materi tidak boleh kosong"
+      this.mtrCodeIsValid = false;
+      this.mtrCodeClass = "is-invalid"
+    } else {
+      this.mtrCodeIsValid = true;
+      this.mtrCodeClass = ""
+
+      if (event.length > 10) {
+        this.mtrCodeErrMsg = "Maksimal 10 karakter"
+        this.mtrCodeIsValid = false;
+        this.mtrCodeClass = "is-invalid"
+
+      }
+    }
+  }
+
+  mtrNameValidation(event: string): void {
+    if (event.length == 0) {
+      this.mtrNameErrMsg = "Nama materi tidak boleh kosong"
+      this.mtrNameIsValid = false;
+      this.mtrNameClass = "is-invalid"
+    } else {
+      this.mtrNameIsValid = true;
+      this.mtrNameClass = ""
+
+    }
+  }
+
+  startDateValidation(event: string): void {
+    if (event.length == 0) {
+      this.startDateErrMsg = "Tanggal tidak boleh kosong"
+      this.startDateIsValid = false;
+      this.startDateClass = "is-invalid"
+    } else {
+      this.startDateIsValid = true;
+      this.startDateClass = ""
+    }
   }
 
 }

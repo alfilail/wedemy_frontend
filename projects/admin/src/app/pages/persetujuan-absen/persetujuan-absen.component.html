@@ -8,7 +8,7 @@
             <div class="card">
                 <p-toolbar class="p-m-3">
                     <ng-template pTemplate="left">
-                        <button pButton pRipple label="New" icon="pi pi-plus" (click)="openNew()"
+                        <button pButton pRipple label="Tambah" icon="pi pi-plus" (click)="openNew()"
                             class="p-button-success p-mr-2"></button>
                     </ng-template>
                     <ng-template pTemplate="right">
@@ -57,37 +57,39 @@
 
 
             <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tambah Status Persetujuan Kelas" [modal]="true"
-                styleClass="p-fluid">
+                styleClass="p-fluid" (onHide)="hideDialog()">
                 <ng-template pTemplate="content">
-                    <div class="p-field">
-                        <label for="code">Kode</label>
-                        <input type="text" required pInputText (ngModelChange)="validation($event,'code')" id="code"
-                            [(ngModel)]="approvement.code" required autofocus /><small *ngIf="!codeValid"
-                            id="username-help" class="p-error">{{codeErrMsg}}</small>
-                    </div>
-                    <div class="p-field">
-                        <label for="name">Nama Status</label>
-                        <input type="text" required pInputText (ngModelChange)="validation($event,'name')" required
-                            autofocus /><small *ngIf="!nameValid" id="username-help"
-                            class="p-error">{{nameErrMsg}}</small>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <div class="m-2">
-                            <button pButton pRipple label="Kembali" icon="pi pi-times"
-                                class="p-button-raised p-button-rounded p-button-danger"
-                                (click)="hideDialog()"></button>
+                    <form name="approvementForm">
+                        <div class="p-field">
+                            <label for="code">Kode</label>
+                            <input type="text" name="code" required pInputText
+                                (ngModelChange)="validation($event,'code')" id="code" [(ngModel)]="approvement.code"
+                                required /><small *ngIf="!codeValid" class="p-error">{{codeErrMsg}}</small>
                         </div>
-                        <div class="mt-2">
-                            <ng-template #insert>
-                                <button pButton pRipple label="Simpan" icon="pi pi-check"
+                        <div class="p-field">
+                            <label for="name">Nama Status</label>
+                            <input type="text" name="nama" required pInputText id="name"
+                                (ngModelChange)="validation($event,'name')" [(ngModel)]="approvement.approvementName"
+                                required /><small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class="m-2">
+                                <button pButton pRipple label="Kembali" icon="pi pi-times"
+                                    class="p-button-raised p-button-rounded p-button-danger"
+                                    (click)="hideDialog()"></button>
+                            </div>
+                            <div class="mt-2">
+                                <ng-template #insert>
+                                    <button pButton pRipple label="Simpan" icon="pi pi-check"
+                                        class="p-button-raised p-button-rounded p-button-success"
+                                        (click)="insertApprovement()"></button>
+                                </ng-template>
+                                <button pButton pRipple label="Simpan" *ngIf="update; else insert" icon="pi pi-check"
                                     class="p-button-raised p-button-rounded p-button-success"
-                                    (click)="insertApprovement()"></button>
-                            </ng-template>
-                            <button pButton pRipple label="Simpan" *ngIf="update; else insert" icon="pi pi-check"
-                                class="p-button-raised p-button-rounded p-button-success"
-                                (click)="updateApprovement()"></button>
+                                    (click)="updateApprovement()"></button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </ng-template>
 
             </p-dialog>
