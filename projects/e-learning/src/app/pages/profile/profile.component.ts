@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   displayMaximizable: boolean;
   defaultImg: string = "/assets/img/profile-default.jpeg";
   url: any = "/assets/img/profile-default.jpeg";
-  uploadForm: FormGroup; 
+  uploadForm: FormGroup;
   formData = new FormData();
   file: String;
 
@@ -40,13 +40,13 @@ export class ProfileComponent implements OnInit {
   }
 
   showMaximizableDialog() {
-    if(this.myAccount.idProfile.idFile.file) {
-      this.url = 'data:image/png;base64,'+this.myAccount.idProfile.idFile.file
+    if (this.myAccount.idProfile.idFile.file) {
+      this.url = 'data:image/png;base64,' + this.myAccount.idProfile.idFile.file
     }
     this.displayMaximizable = true;
   }
 
-  onSelectFile(event) { 
+  onSelectFile(event) {
 
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
@@ -61,17 +61,17 @@ export class ProfileComponent implements OnInit {
     if (event.target.files.length > 0) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0])
-      reader.onload = (event) => { 
+      reader.onload = (event) => {
         this.url = event.target.result;
       }
     }
   }
 
   onSubmit() {
-    if (this.myAccount.idProfile.birthDate){
+    if (this.myAccount.idProfile.birthDate) {
       let birthDateFormatted = this.datepipe.transform(this.myAccount.idProfile.birthDate, 'yyyy-MM-dd')
       this.myAccount.idProfile.birthDate = birthDateFormatted.toString();
-    } 
+    }
     this.myAccount.idProfile.updatedBy = this.authService.getUserId();
 
     this.formData.append('body', JSON.stringify(this.myAccount.idProfile));
@@ -85,11 +85,11 @@ export class ProfileComponent implements OnInit {
 
 
   phoneValidation(event: string): void {
-    if(/^[0-9]*$/.test(event) && event.length >= 10){
+    if (/^[0-9]*$/.test(event) && event.length >= 10) {
       this.phoneIsValid = true;
     } else {
       this.phoneIsValid = false;
-      if (!/^[0-9]*$/.test(event)){
+      if (!/^[0-9]*$/.test(event)) {
         this.phoneErrMsg = "Masukkan angka saja"
       }
       if (event.length < 10) {
