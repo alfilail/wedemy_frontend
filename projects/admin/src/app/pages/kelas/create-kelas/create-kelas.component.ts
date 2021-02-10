@@ -123,6 +123,8 @@ export class CreateKelasComponent implements OnInit {
         this.endTimeValue = `${hour}:${min}`;
       }
     }
+
+
   }
 
   onSelectStart($event) {
@@ -263,6 +265,13 @@ export class CreateKelasComponent implements OnInit {
         this.descValid = true;
       } else if (col == 'kuota') {
         this.kuotaValid = true;
+      } else if (col == 'endHour') {
+        if (event > this.startTimeValue) {
+          this.jamSelesaiValid = false;
+          this.jamSelesaiErrMsg = "waktu selesai tidak boleh lebih awal daripada waktu mulai"
+        } else {
+          this.jamMulaiValid = true;
+        }
       }
     }
   }

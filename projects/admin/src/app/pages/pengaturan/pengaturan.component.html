@@ -45,8 +45,10 @@
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="fullname">Nama Lengkap</label>
-                                        <input type="text" class="form-control mt-2" id="fullname"
-                                            [value]="profile.fullName" name="fullname" [(ngModel)]="profile.fullName">
+                                        <input type="text" class="form-control mt-2" id="fullname" required pInputText
+                                            (ngModelChange)="validation($event,'nama')" [value]="profile.fullName"
+                                            name="fullname" [(ngModel)]="profile.fullName">
+                                        <small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="username">Username</label>
@@ -77,25 +79,33 @@
                                     <div class="d-flex">
                                         <div class="p-field  col-lg-4 col-md-4">
                                             <label for="noTlp">Nomor KTP</label>
-                                            <input id="ktp" type="text" pInputText name="ktp"
+                                            <input id="ktp" type="text" required pInputText
+                                                (ngModelChange)="validation($event,'ktp')" name="ktp"
                                                 [(ngModel)]="profile.idNumber" [value]="profile.idNumber">
+                                            <small *ngIf="!nomorKtpValid" class="p-error">{{nomorKtpErrMsg}}</small>
                                         </div>
                                         <div class="p-field  col-lg-4 col-md-4">
                                             <label for="noTlp">No. Telepon</label>
-                                            <input id="noTlp" type="text" pInputText name="noTlp"
+                                            <input id="noTlp" type="text" required pInputText
+                                                (ngModelChange)="validation($event,'numPhone')" name="noTlp"
                                                 [(ngModel)]="profile.phone" [value]="profile.phone">
+                                            <small *ngIf="!phoneNumValid" class="p-error">{{phoneNumErrMsg}}</small>
                                         </div>
                                         <div class="p-field  col-lg-4 col-md-4">
                                             <label for="alamat">Alamat</label>
-                                            <input id="alamat" type="text" pInputText name="alamat"
+                                            <input id="alamat" type="text" required pInputText
+                                                (ngModelChange)="validation($event,'alamat')" name="alamat"
                                                 [(ngModel)]="profile.address" [value]="profile.address">
+                                            <small *ngIf="!alamatValid" class="p-error">{{alamatErrMsg}}</small>
                                         </div>
                                     </div>
                                     <div class="d-flex">
                                         <div class="p-field col-lg-6 col-md-6">
                                             <label for="tmptLahir">Tempat Lahir</label>
-                                            <input id="tmptLahir" type="text" name="tmptLahir" pInputText
+                                            <input id="tmptLahir" type="text" name="tmptLahir" required pInputText
+                                                (ngModelChange)="validation($event,'birthPlace')"
                                                 [(ngModel)]="profile.birthPlace" [value]="profile.birthPlace">
+                                            <small *ngIf="!birthPlaceValid" class="p-error">{{birthPlaceErrMsg}}</small>
                                         </div>
                                         <div class="p-field  col-lg-6 col-md-6">
                                             <label for="startDate">Tanggal Lahir</label>
@@ -124,13 +134,19 @@
                                     <div class="d-flex">
                                         <div class="form-group mt-3 col-lg-6 col-md-6">
                                             <label for="newPass">Password Baru</label>
-                                            <input pPassword type="password" class="form-control mt-2" name="newPass"
-                                                id="newPass" [(ngModel)]="pass">
+                                            <input pPassword [promptLabel]="'Masukan password'" [weakLabel]="'Lemah'"
+                                                [mediumLabel]="'Sedang'" [strongLabel]="'Kuat'" type="password"
+                                                class="form-control mt-2" name="newPass" id="newPass" [(ngModel)]="pass"
+                                                required pInputText (ngModelChange)="validation($event,'pass')">
+                                            <small *ngIf="!passwordValid" class="p-error">{{passwordErrMsg}}</small>
                                         </div>
                                         <div class="form-group mt-3 col-lg-6 col-md-6">
                                             <label for="oldPass">Konfirmasi Password Baru</label>
-                                            <input type="password" [(ngModel)]="passConf" name="oldPass"
-                                                class="form-control mt-2" id="oldPass">
+                                            <input type="password" [(ngModel)]="passConf" name="repatNewPass"
+                                                class="form-control mt-2" id="repatNewPass" required pInputText
+                                                (ngModelChange)="validation($event,'passConf')">
+                                            <small *ngIf="!repeatPasswordValid"
+                                                class="p-error">{{repeatPasswordErrMsg}}</small>
                                         </div>
                                     </div>
                                 </form>

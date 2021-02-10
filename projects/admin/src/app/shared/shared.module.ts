@@ -23,7 +23,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     FooterComponent,
     SettingsMenuComponent,
     DateMenuComponent,
-    LayoutComponent
+    LayoutComponent,
+    FooterComponent
   ],
   imports: [
     HeaderModule,
@@ -45,7 +46,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     SettingsMenuComponent,
     DateMenuComponent,
     MatExpansionModule,
-    LayoutComponent
+    LayoutComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

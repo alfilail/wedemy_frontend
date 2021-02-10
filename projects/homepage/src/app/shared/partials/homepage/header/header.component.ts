@@ -29,17 +29,10 @@ export class HeaderComponent implements OnInit {
 
     if (!this.isLoggedOut) {
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
-<<<<<<< HEAD
-        this.user = res.data;
-        console.log("INI HEADER HOMEPAGE");
-        this.getFirstName(res.data.idProfile.fullName);
-        // this.url = 'data:image/png;base64,'+this.user.idProfile.idFile.file;
-=======
         console.log("haihai" + this.authService.getUserId())
         this.user = res.data;
         console.log("INI HEADER HOMEPAGE");
         this.getFirstName(res.data.idProfile.fullName);
->>>>>>> 00e8cc4e8928cf341e9f7b914e020554c26789cf
       })
     }
   }
