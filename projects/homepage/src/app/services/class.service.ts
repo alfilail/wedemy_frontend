@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { Classes } from '@bootcamp-homepage/models/classes';
 import { BaseService } from './base.service';
 import { Responses } from '@bootcamp-homepage/models/responses';
+import { TotalClassAndUser } from '@bootcamp-homepage/models/total-class-and-user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,10 @@ export class ClassService extends BaseService {
 
   getById(id: string): Observable<Classes> {
     return this.http.get<Classes>(`${this.api}/class/${id}`)
+  }
+
+  getTotalClassAndUser(): Observable<Responses<TotalClassAndUser>> {
+    return this.http.get<Responses<TotalClassAndUser>>(`${this.api}/class/user`)
   }
   
 }

@@ -93,8 +93,10 @@
             </div>
             <div class="p-field">
                 <label for="address">Alamat</label>
-                <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.address" [value]="myAccount.idProfile.address" placeholder="{{myAccount.idProfile.address ? myAccount.idProfile.address : 'Masukkan Alamat'}}" id="address" type="text" rows="4"
-                    pInputTextarea></textarea>
+                <!-- <textarea pInputTextarea class="p-col-12" [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.address" [value]="myAccount.idProfile.address" placeholder="{{myAccount.idProfile.address ? myAccount.idProfile.address : 'Masukkan Alamat'}}"
+                    id="address" type="text" rows="4"></textarea> -->
+                <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.address" [value]="myAccount.idProfile.address" placeholder="{{myAccount.idProfile.address ? myAccount.idProfile.address : 'Masukkan Alamat'}}" class="form-control" id="address"
+                    type="text" rows="3"></textarea>
                 <!-- <input [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.address" [value]="myAccount.idProfile.address" placeholder="{{myAccount.idProfile.address ? myAccount.idProfile.address : 'Masukkan Alamat'}}" id="address" type="text" pInputText> -->
             </div>
         </div>
