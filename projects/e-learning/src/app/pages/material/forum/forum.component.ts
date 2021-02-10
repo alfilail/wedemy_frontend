@@ -38,9 +38,7 @@ export class ForumComponent implements OnInit {
   getForum(idDetailModuleRegistration: string): void {
     this.forumService.getForum(idDetailModuleRegistration).subscribe(
       res => {
-        this.forums = res;
-        console.log('SINI FORUM');
-
+        this.forums = res.data
         console.log(res);
       },
       err => {

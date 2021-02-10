@@ -104,9 +104,17 @@ export class DisableClassComponent implements OnInit {
     console.log(this.dtlClass.startTime, this.dtlClass.startDate, this.dtlClass.endDate, this.dtlClass.endTime)
     console.log(this.dtlClass)
 
-    this.dtlClassService.updateInactiveClass(this.dtlClass).subscribe(val => {
-      this.productDialog = false;
-    })
+    if (this.startTimeValue > this.endTimeValue) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Jam berakhir tidak boleh lebih awal" })
+    } else {
+      this.dtlClassService.updateInactiveClass(this.dtlClass).subscribe(val => {
+        this.removeClass(this.dtlClass.idClass.id)
+        this.productDialog = false;
+        this.startTimeValue = "";
+        this.endTimeValue = "";
+        this.rangeDates = [];
+      })
+    }
   }
 
   deleteClass(id: string) {
@@ -136,7 +144,13 @@ export class DisableClassComponent implements OnInit {
     this.productDialog = true;
   }
 
-
+  removeClass(id: string): void {
+    this.listKelas.forEach((value, index) => {
+      if (value.id == id) {
+        this.listKelas.splice(index, 1);
+      }
+    })
+  }
 
 
 }

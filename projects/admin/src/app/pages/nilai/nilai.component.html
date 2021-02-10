@@ -62,7 +62,7 @@
 
 
             <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Detail Nilai" [modal]="true"
-                styleClass="p-fluid">
+                styleClass="p-fluid" (onHide)="hideDialog()">
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="code">Kode Nilai</label>

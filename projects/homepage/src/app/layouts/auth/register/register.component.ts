@@ -64,6 +64,7 @@ export class RegisterComponent implements OnInit {
       this.userService.insertUser(this.participant)
         .subscribe(val => {
           console.log(val);
+          this.router.navigateByUrl("/auth/login")
         })
     } 
 

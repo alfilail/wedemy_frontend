@@ -23,4 +23,8 @@ export class MaterialService {
   saveMaterial(data: any): Observable<any> {
     return this.http.post<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_MATERIAL_QUERY_PATH}`, data);
   }
+
+  updateMaterial(data: any): Observable<any> {
+    return this.http.put<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_MATERIAL_QUERY_PATH}`, data);
+  }
 }

@@ -6,9 +6,7 @@ import { File } from '@bootcamp-elearning/models/file';
 import { MaterialService } from '@bootcamp-elearning/services/material.service';
 import { ROLE } from '@bootcamp-core/constants/role';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/internal/operators/map';
-import { filter } from 'rxjs/operators';
+import { downloadFile } from '@bootcamp-elearning/utils/download';
 
 @Component({
   selector: 'app-material-read',
@@ -44,7 +42,7 @@ export class MaterialReadComponent implements OnInit {
   getMaterial(): void {
     this.materialService.getMaterial(this.idDetailModuleRegistration).subscribe(
       res => {
-        this.material = res;
+        this.material = res.data;
         console.log(res);
       },
       err => {
@@ -53,13 +51,7 @@ export class MaterialReadComponent implements OnInit {
     )
   }
 
-  downloadFile(data: File) {
-    const source = `data:${data.type};base64,${data.file}`;
-    const blob = new Blob([data.file], { type: data.type });
-    const url = window.URL.createObjectURL(blob);
-    let fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-    return fileUrl
-
+  downloadFileFromBlob(data: File, fileName: string): void {
+    downloadFile(data, fileName);
   }
-
 }

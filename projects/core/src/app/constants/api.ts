@@ -16,7 +16,7 @@ const API = {
   // 1.C. Material
   WEDEMY_MATERIAL_QUERY_PATH: '/learning-material',
   WEDEMY_DETAIL_MODULE_QUERY_PATH: '/detail-module-rgs',
-  WEDEMY_MATERIAL_TYPE_QUERY_PATH: '/learning-material-type/all',
+  WEDEMY_MATERIAL_TYPE_QUERY_PATH: '/learning-material-type',
 
   // 1.D Presence
   WEDEMY_PRESENCE_QUERY_PATH: '/presence',

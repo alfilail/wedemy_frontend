@@ -13,9 +13,9 @@ export class PresenceComponent implements OnInit {
   idDetailModuleRegistration: string;
   idDetailClass: string;
 
-  participants: any[];
+  participants: any[] = [];
 
-  selectedParticipants: any[];
+  selectedParticipants: any[] = [];
   loading: boolean = true;
 
   approvements = APPROVEMENT;
@@ -64,13 +64,21 @@ export class PresenceComponent implements OnInit {
     this.presenceService.getPresence(param).subscribe(
       res => {
         console.log(res);
-        this.participants = res;
+        this.participants = res.data;
         this.loading = false;
       },
       err => {
         console.log(err);
       }
     )
+  }
+
+
+  check(): void {
+    console.log('check presence');
+    console.log(this.selectedParticipants);
+
+
   }
 
 }

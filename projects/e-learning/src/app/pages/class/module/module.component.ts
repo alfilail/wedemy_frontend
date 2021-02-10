@@ -49,7 +49,7 @@ export class ModuleComponent implements OnInit {
     this.classService.getDetail(params).subscribe(
       res => {
         this.modules = res.data;
-        console.log(res);
+        console.log("goi "+ res);
         this.checkPresent();
       },
       err => { console.log(err) }
@@ -71,7 +71,8 @@ export class ModuleComponent implements OnInit {
                 learningMaterial.statusPresent = {
                   type: 'btn',
                   style: 'success',
-                  msg: 'Hadir'
+                  msg: 'Hadir',
+                  status: 400
                 }
                 console.log('Bisa Absen');
               } else {
@@ -79,7 +80,8 @@ export class ModuleComponent implements OnInit {
                 learningMaterial.statusPresent = {
                   type: 'badge',
                   style: 'info',
-                  msg: 'Tutor Belum Menghadiri Kelas'
+                  msg: 'Tutor Belum Menghadiri Kelas',
+                  status: 400
                 }
                 console.log('Tutor Belum Menghadiri Kelas');
               }
@@ -97,7 +99,8 @@ export class ModuleComponent implements OnInit {
                   learningMaterial.statusPresent = {
                     type: 'badge',
                     style: 'danger',
-                    msg: 'Anda Terlambat Menghadiri Kelas'
+                    msg: 'Anda Terlambat Menghadiri Kelas',
+                    status: 400
                   }
                   console.log('Anda Terlambat');
                 }
@@ -106,25 +109,38 @@ export class ModuleComponent implements OnInit {
                 learningMaterial.statusPresent = {
                   type: 'badge',
                   style: 'warning',
-                  msg: 'Kelas Belum Dimulai'
+                  msg: 'Kelas Belum Dimulai',
+                  status: 400
                 }
                 console.log('Kelas belum dimulai');
               }
             }
           } else {
-            if (learningMaterial.isParticipantAccepted) {
-              // Telah menghadiri kelas
-              learningMaterial.statusPresent = {
-                type: 'badge',
-                style: 'success',
-                msg: 'Telah Menghadiri Kelas'
+            if (learningMaterial.isParticipantConfirmed) {
+              if (learningMaterial.isParticipantAccepted) {
+                // Telah menghadiri kelas
+                learningMaterial.statusPresent = {
+                  type: 'badge',
+                  style: 'success',
+                  msg: 'Telah Menghadiri Kelas',
+                  status: 200
+                }
+                console.log('Telah menghadiri kelas');
+              } else {
+                learningMaterial.statusPresent = {
+                  type: 'badge',
+                  style: 'danger',
+                  msg: 'Tutor menolak kehadiran anda',
+                  status: 400
+                }
+                console.log('Tutor menolak kehadiran anda');
               }
-              console.log('Telah menghadiri kelas');
             } else {
               learningMaterial.statusPresent = {
                 type: 'badge',
                 style: 'info',
-                msg: 'Menunggu Konfirmasi Tutor'
+                msg: 'Menunggu Konfirmasi Tutor',
+                status: 400
               }
               console.log('Menunggu konfirmasi tutor');
             }
@@ -139,7 +155,8 @@ export class ModuleComponent implements OnInit {
               learningMaterial.statusPresent = {
                 type: 'btn',
                 style: 'success',
-                msg: 'Hadir'
+                msg: 'Hadir',
+                status: 400
               }
               console.log('Bisa Absen');
             } else {
@@ -157,7 +174,8 @@ export class ModuleComponent implements OnInit {
                   learningMaterial.statusPresent = {
                     type: 'badge',
                     style: 'danger',
-                    msg: 'Anda Terlambat'
+                    msg: 'Anda Terlambat',
+                    status: 400
                   }
                   console.log('Anda terlambat');
                 }
@@ -166,7 +184,8 @@ export class ModuleComponent implements OnInit {
                 learningMaterial.statusPresent = {
                   type: 'badge',
                   style: 'warning',
-                  msg: 'Kelas Belum Dimulai'
+                  msg: 'Kelas Belum Dimulai',
+                  status: 400
                 }
                 console.log('Kelas belum dimulai');
               }
@@ -176,7 +195,8 @@ export class ModuleComponent implements OnInit {
             learningMaterial.statusPresent = {
               type: 'badge',
               style: 'success',
-              msg: 'Telah Menghadiri Kelas'
+              msg: 'Telah Menghadiri Kelas',
+              status: 200
             }
             console.log('Telah menghadiri kelas');
           }

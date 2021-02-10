@@ -1,66 +1,80 @@
-<p-table #dt [value]="participants" [scrollable]="true" [(selection)]="selectedParticipants" dataKey="id"
-  styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
-  [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
-  [globalFilterFields]="['name','averageValue']">
-  <ng-template pTemplate="caption">
-    <div class="table-header p-d-flex p-jc-between">
-      List of Participant
-      <span class="p-input-icon-right">
-        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-          placeholder="Global Search" />
-      </span>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="colgroup" let-columns>
-    <colgroup>
-      <col style="width: 50px;">
-      <col style="width: 100px;">
-      <col style="width: 100px;">
-      <col style="width: 100px;">
-      <col style="width: 100px;">
-    </colgroup>
-  </ng-template>
-  <ng-template pTemplate="header">
-    <tr>
-      <th>No</th>
-      <th>Nama Peserta</th>
-      <th>Waktu</th>
-      <th>Status</th>
-      <th>Aksi</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-participant let-i="rowIndex">
-    <tr class="p-selectable-row">
-      <td>
-        <span class="p-column-title">{{i + 1}}</span>
-      </td>
-      <td>
-        <span class="p-column-title">{{participant.idPresence.idUser.idProfile.fullName}}</span>
-      </td>
-      <td>
-        <span class="p-column-title">{{participant.idPresence.presenceTime}}</span>
-      </td>
-      <td>
-        <span *ngIf="participant.idApprovement.code === approvements.ABSENT" class="badge badge-danger">
-          ABSENT
+<button (click)="check()" class="btn btn-primary">Check</button>
+<div class="card card-body">
+
+  <p-table #dt [value]="participants" [metaKeySelection]="false" selectionMode="" [scrollable]="true" [(selection)]="selectedParticipants" dataKey="id" 
+    styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+    [globalFilterFields]="['name','averageValue']">
+    <ng-template pTemplate="caption">
+      <div class="table-header p-d-flex p-jc-between">
+        List of Participant
+        <span class="p-input-icon-right">
+          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Global Search" />
         </span>
-        <span *ngIf="participant.idApprovement.code === approvements.ACCEPT" class="badge badge-success">
-          ACCEPTED
-        </span>
-        <span *ngIf="participant.idApprovement.code === approvements.PENDING" class="badge badge-warning">
-          PENDING
-        </span>
-        <span *ngIf="participant.idApprovement.code === approvements.REJECT" class="badge badge-danger">
-          REJECTED
-        </span>
-      </td>
-      <td>
-        <ng-template [ngIf]="participant.idApprovement.code === approvements.PENDING">
-          <button (click)="setStatusPresence(participant, approvements.ACCEPT)" class="btn btn-success mr-sm-2 mr-0 mb-2 mb-md-0">Diterima</button>
-          <button (click)="setStatusPresence(participant, approvements.REJECT)" class="btn btn-danger px-3">Ditolak</button>
-        </ng-template>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col style="width: 50px;">
+        <col style="width: 50px;">
+        <col style="width: 100px;">
+        <col style="width: 100px;">
+        <col style="width: 100px;">
+        <col style="width: 100px;">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th>No</th>
+        <th>Nama Peserta</th>
+        <th>Waktu</th>
+        <th>Status</th>
+        <th>Aksi</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-participant let-rowIndex="rowIndex">
+      <tr [pSelectableRow]="participant" [pSelectableRowIndex]="rowIndex">
+        <td>
+          <p-tableCheckbox [value]="participant"></p-tableCheckbox>
+        </td>
+        <td>
+          <span class="p-column-title">{{rowIndex + 1}}</span>
+        </td>
+        <td>
+          <span class="p-column-title">{{participant.idPresence.idUser.idProfile.fullName}}</span>
+        </td>
+        <td>
+          <span class="p-column-title">{{participant.idPresence.presenceTime}}</span>
+        </td>
+        <td>
+          <span *ngIf="participant.idApprovement.code === approvements.ABSENT" class="badge badge-danger">
+            ABSENT
+          </span>
+          <span *ngIf="participant.idApprovement.code === approvements.ACCEPT" class="badge badge-success">
+            ACCEPTED
+          </span>
+          <span *ngIf="participant.idApprovement.code === approvements.PENDING" class="badge badge-warning">
+            PENDING
+          </span>
+          <span *ngIf="participant.idApprovement.code === approvements.REJECT" class="badge badge-danger">
+            REJECTED
+          </span>
+        </td>
+        <td>
+          <ng-template [ngIf]="participant.idApprovement.code === approvements.PENDING">
+            <button (click)="setStatusPresence(participant, approvements.ACCEPT)"
+              class="btn btn-success mr-sm-2 mr-0 mb-2 mb-md-0">Diterima</button>
+            <button (click)="setStatusPresence(participant, approvements.REJECT)"
+              class="btn btn-danger px-3">Ditolak</button>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+

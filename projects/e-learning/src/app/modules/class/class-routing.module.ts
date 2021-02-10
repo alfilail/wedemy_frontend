@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MaterialEditComponent } from '@bootcamp-elearning/pages/class/material/edit/material-edit.component';
 import { ClassDetailComponent } from '../../pages/class/detail/class-detail.component';
 import { InstructorComponent } from '../../pages/class/instructor/instructor.component';
 import { MaterialAddComponent } from '../../pages/class/material/add/material-add.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
       { path: 'enrolled/:idDetailClass', component: ModuleComponent },
       { path: 'instructor/:idDetailClass', component: InstructorComponent },
       { path: 'report/:idDetailClass', component: ReportReadComponent },
-      { path: 'add-material/:idModuleRegistration', component: MaterialAddComponent }
+      { path: 'add-material/:idModuleRegistration', component: MaterialAddComponent },
+      { path: 'edit-material/:idDetailModuleRegistration', component: MaterialEditComponent }
     ]
   }
 ];

@@ -1,5 +1,5 @@
 .course-sidebar {
-  width: 350px;
+  width: 320px;
   background-color: #f7f7f7;
   height: 100%;
   padding-left: 0px;
@@ -61,7 +61,7 @@
 .course-mainbar {
   margin-left: 350px;
   background: #fff;
-  padding: 40px;
+  padding: 40px 40px 40px 25px;
   height: auto;
 }
 

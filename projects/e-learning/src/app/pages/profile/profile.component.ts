@@ -80,6 +80,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.updateProfile(this.formData).subscribe(res => {
       this.myAccount.idProfile = res.data;
       this.displayMaximizable = false;
+      this.formData.delete('body');
       this.ngOnInit();
     })
   }

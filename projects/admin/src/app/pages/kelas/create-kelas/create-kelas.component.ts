@@ -40,7 +40,7 @@ export class CreateKelasComponent implements OnInit {
   jamSelesaiValid: boolean;
   jamSelesaiErrMsg: string;
 
-  formData: FormData;
+  formData: FormData = new FormData();;
   file: String;
   endTimeValue: string;
   startTimeValue: string;
@@ -94,6 +94,8 @@ export class CreateKelasComponent implements OnInit {
   getClass(): void {
     this.classService.getClassById(this.statusActivity).subscribe(val => {
       this.class = val.data;
+      this.tutorSelect = val.data.idTutor
+      console.log(this.class)
     })
   }
 
@@ -121,6 +123,8 @@ export class CreateKelasComponent implements OnInit {
         this.endTimeValue = `${hour}:${min}`;
       }
     }
+
+
   }
 
   onSelectStart($event) {
@@ -201,6 +205,7 @@ export class CreateKelasComponent implements OnInit {
         classHelper.module = this.modules
 
         this.listClass.push(classHelper)
+        console.log(this.listClass, 'add')
         this.classHelper = classHelper
       } else {
         console.log('update')
@@ -219,13 +224,17 @@ export class CreateKelasComponent implements OnInit {
   }
 
   deleteList(index: number): void {
+    this.modules.splice(index, 1)
     this.listClass.splice(index, 1)
+    console.log(index)
+    console.log(this.listClass, 'delete')
   }
 
   updateClass() {
     this.class.id = this.statusActivity
     this.class.updatedBy = this.idUser
-    this.formData.append("body", JSON.stringify(this.listClass));
+    console.log(this.class)
+    this.formData.append("body", JSON.stringify(this.class));
 
     this.classService.updateClass(this.formData).subscribe(val => {
       this.route.navigateByUrl('/admin/kelas-aktif')
@@ -256,6 +265,13 @@ export class CreateKelasComponent implements OnInit {
         this.descValid = true;
       } else if (col == 'kuota') {
         this.kuotaValid = true;
+      } else if (col == 'endHour') {
+        if (event > this.startTimeValue) {
+          this.jamSelesaiValid = false;
+          this.jamSelesaiErrMsg = "waktu selesai tidak boleh lebih awal daripada waktu mulai"
+        } else {
+          this.jamMulaiValid = true;
+        }
       }
     }
   }
