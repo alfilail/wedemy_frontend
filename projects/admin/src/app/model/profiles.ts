@@ -17,4 +17,6 @@ export class Profiles extends BaseMaster {
     public email?: string;
 
     public idFile?: Files;
+
+    public bio?: string;
 }

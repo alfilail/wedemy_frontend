@@ -74,8 +74,8 @@
                             <td><img src="data:image/png;base64,{{listKelas.idClass.idFile.file}}" width="100"
                                     class="p-shadow-4" /></td>
                             <td>{{listKelas.idClass.quota}}</td>
-                            <td>{{listKelas.startDate}}</td>
-                            <td>{{listKelas.endDate}}</td>
+                            <td>{{listKelas.startDate | date:'longDate'}}</td>
+                            <td>{{listKelas.endDate | date:'longDate'}}</td>
                             <td>{{listKelas.startTime}}</td>
                             <td>{{listKelas.endTime}}</td>
                             <td>

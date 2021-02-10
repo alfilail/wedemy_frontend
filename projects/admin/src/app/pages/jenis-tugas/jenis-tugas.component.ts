@@ -60,6 +60,7 @@ export class JenisTugasComponent implements OnInit {
       this.update = false;
       this.removeJenisTugas(this.learningMaterialType.id)
       this.listJenisTugas.push(this.learningMaterialType)
+      this.getLearningMaterialTypes()
     })
   }
 
