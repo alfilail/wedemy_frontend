@@ -24,7 +24,7 @@ export class HttpIntercept implements HttpInterceptor {
                         console.log('request succeeded');
                         // console.log(event);
                         if (event.body.ok == true && event.body.message) {
-                            // console.log("helo")
+                            console.log("helo")
                             if (event.body.message != 'Data berhasil diambil') {
                                 this.toast.successToast(event.body.message)
                             }
