@@ -30,10 +30,18 @@
 
   <div class="col-sm-12 col-md-6">
     <div class="form-group">
-      <label for="materialName">File</label>
-      <input (change)="setFile($event)" type="file" class="form-control" id="materialName" aria-describedby="materialNameHelp">
-      <small id="materialNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="materialFile">File</label>
+      <input (change)="setFile($event)" type="file" class="form-control" id="materialFile" aria-describedby="materialFileHelp">
+      <small id="materialFileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
+
+    <!-- <div class="form-group">
+      <label class="btn btn-primary btn-file">
+        Browse <input type="file" style="display: none;" required>
+        File selected
+    </label>
+    
+    </div> -->
   </div>
   <div class="col-sm-12 col-md-6">
     <div class="form-group">

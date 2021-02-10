@@ -1,1 +1,69 @@
-<p>material-edit works!</p>
+<section class="section-title">
+  <h2>Add Material</h2>
+</section>
+
+<div class="row">
+
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label for="materialCode">Kode Materi</label>
+      <input [(ngModel)]="material.idLearningMaterial.code" type="text" class="form-control" id="materialCode" aria-describedby="materialCodeHelp" [value]="material.idLearningMaterial.code" >
+      <small id="materialCodeHelp" class="form-text text-muted">Maksimum Kode Material adalah 10 Karakter</small>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label for="materialName">Nama Materi</label>
+      <input [(ngModel)]="material.idLearningMaterial.learningMaterialName" type="text" class="form-control" id="materialName" aria-describedby="materialNameHelp" [value]="material.idLearningMaterial.learningMaterialName">
+      <small id="materialNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label for="startDate">Tanggal Berlangsung</label>
+      <input [(ngModel)]="material.scheduleDate" type="date" class="form-control" id="startDate" aria-describedby="startDateHelp" [value]="material.scheduleDate">
+      <small id="startDateHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+  </div>
+
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label for="materialFile">File</label>
+      <input (change)="setFile($event)" type="file" class="form-control" id="materialFile" aria-describedby="materialFileHelp">
+      <small id="materialFileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+
+    <!-- <div class="form-group">
+      <label class="btn btn-primary btn-file">
+        Browse <input type="file" style="display: none;" required>
+        File selected
+    </label>
+    
+    </div> -->
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <div class="form-group">
+      <label>Tipe Material :&nbsp;</label>
+      <select [(ngModel)]="selectedMaterialType" class="shadow-sm">
+        <option *ngFor="let materialType of materialTypes" [ngValue]="materialType" [selected]="selectedMaterialType">{{ materialType.learningMaterialTypeName }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="form-group">
+      <label for="materialName">Description</label>
+      <p-editor [(ngModel)]="material.idLearningMaterial.description" [style]="{'height':'200px'}">
+        {{material.idLearningMaterial.description}}
+      </p-editor>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button (click)="back()" class="btn btn-danger mr-3">Batal</button>
+      <button (click)="update()" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+
+
+</div>

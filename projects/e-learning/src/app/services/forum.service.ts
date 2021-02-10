@@ -11,8 +11,8 @@ export class ForumService {
 
   constructor(private http: HttpClient) { }
 
-  getForum(idDetailModuleRegistration: string): Observable<any[]> {
-    return this.http.get<any[]>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_FORUM_MATERIAL_QUERY_PATH}/${idDetailModuleRegistration}`)
+  getForum(idDetailModuleRegistration: string): Observable<any> {
+    return this.http.get<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_FORUM_MATERIAL_QUERY_PATH}/${idDetailModuleRegistration}`)
   }
 
   postForum(data: Forum): Observable<any[]> {

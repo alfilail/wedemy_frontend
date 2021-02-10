@@ -24,19 +24,25 @@
 
       <ul class="section-list">
         <ng-template ngFor let-material [ngForOf]="module.learningMaterials" let-i="index">
+          
           <li class="section-item d-flex justify-content-between py-2 align-items-center">
-            <a [routerLink]="['/instructor/class/material/']" class="item">
+            <div class="item">
               <div class="title-container">
                 <span class="material-icon">
                   <i class="fas fa-file-alt"></i>
                 </span>
-                <a [routerLink]="['../../../material']" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: material.learningMaterial.id}">
-                  <span class="material-name">
-                    {{ material.learningMaterial.idLearningMaterial.learningMaterialName }}
-                  </span>
-                </a>
+                <ng-template [ngIf]="material.statusPresent.status === 200">
+                  <a [routerLink]="['../../../material']" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: material.learningMaterial.id}">
+                    <span class="material-name">
+                      {{ material.learningMaterial.idLearningMaterial.learningMaterialName }}
+                    </span>
+                  </a>
+                </ng-template>
+                <span class="material-name" *ngIf="material.statusPresent.status === 400">
+                  {{ material.learningMaterial.idLearningMaterial.learningMaterialName }}
+                </span>
               </div>
-            </a>
+            </div>
           
             <div class="d-flex">
               
@@ -54,9 +60,9 @@
 
               <ng-template [ngIf]="selectedView == viewType.OPERATION_VIEW">
                 <span class="material-icon">
-                  <button class="btn btn-info rounded">
+                  <a [routerLink]="['../../edit-material', material.learningMaterial.id]" class="btn btn-info rounded">
                     <i class="fas fa-edit"></i>
-                  </button>
+                  </a>
                 </span>
 
                 <span class="material-icon">

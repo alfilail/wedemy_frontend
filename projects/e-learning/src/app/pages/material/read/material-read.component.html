@@ -20,9 +20,9 @@
       </ng-template> -->
       <div class="content" [innerHTML]="material.idLearningMaterial.description">
       </div>
-      <a [href]="downloadFile(material.idLearningMaterial.idFile)" download="file.txt">
+      <button class="btn btn-primary" (click)="downloadFileFromBlob(material.idLearningMaterial.idFile, 'sample')">
         File
-      </a>
+      </button>
       
     </div>
     <div class="col text-center">

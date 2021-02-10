@@ -44,8 +44,8 @@ export class MaterialAddComponent implements OnInit {
   getMaterialTypes(): void {
     this.materialService.getMaterialTypes().subscribe(
       res => {
-        this.materialTypes = res;
-        this.selectedMaterialType = res[0];
+        this.materialTypes = res.data;
+        this.selectedMaterialType = res.data[0];
       },
       err => {
         console.log(err);

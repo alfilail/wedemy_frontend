@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AssignmentService } from '@bootcamp-elearning/services/assignment.service';
-import { AuthService } from '@bootcamp-homepage/services/auth.service';
+import { downloadFile } from '@bootcamp-elearning/utils/download';
 
 @Component({
   selector: 'app-assignment',
@@ -38,7 +38,7 @@ export class AssignmentComponent implements OnInit {
     }
     this.assignmentService.getAssigment(param).subscribe(
       res => {
-        this.assignments = res;
+        this.assignments = res.data;
         this.loading = false;
         console.log(res);
       },
@@ -48,6 +48,79 @@ export class AssignmentComponent implements OnInit {
     )
   }
 
+  refactorModelScore(model: any[]): any[] {
+    let refactModelNewScore = [];
+    let refactModelUpdateScore = [];
+    model.forEach(val => {
+      if (val.idAssignmentSubmission.id !== 'Empty') {
+        if (val.id === 'Empty') {
+          refactModelNewScore.push({
+            id: val.id,
+            idAssignmentSubmission: {
+              id: val.idAssignmentSubmission.id,
+              idDetailModuleRegistration: {
+                id: this.idDetailModuleRegistration
+              },
+              idParticipant: {
+                id: val.idAssignmentSubmission.idParticipant.id
+              }
+            },
+            version: val.version,
+            score: val.score
+          })
+        } else {
+          refactModelUpdateScore.push({
+            id: val.id,
+            idAssignmentSubmission: {
+              id: val.idAssignmentSubmission.id,
+              idDetailModuleRegistration: {
+                id: this.idDetailModuleRegistration
+              },
+              idParticipant: {
+                id: val.idAssignmentSubmission.idParticipant.id
+              }
+            },
+            version: val.version,
+            score: val.score
+          })
+        }
 
+      }
+    })
+    console.log('new score');
+    console.log(refactModelNewScore);
+    console.log('update score');
+    console.log(refactModelUpdateScore);
+    return [refactModelNewScore, refactModelUpdateScore];
+  }
+
+  onChangeScore(event): void {
+    console.log('Event Onchange Score')
+    console.log(event);
+    console.log(this.assignments)
+
+  }
+
+  check(): void {
+    this.refactorModelScore(this.assignments);
+  }
+
+  setAssignmentScore(): void {
+    console.log('Aku ditekan!');
+
+    let res = this.refactorModelScore(this.assignments);
+    this.assignmentService.setScoreAssignment(res[0], res[1]).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  downloadFileFromBlob(data: File, fileName): void {
+    downloadFile(data, fileName);
+  }
 
 }
