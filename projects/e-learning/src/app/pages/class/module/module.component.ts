@@ -49,7 +49,7 @@ export class ModuleComponent implements OnInit {
     this.classService.getDetail(params).subscribe(
       res => {
         this.modules = res.data;
-        console.log(res);
+        console.log("goi "+ res);
         this.checkPresent();
       },
       err => { console.log(err) }

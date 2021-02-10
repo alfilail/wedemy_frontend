@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
       this.url = 'data:image/png;base64,' + this.myAccount.idProfile.idFile.file
     }
     this.displayMaximizable = true;
+    console.log(this.myAccount.idProfile.version)
   }
 
   onSelectFile(event) {
@@ -79,7 +80,8 @@ export class ProfileComponent implements OnInit {
     this.profileService.updateProfile(this.formData).subscribe(res => {
       this.myAccount.idProfile = res.data;
       this.displayMaximizable = false;
-      // window.location.reload();
+      this.formData.delete('body');
+      this.ngOnInit();
     })
   }
 

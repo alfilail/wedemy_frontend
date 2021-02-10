@@ -20,19 +20,10 @@ export class AboutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUserByRoleCode(ROLE.PARTICIPANT)
-    .subscribe(res => {
-      this.totalParticipant = res.data.length;
-    })
-
-    this.userService.getUserByRoleCode(ROLE.TUTOR)
-    .subscribe(res => {
-      this.totalTutor = res.data.length;
-    })
-
-    this.classService.getAll()
-    .subscribe(res => {
-      this.totalClass = res.data.length
+    this.classService.getTotalClassAndUser().subscribe(res => {
+      this.totalParticipant = res.data.totalParticipant;
+      this.totalClass = res.data.totalClass;
+      this.totalTutor = res.data.totalTutor;
     })
   }
 

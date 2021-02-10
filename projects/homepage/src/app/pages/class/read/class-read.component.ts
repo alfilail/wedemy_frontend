@@ -22,7 +22,7 @@ export class ClassReadComponent implements OnInit {
   countModule: number = 0;
   totalHours: number = 0;
   countMat: number = 0;
-  
+  loading: boolean = true;
 
   constructor(private router: Router,
     private dtlClassService: DetailClassService,
@@ -34,11 +34,13 @@ export class ClassReadComponent implements OnInit {
     this.dtlClassService.getAll()
       .subscribe(res => {
         this.listClasses = res.data;
+        console.log(this.listClasses)
         this.listClasses.forEach(c => {
           this.dtlClassService.getInformation(c.id).subscribe(info => {
             c.totalHours = info.data.totalHours;
             c.totalModules = info.data.modules.length;
             this.showStatus(c);
+            this.loading = false;
           })
         })
       });

@@ -1,9 +1,10 @@
 /* Footer */
 
 footer {
-    background-color: #F1C21B;
+    /* background-color: #f1c31b; */
+    background-color: whitesmoke;
     /* background-color: grey; */
-    color: white;
+    /* color: white; */
     font-family: 'Quicksand', sans-serif;
 }
 
@@ -22,8 +23,13 @@ ul {
 }
 
 .divider {
-    height: 3px;
-    background-color: grey;
+    height: 1px;
+    background-color: lightgrey;
+}
+
+.footer-b {
+    background-color: gray;
+    padding: 1rem;
 }
 
 p {
@@ -37,4 +43,9 @@ h4,
 h5,
 h6 {
     font-family: 'Quicksand', sans-serif !important;
+}
+
+img {
+    width: 2rem;
+    margin-right: 2px;
 }

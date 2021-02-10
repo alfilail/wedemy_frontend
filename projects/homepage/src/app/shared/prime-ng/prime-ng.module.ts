@@ -24,7 +24,7 @@ import {SkeletonModule} from 'primeng/skeleton';
 import {ToastModule} from 'primeng/toast';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [],
@@ -53,7 +53,8 @@ import {MessageModule} from 'primeng/message';
     SkeletonModule,
     ToastModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -78,7 +79,8 @@ import {MessageModule} from 'primeng/message';
     InputMaskModule,
     EditorModule,
     SkeletonModule,
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule
   ]
 })
 export class PrimeNGModule { }

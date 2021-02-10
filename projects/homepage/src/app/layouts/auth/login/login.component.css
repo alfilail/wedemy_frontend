@@ -27,6 +27,10 @@
     }
 }
 
+.container {
+    height: 61vh;
+}
+
 .h-text {
     color: #2196F3;
 }
@@ -45,28 +49,7 @@ h6 {
 }
 
 #page-container {
-    /* position: fixed; */
     height: 100vh;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    /* background-color: lightskyblue; */
 }
-
-
-/* 
-#content-wrap {
-    margin: 0;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-*/
-
-
-/* #footer {
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-} */
