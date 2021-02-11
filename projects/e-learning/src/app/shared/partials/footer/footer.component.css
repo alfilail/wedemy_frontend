@@ -1,6 +1,10 @@
 footer {
-    position: absolute;
-    width: 100%;
-    background-color: grey;
-    color: white;
+  background-color: grey;
+  color: white;
+}
+
+footer p {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
 }

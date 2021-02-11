@@ -14,6 +14,7 @@ import { MaterialEditComponent } from '@bootcamp-elearning/pages/class/material/
 import { ModuleComponent } from '@bootcamp-elearning/pages/class/module/module.component';
 import { ReportReadComponent } from '@bootcamp-elearning/pages/class/report/read/report-read.component';
 import { ReportDetailComponent } from '@bootcamp-elearning/pages/class/report/detail/report-detail.component';
+import { SkeletonModule } from 'primeng/skeleton';
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import { ReportDetailComponent } from '@bootcamp-elearning/pages/class/report/de
     FormsModule,
     TableModule,
     EditorModule,
-    ButtonModule
+    ButtonModule,
+    SkeletonModule
+
   ]
 })
 export class ClassModule { }
