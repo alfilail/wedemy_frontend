@@ -91,7 +91,7 @@ export class ModuleComponent implements OnInit {
               let scheduleEndDateTime = moment(`${scheduleDate} ${endTime}`, "YYYY-MM-DD HH:mm");
               let dateTimeNow = moment(new Date());
               console.log('Waktu Sekarang');
-              console.log(dateTimeNow.add(7, 'hours'));
+              // console.log(dateTimeNow.add(7, 'hours'));
 
               if (dateTimeNow.diff(scheduleStarDateTime, 'seconds') >= 0) {
                 if (dateTimeNow.diff(scheduleEndDateTime, 'seconds') > 0) {
@@ -165,7 +165,7 @@ export class ModuleComponent implements OnInit {
               let scheduleStarDateTime = moment(`${scheduleDate} ${startTime}`, "YYYY-MM-DD HH:mm");
               let scheduleEndDateTime = moment(`${scheduleDate} ${endTime}`, "YYYY-MM-DD HH:mm");
               let dateTimeNow = moment(new Date());
-              dateTimeNow.add(7, 'hours')
+              // dateTimeNow.add(7, 'hours')
               if (dateTimeNow.diff(scheduleStarDateTime, 'seconds') >= 0) {
                 console.log('Role anda adalah Tutor: dateTimeNow.diff(scheduleStarDateTime, seconds) >= 0)');
                 if (dateTimeNow.diff(scheduleEndDateTime, 'seconds') > 0) {

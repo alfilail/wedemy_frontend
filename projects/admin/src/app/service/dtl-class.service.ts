@@ -15,7 +15,7 @@ export class DtlClassService extends BaseService {
   }
 
   getDetailClasses(): Observable<Responses<DetailClasses[]>> {
-    return this.http.get<Responses<DetailClasses[]>>(`${this.ipAddress}/detail-class/active`)
+    return this.http.get<Responses<DetailClasses[]>>(`${this.ipAddress}/detail-class`)
   }
 
   getDetailClassById(id: string): Observable<Responses<DetailClasses>> {
