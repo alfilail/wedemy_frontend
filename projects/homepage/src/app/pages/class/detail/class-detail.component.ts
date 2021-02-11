@@ -43,6 +43,8 @@ export class ClassDetailComponent implements OnInit {
 
   defaultImg: string = "/assets/img/profile-default.jpeg";
 
+  loading: boolean = true;
+
   constructor(private router: Router,
     private moduleRgsService: ModuleRegistrationService,
     private dtlClassService: DetailClassService,
@@ -67,6 +69,7 @@ export class ClassDetailComponent implements OnInit {
         this.checkEnrolled();
         this.checkTutor();
         this.checkRegis();
+        this.loading = false;
       })
     });
   }
