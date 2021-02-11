@@ -15,7 +15,7 @@ export class LearningMaterialTypeService extends BaseService {
   }
 
   getLearningMaterialTypes(): Observable<Responses<LearningMaterialTypes[]>> {
-    return this.http.get<Responses<LearningMaterialTypes[]>>(`${this.ipAddress}/learning-material-type/all`)
+    return this.http.get<Responses<LearningMaterialTypes[]>>(`${this.ipAddress}/learning-material-type`)
   }
 
   insertLearningMaterialTypes(learningMaterialType: LearningMaterialTypes): Observable<Responses<LearningMaterialTypes>> {

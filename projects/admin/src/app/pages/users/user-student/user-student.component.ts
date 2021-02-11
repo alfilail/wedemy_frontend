@@ -32,6 +32,11 @@ export class UserStudentComponent implements OnInit {
     this.userService.getUserByCode('PCP').subscribe(val => {
       this.listUsers = val.data;
       console.log(val)
+      this.listUsers.forEach(res => {
+        if (res.idProfile.bio == null) {
+          res.idProfile.bio = "null"
+        }
+      })
     })
   }
 

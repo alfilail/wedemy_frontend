@@ -100,7 +100,7 @@ export class CreateKelasComponent implements OnInit {
   }
 
   getTutors(): void {
-    this.tutorService.getUserByCode('ADM').subscribe(val => {
+    this.tutorService.getUserByCode('TTR').subscribe(val => {
       this.listTutors = val.data
       console.log(val)
     })
@@ -237,6 +237,8 @@ export class CreateKelasComponent implements OnInit {
     this.formData.append("body", JSON.stringify(this.class));
 
     this.classService.updateClass(this.formData).subscribe(val => {
+      this.getClass();
+      this.formData.delete("body")
       this.route.navigateByUrl('/admin/kelas-aktif')
     })
   }

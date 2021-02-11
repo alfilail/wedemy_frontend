@@ -15,7 +15,7 @@ export class SubmissionStatusService extends BaseService {
   }
 
   getSubmissionStatus(): Observable<Responses<SubmissionStatus[]>> {
-    return this.http.get<Responses<SubmissionStatus[]>>(`${this.ipAddress}/submission-status/all`)
+    return this.http.get<Responses<SubmissionStatus[]>>(`${this.ipAddress}/submission-status`)
   }
 
   insertSubmissionStatus(submissionStatus: SubmissionStatus): Observable<Responses<SubmissionStatus>> {

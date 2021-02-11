@@ -14,7 +14,7 @@ export class UserService extends BaseService {
   }
 
   getUsers(): Observable<Responses<Users[]>> {
-    return this.http.get<Responses<Users[]>>(`${this.ipAddress}/user/all`);
+    return this.http.get<Responses<Users[]>>(`${this.ipAddress}/user`);
   }
 
   getUserByCode(code: string): Observable<Responses<Users[]>> {

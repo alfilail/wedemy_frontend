@@ -52,6 +52,7 @@ export class PersetujuanAbsenComponent implements OnInit {
       this.update = false;
       this.removeApprovement(this.approvement.id)
       this.listApprovements.push(this.approvement)
+      this.getApprovements()
     })
   }
 
@@ -116,10 +117,5 @@ export class PersetujuanAbsenComponent implements OnInit {
         this.nameValid = true;
       }
     }
-  }
-
-  keyDownFunction(e) {
-    e.preventDefault();
-    this.productDialog = false;
   }
 }

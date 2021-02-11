@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { stringify } from '@angular/compiler/src/util';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailModuleRegistration } from '@bootcamp-elearning/models/detail-module-registration';
 import { LearningMaterialType } from '@bootcamp-elearning/models/learning-material-type';
@@ -49,7 +49,6 @@ export class MaterialAddComponent implements OnInit {
     this.route.params.subscribe(param => {
       this.idModuleRegistration = param['idModuleRegistration']
       console.log(param['idModuleRegistration']);
-
     })
     this.getMaterialTypes();
   }

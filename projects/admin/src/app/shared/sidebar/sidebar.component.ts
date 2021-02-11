@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { routes } from '../../consts/routes';
 
@@ -13,7 +14,7 @@ export class SidebarComponent {
   panelOpenState = false;
   public isOpenUiElements = false;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private route: Router) {
 
   }
 
@@ -28,6 +29,11 @@ export class SidebarComponent {
       this.isSuperAdmin = true;
 
     }
+  }
+
+  clickUserPage(role: string) {
+    this.panelOpenState = true;
+    this.route.navigateByUrl(`/admin/user/${role}`)
   }
 
 }

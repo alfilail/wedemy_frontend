@@ -36,8 +36,12 @@ export class HttpIntercept implements HttpInterceptor {
                         // console.log(error.error);
                         console.log('request failed');
                         if (error.error != null) {
-                            this.toast.errorToast(error.error.message)
-                        }
+                            if (error.error.message) {
+                                this.toast.errorToast(error.error.message)
+                            } else {
+                                this.toast.errorToast(error.error)
+                            }
+                        } 
                     }
                 }
             ))

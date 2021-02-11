@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserAdminComponent } from '../../../pages/users/user-admin/user-admin.component';
@@ -9,14 +9,18 @@ import { CreateTutorComponent } from '../../../pages/users/user-tutor/create-tut
 import { AngMaterialModule } from '../../../shared/ang-material/ang-material.module';
 import { PrimeModule } from '../../../shared/prime/prime.module';
 import { SharedModule } from '../../../shared/shared.module';
-
+import { registerLocaleData } from '@angular/common';
+import localeId from '@angular/common/locales/id';
+import { ListUsersComponent } from '@bootcamp-admin/pages/users/list-users/list-users.component';
+registerLocaleData(localeId, 'id');
 
 @NgModule({
   declarations: [
     UserAdminComponent,
     UserTutorComponent,
     UserStudentComponent,
-    CreateTutorComponent
+    CreateTutorComponent,
+    ListUsersComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +28,10 @@ import { SharedModule } from '../../../shared/shared.module';
     AngMaterialModule,
     PrimeModule,
     SharedModule
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: "id-ID" },
+    DatePipe
   ]
 })
 export class UserModule { }

@@ -16,7 +16,7 @@ export class ClassService extends BaseService {
   }
 
   getClasses(): Observable<Responses<Classes[]>> {
-    return this.http.get<Responses<Classes[]>>(`${this.ipAddress}/class/active`)
+    return this.http.get<Responses<Classes[]>>(`${this.ipAddress}/class`)
   }
 
   insertClasses(formData: FormData): Observable<any> {

@@ -15,7 +15,7 @@ export class ApprovementService extends BaseService {
   }
 
   getApprovements(): Observable<Responses<Approvements[]>> {
-    return this.http.get<Responses<Approvements[]>>(`${this.ipAddress}/approvement/all`)
+    return this.http.get<Responses<Approvements[]>>(`${this.ipAddress}/approvement`)
   }
 
   insertApprovement(approvement: Approvements): Observable<Responses<Approvements>> {
