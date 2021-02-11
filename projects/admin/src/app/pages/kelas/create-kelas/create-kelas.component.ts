@@ -100,7 +100,7 @@ export class CreateKelasComponent implements OnInit {
   }
 
   getTutors(): void {
-    this.tutorService.getUserByCode('ADM').subscribe(val => {
+    this.tutorService.getUserByCode('TTR').subscribe(val => {
       this.listTutors = val.data
       console.log(val)
     })
