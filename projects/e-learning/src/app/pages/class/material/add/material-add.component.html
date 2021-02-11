@@ -23,30 +23,29 @@
     <div class="col-sm-12 col-md-6">
         <div class="form-group">
             <label for="startDate">Tanggal Berlangsung</label>
-            <input (ngModelChange)="startDateValidation($event)" [(ngModel)]="startDate" type="date" class="form-control {{startDateClass}}" id="startDate" aria-describedby="startDateHelp" required>
+            <input #dateLimit (ngModelChange)="startDateValidation($event)" [(ngModel)]="startDate" type="date" class="form-control {{startDateClass}}" id="startDate" aria-describedby="startDateHelp" required>
             <small *ngIf="!startDateIsValid" id="startDateHelp" class="form-text text-danger">{{startDateErrMsg}}</small>
         </div>
     </div>
 
-  <div class="col-sm-12 col-md-6">
-    <div class="form-group">
+    <div class="col-sm-12 col-md-6">
+        <!-- <div class="form-group">
       <label for="materialFile">File</label>
       <input (change)="setFile($event)" type="file" class="form-control" id="materialFile" aria-describedby="materialFileHelp">
       <small id="materialFileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-
-    <!-- <div class="form-group">
-      <label class="btn btn-primary btn-file">
-        Browse <input type="file" style="display: none;" required>
-        File selected
-    </label>
-    
     </div> -->
-  </div>
-  <div class="col-sm-12 col-md-6">
-    <div class="form-group">
-      <label>Tipe Material :&nbsp;</label>
-      <select [(ngModel)]="selectedMaterialType" class="shadow-sm">
+
+        <label>File Materi</label>
+        <div class="custom-file mb-3">
+            <input (change)="setFile($event)" type="file" class="custom-file-input" id="customFile" name="filename">
+            <label class="custom-file-label" for="customFile">{{selectedFileName}}</label>
+        </div>
+
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label>Tipe Material :&nbsp;</label>
+            <select [(ngModel)]="selectedMaterialType" class="shadow-sm form-control">
         <option *ngFor="let materialType of materialTypes" [ngValue]="materialType">{{ materialType.learningMaterialTypeName }}</option>
       </select>
         </div>

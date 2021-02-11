@@ -10,4 +10,5 @@ export class Profile extends BaseMaster {
   address?: string;
   email?: string;
   idFile: Files = new Files();
+  bio?: string;
 }

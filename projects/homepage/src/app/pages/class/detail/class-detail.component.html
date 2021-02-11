@@ -20,7 +20,8 @@
     </div>
     <div class="header-item container mx-auto px-auto p-d-lg-flex p-jc-start" [(ngModel)]="dtlClass" ngDefaultControl>
         <div class="img-square-wrapper p-mx-auto p-mx-lg-0">
-            <img class="shadow rounded p-mx-auto" src="data:image/png;base64,{{dtlClass.idClass.idFile.file}}" alt="">
+            <p-skeleton *ngIf="loading" size="250px"></p-skeleton>
+            <img *ngIf="!loading" class="shadow rounded p-mx-auto" src="data:image/png;base64,{{dtlClass.idClass.idFile.file}}" alt="">
         </div>
         <span class="info pl-3">
             <h2><b>{{dtlClass.idClass.className}}</b></h2>

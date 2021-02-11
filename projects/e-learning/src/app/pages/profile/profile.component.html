@@ -6,12 +6,13 @@
                     <img src="{{myAccount.idProfile.idFile.file ? 'data:image/png;base64,'+myAccount.idProfile.idFile.file : defaultImg}}" alt="">
                 </div>
                 <div class="p-mt-3 text-center">
-                    <button pButton pRipple type="button" (click)="showMaximizableDialog()" icon="pi pi-pencil" label="Edit Profile" class="p-button-raised p-button-success"></button>
+                    <button pButton pRipple type="button" (click)="showMaximizableDialog()" icon="pi pi-pencil" label="Edit Profil" class="p-button-raised p-button-success"></button>
                 </div>
             </div>
 
             <div class="p-col-12 p-lg-9 p-md-12">
                 <h2 class=""><b>{{myAccount.idProfile.fullName}}</b></h2>
+                <p>{{myAccount.idProfile.bio}}</p>
                 <table>
                     <tr>
                         <th>Email</th>
@@ -69,17 +70,17 @@
                     pInputText>
             </div>
             <div class="p-field">
+                <label for="address">Bio</label>
+                <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.bio" [value]="myAccount.idProfile.bio" placeholder="{{myAccount.idProfile.bio ? myAccount.idProfile.bio : 'Masukkan Biodata Singkat'}}" class="form-control" id="address"
+                    type="text" rows="3"></textarea>
+            </div>
+            <div class="p-field">
                 <label for="email">Email</label>
                 <input [value]="myAccount.idProfile.email" placeholder="{{myAccount.idProfile.email ? myAccount.idProfile.email : 'Kosong'}}" id="email" type="email" disabled pInputText>
             </div>
             <div class="p-field">
                 <label for="phone">Nomor HP</label>
                 <input [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.phone" [value]="myAccount.idProfile.phone" placeholder="{{myAccount.idProfile.phone ? myAccount.idProfile.phone : 'Masukkan Nomor HP'}}" id="phone" type="text" pInputText>
-            </div>
-            <div class="p-field">
-                <label for="idNumber">Nomor Identitas</label>
-                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.idNumber" [value]="myAccount.idProfile.idNumber" placeholder="{{myAccount.idProfile.idNumber ? myAccount.idProfile.idNumber: 'Masukkan Nomor Identitas (misal: KTP, Paspor, Kartu Pelajar, dll)'}}"
-                    id="idNumber" type="text" pInputText>
             </div>
             <div class="p-field">
                 <label for="idNumber">Nomor Identitas</label>
