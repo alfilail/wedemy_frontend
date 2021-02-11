@@ -1,12 +1,24 @@
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
-        <h1>Peserta</h1>
+        <h1>{{selectedRole}}</h1>
     </mat-toolbar>
 
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12 pb-5 justify-content-center">
             <div class="card">
                 <p-toolbar class="p-m-3">
+                    <ng-template pTemplate="left" *ngIf="isSuperAdmin; else isTutor">
+                        <button pButton pRipple label="Tambah" icon="pi pi-plus" (click)="createUser()"
+                            class="p-button-success p-mr-2"></button>
+                    </ng-template>
+                    <ng-template pTemplate="left" #isTutor *ngIf="isTutor">
+                        <button pButton pRipple label="Tambah" icon="pi pi-plus" (click)="createUser()"
+                            class="p-button-success p-mr-2"></button>
+                    </ng-template>
+                    <!-- <ng-template pTemplate="left" *ngIf="isTutor">
+                        <button pButton pRipple label="Tambah" icon="pi pi-plus" (click)="createUser()"
+                            class="p-button-success p-mr-2"></button>
+                    </ng-template> -->
                     <ng-template pTemplate="right">
                         <div class="p-d-flex p-ai-center p-jc-between">
                             <span class="p-input-icon-left">
@@ -18,7 +30,8 @@
                     </ng-template>
                 </p-toolbar>
                 <p-table #dt [value]="listUsers" [rows]="10" [paginator]="true" [scrollable]="true" [rowHover]="true"
-                    dataKey="id" class="p-m-3" [globalFilterFields]="['username']"
+                    dataKey="id" class="p-m-3"
+                    [globalFilterFields]="['idProfile.fullName','username','idProfile.email','idProfile.address','idProfile.birthPlace','idProfile.birthDate']"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [showCurrentPageReport]="true">
                     <ng-template pTemplate="colgroup" let-columns>
@@ -41,16 +54,21 @@
                             </th>
                             <th pSortableColumn="username">Username<p-sortIcon field="username"></p-sortIcon>
                             </th>
-                            <th pSortableColumn="nama">Nama<p-sortIcon field="nama"></p-sortIcon>
+                            <th pSortableColumn="idProfile.fullName">Nama<p-sortIcon field="idProfile.fullName">
+                                </p-sortIcon>
                             </th>
                             <th>Bio </th>
-                            <th pSortableColumn="email">E-mail<p-sortIcon field="email"></p-sortIcon>
+                            <th pSortableColumn="idProfile.email">E-mail<p-sortIcon field="idProfile.email">
+                                </p-sortIcon>
                             </th>
-                            <th pSortableColumn="alamat">Alamat<p-sortIcon field="alamat"></p-sortIcon>
+                            <th pSortableColumn="idProfile.address">Alamat<p-sortIcon field="idProfile.address">
+                                </p-sortIcon>
                             </th>
-                            <th pSortableColumn="tempatLahir">Tempat Lahir<p-sortIcon field="tempatLahir"></p-sortIcon>
+                            <th pSortableColumn="idProfile.birthPlace">Tempat Lahir<p-sortIcon
+                                    field="idProfile.birthPlace"></p-sortIcon>
                             </th>
-                            <th pSortableColumn="tglLahir">Tanggal Lahir<p-sortIcon field="tglLahir"></p-sortIcon>
+                            <th pSortableColumn="idProfile.birthDate">Tanggal Lahir<p-sortIcon
+                                    field="idProfile.birthDate"></p-sortIcon>
                             </th>
                             <th>Nomor Ponsel </th>
                             <th>Aksi</th>
@@ -75,7 +93,7 @@
                     </ng-template>
                     <ng-template pTemplate="summary">
                         <div class="p-d-flex p-ai-center p-jc-between">
-                            Terdapat {{listUsers ? listUsers.length : 0 }} Peserta.
+                            Terdapat {{listUsers ? listUsers.length : 0 }} Admin.
                         </div>
                     </ng-template>
                 </p-table>
