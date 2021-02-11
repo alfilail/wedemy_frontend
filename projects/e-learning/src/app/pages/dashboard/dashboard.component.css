@@ -4,6 +4,7 @@ main {
   padding-top: 50px;
   padding-bottom: 50px;
   font-size: medium;
+  min-height: 600px;
 }
 
 .class-title {
@@ -44,4 +45,8 @@ main {
   text-align: center;
   pointer-events: none;
   color: #aaa;
+}
+
+.card-wrapper {
+  /* min-height: 400px !important; */
 }
