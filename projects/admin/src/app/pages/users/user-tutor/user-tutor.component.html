@@ -16,7 +16,7 @@
                             <span class="p-input-icon-left">
                                 <i class="pi pi-search"></i>
                                 <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                                    placeholder="Search..." />
+                                    placeholder="Cari..." />
                             </span>
                         </div>
                     </ng-template>
@@ -30,6 +30,7 @@
                             <col style="width:200px">
                             <col style="width:150px">
                             <col style="width:200px">
+                            <col style="width:220px">
                             <col style="width:220px">
                             <col style="width:200px">
                             <col style="width:200px">
@@ -46,6 +47,7 @@
                             </th>
                             <th pSortableColumn="nama">Nama<p-sortIcon field="nama"></p-sortIcon>
                             </th>
+                            <th>Bio </th>
                             <th pSortableColumn="email">E-mail<p-sortIcon field="email"></p-sortIcon>
                             </th>
                             <th pSortableColumn="alamat">Alamat<p-sortIcon field="alamat"></p-sortIcon>
@@ -63,10 +65,11 @@
                             <td>{{listUsers.idProfile.idNumber}}</td>
                             <td>{{listUsers.username}}</td>
                             <td>{{listUsers.idProfile.fullName}}</td>
+                            <td>{{listUsers.idProfile.bio}}</td>
                             <td>{{listUsers.idProfile.email}}</td>
                             <td>{{listUsers.idProfile.address}}</td>
                             <td>{{listUsers.idProfile.birthPlace}}</td>
-                            <td>{{listUsers.idProfile.birthDate}}</td>
+                            <td>{{listUsers.idProfile.birthDate | date:'longDate'}}</td>
                             <td>{{listUsers.idProfile.phone}}</td>
                             <td>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"

@@ -14,11 +14,12 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { DtlKelasComponent } from './pages/kelas/dtl-kelas/dtl-kelas.component';
+import { ListUsersComponent } from './pages/users/list-users/list-users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     // BrowserModule,

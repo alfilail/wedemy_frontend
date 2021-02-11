@@ -24,7 +24,11 @@
 
       <ul class="section-list">
         <ng-template ngFor let-material [ngForOf]="module.learningMaterials" let-i="index">
-          
+          <li class="section-item d-flex justify-content-end py-1 align-items-center" style="background-color: rgb(230, 230, 230);">
+            <div class="item pr-3" style="font-size: 12px; font-weight: bold;">
+              {{ material.learningMaterial.scheduleDate | date}} {{modules.detailClass.startTime}} - {{modules.detailClass.endTime}}
+            </div>
+          </li>
           <li class="section-item d-flex justify-content-between py-2 align-items-center">
             <div class="item">
               <div class="title-container">

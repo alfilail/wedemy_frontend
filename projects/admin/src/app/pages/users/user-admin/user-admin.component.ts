@@ -44,6 +44,11 @@ export class UserAdminComponent implements OnInit {
   getUserByCode(): void {
     this.userService.getUserByCode('ADM').subscribe(val => {
       this.listUsers = val.data;
+      this.listUsers.forEach(res => {
+        if (res.idProfile.bio == null) {
+          res.idProfile.bio = "null"
+        }
+      })
       console.log(val)
     })
   }

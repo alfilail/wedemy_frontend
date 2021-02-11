@@ -54,6 +54,7 @@ export class NilaiComponent implements OnInit {
       this.update = false;
       this.removeNilai(this.nilai.id)
       this.listNilai.push(this.nilai)
+      this.getNilai()
     });
   }
 

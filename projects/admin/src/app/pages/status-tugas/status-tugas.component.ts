@@ -54,6 +54,7 @@ export class StatusTugasComponent implements OnInit {
       this.productDialog = false; this.update = false;
       this.removeStatusTugas(this.statusTugas.id)
       this.listStatusTugas.push(this.statusTugas)
+      this.getSubmissionStatus()
     })
   }
 

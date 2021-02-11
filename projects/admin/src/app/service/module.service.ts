@@ -15,7 +15,7 @@ export class ModuleService extends BaseService {
   }
 
   getModules(): Observable<Responses<Modules[]>> {
-    return this.http.get<Responses<Modules[]>>(`${this.ipAddress}/module/all`)
+    return this.http.get<Responses<Modules[]>>(`${this.ipAddress}/module`)
   }
 
   insertModules(module: Modules): Observable<Responses<Modules>> {

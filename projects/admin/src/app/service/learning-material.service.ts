@@ -15,7 +15,7 @@ export class LearningMaterialService extends BaseService {
   }
 
   getLearningMaterials(): Observable<Responses<LearningMaterials[]>> {
-    return this.http.get<Responses<LearningMaterials[]>>(`${this.ipAddress}/learning-material/all`)
+    return this.http.get<Responses<LearningMaterials[]>>(`${this.ipAddress}/learning-material`)
   }
 
   insertLearningMaterials(learningMaterial: LearningMaterials): Observable<Responses<LearningMaterials>> {

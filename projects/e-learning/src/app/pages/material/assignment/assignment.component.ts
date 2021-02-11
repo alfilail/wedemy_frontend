@@ -73,12 +73,12 @@ export class AssignmentComponent implements OnInit {
             id: val.id,
             idAssignmentSubmission: {
               id: val.idAssignmentSubmission.id,
-              idDetailModuleRegistration: {
-                id: this.idDetailModuleRegistration
-              },
-              idParticipant: {
-                id: val.idAssignmentSubmission.idParticipant.id
-              }
+              // idDetailModuleRegistration: {
+              //   id: this.idDetailModuleRegistration
+              // },
+              // idParticipant: {
+              //   id: val.idAssignmentSubmission.idParticipant.id
+              // }
             },
             version: val.version,
             score: val.score

@@ -56,6 +56,7 @@ export class SilabusComponent implements OnInit {
       this.productDialog = false; this.update = false;
       this.removeSilabus(this.module.id)
       this.listSilabus.push(this.module)
+      this.getModules()
     })
   }
 

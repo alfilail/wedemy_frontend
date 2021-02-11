@@ -27,20 +27,31 @@
                                 <h4 class="card-title">Profil</h4>
                                 <hr>
                                 <form>
-                                    <div class="form-group mt-3">
-                                        <label for="foto">Foto Diri</label>
-                                        <div class="d-flex mt-2">
-                                            <div class="col-lg-2 ">
-                                                <label for="fileToUpload">
-                                                    <div class="profile-pic" style="background-image: url({{url}})">
-                                                        <span class="fa fa-camera"></span>
-                                                        <!-- <span>Change Image</span> -->
+                                    <div class="d-flex justify-content-center">
+                                        <div class=" col-lg-3 col-md-2 col-sm-12">
+                                            <div class="form-group mt-3">
+                                                <label for="foto">Foto Diri</label>
+                                                <div class="d-flex mt-2">
+                                                    <div class="col-lg-2 ">
+                                                        <label for="fileToUpload">
+                                                            <div class="profile-pic"
+                                                                style="background-image: url({{url}})">
+                                                                <span class="fa fa-camera"></span>
+                                                                <!-- <span>Change Image</span> -->
+                                                            </div>
+                                                        </label>
+                                                        <input (change)="getFile($event)" class="form-control"
+                                                            accept=".png, .jpg, .jpeg" type="File" name="fileToUpload"
+                                                            id="fileToUpload">
                                                     </div>
-                                                </label>
-                                                <input (change)="getFile($event)" class="form-control"
-                                                    accept=".png, .jpg, .jpeg" type="File" name="fileToUpload"
-                                                    id="fileToUpload">
+                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="form-group mt-3 col-lg-6 col-md-6">
+                                            <label for="fullname">Bio</label>
+                                            <textarea type="text" class="form-control mt-2" id="bio" pInputText
+                                                [value]="profile.bio" name="bio" [(ngModel)]="profile.bio"></textarea>
+                                            <small>*opsional</small>
                                         </div>
                                     </div>
                                     <div class="form-group mt-3">
@@ -77,26 +88,19 @@
                                 <hr>
                                 <div class="p-fluid">
                                     <div class="d-flex">
-                                        <div class="p-field  col-lg-4 col-md-4">
+                                        <div class="p-field  col-lg-6 col-md-6">
                                             <label for="noTlp">Nomor KTP</label>
                                             <input id="ktp" type="text" required pInputText
                                                 (ngModelChange)="validation($event,'ktp')" name="ktp"
                                                 [(ngModel)]="profile.idNumber" [value]="profile.idNumber">
                                             <small *ngIf="!nomorKtpValid" class="p-error">{{nomorKtpErrMsg}}</small>
                                         </div>
-                                        <div class="p-field  col-lg-4 col-md-4">
+                                        <div class="p-field  col-lg-6 col-md-6">
                                             <label for="noTlp">No. Telepon</label>
                                             <input id="noTlp" type="text" required pInputText
                                                 (ngModelChange)="validation($event,'numPhone')" name="noTlp"
                                                 [(ngModel)]="profile.phone" [value]="profile.phone">
                                             <small *ngIf="!phoneNumValid" class="p-error">{{phoneNumErrMsg}}</small>
-                                        </div>
-                                        <div class="p-field  col-lg-4 col-md-4">
-                                            <label for="alamat">Alamat</label>
-                                            <input id="alamat" type="text" required pInputText
-                                                (ngModelChange)="validation($event,'alamat')" name="alamat"
-                                                [(ngModel)]="profile.address" [value]="profile.address">
-                                            <small *ngIf="!alamatValid" class="p-error">{{alamatErrMsg}}</small>
                                         </div>
                                     </div>
                                     <div class="d-flex">
@@ -107,12 +111,19 @@
                                                 [(ngModel)]="profile.birthPlace" [value]="profile.birthPlace">
                                             <small *ngIf="!birthPlaceValid" class="p-error">{{birthPlaceErrMsg}}</small>
                                         </div>
-                                        <div class="p-field  col-lg-6 col-md-6">
+                                        <div class="p-field col-lg-6 col-md-6">
                                             <label for="startDate">Tanggal Lahir</label>
                                             <p-calendar [monthNavigator]="true" [(ngModel)]="birthDate" name="birthDate"
-                                                [yearNavigator]="true" yearRange="1990:2021" inputId="navigators"
+                                                [yearNavigator]="true" yearRange="1990:2030" inputId="navigators"
                                                 [showIcon]="true" inputId="icon"></p-calendar>
                                         </div>
+                                    </div>
+                                    <div class="p-field col-lg-12 col-md-12">
+                                        <label for="alamat">Alamat</label>
+                                        <textarea id="alamat" type="text" required pInputText
+                                            (ngModelChange)="validation($event,'alamat')" name="alamat"
+                                            [(ngModel)]="profile.address" [value]="profile.address"></textarea>
+                                        <small *ngIf="!alamatValid" class="p-error">{{alamatErrMsg}}</small>
                                     </div>
                                     <div class="d-flex justify-content-end">
                                         <div class="mt-4">

@@ -16,7 +16,7 @@ export class GradeService extends BaseService {
   }
 
   getGrades(): Observable<Responses<Grades[]>> {
-    return this.http.get<Responses<Grades[]>>(`${this.ipAddress}/grade/all`)
+    return this.http.get<Responses<Grades[]>>(`${this.ipAddress}/grade`)
   }
 
   insertGrade(grade: Grades): Observable<Responses<Grades>> {

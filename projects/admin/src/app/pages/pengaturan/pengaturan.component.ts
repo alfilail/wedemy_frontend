@@ -77,7 +77,7 @@ export class PengaturanComponent implements OnInit {
   getProfile(): void {
     this.profileService.getProfileById(this.idProfile).subscribe(val => {
       this.profile = val.data;
-      console.log(val.data)
+      this.birthDate = new Date(val.data.birthDate)
       if (val.data.idFile.file) {
         this.url = 'data:image/png;base64,' + val.data.idFile.file
       }
@@ -116,9 +116,11 @@ export class PengaturanComponent implements OnInit {
     this.profile.id = this.auth.getProfileId();
     this.profile.updatedBy = this.auth.getProfileId()
 
-    console.log(this.profile)
-    this.formData.append('body', JSON.stringify(this.profile));
-    this.profileService.updateProfile(this.formData).subscribe(val => { })
+    this.formData.append("body", JSON.stringify(this.profile));
+    this.profileService.updateProfile(this.formData).subscribe(val => {
+      this.getProfile()
+      this.formData.delete("body");
+    })
   }
 
   updatePassword(): void {
