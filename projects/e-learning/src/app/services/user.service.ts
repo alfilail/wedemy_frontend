@@ -5,6 +5,7 @@ import { Response } from '@bootcamp-elearning/models/responses/response';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { BaseService } from '@bootcamp-homepage/services/base.service';
 import { Observable } from 'rxjs';
+import API from '@bootcamp-core/constants/api';
 
 
 @Injectable({
@@ -17,11 +18,11 @@ export class UserService extends BaseService{
   }
 
   insertUser(participant: User): Observable<Response<User>> {
-    return this.http.post<Response<User>>(`${this.api}/user`, participant)
+    return this.http.post<Response<User>>(`${API.WEDEMY_HOST_DOMAIN}/user`, participant)
   }
 
   login(user: User): Observable<any> {
-    return this.http.post<any>(`${this.api}/api/login`,
+    return this.http.post<any>(`${API.WEDEMY_HOST_DOMAIN}/api/login`,
       {
         username: user.username,
         userPassword: user.userPassword
@@ -29,16 +30,13 @@ export class UserService extends BaseService{
     )
   }
 
-  // resetPassword(profile: Profiles): Observable<Responses<Profiles>> {
-  //   return this.http.patch<Responses<Profiles>>(`${this.api}/user/forget-password`, profile)
-  // }
 
   getUserById(userId: string): Observable<Response<User>> {
-    return this.http.get<Response<User>>(`${this.api}/user/${userId}`)
+    return this.http.get<Response<User>>(`${API.WEDEMY_HOST_DOMAIN}/user/${userId}`)
   }
 
   updateUser(user: User): Observable<Response<User>> {
-    return this.http.patch<Response<User>>(`${this.api}/user`, user);
+    return this.http.patch<Response<User>>(`${API.WEDEMY_HOST_DOMAIN}/user`, user);
   }
   
 }

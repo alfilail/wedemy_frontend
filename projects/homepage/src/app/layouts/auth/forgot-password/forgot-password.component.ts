@@ -14,19 +14,14 @@ export class ForgotPasswordComponent implements OnInit {
   profile: Profiles = new Profiles();
   successDialog: boolean = false;
 
-  constructor(private router: Router,
-    private userService: UserService,
-    private route: ActivatedRoute,
-    private authService: AuthService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
   resetPassword(): void {
-    console.log("helo "+this.profile.email)
     this.userService.resetPassword(this.profile)
     .subscribe(res => {
-      console.log(res);
       this.successDialog = true;
     })
   }

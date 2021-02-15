@@ -15,12 +15,11 @@ export class ReportService {
     return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_SCORE_QUERY_PATH}/${idDetailClass}`);
   }
 
-  getDetailScore(idDetailClass: string, idUser: string = ''): Observable<Response<any[]>> {
-    if (idUser === '') {
-      return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_SCORE_QUERY_PATH}/${idDetailClass}`);
+  getDetailScore(idDtlClass: string, idParticipant: string = ''): string {
+    if (idParticipant === '') {
+      return (`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_SCORE_QUERY_PATH}s/${idDtlClass}`);
     } else {
-      let param = { idDetailClass, idUser };
-      return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_SCORE_QUERY_PATH}`, { params: param });
+      return (`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_SCORE_QUERY_PATH}?idDtlClass=${idDtlClass}&idParticipant=${idParticipant}`);
     }
   }
 

@@ -10,43 +10,36 @@ import { ReportService } from '@bootcamp-elearning/services/report.service';
 export class ReportReadComponent implements OnInit {
   idDetailClass: string;
 
+  participants: any;
 
 
-  participants = [
-    {
-      name: 'Anggi Alberto',
-      averageValue: 89.0
-    },
-    {
-      name: 'Ibon',
-      averageValue: 88.0
-    },
-    {
-      name: 'Denkeist',
-      averageValue: 87.0
-    },
-    {
-      name: 'Nissa',
-      averageValue: 86.0
-    },
-    {
-      name: 'Boss',
-      averageValue: 85.0
-    },
-  ]
+  // participants = [
+  //   {
+  //     name: 'Anggi Alberto',
+  //     averageValue: 89.0
+  //   },
+  //   {
+  //     name: 'Ibon',
+  //     averageValue: 88.0
+  //   },
+  //   {
+  //     name: 'Denkeist',
+  //     averageValue: 87.0
+  //   },
+  //   {
+  //     name: 'Nissa',
+  //     averageValue: 86.0
+  //   },
+  //   {
+  //     name: 'Boss',
+  //     averageValue: 85.0
+  //   },
+  // ]
 
   selectedParticipants: any[];
 
 
-  customers: any[];
-
-  selectedCustomers: any[];
-
-  representatives: any[];
-
-  statuses: any[];
-
-  loading: boolean = false;
+  loading: boolean = true;
 
   activityValues: number[] = [0, 100];
 
@@ -64,11 +57,21 @@ export class ReportReadComponent implements OnInit {
     this.reportService.getAllScore(this.idDetailClass).subscribe(
       res => {
         console.log(res);
+        this.participants = res.data;
+        this.loading = false;
       },
       err => {
         console.log(err);
       }
     )
+  }
+
+  test(idUser: string): void {
+    const source = this.reportService.getDetailScore(this.idDetailClass, idUser);
+    const link = document.createElement("a");
+    link.href = source;
+    link.click();
+    // let source = this.reportService.getDetailScore(this.idDetailClass, idUser);
   }
 
 }

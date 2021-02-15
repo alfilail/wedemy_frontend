@@ -47,6 +47,11 @@ a {
     font-size: medium;
 }
 
+<<<<<<< HEAD
 .nav-link{
     color: white !important;
+=======
+.dropdown-item {
+    cursor: pointer;
+>>>>>>> f8bde008975c67788062f2af346c28416e1e9c81
 }
