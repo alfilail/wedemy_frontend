@@ -131,6 +131,7 @@ export class MaterialEditComponent implements OnInit {
     this.materialService.updateMaterial(this.formData).subscribe(
       res => {
         console.log(res);
+        this.back();
       },
       err => {
         console.log(err);

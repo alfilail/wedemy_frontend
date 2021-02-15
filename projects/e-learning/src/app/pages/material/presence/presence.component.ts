@@ -109,6 +109,8 @@ export class PresenceComponent implements OnInit {
         val.idApprovement.code === this.approvements.PENDING
           || val.idApprovement.code !== this.approvements.ABSENT
       });
+      console.log(this.selectedParticipants);
+
     } else {
       this.selectedParticipants = [];
     }

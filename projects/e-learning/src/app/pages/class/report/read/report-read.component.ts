@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ReportService } from '@bootcamp-elearning/services/report.service';
 
 @Component({
   selector: 'app-report-read',
@@ -6,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./report-read.component.css']
 })
 export class ReportReadComponent implements OnInit {
+  idDetailClass: string;
+
+
+
   participants = [
     {
       name: 'Anggi Alberto',
@@ -44,9 +50,25 @@ export class ReportReadComponent implements OnInit {
 
   activityValues: number[] = [0, 100];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private reportService: ReportService) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(param => {
+      this.idDetailClass = param['idDetailClass'];
+      this.getAllScore();
+    })
+  }
+
+  getAllScore(): void {
+    this.reportService.getAllScore(this.idDetailClass).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
 }

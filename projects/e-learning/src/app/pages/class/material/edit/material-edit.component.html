@@ -1,5 +1,5 @@
 <section class="section-title">
-  <h2>Add Material</h2>
+  <h2>Edit Materi</h2>
 </section>
 
 <div class="row">
@@ -7,7 +7,8 @@
   <div class="col-sm-12 col-md-6">
     <div class="form-group">
       <label for="materialCode">Kode Materi</label>
-      <input [(ngModel)]="material.idLearningMaterial.code" type="text" class="form-control" id="materialCode" aria-describedby="materialCodeHelp" [value]="material.idLearningMaterial.code" >
+      <input [(ngModel)]="material.idLearningMaterial.code" type="text" class="form-control" id="materialCode"
+        aria-describedby="materialCodeHelp" [value]="material.idLearningMaterial.code">
       <small id="materialCodeHelp" class="form-text text-muted">Maksimum Kode Material adalah 10 Karakter</small>
     </div>
   </div>
@@ -15,7 +16,9 @@
   <div class="col-sm-12 col-md-6">
     <div class="form-group">
       <label for="materialName">Nama Materi</label>
-      <input [(ngModel)]="material.idLearningMaterial.learningMaterialName" type="text" class="form-control" id="materialName" aria-describedby="materialNameHelp" [value]="material.idLearningMaterial.learningMaterialName">
+      <input [(ngModel)]="material.idLearningMaterial.learningMaterialName" type="text" class="form-control"
+        id="materialName" aria-describedby="materialNameHelp"
+        [value]="material.idLearningMaterial.learningMaterialName">
       <small id="materialNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
   </div>
@@ -23,7 +26,8 @@
   <div class="col-sm-12 col-md-6">
     <div class="form-group">
       <label for="startDate">Tanggal Berlangsung</label>
-      <input [(ngModel)]="material.scheduleDate" type="date" class="form-control" id="startDate" aria-describedby="startDateHelp" [value]="material.scheduleDate">
+      <input [(ngModel)]="material.scheduleDate" type="date" class="form-control" id="startDate"
+        aria-describedby="startDateHelp" [value]="material.scheduleDate">
       <small id="startDateHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
   </div>
@@ -31,7 +35,8 @@
   <div class="col-sm-12 col-md-6">
     <div class="form-group">
       <label for="materialFile">File</label>
-      <input (change)="setFile($event)" type="file" class="form-control" id="materialFile" aria-describedby="materialFileHelp">
+      <input (change)="setFile($event)" type="file" class="form-control" id="materialFile"
+        aria-describedby="materialFileHelp">
       <small id="materialFileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 
@@ -47,7 +52,8 @@
     <div class="form-group">
       <label>Tipe Material :&nbsp;</label>
       <select [(ngModel)]="selectedMaterialType" class="shadow-sm">
-        <option *ngFor="let materialType of materialTypes" [ngValue]="materialType" [selected]="selectedMaterialType">{{ materialType.learningMaterialTypeName }}</option>
+        <option *ngFor="let materialType of materialTypes" [ngValue]="materialType" [selected]="selectedMaterialType">{{
+          materialType.learningMaterialTypeName }}</option>
       </select>
     </div>
   </div>

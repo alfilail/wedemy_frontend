@@ -1,3 +1,4 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
 <section class="section-title mb-4">
   <h2>Kurikulum Kelas</h2>
 </section>
@@ -5,7 +6,7 @@
 <div class="form-group d-flex justify-content-between">
   <button (click)="refresh()" class="btn btn-primary">
     <i class="pi pi-refresh"></i>
-    Segarkan
+    Muat Ulang
   </button>
   <select *ngIf="roleCode === roles.TUTOR" [(ngModel)]="selectedView" (ngModelChange)="onChangeOperation($event)" class="shadow-sm">
     <option [value]="viewType.VIEW_ONLY">View Only</option>
@@ -113,7 +114,7 @@
                   </span>
   
                   <span class="material-icon">
-                    <button class="btn btn-danger rounded-circle">
+                    <button (click)="deleteMaterial(material.learningMaterial.idLearningMaterial.id)" class="btn btn-danger rounded-circle">
                       <i class="fas fa-trash-alt"></i>
                     </button>
                   </span>
