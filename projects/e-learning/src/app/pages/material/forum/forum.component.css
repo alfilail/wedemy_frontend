@@ -1,35 +1,59 @@
 li.tab-item:not(:last-child) {
-  margin-right: 26px;
+    margin-right: 26px;
 }
 
 li.tab-item {
-  margin-top: 20px;
-  padding: 12px 16px;
-  width: 120px;
-  text-align: center;
-  color: #c7c1c1;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #d8d8d831;
+    margin-top: 20px;
+    padding: 12px 16px;
+    width: 120px;
+    text-align: center;
+    color: #c7c1c1;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #d8d8d831;
 }
 
 li.tab-item:hover {
-  color: #f4d242;
-  background-color: #f4d3423a;
+    color: #f4d242;
+    background-color: #f4d3423a;
 }
 
 li.tab-item.active {
-  color: #f4d242;
-  background-color: #f4d3423a;
-  cursor: default;
+    color: #f4d242;
+    background-color: #f4d3423a;
+    cursor: default;
 }
 
 .comments {
-  background-color: #d8c8c895;
-  padding: 26px 16px 0 16px;
-  border-radius: 6px;
+    background-color: #c9c9c995;
+    padding: 1rem 1rem 0 1rem;
+    /* border-radius: 6px; */
 }
 
-.comments {
-  font-size: medium;
+.forum-container {
+    background-color: #c9c9c995;
+    border-radius: 5px;
+    padding-top: 28px;
+    padding-left: 28px;
+    padding-right: 28px;
+}
+
+:host ::ng-deep .comments {
+    font-size: medium;
+    display: flex;
+}
+
+:host ::ng-deep .comment p img {
+    height: 128px !important;
+    width: 128px !important;
+}
+
+:host ::ng-deep .comment p {
+    font-size: 16px;
+}
+
+.reply {
+    padding-left: 2rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }

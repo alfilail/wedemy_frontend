@@ -9,15 +9,33 @@
   overflow: scroll;
 }
 
-.course-sidebar .course-title {
-  font-size: 16px;
-  font-weight: bold;
-  font-family: "Merriweather", sans-serif;
-  line-height: 32px;
-  font-weight: 800;
-  color: #2b3636;
-  margin-bottom: 30px;
+.img-course {
+  background-color: #ffc160;
+  height: 240px;
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
+
+.course-sidebar .course-info {
+  font-family: "Quicksand", sans-serif;
+  line-height: 32px;
+  color: #2b3636;
+
+}
+
+.course-sidebar .course-info .course-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.course-sidebar .course-info .course-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 
 .course-sidebar ul.sidebar-nav li.selected {
   border-left: 3px #000 solid;
@@ -55,7 +73,7 @@
 .course-sidebar ul.sidebar-nav li {
   font-size: 17px;
   padding: 0px;
-  font-family: "Merriweather", sans-serif
+  font-family: "Quicksand", sans-serif
 }
 
 .course-mainbar {

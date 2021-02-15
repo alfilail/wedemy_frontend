@@ -21,6 +21,8 @@ export class ForumComponent implements OnInit {
 
   isShowReplyEditor: number = -1;
 
+  defaultImg: string = "/assets/img/profile-default.jpeg";
+
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
     private forumService: ForumService) {

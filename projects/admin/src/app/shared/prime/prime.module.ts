@@ -14,6 +14,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
 import { PasswordModule } from 'primeng/password';
+import { SkeletonModule } from 'primeng/skeleton';
 // import { ToastModule } from 'primeng/toast';
 
 @NgModule({
@@ -31,8 +32,8 @@ import { PasswordModule } from 'primeng/password';
     ConfirmDialogModule,
     CalendarModule,
     InputMaskModule,
-    PasswordModule
-    // ToastModule
+    PasswordModule,
+    SkeletonModule
   ],
   exports: [
     TableModule,
@@ -46,8 +47,8 @@ import { PasswordModule } from 'primeng/password';
     ConfirmDialogModule,
     CalendarModule,
     InputMaskModule,
-    PasswordModule
-    // ToastModule
+    PasswordModule,
+    SkeletonModule
   ]
 })
 export class PrimeModule { }

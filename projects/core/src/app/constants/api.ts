@@ -7,6 +7,7 @@ const API = {
   WEDEMY_CLASS_QUERY_PATH: '/module-registration/module-and-materials',
   WEDEMY_CLASS_ENROLLMENT_TUTOR_QUERY_PATH: '/detail-class/tutor',
   WEDEMY_CLASS_ENROLLMENT_PARTICIPANT_QUERY_PATH: '/class-enrollment/user',
+  WEDEMY_CLASS_DETAIL: '/detail-class',
 
   // 1.B. Forum
   WEDEMY_FORUM_QUERY_PATH: '/forum',

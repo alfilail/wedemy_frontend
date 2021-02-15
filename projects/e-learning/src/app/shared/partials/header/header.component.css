@@ -30,3 +30,7 @@ nav {
 .dropdown-item {
     cursor: pointer;
 }
+
+.nav-link {
+    cursor: pointer;
+}

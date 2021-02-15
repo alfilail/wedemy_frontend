@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { APPROVEMENT } from '@bootcamp-elearning/constants/approvement';
 import { PresenceService } from '@bootcamp-elearning/services/presence.service';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-presence',
@@ -36,13 +35,34 @@ export class PresenceComponent implements OnInit {
   }
 
   setStatusPresence(data: any, code: string) {
-    let payload = {
-      idPresence: {
-        id: data.idPresence.id
-      },
-      idApprovement: {
-        code: code
+    let payload = { approvementRenewals: [] }
+
+    if (Array.isArray(data)) {
+      if (data.length > 0) {
+        data.map(val => {
+          payload.approvementRenewals.push(
+            {
+              idPresence: {
+                id: val.idPresence.id
+              },
+              idApprovement: {
+                code: code
+              }
+            }
+          )
+        })
       }
+    } else {
+      payload.approvementRenewals.push(
+        {
+          idPresence: {
+            id: data.idPresence.id
+          },
+          idApprovement: {
+            code: code
+          }
+        }
+      )
     }
 
     this.presenceService.setStatusPresence(payload).subscribe(
@@ -73,12 +93,24 @@ export class PresenceComponent implements OnInit {
     )
   }
 
+  refresh(): void {
+    this.loading = true;
+    this.getPresence();
+  }
 
   check(): void {
     console.log('check presence');
     console.log(this.selectedParticipants);
-
-
   }
 
+  selectAll(isCheck: boolean): void {
+    if (isCheck) {
+      this.selectedParticipants = this.participants.filter(val => {
+        val.idApprovement.code === this.approvements.PENDING
+          || val.idApprovement.code !== this.approvements.ABSENT
+      });
+    } else {
+      this.selectedParticipants = [];
+    }
+  }
 }

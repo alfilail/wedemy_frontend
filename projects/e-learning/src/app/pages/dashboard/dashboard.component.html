@@ -26,7 +26,7 @@
       <ng-template ngFor let-class [ngForOf]="results" let-i="index">
         <div class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
           <div class="card card-wrapper shadow-lg card-light">
-            <img src="assets/img/default-course-image.png" class="card-img-top" alt="...">
+            <img src="data:image/png;base64,{{class.idClass.idFile.file}}" class="card-img-top card-img-class">
             <div class="card-body">
               <a class="text-decoration-none" [routerLink]="['../class/enrolled', class.id]">
                 <h5 class="card-title class-title">
@@ -52,7 +52,7 @@
     </div>
 
     <div *ngIf="isLoading" class="row course-list list justify-content-between">
-      <div *ngFor='let in of counter(3) ;let i = index' class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
+      <div *ngFor='let in of counter(1) ;let i = index' class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
         <div class="card shadow-lg card-light">
           <p-skeleton width="100%" height="200px" styleClass="p-mb-3"></p-skeleton>
           <div class="p-d-flex p-flex-column p-px-2">

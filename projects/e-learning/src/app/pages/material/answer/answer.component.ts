@@ -80,6 +80,7 @@ export class AnswerComponent implements OnInit {
     this.answerService.uploadAnswer(this.formData, method).subscribe(
       res => {
         console.log(res);
+        this.getAnswer();
       },
       err => {
         console.log(err);
