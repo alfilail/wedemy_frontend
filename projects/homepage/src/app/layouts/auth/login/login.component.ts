@@ -17,17 +17,17 @@ export class LoginComponent implements OnInit {
 
   user: Users = new Users();
 
-  constructor(private route: ActivatedRoute,
+  constructor(
     private router: Router,
     private userService: UserService,
-    private authService: AuthService,) { }
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
 
   login(): void {
     this.userService.login(this.user).subscribe(val => {
-      console.log("logged in")
       this.authService.saveToken(val.token);
       this.authService.saveProfile(val.profile, this.user);
       console.log(this.authService.getRole());

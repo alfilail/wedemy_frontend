@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import API from '@bootcamp-core/constants/api';
 import { Response } from '@bootcamp-elearning/models/responses/response';
 import { Profiles } from '@bootcamp-homepage/models/profiles';
 import { Responses } from '@bootcamp-homepage/models/responses';
@@ -18,11 +19,11 @@ export class UserService extends BaseService {
   }
 
   insertUser(participant: Users): Observable<Responses<Users>> {
-    return this.http.post<Responses<Users>>(`${this.api}/user`, participant)
+    return this.http.post<Responses<Users>>(`${API.WEDEMY_HOST_DOMAIN}/user`, participant)
   }
 
   login(user: Users): Observable<any> {
-    return this.http.post<any>(`${this.api}/api/login`,
+    return this.http.post<any>(`${API.WEDEMY_HOST_DOMAIN}/api/login`,
       {
         username: user.username,
         userPassword: user.userPassword
@@ -31,14 +32,14 @@ export class UserService extends BaseService {
   }
 
   resetPassword(profile: Profiles): Observable<Responses<Profiles>> {
-    return this.http.patch<Responses<Profiles>>(`${this.api}/user/forget-password`, profile)
+    return this.http.patch<Responses<Profiles>>(`${API.WEDEMY_HOST_DOMAIN}/user/forget-password`, profile)
   }
 
   getUserById(userId: string): Observable<Response<Users>> {
-    return this.http.get<Response<Users>>(`${this.api}/user/${userId}`)
+    return this.http.get<Response<Users>>(`${API.WEDEMY_HOST_DOMAIN}/user/${userId}`)
   }
 
   getUserByRoleCode(roleCode: string): Observable<Response<Users[]>> {
-    return this.http.get<Response<Users[]>>(`${this.api}/user/role/${roleCode}`)
+    return this.http.get<Response<Users[]>>(`${API.WEDEMY_HOST_DOMAIN}/user/role/${roleCode}`)
   }
 }

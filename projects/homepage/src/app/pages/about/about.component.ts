@@ -15,7 +15,6 @@ export class AboutComponent implements OnInit {
   totalTutor: number;
 
   constructor(
-    private userService: UserService,
     private classService: ClassService
   ) { }
 
