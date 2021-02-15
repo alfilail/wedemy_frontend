@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { stringify } from '@angular/compiler/src/util';
-import { Component, OnInit,  ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailModuleRegistration } from '@bootcamp-elearning/models/detail-module-registration';
 import { LearningMaterialType } from '@bootcamp-elearning/models/learning-material-type';
@@ -68,7 +68,7 @@ export class MaterialAddComponent implements OnInit {
   setFile(event: any): void {
     let fileList = event.target.files;
     if (fileList) this.formData.append('file', fileList[0]);
-    
+
     this.selectedFileName = fileList[0].name;
   }
 
@@ -97,6 +97,7 @@ export class MaterialAddComponent implements OnInit {
     this.materialService.saveMaterial(this.formData).subscribe(
       res => {
         console.log(res);
+        this.back();
       },
       err => {
         console.log(err);

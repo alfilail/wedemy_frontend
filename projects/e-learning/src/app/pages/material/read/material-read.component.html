@@ -23,24 +23,29 @@
       <button class="btn btn-primary" (click)="downloadFileFromBlob(material.idLearningMaterial.idFile, 'sample')">
         File
       </button>
-      
+
     </div>
     <div class="col text-center">
       <ul class="row justify-content-center list-unstyled">
-        <li routerLink="forum" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">FORUM</li>
+        <li routerLink="forum" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
+          routerLinkActive="active" class="tab-item">FORUM</li>
 
         <ng-template [ngIf]="roleCode === roles.PARTICIPANT 
-          && ['TGS'].includes(material.idLearningMaterial.idLearningMaterialType.code)"
-        >
-          <li routerLink="answer" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">ANSWER</li>
+          && ['TGS','UJN'].includes(material.idLearningMaterial.idLearningMaterialType.code)">
+          <li routerLink="answer"
+            [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
+            routerLinkActive="active" class="tab-item">UNGGAH JAWABAN</li>
         </ng-template>
 
         <ng-template [ngIf]="roleCode === roles.TUTOR
-          && ['TGS'].includes(material.idLearningMaterial.idLearningMaterialType.code)"
-        >
-          <li routerLink="assignment" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">ASSIGNMENT</li>
+          && ['TGS','UJN'].includes(material.idLearningMaterial.idLearningMaterialType.code)">
+          <li routerLink="assignment"
+            [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
+            routerLinkActive="active" class="tab-item">TUGAS</li>
         </ng-template>
-        <li *ngIf="roleCode === roles.TUTOR" routerLink="presence" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">PRESENCE</li>
+        <li *ngIf="roleCode === roles.TUTOR" routerLink="presence"
+          [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
+          routerLinkActive="active" class="tab-item">DAFTAR KEHADIRAN</li>
       </ul>
     </div>
   </div>
