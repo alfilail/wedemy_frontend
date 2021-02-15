@@ -3,22 +3,14 @@
 </section>
 
 <div class="row align-content-center profile-wrapper">
-  <div class="col-lg-2 text-center mb-4">
-    <img class="instructor-img rounded-circle" src="../../../../../assets/img/profile-default.jpeg" alt="Anggi Alberto">
+  <div class="d-flex flex-column col-lg-2 col-sm-12 text-center align-items-center mb-4">
+    <img class="instructor-img rounded-circle" src="{{tutor.idProfile.idFile.file ? 'data:image/png;base64,'+ tutor.idProfile.idFile.file : 'assets/img/profile-default.jpeg'}}" alt="Anggi Alberto">
 
     <div class="instructor-name">
-      Anggi Alberto
+     {{tutor.idProfile.fullName}}
     </div>
   </div>
-  <div class="col-lg-9 instructor-bio">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est quia numquam exercitationem aut labore cumque,
-    voluptas eaque modi repellat temporibus consectetur harum molestias distinctio beatae minus qui. Fugiat, commodi
-    eligendi.
-    Culpa facilis vel in corrupti accusantium sapiente ab earum incidunt iure consequatur, eos molestias! Nulla
-    perspiciatis vero autem eaque, tempora molestias necessitatibus provident voluptatem aspernatur excepturi nam,
-    impedit sequi quaerat.
-    Praesentium, modi, in magnam ut inventore sapiente unde aspernatur enim tempora obcaecati nulla! Iusto ipsum
-    reprehenderit dignissimos beatae possimus debitis excepturi at, sunt inventore alias voluptate expedita officiis
-    harum assumenda.
+  <div class="col-lg-9 col-sm-12 instructor-bio">
+   {{tutor.idProfile.bio}}
   </div>
 </div>

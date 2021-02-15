@@ -1,7 +1,11 @@
+a {
+  text-decoration: none;
+}
+
 section.section-title {
   margin-bottom: 18px;
   font-weight: bold;
-  font-family: "Merriweather", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 .course-section .section-title {
@@ -11,11 +15,15 @@ section.section-title {
   font-size: 17px;
   font-weight: bold;
   border-bottom: 1px solid #fff;
-  font-family: "Merriweather", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 .material-name {
   font-size: 16px;
+}
+
+.material-name.deactive {
+  cursor: not-allowed;
 }
 
 .course-section ul.section-list .section-item {

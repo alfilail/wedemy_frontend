@@ -26,3 +26,11 @@ nav {
 .profile-name:hover {
   color: #f4d242 !important;
 }
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.nav-link {
+  cursor: pointer;
+}

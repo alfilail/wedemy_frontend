@@ -60,9 +60,6 @@ li.tab-item.active {
   border-radius: 6px;
 }
 
-
-
-
 @media screen and (max-width: 768px) {
   li.tab-item:not(:last-child) {
     margin-right: 0px;

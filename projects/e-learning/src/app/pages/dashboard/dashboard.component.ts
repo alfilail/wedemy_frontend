@@ -33,18 +33,13 @@ export class DashboardComponent implements OnInit {
     this.myRole = rolecode;
     this.dashboardService.getMyClass(userId, rolecode).subscribe(
       res => {
-        setTimeout(() => {
-          this.classes = res.data;
-          this.results = res.data;
-          this.isLoading = false;
-          this.getUniqueInstructor();
-        }, 2000)
-
-        // this.classes = res.data;
-        // this.results = res.data;
-        // this.isLoading = false;
+        // setTimeout(() => {
+        // }, 2000)
+        this.classes = res.data;
+        this.results = res.data;
+        this.isLoading = false;
+        this.getUniqueInstructor();
         console.log(res);
-
       },
       err => { console.log(err) }
     )
