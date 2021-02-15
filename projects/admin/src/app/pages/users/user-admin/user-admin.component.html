@@ -25,7 +25,7 @@
                     dataKey="id" class="p-m-3"
                     [globalFilterFields]="['idProfile.fullName','username','idProfile.email','idProfile.address','idProfile.birthPlace','idProfile.birthDate']"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true">
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
                     <ng-template pTemplate="colgroup" let-columns>
                         <colgroup>
                             <col style="width:200px">

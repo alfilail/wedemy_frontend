@@ -24,7 +24,7 @@
                 <p-table #dt [value]="listUsers" [rows]="10" [paginator]="true" [scrollable]="true" [rowHover]="true"
                     dataKey="id" class="p-m-3" [globalFilterFields]="['username']"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true">
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
                     <ng-template pTemplate="colgroup" let-columns>
                         <colgroup>
                             <col style="width:200px">

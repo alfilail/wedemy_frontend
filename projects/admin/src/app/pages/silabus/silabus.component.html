@@ -23,8 +23,8 @@
                 </p-toolbar>
                 <p-table #dt [value]="listSilabus" [rows]="10" [paginator]="true"
                     [globalFilterFields]="['moduleName', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true">
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+                    [loading]="loading" [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
                             <th pSortableColumn="code">Kode Silabus<p-sortIcon field="code"></p-sortIcon>

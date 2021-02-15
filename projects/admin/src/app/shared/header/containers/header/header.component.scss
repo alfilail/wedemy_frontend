@@ -5,7 +5,7 @@
 
 .header {
   // background-color: $header-background-color;
-  background-color: $header-background-color;
+  background-color: #454575;
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -13,6 +13,7 @@
   height: $header-height;
   box-shadow: 0 0 20px rgba(202, 202, 202, 0.8);
 cursor: pointer;
+
   &__title {
     display: flex;
     align-items: center;
@@ -20,7 +21,7 @@ cursor: pointer;
 
   &__title-button {
     // background-color: $header-button-background-color;
-    background-color: $white;
+    background-color: #454575;
 
     box-shadow: none;
 
@@ -59,7 +60,7 @@ cursor: pointer;
 h6{
   margin-top: 9px;
   margin-left: 2px;
-  color: black;
+  color: white;
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
 }

@@ -2,9 +2,10 @@
     <div class="container">
         <a class=" navbar-brand d-flex justify-content-center" routerLink="/home">
             <img class="nav-logo" src="assets/img/logo.png" alt="logo">
-            <b class="nav-name ml-1 align-self-center">WEDEMY</b>
+            <b class="nav-name ml-1 align-self-center" style="color: white;">WEDEMY</b>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -32,8 +33,10 @@
                     <a class="nav-link active " routerLink="/auth/register"><b>Daftar</b></a>
                 </li>
                 <li class="nav-item dropdown" *ngIf="isLoggedOut==false">
-                    <a class="nav-link dropdown-toggle" href="# " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{user.idProfile.idFile.file ? 'data:image/png;base64,'+user.idProfile.idFile.file : defaultImg}}" class="profile-pic rounded-circle "> Hai, {{firstName}}!
+                    <a class="nav-link dropdown-toggle" href="# " id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{user.idProfile.idFile.file ? 'data:image/png;base64,'+user.idProfile.idFile.file : defaultImg}}"
+                            class="profile-pic rounded-circle "> Hai, {{firstName}}!
 
                         <!-- <img src="data:image/png;base64,{{user.idProfile.idFile.file}}" width="40" height="40 " class="rounded-circle "> Hai, {{firstName}}! -->
                     </a>

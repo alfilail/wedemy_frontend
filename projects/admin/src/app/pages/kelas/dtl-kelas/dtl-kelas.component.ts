@@ -26,7 +26,7 @@ export class DtlKelasComponent implements OnInit {
 
   className: string;
   idUser: string;
-  idDtlClass: string;
+  idDtlClass: string; loading: boolean = true;
 
   constructor(private dtlClassService: DtlClassService, private activateRoute: ActivatedRoute, private moduleRegService: ModuleRegistrationService, private route: Router, private auth: AuthService) {
   }
@@ -45,7 +45,7 @@ export class DtlKelasComponent implements OnInit {
   getDtlClasses() {
     this.moduleRegService.getModuleRegByIdDtlClass(this.idDtlClass).subscribe(val => {
       this.listModuleRegs = val.data
-      console.log(val)
+      console.log(val); this.loading = false;
     })
   }
 

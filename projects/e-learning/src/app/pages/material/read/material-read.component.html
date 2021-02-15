@@ -31,16 +31,10 @@
           routerLinkActive="active" class="tab-item">FORUM</li>
 
         <ng-template [ngIf]="roleCode === roles.PARTICIPANT 
-<<<<<<< HEAD
-          && ['TGS','UJN'].includes(material.idLearningMaterial.idLearningMaterialType.code)">
+          && ['TGS', 'UJN'].includes(material.idLearningMaterial.idLearningMaterialType.code)">
           <li routerLink="answer"
             [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
-            routerLinkActive="active" class="tab-item">UNGGAH JAWABAN</li>
-=======
-          && ['TGS', 'UJN'].includes(material.idLearningMaterial.idLearningMaterialType.code)"
-        >
-          <li routerLink="answer" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">ANSWER</li>
->>>>>>> e79fa9938ca56ab1067f64f67b7485a641c49651
+            routerLinkActive="active" class="tab-item">ANSWER</li>
         </ng-template>
 
         <ng-template [ngIf]="roleCode === roles.TUTOR

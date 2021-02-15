@@ -4,6 +4,14 @@ nav {
   color: #000000;
 }
 
+.navbar{
+  background: #454575  !important;
+}
+
+.nav-link{
+  color: white !important;
+}
+
 .nav-link-item.active {
   color: #f4d242 !important;
 }

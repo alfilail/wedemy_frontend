@@ -23,8 +23,8 @@
                 </p-toolbar>
                 <p-table #dt [value]="listStatusTugas" [rows]="10" [paginator]="true"
                     [globalFilterFields]="['submissionStatusName', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true">
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+                    [loading]="loading" [showCurrentPageReport]="true">
                     <ng-template pTemplate="header">
                         <tr>
                             <th pSortableColumn="code">Kode<p-sortIcon field="code"></p-sortIcon>

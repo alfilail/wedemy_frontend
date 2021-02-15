@@ -8,6 +8,10 @@ nav {
     font-family: 'Quicksand', sans-serif;
 }
 
+.navbar{
+    background-color: #454575  !important;
+}
+
 .active {
     color: #f4d242 !important;
 }
@@ -41,4 +45,8 @@ nav {
 
 a {
     font-size: medium;
+}
+
+.nav-link{
+    color: white !important;
 }
