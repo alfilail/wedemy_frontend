@@ -59,7 +59,6 @@ export class ClassReadComponent implements OnInit {
     let end = new Date(c.endDate);
     let start = new Date(c.startDate);
 
-    // cek kuota masih ada apa gak
     if(todayFormatted < end) {
       c.status = 1;
       console.log("pendaftaran dibuka");

@@ -1,28 +1,32 @@
 nav {
-  font-family: Quicksand, sans-serif !important;
-  font-size: medium !important;
-  color: #000000;
+    font-family: Quicksand, sans-serif !important;
+    font-size: medium !important;
+    color: #000000;
 }
 
 .nav-link-item.active {
-  color: #f4d242 !important;
+    color: #f4d242 !important;
 }
 
 .nav-link-item:hover {
-  color: #f4d242 !important;
+    color: #f4d242 !important;
 }
 
 .gravatar {
-  width: 34px;
-  height: 34px;
+    width: 34px;
+    height: 34px;
 }
 
 .profile-name {
-  font-weight: 400;
-  color: #000000;
-  cursor: pointer;
+    font-weight: 400;
+    color: #000000;
+    cursor: pointer;
 }
 
 .profile-name:hover {
-  color: #f4d242 !important;
+    color: #f4d242 !important;
+}
+
+.dropdown-item {
+    cursor: pointer;
 }

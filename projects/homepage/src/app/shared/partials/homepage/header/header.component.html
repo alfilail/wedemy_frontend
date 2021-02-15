@@ -34,8 +34,6 @@
                 <li class="nav-item dropdown" *ngIf="isLoggedOut==false">
                     <a class="nav-link dropdown-toggle" href="# " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{user.idProfile.idFile.file ? 'data:image/png;base64,'+user.idProfile.idFile.file : defaultImg}}" class="profile-pic rounded-circle "> Hai, {{firstName}}!
-
-                        <!-- <img src="data:image/png;base64,{{user.idProfile.idFile.file}}" width="40" height="40 " class="rounded-circle "> Hai, {{firstName}}! -->
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown ">
                         <a class="dropdown-item" (click)="dashboard()">Dashboard</a>

@@ -13,7 +13,6 @@ export class DetailClasses {
     status?: number;
     totalModules?: number;
     totalHours?: number;
-    // countMats?: number;
     totalParticipant?: number;
 
 }

@@ -1,7 +1,7 @@
 export class Modules {
 
-    id: string; 
-    code: string;
-    moduleName: string;
+    id?: string; 
+    code?: string;
+    moduleName?: string;
     
 }

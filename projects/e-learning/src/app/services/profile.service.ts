@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import API from '@bootcamp-core/constants/api';
 import { Profile } from '@bootcamp-elearning/models/profile';
 import { Response } from '@bootcamp-elearning/models/responses/response';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
@@ -16,7 +17,6 @@ export class ProfileService extends BaseService {
   }
 
   updateProfile(formData: FormData): Observable<any> {
-    console.log(formData.get('file'));
-    return this.http.put<any>(`${this.api}/profile`, formData)
+    return this.http.put<any>(`${API.WEDEMY_HOST_DOMAIN}/profile`, formData)
   }
 }
