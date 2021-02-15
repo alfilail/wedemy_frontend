@@ -1,5 +1,5 @@
 const API = {
-  WEDEMY_HOST_DOMAIN: 'http://192.168.15.86:8080',
+  WEDEMY_HOST_DOMAIN: 'http://192.168.13.66:8080',
 
   /* 1. API of Tutor & Participant */
 
@@ -30,8 +30,11 @@ const API = {
 
   // 1.F Answer
   WEDEMY_ANSWER_QUERY_PATH: '/assignment-submission/participant',
-  WEDEMY_ANSWER_UPLOAD_QUERY_PATH: '/assignment-submission'
+  WEDEMY_ANSWER_UPLOAD_QUERY_PATH: '/assignment-submission',
 
+  // 1.G Evaluation
+  WEDEMY_SCORE_QUERY_PATH: '/evaluation/scores',
+  WEDEMY_DETAIL_SCORE_QUERY_PATH: 'evaluation/report/scores/'
 }
 
 export default API;

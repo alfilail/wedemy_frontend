@@ -13,7 +13,7 @@
       Daftar Peserta
       <span class="p-input-icon-right">
         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-          placeholder="Cari peserta" />
+          placeholder="Cari nama peserta..." />
       </span>
     </div>
   </ng-template>
@@ -30,7 +30,7 @@
       <th>No</th>
       <th>Nama Peserta</th>
       <th>Nilai Rata-rata</th>
-      <th>Aksi</th>
+      <th>Berkas</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-participant let-i="rowIndex">
@@ -45,7 +45,7 @@
         <span class="p-column-title">{{participant.averageValue}}</span>
       </td>
       <td>
-        <button pButton type="button" class="p-button-info" icon="pi pi-eye"></button>
+        <button pButton type="button" class="p-button-info" icon="pi pi-file-pdf">Unduh</button>
       </td>
     </tr>
   </ng-template>

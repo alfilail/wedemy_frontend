@@ -1,11 +1,11 @@
-<!-- <button (click)="check()" class="btn btn-primary">Check</button> -->
+<button (click)="check()" class="btn btn-primary">Check</button>
 <div class="card px-4 py-4">
   <p-toolbar styleClass="p-mb-4 d-none d-md-flex flex-md-row justify-content-md-end">
     <button (click)="setStatusPresence(selectedParticipants, approvements.ACCEPT)" pButton pRipple label="Terima"
       icon="pi pi-check" class="p-button-success p-mr-2" [disabled]="selectedParticipants.length === 0"></button>
     <button (click)="setStatusPresence(selectedParticipants, approvements.REJECT)" pButton pRipple label="Tolak"
       icon="pi pi-ban" class="p-button-danger p-mr-2" [disabled]="selectedParticipants.length === 0"></button>
-    <button (click)="refresh()" pButton pRipple label="Segarkan" icon="pi pi-refresh"
+    <button (click)="refresh()" pButton pRipple label="Muat Ulang" icon="pi pi-refresh"
       class="p-button-primary p-mr-2"></button>
   </p-toolbar>
 
@@ -21,7 +21,7 @@
 
 
   <p-table #dt [value]="participants" [scrollable]="true" [(selection)]="selectedParticipants"
-    dataKey="idPresence.idUser.idProfile.fullName" styleClass="p-datatable-participant" [rowHover]="true" [rows]="10"
+    dataKey="idPresence.idUser.id" styleClass="p-datatable-participant" [rowHover]="true" [rows]="10"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
     currentPageReportTemplate="Menampilkan {first} sampai {last} dari {totalRecords} data" [filterDelay]="0"
     [globalFilterFields]="['idPresence.idUser.idProfile.fullName']">

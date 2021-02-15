@@ -6,6 +6,8 @@ import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { VIEW_TYPE } from '../../../constants/view-type';
 import * as moment from 'moment';
 import { PresenceService } from '@bootcamp-elearning/services/presence.service';
+import { ConfirmationService } from 'primeng/api';
+import { MaterialService } from '@bootcamp-elearning/services/material.service';
 
 @Component({
   selector: 'app-module',
@@ -25,7 +27,9 @@ export class ModuleComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
+    private confirmationService: ConfirmationService,
     private classService: ClassService,
+    private materialService: MaterialService,
     private presenceService: PresenceService) { }
 
   ngOnInit(): void {
@@ -228,6 +232,38 @@ export class ModuleComponent implements OnInit {
 
   onChangeOperation(e): void {
     this.selectedView = e;
+  }
+
+  deleteMaterial(idLearningMaterial: string) {
+    this.confirmationService.confirm({
+      message: 'Apakah anda yakin menghapus materi ini?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.materialService.removeMaterial(idLearningMaterial, this.authService.getUserId()).subscribe(
+          res => {
+            console.log(res);
+            this.refresh();
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      },
+      reject: (type) => {
+        // switch(type) {
+        //     case ConfirmEventType.REJECT:
+        //         this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
+        //     break;
+        //     case ConfirmEventType.CANCEL:
+        //         this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
+        //     break;
+        // }
+      }
+    });
+
+
+
   }
 
   refresh(): void {

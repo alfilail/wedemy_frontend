@@ -30,7 +30,7 @@
         <li routerLink="forum" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">FORUM</li>
 
         <ng-template [ngIf]="roleCode === roles.PARTICIPANT 
-          && ['TGS'].includes(material.idLearningMaterial.idLearningMaterialType.code)"
+          && ['TGS', 'UJN'].includes(material.idLearningMaterial.idLearningMaterialType.code)"
         >
           <li routerLink="answer" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">ANSWER</li>
         </ng-template>
