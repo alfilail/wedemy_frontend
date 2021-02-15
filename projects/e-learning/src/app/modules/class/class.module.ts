@@ -5,7 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 import { ClassRoutingModule } from './class-routing.module';
 import { ClassDetailComponent } from '@bootcamp-elearning/pages/class/detail/class-detail.component';
 import { InstructorComponent } from '@bootcamp-elearning/pages/class/instructor/instructor.component';
@@ -35,8 +36,9 @@ import { SkeletonModule } from 'primeng/skeleton';
     TableModule,
     EditorModule,
     ButtonModule,
-    SkeletonModule
-
-  ]
+    SkeletonModule,
+    ConfirmDialogModule
+  ],
+  providers: [ConfirmationService]
 })
 export class ClassModule { }

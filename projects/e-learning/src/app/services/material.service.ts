@@ -24,6 +24,11 @@ export class MaterialService {
     return this.http.post<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_MATERIAL_QUERY_PATH}`, data);
   }
 
+  removeMaterial(id: string, idUser: string): Observable<Response<any[]>> {
+    let param = { id, idUser }
+    return this.http.delete<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_MATERIAL_QUERY_PATH}`, { params: param });
+  }
+
   updateMaterial(data: any): Observable<any> {
     return this.http.put<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_MATERIAL_QUERY_PATH}`, data);
   }
