@@ -1,16 +1,30 @@
-<button (click)="setAssignmentScore()" class="btn btn-primary">Simpan</button>
-<button (click)="check()" class="btn btn-primary">Check</button>
-<p-table #dt [value]="assignments" [scrollable]="true" [(selection)]="selectedAssignment" dataKey="id"
+<!-- <button (click)="check()" class="btn btn-primary">Check</button> -->
+<div class="card px-4 py-4">
+  <p-toolbar styleClass="p-mb-4 d-none d-md-flex flex-md-row justify-content-md-end">
+    <button (click)="setAssignmentScore()" pButton pRipple label="Simpan"
+      icon="pi pi-save" class="p-button-success p-mr-2"></button>
+    <button (click)="refresh()" pButton pRipple label="Segarkan" icon="pi pi-refresh"
+      class="p-button-primary p-mr-2"></button>
+  </p-toolbar>
+
+  <p-toolbar styleClass="p-mb-4 d-md-none d-flex flex-row justify-content-center">
+    <button (click)="setAssignmentScore()" pButton pRipple label="Simpan"
+      icon="pi pi-save" class="p-button-success btn-block p-mb-2"></button>
+    <button (click)="refresh()" pButton pRipple label="Segarkan" icon="pi pi-refresh"
+      class="p-button-primary btn-block"></button>
+  </p-toolbar>
+
+  <p-table #dt [value]="assignments" [scrollable]="true" [(selection)]="selectedAssignment" dataKey="id"
   styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
   [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+  currentPageReportTemplate="Menampilkan {first} sampai {last} dari {totalRecords} data" [filterDelay]="0"
   [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','averageValue']">
   <ng-template pTemplate="caption">
     <div class="table-header p-d-flex p-jc-between">
       List of Participant
       <span class="p-input-icon-right">
         <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-          placeholder="Cari..." />
+          placeholder="Cari nama perserta..." />
       </span>
     </div>
   </ng-template>
@@ -41,16 +55,17 @@
         <span class="p-column-title">{{assignment.idAssignmentSubmission.idParticipant.idProfile.fullName}}</span>
       </td>
       <td>
-        <span class="p-column-title">{{assignment.idAssignmentSubmission.submitTime}}</span>
+        <span class="p-column-title">{{assignment.idAssignmentSubmission.submitTime || 'Tidak ada'}}</span>
       </td>
       <td>
-        <span (click)="downloadFileFromBlob(assignment.idAssignmentSubmission.idFile, 'tugas')" class="p-column-title">{{assignment.idAssignmentSubmission.idParticipant.idProfile.fullName}}-answer</span>
+        <span (click)="downloadFileFromBlob(assignment.idAssignmentSubmission.idFile, 'tugas')" class="p-column-title">{{assignment.idAssignmentSubmission.idFile.file ? 'jawaban' : 'Tidak ada'}}</span>
       </td>
-
       <td>
-        <input [(ngModel)]="assignment.score" (ngModelChange)="onChangeScore($event)" type="number" min="0" max="100" value="{{assignment.score}}">
+        <input [(ngModel)]="assignment.score" (ngModelChange)="onChangeScore($event)" type="text" size="2" value="{{assignment.score}}">
       </td>
-      
     </tr>
   </ng-template>
 </p-table>
+</div>
+
+

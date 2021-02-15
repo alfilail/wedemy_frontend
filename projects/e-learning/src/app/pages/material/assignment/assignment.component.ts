@@ -106,12 +106,11 @@ export class AssignmentComponent implements OnInit {
   }
 
   setAssignmentScore(): void {
-    console.log('Aku ditekan!');
-
     let res = this.refactorModelScore(this.assignments);
     this.assignmentService.setScoreAssignment(res[0], res[1]).subscribe(
       res => {
         console.log(res);
+        this.refresh();
       },
       err => {
         console.log(err);
@@ -121,6 +120,11 @@ export class AssignmentComponent implements OnInit {
 
   downloadFileFromBlob(data: File, fileName): void {
     downloadFile(data, fileName);
+  }
+
+  refresh(): void {
+    this.loading = true;
+    this.getScoreAssignment();
   }
 
 }

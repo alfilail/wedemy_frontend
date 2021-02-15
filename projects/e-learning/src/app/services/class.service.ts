@@ -11,11 +11,16 @@ export class ClassService {
 
   constructor(private http: HttpClient) { }
 
-  getDetail(params: any): Observable<Response<any[]>> {
+  getDetailModule(params: any): Observable<Response<any[]>> {
     let httpParams = new HttpParams()
     for (let key of Object.keys(params)) {
       httpParams = httpParams.set(key, params[key])
     }
     return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_CLASS_QUERY_PATH}`, { params: httpParams })
+  }
+
+  getDetail(idDetailClass: string): Observable<Response<any>> {
+    return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_CLASS_DETAIL}/${idDetailClass}`)
+
   }
 }

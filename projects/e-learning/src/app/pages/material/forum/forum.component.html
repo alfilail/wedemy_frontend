@@ -1,22 +1,25 @@
-<div class="row" style="margin-bottom: 500px;">
+<div class="row forum-container" style="margin-bottom: 500px;">
   <div class="w-100">
     <div class="mb-4">
-      <p-editor [(ngModel)]="comment" [style]="{'height':'100px', 'width': '100%'}">
+      <p-editor [(ngModel)]="comment" [style]="{'height':'200px', 'width': '100%'}">
       </p-editor>
-      <button (click)="post()" class="btn btn-primary mt-2">Terbitkan</button>
+      <button (click)="post()" class="btn btn-primary mt-2">
+        <i class="pi pi-send"></i>
+        Terbitkan
+      </button>
     </div>
 
     <ng-template ngFor let-forum [ngForOf]="forums" let-i="index">
       <div class="d-flex comments mb-2">
         <img class="rounded-circle mr-3" src="assets/img/profile-default.jpeg" width="48" height="48">
         <div class="d-flex flex-column">
-          <div class="d-sm-flex align-baseline">
+          <div class="d-sm-flex flex-column">
             <p class="font-weight-bold">{{forum.forum.idUser.idProfile.fullName}}</p>
-            <p><span class="text-black-50">&nbsp;•&nbsp;</span>{{ forum.forum.createdAt | dateAgo}}</p>
+            <p style="margin-top: -10px;">{{ forum.forum.createdAt | dateAgo}}</p>
           </div>
           <div class="comment" style="margin-top: -10px;" [innerHTML]="forum.forum.contentText"></div>
           <div>
-            <p (click)="showReplyEditor(i)">Balas</p>
+            <p style="cursor: pointer;" (click)="showReplyEditor(i)">Balas</p>
           </div>
         </div>
       </div>
@@ -30,9 +33,9 @@
           <div class="d-flex comments mb-2">
             <img class="rounded-circle mr-3" src="assets/img/profile-default.jpeg" width="48" height="48">
             <div class="d-flex flex-column">
-              <div class="d-sm-flex align-baseline">
+              <div class="d-sm-flex flex-column">
                 <p class="font-weight-bold">{{reply.idUser.idProfile.fullName}}</p>
-                <p><span class="text-black-50">&nbsp;•&nbsp;</span>{{ reply.createdAt | dateAgo}}</p>
+                <p style="margin-top: -10px;">{{ reply.createdAt | dateAgo}}</p>
               </div>
               <div class="comment" style="padding-bottom: 22px;" [innerHTML]="reply.contentText"></div>
             </div>

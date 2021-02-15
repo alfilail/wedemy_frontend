@@ -5,7 +5,6 @@ import { ROLE } from '@bootcamp-homepage/constants/roles';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { VIEW_TYPE } from '../../../constants/view-type';
 import * as moment from 'moment';
-import { fakedata } from './fakedata';
 import { PresenceService } from '@bootcamp-elearning/services/presence.service';
 
 @Component({
@@ -22,6 +21,7 @@ export class ModuleComponent implements OnInit {
   selectedView = VIEW_TYPE.VIEW_ONLY;
 
   modules: any;
+  isLoading: boolean = true;
 
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
@@ -32,6 +32,9 @@ export class ModuleComponent implements OnInit {
     this.roleCode = this.authService.getRole();
     this.route.params.subscribe(params => {
       this.idDetailClass = params['idDetailClass'];
+      // setTimeout(() => {
+
+      // }, 20000)
       this.getDetail(this.idDetailClass);
     })
   }
@@ -42,11 +45,8 @@ export class ModuleComponent implements OnInit {
       idUser,
       idDtlClass
     }
-    // Fake Data
-    // this.modules = fakedata.data;
-    // this.checkPresent();
 
-    this.classService.getDetail(params).subscribe(
+    this.classService.getDetailModule(params).subscribe(
       res => {
         this.modules = res.data;
         console.log(res);
@@ -202,7 +202,8 @@ export class ModuleComponent implements OnInit {
           }
         }
       });
-    })
+    });
+    this.isLoading = false;
   }
 
   present(idDetailModuleRegistration: string): void {
@@ -217,7 +218,7 @@ export class ModuleComponent implements OnInit {
 
     this.presenceService.presence(data).subscribe(
       res => {
-
+        this.refresh();
       },
       err => {
         console.log(err);
@@ -227,6 +228,11 @@ export class ModuleComponent implements OnInit {
 
   onChangeOperation(e): void {
     this.selectedView = e;
+  }
+
+  refresh(): void {
+    this.isLoading = true;
+    this.getDetail(this.idDetailClass);
   }
 
 }
