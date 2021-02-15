@@ -58,7 +58,7 @@ export class PersetujuanAbsenComponent implements OnInit {
 
   getApprovements(): void {
     this.aprovementService.getApprovements().subscribe(val => {
-      this.listApprovements = val.data;
+      this.listApprovements = val.data
       console.log(val)
     })
   }
