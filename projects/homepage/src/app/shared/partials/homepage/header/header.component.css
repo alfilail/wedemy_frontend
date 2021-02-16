@@ -25,6 +25,9 @@ nav {
     color: #f4d242 !important;
 }
 
+.nav-link{
+    color: white  !important;
+}
 .nav-logo {
     height: 40px;
 }
@@ -47,11 +50,6 @@ a {
     font-size: medium;
 }
 
-<<<<<<< HEAD
-.nav-link{
-    color: white !important;
-=======
 .dropdown-item {
     cursor: pointer;
->>>>>>> f8bde008975c67788062f2af346c28416e1e9c81
 }
