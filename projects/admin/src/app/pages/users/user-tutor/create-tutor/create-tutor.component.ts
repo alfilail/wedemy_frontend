@@ -59,7 +59,7 @@ export class CreateTutorComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
       this.roleUser = params['user']
-      this.idUser = this.auth.getProfileId()
+      this.idUser = this.auth.getUserId();
     })
   }
 
@@ -109,18 +109,12 @@ export class CreateTutorComponent implements OnInit {
       } else if (col == 'email') {
         this.emailValid = false;
         this.emailErrMsg = 'email tidak boleh kosong'
-      } else if (col == 'ktp') {
-        this.nomorKtpValid = false;
-        this.nomorKtpErrMsg = 'nomor ktp tidak boleh kosong'
       } else if (col == 'nama') {
         this.namaValid = false;
         this.namaErrMsg = 'nama tidak boleh kosong'
       } else if (col == 'alamat') {
         this.alamatValid = false;
         this.alamatErrMsg = 'alamat tidak boleh kosong'
-      } else if (col == 'numPhone') {
-        this.numPhoneValid = false;
-        this.numPhoneErrMsg = 'nomor ponsel tidak boleh kosong'
       } else if (col == 'birthPlace') {
         this.birthPlaceValid = false;
         this.birthPlaceErrMsg = 'tempat lahir tidak boleh kosong'
@@ -154,13 +148,6 @@ export class CreateTutorComponent implements OnInit {
         } else {
           this.usernameValid = true;
         }
-      } else if (col == 'ktp') {
-        if (event.length < 16 || event.length > 16) {
-          this.nomorKtpValid = false;
-          this.nomorKtpErrMsg = 'nomor ktp harus memiliki 16 karakter'
-        } else {
-          this.nomorKtpValid = true;
-        }
       } else if (col == 'nama') {
         if (event.length < 4) {
           this.namaValid = false;
@@ -175,16 +162,6 @@ export class CreateTutorComponent implements OnInit {
         } else {
           this.alamatValid = true;
         }
-      } else if (col == 'numPhone') {
-        if (event.length < 11) {
-          this.numPhoneValid = false;
-          this.numPhoneErrMsg = 'nomor ponsel minimal 11 karakter'
-        } else if (event.length > 12) {
-          this.numPhoneValid = false;
-          this.numPhoneErrMsg = 'nomor ponsel tidak bisa lebih dari 12 karakter'
-        } else {
-          this.numPhoneValid = true;
-        }
       } else if (col == 'birthPlace') {
         if (event.length < 3) {
           this.birthPlaceValid = false;
@@ -194,6 +171,34 @@ export class CreateTutorComponent implements OnInit {
         }
       } else if (col == 'birthDate') {
         this.birthDateValid = true;
+      }
+    }
+  }
+
+  phoneValidation(event: string): void {
+    if (/^[0-9]*$/.test(event) && (event.length > 10 && event.length < 13)) {
+      this.numPhoneValid = true;
+    } else {
+      this.numPhoneValid = false;
+      if (!/^[0-9]*$/.test(event)) {
+        this.numPhoneErrMsg = "Masukkan angka saja"
+      }
+      else if (event.length < 11 || event.length > 12) {
+        this.numPhoneErrMsg = "Minimal 11 digit, maksimal 12 digit"
+      }
+    }
+  }
+
+  numIdentity(event: string): void {
+    if (/^[0-9]*$/.test(event) && event.length == 16) {
+      this.nomorKtpValid = true;
+    } else {
+      this.nomorKtpValid = false;
+      if (!/^[0-9]*$/.test(event)) {
+        this.nomorKtpErrMsg = "Masukkan angka saja"
+      }
+      else if (event.length < 16 || event.length > 16) {
+        this.nomorKtpErrMsg = "Nomor identitas harus 16 angka"
       }
     }
   }

@@ -15,7 +15,6 @@ export class UserComponent {
   @Output() signOut: EventEmitter<void> = new EventEmitter<void>();
   public routes: typeof routes = routes;
   public flatlogicEmail: string = "https://flatlogic.com";
-  idProfile: string;
   profile: Profiles = new Profiles();
   name: string;
   url: any = "https://thumbs.dreamstime.com/b/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpg";
@@ -25,8 +24,7 @@ export class UserComponent {
   }
 
   ngOnInit(): void {
-    this.idProfile = this.auth.getProfileId();
-    this.getProfile();
+    this.getProfile(this.auth.getProfileId());
   }
 
   public signOutEmit(): void {
@@ -38,8 +36,8 @@ export class UserComponent {
     this.route.navigateByUrl(`pengaturan/${'profil'}`)
   }
 
-  getProfile(): void {
-    this.profileService.getProfileById(this.idProfile).subscribe(val => {
+  getProfile(idProfile: string): void {
+    this.profileService.getProfileById(idProfile).subscribe(val => {
       this.profile = val.data;
       this.name = val.data.fullName
       if (val.data.idFile.file) {

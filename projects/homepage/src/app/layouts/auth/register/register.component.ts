@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
     this.participant.idRole.code = ROLE.PARTICIPANT;
   }
 
-  onSelectFile(event) { 
+  onSelectFile(event) {
 
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
@@ -59,14 +59,14 @@ export class RegisterComponent implements OnInit {
   }
 
   save() {
-    
+
     if (this.fullnameValid && this.emailValid && this.usernameValid && this.passwordValid) {
       this.userService.insertUser(this.participant)
         .subscribe(val => {
           console.log(val);
           this.router.navigateByUrl("/auth/login")
         })
-    } 
+    }
 
   }
 
@@ -100,7 +100,12 @@ export class RegisterComponent implements OnInit {
       this.usernameValid = false;
       this.usernameErrorMsg = "Username tidak boleh kosong";
     } else {
-      this.usernameValid = true;
+      if (event.length < 6) {
+        this.usernameValid = false;
+        this.usernameErrorMsg = 'username terlalu pendek'
+      } else {
+        this.usernameValid = true;
+      }
     }
   }
 

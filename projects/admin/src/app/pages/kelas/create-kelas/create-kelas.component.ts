@@ -81,7 +81,7 @@ export class CreateKelasComponent implements OnInit {
       this.statusActivity = params['activity']
       this.getModules()
       this.getTutors()
-      this.idUser = this.auth.getProfileId()
+      this.idUser = this.auth.getUserId();
       if (this.statusActivity == 'create') {
         this.isCreate = true;
       } else {
@@ -179,9 +179,11 @@ export class CreateKelasComponent implements OnInit {
     kelas.idTutor = this.tutorSelect
 
     let dtlClass = new DetailClasses();
+
     dtlClass.idClass = kelas;
     dtlClass.endTime = this.endTimeValue
     dtlClass.startTime = this.startTimeValue
+    dtlClass.createdBy = this.idUser
 
     if (this.rangeDates != undefined) {
       dtlClass.startDate = this.formatDate(this.rangeDates[0])
@@ -215,7 +217,7 @@ export class CreateKelasComponent implements OnInit {
   }
 
   saveClass() {
-    console.log(this.classHelper)
+    console.log(this.classHelper, 'insert')
 
     this.formData.append("body", JSON.stringify(this.classHelper));
     this.classService.insertClasses(this.formData).subscribe(val => {
@@ -254,9 +256,6 @@ export class CreateKelasComponent implements OnInit {
       } else if (col == 'desc') {
         this.descValid = false;
         this.descErrMsg = 'deskripsi tidak boleh kosong'
-      } else if (col == 'kuota') {
-        this.kuotaValid = false;
-        this.kuotaErrMsg = 'kuota peserta tidak boleh kosong'
       }
     } else {
       if (col == 'code') {
@@ -265,8 +264,6 @@ export class CreateKelasComponent implements OnInit {
         this.nameValid = true;
       } else if (col == 'desc') {
         this.descValid = true;
-      } else if (col == 'kuota') {
-        this.kuotaValid = true;
       } else if (col == 'endHour') {
         if (event > this.startTimeValue) {
           this.jamSelesaiValid = false;
@@ -274,6 +271,23 @@ export class CreateKelasComponent implements OnInit {
         } else {
           this.jamMulaiValid = true;
         }
+      }
+    }
+  }
+
+  validateQuota(event: string): void {
+    if (/^[0-9]*$/.test(event) && (Number(event) > 1 && Number(event) < 1000)) {
+      this.kuotaValid = true;
+    } else {
+      this.kuotaValid = false;
+      if (!/^[0-9]*$/.test(event)) {
+        this.kuotaErrMsg = "Masukkan angka saja"
+      } else if (Number(event) < 1) {
+        this.kuotaErrMsg = "kuota peserta tidak boleh kurang dari 1 "
+      } else if (Number(event) > 1000) {
+        this.kuotaErrMsg = "kuota peserta tidak boleh lebih dari 1000"
+      } if (event.length == 0) {
+        this.kuotaErrMsg = 'kuota peserta tidak boleh kosong'
       }
     }
   }

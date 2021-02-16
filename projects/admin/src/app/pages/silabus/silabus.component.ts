@@ -29,11 +29,12 @@ export class SilabusComponent implements OnInit {
   loading: boolean = true;
 
   constructor(private auth: AuthService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-    this.idUser = auth.getUserId()
+
   }
 
   ngOnInit(): void {
     this.getModules()
+    this.idUser = this.auth.getUserId()
   }
 
   insertModule(): void {

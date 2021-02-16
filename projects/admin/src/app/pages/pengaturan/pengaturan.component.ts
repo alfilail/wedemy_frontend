@@ -114,7 +114,7 @@ export class PengaturanComponent implements OnInit {
   updateProfile() {
     this.profile.birthDate = this.formatDate(this.birthDate)
     this.profile.id = this.auth.getProfileId();
-    this.profile.updatedBy = this.auth.getProfileId()
+    this.profile.updatedBy = this.auth.getUserId();
 
     this.formData.append("body", JSON.stringify(this.profile));
     this.profileService.updateProfile(this.formData).subscribe(val => {
@@ -137,20 +137,42 @@ export class PengaturanComponent implements OnInit {
     return format;
   }
 
+  phoneValidation(event: string): void {
+    if (/^[0-9]*$/.test(event) && (event.length > 10 && event.length < 13)) {
+      this.phoneNumValid = true;
+    } else {
+      this.phoneNumValid = false;
+      if (!/^[0-9]*$/.test(event)) {
+        this.phoneNumErrMsg = "Masukkan angka saja"
+      }
+      else if (event.length < 11 || event.length > 12) {
+        this.phoneNumErrMsg = "Minimal 11 digit, maksimal 12 digit"
+      }
+    }
+  }
+
+  numIdentity(event: string): void {
+    if (/^[0-9]*$/.test(event) && event.length == 16) {
+      this.nomorKtpValid = true;
+    } else {
+      this.nomorKtpValid = false;
+      if (!/^[0-9]*$/.test(event)) {
+        this.nomorKtpErrMsg = "Masukkan angka saja"
+      }
+      else if (event.length < 16 || event.length > 16) {
+        this.nomorKtpErrMsg = "Nomor identitas harus 16 angka"
+      }
+    }
+  }
+
   validation(event: string, col: string) {
     if (event.length == 0) {
-      if (col == 'ktp') {
-        this.nomorKtpValid = false;
-        this.nomorKtpErrMsg = 'nomor ktp tidak boleh kosong'
-      } else if (col == 'nama') {
+      if (col == 'nama') {
         this.nameValid = false;
         this.nameErrMsg = 'nama tidak boleh kosong'
       } else if (col == 'alamat') {
         this.alamatValid = false;
         this.alamatErrMsg = 'alamat tidak boleh kosong'
-      } else if (col == 'numPhone') {
-        this.phoneNumValid = false;
-        this.phoneNumErrMsg = 'nomor ponsel tidak boleh kosong'
       } else if (col == 'birthPlace') {
         this.birthPlaceValid = false;
         this.birthPlaceErrMsg = 'tempat lahir tidak boleh kosong'
@@ -177,13 +199,6 @@ export class PengaturanComponent implements OnInit {
         } else {
           this.repeatPasswordValid = true;
         }
-      } else if (col == 'ktp') {
-        if (event.length < 16 || event.length > 16) {
-          this.nomorKtpValid = false;
-          this.nomorKtpErrMsg = 'nomor ktp harus memiliki 16 karakter'
-        } else {
-          this.nomorKtpValid = true;
-        }
       } else if (col == 'nama') {
         if (event.length < 4) {
           this.nameValid = false;
@@ -197,16 +212,6 @@ export class PengaturanComponent implements OnInit {
           this.alamatErrMsg = 'alamat tidak boleh kurang dari 10 karakter'
         } else {
           this.alamatValid = true;
-        }
-      } else if (col == 'numPhone') {
-        if (event.length < 11) {
-          this.phoneNumValid = false;
-          this.phoneNumErrMsg = 'nomor ponsel minimal 11 karakter'
-        } else if (event.length > 12) {
-          this.phoneNumValid = false;
-          this.phoneNumErrMsg = 'nomor ponsel tidak bisa lebih dari 12 karakter'
-        } else {
-          this.phoneNumValid = true;
         }
       } else if (col == 'birthPlace') {
         if (event.length < 3) {
