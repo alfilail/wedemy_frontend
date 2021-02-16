@@ -27,6 +27,25 @@ export class MaterialEditComponent implements OnInit {
   description: string;
   idDetailModuleRegistration: string;
 
+  selectedFileName: string;
+
+  mtrCodeErrMsg: string;
+  mtrNameErrMsg: string;
+  startDateErrMsg: string;
+  descErrMsg: string;
+
+  mtrCodeIsValid: boolean = true;
+  mtrNameIsValid: boolean = true;
+  startDateIsValid: boolean = true;
+  descIsValid: boolean = true;
+  fileIsValid: boolean;
+
+  mtrCodeClass: string = "";
+  mtrNameClass: string = "";
+  startDateClass: string = "";
+  descClass: string = "";
+
+  disabledButton: boolean = false;
 
   constructor(private authService: AuthService,
     private location: Location,
@@ -49,6 +68,15 @@ export class MaterialEditComponent implements OnInit {
       res => {
         this.material = this.transformModelToRequired(res.data);
         console.log(res);
+
+        if (res.data.idLearningMaterial.idFile) {
+          this.selectedFileName = res.data.idLearningMaterial.idFile.name;
+          this.fileIsValid = true;
+        } else {
+          this.selectedFileName = "Kosong";
+          this.fileIsValid = false;
+        }
+
         this.getMaterialTypes();
       },
       err => {
@@ -74,6 +102,13 @@ export class MaterialEditComponent implements OnInit {
   setFile(event: any): void {
     let fileList = event.target.files;
     if (fileList) this.formData.append('file', fileList[0]);
+
+    this.selectedFileName = fileList[0].name;
+  }
+
+  getFileName(): void {
+    console.log(this.material);
+    
   }
 
   back(): void {
@@ -125,19 +160,82 @@ export class MaterialEditComponent implements OnInit {
     // }
 
     // console.log(this.detailModuleRegistration);
-
-
-    this.formData.append('body', JSON.stringify(this.material));
-    this.materialService.updateMaterial(this.formData).subscribe(
-      res => {
-        console.log(res);
-        this.back();
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
+    console.log("hai");
+    if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid) {
+      this.formData.append('body', JSON.stringify(this.material));
+      
+      this.materialService.updateMaterial(this.formData).subscribe(
+        res => {
+          console.log(res);
+          this.back();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
   }
 
+  mtrCodeValidation(event: string): void {
+    if (event.length == 0) {
+      this.mtrCodeErrMsg = "Kode materi tidak boleh kosong"
+      this.mtrCodeIsValid = false;
+      this.mtrCodeClass = "is-invalid"
+    } else {
+      this.mtrCodeIsValid = true;
+      this.mtrCodeClass = ""
+
+      if (event.length > 10) {
+        this.mtrCodeErrMsg = "Maksimal 10 karakter"
+        this.mtrCodeIsValid = false;
+        this.mtrCodeClass = "is-invalid"
+      }
+    }
+    this.checkDisabled();
+  }
+
+  mtrNameValidation(event: string): void {
+    if (event.length == 0) {
+      this.mtrNameErrMsg = "Nama materi tidak boleh kosong"
+      this.mtrNameIsValid = false;
+      this.mtrNameClass = "is-invalid"
+    } else {
+      this.mtrNameIsValid = true;
+      this.mtrNameClass = ""
+    }
+    this.checkDisabled();
+    console.log(this.disabledButton);
+  }
+
+  startDateValidation(event: string): void {
+    if (event.length == 0) {
+      this.startDateErrMsg = "Tanggal tidak boleh kosong"
+      this.startDateIsValid = false;
+      this.startDateClass = "is-invalid"
+    } else {
+      this.startDateIsValid = true;
+      this.startDateClass = ""
+    }
+    this.checkDisabled();
+  }
+
+  descValidation(event: string): void {
+    if (event == null) {
+      this.descErrMsg = "Deskripsi tidak boleh kosong"
+      this.descIsValid = false;
+      this.descClass = "is-invalid"
+    } else {
+      this.descIsValid = true;
+      this.descClass = ""
+    }
+    this.checkDisabled();
+  }
+
+  checkDisabled(): void {
+    if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid && this.fileIsValid) {
+      this.disabledButton = false;
+    } else {
+      this.disabledButton = true;
+    }
+  }
 }

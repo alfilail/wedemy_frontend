@@ -17,7 +17,7 @@ export class UserStudentComponent implements OnInit {
   submitted: boolean;
   statuses: any[];
   listUsers: Users[] = []
-
+  loading: boolean = true;
   idUser: string
   constructor(private auth: AuthService, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
@@ -37,6 +37,7 @@ export class UserStudentComponent implements OnInit {
           res.idProfile.bio = "null"
         }
       })
+      this.loading = false;
     })
   }
 

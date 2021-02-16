@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Responses } from '@bootcamp-admin/model/response';
+import API from '@bootcamp-core/constants/api';
 import { Observable } from 'rxjs';
 import { AssignmentSubmissions } from '../model/assignment-submissions';
 import { BaseService } from './base.service';
@@ -8,17 +9,16 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AssignmentSubmissionService extends BaseService {
+export class AssignmentSubmissionService {
 
   constructor(private http: HttpClient) {
-    super();
   }
 
   getAssignmentSubmissions(): Observable<Responses<AssignmentSubmissions[]>> {
-    return this.http.get<Responses<AssignmentSubmissions[]>>(`${this.ipAddress}/assignment-submission/all`)
+    return this.http.get<Responses<AssignmentSubmissions[]>>(`${API.WEDEMY_HOST_DOMAIN}/assignment-submission/all`)
   }
 
   deleteById(id: string, idUser: string): Observable<Responses<AssignmentSubmissions>> {
-    return this.http.delete<Responses<AssignmentSubmissions>>(`${this.ipAddress}/assignment-submission?id=${id}&idUser=${idUser}`)
+    return this.http.delete<Responses<AssignmentSubmissions>>(`${API.WEDEMY_HOST_DOMAIN}/assignment-submission?id=${id}&idUser=${idUser}`)
   }
 }

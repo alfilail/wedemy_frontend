@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import API from '@bootcamp-core/constants/api';
 import { Observable } from 'rxjs';
 import { Roles } from '../model/roles';
 import { BaseService } from './base.service';
@@ -7,13 +8,12 @@ import { BaseService } from './base.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RoleService extends BaseService {
+export class RoleService {
 
   constructor(private http: HttpClient) {
-    super();
   }
 
   getRoles(): Observable<Roles[]> {
-    return this.http.get<Roles[]>(`${this.ipAddress}/role/all`)
+    return this.http.get<Roles[]>(`${API.WEDEMY_HOST_DOMAIN}/role/all`)
   }
 }

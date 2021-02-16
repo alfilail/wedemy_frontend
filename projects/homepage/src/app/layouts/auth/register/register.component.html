@@ -30,11 +30,10 @@
             <div class="p-fluid">
                 <div class="p-field p-col">
                     <span class="p-float-label">
-                        <input required [(ngModel)]="participant.idProfile.fullName" 
-                        [value]="participant.idProfile.fullName" class="rounded-pill" 
-                        type="text" id="fullname" name="fullname" 
-                        aria-describedby="fullname-help" (ngModelChange)="fullnameValidation($event)"
-                        pInputText>
+                        <input required [(ngModel)]="participant.idProfile.fullName"
+                            [value]="participant.idProfile.fullName" class="rounded-pill" type="text" id="fullname"
+                            name="fullname" aria-describedby="fullname-help"
+                            (ngModelChange)="fullnameValidation($event)" pInputText maxlength="50">
                         <label class="pl-2" for="fullname">Nama Lengkap</label>
                     </span>
                     <small *ngIf="!fullnameValid" id="fullname-help" class="p-error ml-3">{{fullnameErrorMsg}}</small>
@@ -42,39 +41,37 @@
                 </div>
                 <div class="p-field p-col">
                     <span class="p-float-label">
-                        <input [(ngModel)]="participant.idProfile.email" [value]="participant.idProfile.email" 
-                        class="rounded-pill" type="email" id="email" name="email" 
-                        aria-describedby="email-help" (ngModelChange)="emailValidation($event)"
-                        required 
-              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                        pInputText>
+                        <input [(ngModel)]="participant.idProfile.email" [value]="participant.idProfile.email"
+                            class="rounded-pill" type="email" id="email" name="email" aria-describedby="email-help"
+                            (ngModelChange)="emailValidation($event)" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" pInputText maxlength="50">
                         <label class="pl-2" for="email">E-mail</label>
                     </span>
                     <small *ngIf="!emailValid" id="email-help" class="p-error ml-3">{{emailErrorMsg}}</small>
                 </div>
                 <div class="p-field p-col">
                     <span class="p-float-label">
-                        <input required="true" [(ngModel)]="participant.username" [value]="participant.username" 
-                        class="rounded-pill" type="text" id="username" name="username" 
-                        aria-describedby="username-help" (ngModelChange)="usernameValidation($event)"
-                        pInputText>
+                        <input required="true" [(ngModel)]="participant.username" [value]="participant.username"
+                            class="rounded-pill" type="text" id="username" name="username"
+                            aria-describedby="username-help" (ngModelChange)="usernameValidation($event)" pInputText
+                            maxlength="64">
                         <label class="pl-2" for="username">Username</label>
                     </span>
                     <small *ngIf="!usernameValid" id="username-help" class="p-error ml-3">{{usernameErrorMsg}}</small>
                 </div>
                 <div class="p-field p-col">
                     <span class="p-float-label">
-                        <input required="true" [(ngModel)]="participant.userPassword" [value]="participant.userPassword" 
-                        class="rounded-pill" type="password" id="password" name="password" 
-                        aria-describedby="password-help" (ngModelChange)="passwordValidation($event)"
-                        required minlength="8"
-                        pPassword>
+                        <input required="true" [(ngModel)]="participant.userPassword" [value]="participant.userPassword"
+                            class="rounded-pill" type="password" id="password" name="password"
+                            aria-describedby="password-help" (ngModelChange)="passwordValidation($event)" required
+                            minlength="8" maxlength="128" pPassword>
                         <label class="pl-2" for="password">Password</label>
                     </span>
                     <small *ngIf="!passwordValid" id="password-help" class="p-error ml-3">{{passwordErrorMsg}}</small>
                 </div>
                 <div class="text-center p-field p-col-12 mt-3">
-                    <button pButton type="button" label="D A F T A R" (click)="save()" class="btn-block p-button-rounded"></button>
+                    <button pButton type="button" label="D A F T A R" (click)="save()"
+                        class="btn-block p-button-rounded"></button>
                 </div>
                 <div class="form-group d-flex justify-content-center mt-3">
                     <p class="mr-2">Sudah memiliki akun?</p>

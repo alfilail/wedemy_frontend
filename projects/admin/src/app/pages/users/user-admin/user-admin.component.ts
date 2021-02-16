@@ -22,7 +22,7 @@ export class UserAdminComponent implements OnInit {
   isSuperAdmin: boolean;
 
   idUser: string
-
+  loading: boolean = true;
   constructor(private auth: AuthService, private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
   }
@@ -49,6 +49,7 @@ export class UserAdminComponent implements OnInit {
           res.idProfile.bio = "null"
         }
       })
+      this.loading = false;
       console.log(val)
     })
   }

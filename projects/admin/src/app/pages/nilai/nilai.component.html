@@ -24,7 +24,7 @@
                 <p-table #dt [value]="listNilai" [rows]="10" [paginator]="true"
                     [globalFilterFields]="['code', 'minScore', 'maxScore']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true">
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
                     <ng-template pTemplate="header">
                         <tr>
                             <!-- <th>no</th> -->
@@ -106,4 +106,5 @@
 
         </div>
     </div>
+    <app-footer></app-footer>
 </app-layout>

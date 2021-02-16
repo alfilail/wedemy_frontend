@@ -20,7 +20,7 @@
                 <p-table #dt [value]="listKelas" [rows]="10" [paginator]="true" [globalFilterFields]="['code']"
                     [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true">
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
                     <ng-template pTemplate="header">
                         <tr>
                             <th field="pengajar" pSortableColumn="pengajar">Pengajar
@@ -100,4 +100,5 @@
             <p-confirmDialog></p-confirmDialog>
         </div>
     </div>
+    <app-footer></app-footer>
 </app-layout>

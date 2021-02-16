@@ -26,7 +26,7 @@ export class StatusTugasComponent implements OnInit {
 
   nameValid: boolean;
   nameErrMsg: string;
-
+  loading: boolean = true;
   constructor(private auth: AuthService, private submissionStatusService: SubmissionStatusService, private messageService: MessageService, private confirmationService: ConfirmationService) {
   }
 
@@ -41,6 +41,7 @@ export class StatusTugasComponent implements OnInit {
       this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => {
         this.productDialog = false;
         this.listStatusTugas.push(this.statusTugas);
+
       })
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
@@ -60,7 +61,7 @@ export class StatusTugasComponent implements OnInit {
 
   getSubmissionStatus() {
     this.submissionStatusService.getSubmissionStatus().subscribe(val => {
-      this.listStatusTugas = val.data;
+      this.listStatusTugas = val.data; this.loading = false;
       console.log(val)
     })
   }

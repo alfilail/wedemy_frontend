@@ -11,7 +11,6 @@ import { PrimeModule } from '../../../shared/prime/prime.module';
 import { SharedModule } from '../../../shared/shared.module';
 import { registerLocaleData } from '@angular/common';
 import localeId from '@angular/common/locales/id';
-import { ListUsersComponent } from '@bootcamp-admin/pages/users/list-users/list-users.component';
 registerLocaleData(localeId, 'id');
 
 @NgModule({
@@ -19,8 +18,7 @@ registerLocaleData(localeId, 'id');
     UserAdminComponent,
     UserTutorComponent,
     UserStudentComponent,
-    CreateTutorComponent,
-    ListUsersComponent
+    CreateTutorComponent
   ],
   imports: [
     CommonModule,

@@ -24,7 +24,7 @@
                 <p-table #dt [value]="listApprovements" [rows]="10" [paginator]="true"
                     [globalFilterFields]="['approvementName', 'code']" [rowHover]="true" dataKey="id" class="p-m-3"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true">
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
                     <ng-template pTemplate="header">
                         <tr>
                             <th pSortableColumn="code">Kode<p-sortIcon field="code"></p-sortIcon>
@@ -96,4 +96,5 @@
             <p-confirmDialog></p-confirmDialog>
         </div>
     </div>
+    <app-footer></app-footer>
 </app-layout>

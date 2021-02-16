@@ -26,12 +26,15 @@ export class SilabusComponent implements OnInit {
 
   nameValid: boolean;
   nameErrMsg: string;
+  loading: boolean = true;
+
   constructor(private auth: AuthService, private moduleService: ModuleService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-    this.idUser = auth.getUserId()
+
   }
 
   ngOnInit(): void {
     this.getModules()
+    this.idUser = this.auth.getUserId()
   }
 
   insertModule(): void {
@@ -63,6 +66,7 @@ export class SilabusComponent implements OnInit {
   getModules(): void {
     this.moduleService.getModules().subscribe(val => {
       this.listSilabus = val.data;
+      this.loading = false;
       console.log(val)
     })
   }

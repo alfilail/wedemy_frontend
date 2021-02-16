@@ -1,75 +1,71 @@
 <section class="section-title">
-  <h2>Edit Materi</h2>
+    <h2>Edit Materi</h2>
 </section>
 
 <div class="row">
 
-  <div class="col-sm-12 col-md-6">
-    <div class="form-group">
-      <label for="materialCode">Kode Materi</label>
-      <input [(ngModel)]="material.idLearningMaterial.code" type="text" class="form-control" id="materialCode"
-        aria-describedby="materialCodeHelp" [value]="material.idLearningMaterial.code">
-      <small id="materialCodeHelp" class="form-text text-muted">Maksimum Kode Material adalah 10 Karakter</small>
-    </div>
-  </div>
-
-  <div class="col-sm-12 col-md-6">
-    <div class="form-group">
-      <label for="materialName">Nama Materi</label>
-      <input [(ngModel)]="material.idLearningMaterial.learningMaterialName" type="text" class="form-control"
-        id="materialName" aria-describedby="materialNameHelp"
-        [value]="material.idLearningMaterial.learningMaterialName">
-      <small id="materialNameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-  </div>
-
-  <div class="col-sm-12 col-md-6">
-    <div class="form-group">
-      <label for="startDate">Tanggal Berlangsung</label>
-      <input [(ngModel)]="material.scheduleDate" type="date" class="form-control" id="startDate"
-        aria-describedby="startDateHelp" [value]="material.scheduleDate">
-      <small id="startDateHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-  </div>
-
-  <div class="col-sm-12 col-md-6">
-    <div class="form-group">
-      <label for="materialFile">File</label>
-      <input (change)="setFile($event)" type="file" class="form-control" id="materialFile"
-        aria-describedby="materialFileHelp">
-      <small id="materialFileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="materialCode">Kode Materi</label>
+            <input (ngModelChange)="mtrCodeValidation($event)" [(ngModel)]="material.idLearningMaterial.code" type="text" class="form-control {{mtrCodeClass}}" id="materialCode" aria-describedby="materialCodeHelp" [value]="material.idLearningMaterial.code" required
+                minlength="1" maxlength="10">
+            <small *ngIf="!mtrCodeIsValid" id="materialCodeHelp" class="form-text text-danger">{{mtrCodeErrMsg}}</small>
+        </div>
     </div>
 
-    <!-- <div class="form-group">
-      <label class="btn btn-primary btn-file">
-        Browse <input type="file" style="display: none;" required>
-        File selected
-    </label>
-    
-    </div> -->
-  </div>
-  <div class="col-sm-12 col-md-6">
-    <div class="form-group">
-      <label>Tipe Material :&nbsp;</label>
-      <select [(ngModel)]="selectedMaterialType" class="shadow-sm">
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="materialName">Nama Materi</label>
+            <input (ngModelChange)="mtrNameValidation($event)" [(ngModel)]="material.idLearningMaterial.learningMaterialName" type="text" class="form-control {{mtrNameClass}}" id="materialName" aria-describedby="materialNameHelp" [value]="material.idLearningMaterial.learningMaterialName"
+                required minlength="1">
+            <small *ngIf="!mtrNameIsValid" id="materialNameHelp" class="form-text text-danger">{{mtrNameErrMsg}}</small>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="startDate">Tanggal Berlangsung</label>
+            <input (ngModelChange)="startDateValidation($event)" [(ngModel)]="material.scheduleDate" type="date" class="form-control {{startDateClass}}" id="startDate" aria-describedby="startDateHelp" [value]="material.scheduleDate" required>
+            <small *ngIf="!startDateIsValid" id="startDateHelp" class="form-text text-danger">{{startDateErrMsg}}</small>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+        <!-- <div class="form-group">
+            <label for="materialFile">File</label>
+            <input (change)="setFile($event)" type="file" class="form-control" id="materialFile" aria-describedby="materialFileHelp">
+            <small id="materialFileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div> -->
+
+        <label>File Materi</label>
+        <div class="custom-file mb-3">
+            <input (change)="setFile($event)" type="file" class="custom-file-input" id="customFile" name="filename">
+            <label class="custom-file-label" for="customFile">{{selectedFileName}}</label>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label>Tipe Material :&nbsp;</label>
+            <select [(ngModel)]="selectedMaterialType" class="form-control">
         <option *ngFor="let materialType of materialTypes" [ngValue]="materialType" [selected]="selectedMaterialType">{{
           materialType.learningMaterialTypeName }}</option>
       </select>
+        </div>
     </div>
-  </div>
-  <div class="col-12">
-    <div class="form-group">
-      <label for="materialName">Description</label>
-      <p-editor [(ngModel)]="material.idLearningMaterial.description" [style]="{'height':'200px'}">
-        {{material.idLearningMaterial.description}}
-      </p-editor>
-    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <p-editor (ngModelChange)="descValidation($event)" id="desc" [(ngModel)]="material.idLearningMaterial.description" [style]="{'height':'200px'}" required>
+                {{material.idLearningMaterial.description}}
+            </p-editor>
+            <small *ngIf="!descIsValid" id="desc" class="form-text text-danger">{{descErrMsg}}</small>
+        </div>
 
-    <div class="d-flex justify-content-end">
-      <button (click)="back()" class="btn btn-danger mr-3">Batal</button>
-      <button (click)="update()" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-end">
+            <button (click)="back()" class="btn btn-danger mr-3">Batal</button>
+            <button (click)="update()" class="btn btn-primary" [disabled]="disabledButton">Simpan</button>
+        </div>
     </div>
-  </div>
 
 
 </div>

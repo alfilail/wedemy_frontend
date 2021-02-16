@@ -1,4 +1,4 @@
-<div class="row forum-container bg-light shadow-sm" style="margin-bottom: 500px;">
+<div class="row forum-container bg-light shadow-sm mb-5" style="margin-bottom: 500px;">
     <div class="w-100">
         <div class="mb-4">
             <p-editor [(ngModel)]="comment" [style]="{'height':'200px', 'width': '100%'}">
@@ -30,7 +30,7 @@
                     <!-- <p style="cursor: pointer;" (click)="showReplyEditor(i)">Balas</p> -->
                 </div>
             </div>
-            <div class="reply">
+            <div style="padding-left: 80px; margin-top: 10px; margin-bottom: 20px ;">
                 <div *ngIf="isShowReplyEditor === i" class="reply-section mb-3">
                     <p-editor [(ngModel)]="replyComment" [style]="{'height':'100px', 'width': '100%'}">
                     </p-editor>
@@ -50,6 +50,7 @@
                 </ng-template>
 
             </div>
+
         </ng-template>
     </div>
 </div>
