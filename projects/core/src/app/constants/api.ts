@@ -1,5 +1,5 @@
 const API = {
-  WEDEMY_HOST_DOMAIN: 'http://192.168.13.66:8080',
+  WEDEMY_HOST_DOMAIN: 'http://192.168.13.66:8080/wedemy',
 
   /* 1. API of Tutor & Participant */
 
@@ -23,6 +23,7 @@ const API = {
   WEDEMY_PRESENCE_QUERY_PATH: '/presence',
   WEDEMY_PARTICIPANT_PRESENCE_QUERY_PATH: '/approvement-renewal/participant-presence',
   WEDEMY_APPROVEMENT_PARTICIPANT_PRESENCE_QUERY_PATH: '/approvement-renewal/participant-approvement',
+  WEDEMY_DETAIL_PRESENCE_QUERY_PATH: '/detail-module-rgs/module-and-material',
 
   // 1.E Assignment
   WEDEMY_ASSIGNMENT_QUERY_PATH: '/evaluation',

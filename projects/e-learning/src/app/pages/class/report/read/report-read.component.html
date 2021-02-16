@@ -3,7 +3,7 @@
 </section>
 
 
-<p-table #dt [value]="participants" [scrollable]="true" [(selection)]="selectedParticipants" dataKey="id"
+<p-table #dt [value]="participantScores" [scrollable]="true" [(selection)]="selectedParticipantScore" dataKey="id"
   styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
   [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
@@ -33,20 +33,20 @@
       <th>Berkas</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-participant let-i="rowIndex">
+  <ng-template pTemplate="body" let-participantScore let-i="rowIndex">
     <tr class="p-selectable-row">
       <td>
         <span class="p-column-title">{{i + 1}}</span>
       </td>
       <td>
-        <span class="p-column-title">{{participant.idAssignmentSubmission.idParticipant.idProfile.fullName}}</span>
+        <span class="p-column-title">{{participantScore.idAssignmentSubmission.idParticipant.idProfile.fullName}}</span>
       </td>
       <td>
-        <span class="p-column-title">{{participant.score}}</span>
+        <span class="p-column-title">{{participantScore.score}}</span>
       </td>
       <td>
         <!-- <button (click)="test(participant.idAssignmentSubmission.idParticipant.id)" pButton type="button" label="Unduh" class="p-button-info" icon="pi pi-file-pdf"></button> -->
-        <a (click)="test(participant.idAssignmentSubmission.idParticipant.id)" class="btn btn-info">
+        <a (click)="test(participantScore.idAssignmentSubmission.idParticipant.id)" class="btn btn-info">
           <i class="pi pi-file-pdf"></i>
           Unduh
         </a>
@@ -59,3 +59,32 @@
     </tr>
 </ng-template>
 </p-table>
+
+
+<div class="card">
+  <h5>Subheader Grouping</h5>
+  <p-table [value]="participantPresences" sortField="participantPresence.detailModule.idModuleRegistration.idModule.moduleName" sortMode="single" (onSort)="onSort()">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Nama Materi</th>
+              <th>Aksi</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-participantPresence let-rowIndex="rowIndex">
+          <tr *ngIf="rowGroupMetadata[participantPresence.detailModule.idModuleRegistration.idModule.moduleName].index === rowIndex">
+              <td colspan="2">
+                <span class="font-weight-bold">{{participantPresence.detailModule.idModuleRegistration.idModule.moduleName}}</span>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  {{participantPresence.detailModule.idLearningMaterial.learningMaterialName}}
+              </td>
+              <td>
+                  <span class="image-text">{{participantPresence.detailModule.idLearningMaterial.learningMaterialName}}</span>
+              </td>
+             
+          </tr>
+      </ng-template>
+  </p-table>
+</div>

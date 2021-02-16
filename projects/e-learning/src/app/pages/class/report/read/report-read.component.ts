@@ -10,38 +10,13 @@ import { ReportService } from '@bootcamp-elearning/services/report.service';
 export class ReportReadComponent implements OnInit {
   idDetailClass: string;
 
-  participants: any;
-
-
-  // participants = [
-  //   {
-  //     name: 'Anggi Alberto',
-  //     averageValue: 89.0
-  //   },
-  //   {
-  //     name: 'Ibon',
-  //     averageValue: 88.0
-  //   },
-  //   {
-  //     name: 'Denkeist',
-  //     averageValue: 87.0
-  //   },
-  //   {
-  //     name: 'Nissa',
-  //     averageValue: 86.0
-  //   },
-  //   {
-  //     name: 'Boss',
-  //     averageValue: 85.0
-  //   },
-  // ]
-
-  selectedParticipants: any[];
-
-
+  participantScores: any;
+  selectedParticipantScore: any[];
   loading: boolean = true;
-
   activityValues: number[] = [0, 100];
+
+  participantPresences: any;
+  rowGroupMetadata: any;
 
   constructor(private route: ActivatedRoute,
     private reportService: ReportService) { }
@@ -50,6 +25,7 @@ export class ReportReadComponent implements OnInit {
     this.route.params.subscribe(param => {
       this.idDetailClass = param['idDetailClass'];
       this.getAllScore();
+      this.getAllPresence();
     })
   }
 
@@ -57,13 +33,100 @@ export class ReportReadComponent implements OnInit {
     this.reportService.getAllScore(this.idDetailClass).subscribe(
       res => {
         console.log(res);
-        this.participants = res.data;
+        this.participantScores = res.data;
         this.loading = false;
+      },
+      err => {
+        console.log(err);
+        this.loading = false;
+      }
+    )
+  }
+
+  getAllPresence(): void {
+    this.reportService.getAllPressence(this.idDetailClass).subscribe(
+      res => {
+        console.log(res);
+
+        // let data = []
+        // let uniqueIdDetailModule = [];
+        // uniqueIdDetailModule = [...new Set(res.data.map(val => val.detailModule.idModuleRegistration.idModule.id))]
+
+        // uniqueIdDetailModule.forEach(idDetailModule => {
+        //   let groupLearningMaterial = {
+        //     detailModule: {
+        //       id: idDetailModule,
+        //       learningMaterials: []
+        //     }
+        //   }
+        //   res.data.forEach(val => {
+        //     if (val.detailModule.idModuleRegistration.idModule.id === idDetailModule) {
+        //       groupLearningMaterial.detailModule['moduleName'] = val.detailModule.idModuleRegistration.idModule.moduleName;
+        //       groupLearningMaterial.detailModule.learningMaterials.push(val.detailModule.idLearningMaterial);
+        //     }
+        //   })
+        //   data.push(groupLearningMaterial);
+        // })
+
+        this.participantPresences = res.data;
+        console.log(res.data);
+
+        this.updateRowGroupMetaData();
       },
       err => {
         console.log(err);
       }
     )
+  }
+
+
+  onSort() {
+    this.updateRowGroupMetaData();
+  }
+
+  updateRowGroupMetaData() {
+    this.rowGroupMetadata = {};
+
+    // if (this.participantPresences) {
+    //   for (let i = 0; i < this.participantPresences.length; i++) {
+    //     let rowData = this.participantPresences[i];
+    //     let representativeName = rowData.detailModule.moduleName;
+
+    //     if (i == 0) {
+    //       this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
+    //     }
+    //     else {
+    //       let previousRowData = this.participantPresences[i - 1];
+    //       let previousRowGroup = previousRowData.detailModule.moduleName;
+    //       if (representativeName === previousRowGroup)
+    //         this.rowGroupMetadata[representativeName].size++;
+    //       else
+    //         this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
+    //     }
+    //   }
+    // }
+
+
+
+    if (this.participantPresences) {
+      for (let i = 0; i < this.participantPresences.length; i++) {
+        let rowData = this.participantPresences[i];
+        let representativeName = rowData.detailModule.idModuleRegistration.idModule.moduleName;
+
+        if (i == 0) {
+          this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
+        }
+        else {
+          let previousRowData = this.participantPresences[i - 1];
+          let previousRowGroup = previousRowData.detailModule.idModuleRegistration.idModule.moduleName;
+          if (representativeName === previousRowGroup)
+            this.rowGroupMetadata[representativeName].size++;
+          else
+            this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
+        }
+      }
+    }
+
   }
 
   test(idUser: string): void {
