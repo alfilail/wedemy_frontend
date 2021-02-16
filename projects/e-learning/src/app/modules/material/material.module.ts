@@ -15,6 +15,7 @@ import { DateAgoPipe } from '@bootcamp-elearning/shared/pipes/date-ago.pipe';
 import { PresenceComponent } from '../../pages/material/presence/presence.component';
 import { AssignmentComponent } from '../../pages/material/assignment/assignment.component';
 import { ButtonModule } from 'primeng/button';
+import { PrimeNGModule } from '@bootcamp-elearning/shared/prime-ng/prime-ng.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ButtonModule } from 'primeng/button';
     SkeletonModule,
     ToolbarModule,
     ButtonModule,
-    CheckboxModule
+    CheckboxModule,
+    PrimeNGModule
   ]
 })
 export class MaterialModule { }

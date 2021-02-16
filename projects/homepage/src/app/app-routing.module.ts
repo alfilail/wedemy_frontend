@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomepageBaseComponent } from '@bootcamp-homepage/layouts/base/homepage/homepage-base.component';
 import { HomepageBaseModule } from './modules/homepage/base/homepage-base.module';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { CanActivateTeam } from './shared/guards/classes/can-activate-team';
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('@bootcamp-elearning/app.module')
       .then(m => m.AppModule)
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
