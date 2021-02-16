@@ -26,7 +26,7 @@ export class KelasComponent implements OnInit {
   isActive: boolean;
 
   kelas: DetailClasses = new DetailClasses();
-  idUser: string;
+  idUser: string; loading: boolean = true;
 
   constructor(private route: Router, private classService: ClassService, private auth: AuthService, private dtlClsService: DtlClassService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.idUser = auth.getUserId()
@@ -40,7 +40,7 @@ export class KelasComponent implements OnInit {
   getClasses() {
     this.dtlClsService.getDetailClasses().subscribe(val => {
       this.listKelas = val.data;
-      console.log(val)
+      console.log(val); this.loading = false;
     })
   }
 

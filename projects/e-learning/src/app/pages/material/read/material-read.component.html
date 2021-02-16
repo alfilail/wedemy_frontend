@@ -1,12 +1,12 @@
 <div class="container px-5 mt-5">
-    <div class="row main-material rounded shadow-sm">
-        <div class="d-flex h-100 w-100 p-2 bg-light justify-content-start align-items-center">
+    <div class="row main-material rounded">
+        <div class="d-flex h-100 w-100 p-2 bg-light border justify-content-start align-items-center">
             <button pButton pRipple (click)="back()" type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-secondary p-button-text mr-2"></button>
             <h5 class="material-title">
                 {{material.idLearningMaterial.learningMaterialName}}
             </h5>
         </div>
-        <div class="content-class w-100 p-4">
+        <div class="content-class w-100 p-4 border">
             <!-- <ng-template [ngIf]="!isLoading">
         <p-skeleton styleClass="p-mb-2" width="100%" height="1rem"></p-skeleton>  
         <p-skeleton styleClass="p-mb-2" width="100%" height="1rem"></p-skeleton>  
@@ -40,5 +40,7 @@
             <li *ngIf="roleCode === roles.TUTOR" routerLink="presence" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">DAFTAR KEHADIRAN</li>
         </ul>
     </div>
+    <div class="mb-1">&nbsp;</div>
     <router-outlet></router-outlet>
+    <div class="mt-1">&nbsp;</div>
 </div>

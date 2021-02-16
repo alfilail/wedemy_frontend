@@ -108,7 +108,8 @@ export class AnswerComponent implements OnInit {
 
   getLastModified(): void {
     console.log(this.answer)
-    if (this.answer != null) {
+    
+    if (this.answer.id != "Empty") {
       if (this.answer.idFile.updatedAt){
         this.lastModified = this.answer.idFile.updatedAt;
       } else if (this.answer.idFile.createdAt){
@@ -122,30 +123,23 @@ export class AnswerComponent implements OnInit {
 
 
   getFileName(): void {
-    if (this.answer != null) {
+    if (this.answer.id != "Empty") {
       this.fileName = this.answer.idFile.name;
     } else {
       this.fileName = "Kosong";
     }
   }
 
-  getMaterial(): void {
-    this.materialService.getMaterial(this.idDetailModuleRegistration).subscribe(
-      res => {
-        this.material = res.data;
-        console.log(res.data);
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
-
   checkDueDate(): void {
     let now = new Date();
     let dueDate = new Date(this.answer.idDetailModuleRegistration.scheduleDate);
+    console.log(this.answer.idDetailModuleRegistration.idDetailClass);
+    let dueTime = this.answer.idDetailModuleRegistration.idModuleRegistration.idDetailClass.endTime.split(":");
+    dueDate.setHours(dueTime[0]);
+    dueDate.setMinutes(dueTime[1]);
     console.log(now);
     console.log(dueDate);
+    console.log(dueTime)
     if (now > dueDate){
       this.isOverDueDate = true;
       console.log("over due date");

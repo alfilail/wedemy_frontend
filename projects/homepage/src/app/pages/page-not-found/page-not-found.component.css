@@ -1,0 +1,10 @@
+.content {
+    margin-top: 3rem;
+    min-height: 64vh;
+}
+
+.page-container {
+    height: 100vh;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}

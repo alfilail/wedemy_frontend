@@ -19,6 +19,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CalendarModule } from 'primeng/calendar';
 import { InputMaskModule } from 'primeng/inputmask';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { InputMaskModule } from 'primeng/inputmask';
     ToolbarModule,
     ConfirmDialogModule,
     CalendarModule,
-    InputMaskModule
+    InputMaskModule,
+    MessagesModule,
+    MessageModule
   ],
   exports: [
     CommonModule,
@@ -65,7 +69,9 @@ import { InputMaskModule } from 'primeng/inputmask';
     ToolbarModule,
     ConfirmDialogModule,
     CalendarModule,
-    InputMaskModule
+    InputMaskModule,
+    MessagesModule,
+    MessageModule
   ]
 })
 export class PrimeNGModule { }

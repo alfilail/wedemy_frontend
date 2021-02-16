@@ -13,17 +13,22 @@ import * as moment from 'moment';
 import { RouterModule } from '@angular/router';
 import { CanActivateTeam } from './shared/guards/classes/can-activate-team';
 import { Permissions } from '@bootcamp-homepage/shared/guards/classes/permissions';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { PartialModule } from './modules/homepage/partial/partial.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    PartialModule,
+    PrimeNGModule
   ],
   providers: [
     MessageService,

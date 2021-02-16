@@ -14,6 +14,7 @@ import { UserService } from '@bootcamp-homepage/services/user.service';
 export class HeaderComponent implements OnInit {
   user: Users = new Users();
   defaultImg: string = "/assets/img/profile-default.jpeg";
+  firstName: string;
 
   constructor(private authService: AuthService,
     private router: Router,
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
       this.userService.getUserById(this.authService.getUserId()).subscribe(
         res => {
           this.user = res.data;
+          this.getFirstName();
           console.log(res);
         },
         err => {
@@ -63,4 +65,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  getFirstName(): void {
+    this.firstName = this.user.idProfile.fullName.split(" ")[0];
+  }
 }

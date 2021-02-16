@@ -32,7 +32,7 @@ export class DisableClassComponent implements OnInit {
 
   kelas: Classes = new Classes();
   dtlClass: DetailClasses = new DetailClasses();
-  idUser: string;
+  idUser: string; loading: boolean = true;
 
   constructor(private dtlClassService: DtlClassService, private route: Router, private classService: ClassService, private auth: AuthService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.idUser = auth.getUserId()
@@ -89,7 +89,7 @@ export class DisableClassComponent implements OnInit {
   getClasses() {
     this.classService.getClassInactive().subscribe(val => {
       this.listKelas = val.data;
-      console.log(val)
+      console.log(val); this.loading = false;
     })
   }
 

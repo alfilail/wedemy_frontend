@@ -25,6 +25,7 @@ export class PersetujuanAbsenComponent implements OnInit {
 
   nameValid: boolean;
   nameErrMsg: string;
+  loading: boolean = true;
 
   constructor(private auth: AuthService, private aprovementService: ApprovementService, private messageService: MessageService, private confirmationService: ConfirmationService) {
     this.idUser = auth.getUserId()
@@ -36,6 +37,7 @@ export class PersetujuanAbsenComponent implements OnInit {
 
   insertApprovement(): void {
     if (this.codeValid == true && this.nameValid == true) {
+      this.approvement.createdBy = this.idUser
       this.aprovementService.insertApprovement(this.approvement).subscribe(val => {
         this.productDialog = false;
         this.listApprovements.push(this.approvement)
@@ -47,6 +49,7 @@ export class PersetujuanAbsenComponent implements OnInit {
 
   updateApprovement(): void {
     console.log('update')
+    this.approvement.updatedBy = this.idUser
     this.aprovementService.updateApprovement(this.approvement).subscribe(val => {
       this.productDialog = false;
       this.update = false;
@@ -59,7 +62,7 @@ export class PersetujuanAbsenComponent implements OnInit {
   getApprovements(): void {
     this.aprovementService.getApprovements().subscribe(val => {
       this.listApprovements = val.data
-      console.log(val)
+      console.log(val); this.loading = false;
     })
   }
 

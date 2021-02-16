@@ -31,6 +31,7 @@ export class JenisTugasComponent implements OnInit {
 
   nameValid: boolean;
   nameErrMsg: string;
+  loading: boolean = true;
 
   constructor(private auth: AuthService, private learningMaterialTypeService: LearningMaterialTypeService, private messageService: MessageService, private confirmationService: ConfirmationService) {
   }
@@ -67,7 +68,7 @@ export class JenisTugasComponent implements OnInit {
   getLearningMaterialTypes() {
     this.learningMaterialTypeService.getLearningMaterialTypes().subscribe(val => {
       this.listJenisTugas = val.data;
-      console.log(val)
+      console.log(val); this.loading = false;
     })
   }
 

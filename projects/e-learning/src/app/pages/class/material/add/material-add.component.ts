@@ -29,16 +29,22 @@ export class MaterialAddComponent implements OnInit {
   mtrCodeErrMsg: string;
   mtrNameErrMsg: string;
   startDateErrMsg: string;
+  descErrMsg: string;
 
   mtrCodeIsValid: boolean;
   mtrNameIsValid: boolean;
   startDateIsValid: boolean;
+  descIsValid: boolean;
+  fileIsValid: boolean;
 
   selectedFileName: any = "Pilih file";
 
-  mtrCodeClass: string = ""
-  mtrNameClass: string = ""
-  startDateClass: string = ""
+  mtrCodeClass: string = "";
+  mtrNameClass: string = "";
+  startDateClass: string = "";
+  descClass: string = "";
+
+  disabledButton: boolean = true;
 
   constructor(private authService: AuthService,
     private location: Location,
@@ -70,6 +76,8 @@ export class MaterialAddComponent implements OnInit {
     if (fileList) this.formData.append('file', fileList[0]);
 
     this.selectedFileName = fileList[0].name;
+    this.fileIsValid = true;
+    
   }
 
   back(): void {
@@ -122,6 +130,7 @@ export class MaterialAddComponent implements OnInit {
 
       }
     }
+    this.checkDisabled();
   }
 
   mtrNameValidation(event: string): void {
@@ -132,8 +141,8 @@ export class MaterialAddComponent implements OnInit {
     } else {
       this.mtrNameIsValid = true;
       this.mtrNameClass = ""
-
     }
+    this.checkDisabled();
   }
 
   startDateValidation(event: string): void {
@@ -145,6 +154,28 @@ export class MaterialAddComponent implements OnInit {
       this.startDateIsValid = true;
       this.startDateClass = ""
     }
+    this.checkDisabled();
   }
 
+  descValidation(event: string): void {
+    if (event == null) {
+      this.descErrMsg = "Deskripsi tidak boleh kosong"
+      this.descIsValid = false;
+      this.descClass = "is-invalid"
+    } else {
+      this.descIsValid = true;
+      this.descClass = ""
+    }
+    this.checkDisabled();
+  }
+
+  checkDisabled(): void {
+    if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid 
+      //&& this.fileIsValid
+      ) {
+      this.disabledButton = false;
+    } else {
+      this.disabledButton = true;
+    }
+  }
 }

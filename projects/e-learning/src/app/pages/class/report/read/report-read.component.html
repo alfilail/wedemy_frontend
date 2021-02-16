@@ -39,13 +39,17 @@
         <span class="p-column-title">{{i + 1}}</span>
       </td>
       <td>
-        <span class="p-column-title">{{participant.name}}</span>
+        <span class="p-column-title">{{participant.idAssignmentSubmission.idParticipant.idProfile.fullName}}</span>
       </td>
       <td>
-        <span class="p-column-title">{{participant.averageValue}}</span>
+        <span class="p-column-title">{{participant.score}}</span>
       </td>
       <td>
-        <button pButton type="button" class="p-button-info" icon="pi pi-file-pdf">Unduh</button>
+        <!-- <button (click)="test(participant.idAssignmentSubmission.idParticipant.id)" pButton type="button" label="Unduh" class="p-button-info" icon="pi pi-file-pdf"></button> -->
+        <a (click)="test(participant.idAssignmentSubmission.idParticipant.id)" class="btn btn-info">
+          <i class="pi pi-file-pdf"></i>
+          Unduh
+        </a>
       </td>
     </tr>
   </ng-template>

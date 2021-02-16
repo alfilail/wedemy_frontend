@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListUsersComponent } from '@bootcamp-admin/pages/users/list-users/list-users.component';
 import { UserAdminComponent } from '../../../pages/users/user-admin/user-admin.component';
 import { UserStudentComponent } from '../../../pages/users/user-student/user-student.component';
 import { CreateTutorComponent } from '../../../pages/users/user-tutor/create-tutor/create-tutor.component';
@@ -23,10 +22,6 @@ const routes: Routes = [
   {
     path: 'create/:user',
     component: CreateTutorComponent
-  },
-  {
-    path: 'user/:role',
-    component: ListUsersComponent
   }
 ];
 

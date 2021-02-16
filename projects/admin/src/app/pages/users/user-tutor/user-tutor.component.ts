@@ -18,7 +18,7 @@ export class UserTutorComponent implements OnInit {
   statuses: any[];
   idUser: string;
   user: Users;
-  listUsers: Users[] = [];
+  listUsers: Users[] = []; loading: boolean = true;
 
   constructor(private auth: AuthService, private route: Router, private userService: UserService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
@@ -38,6 +38,7 @@ export class UserTutorComponent implements OnInit {
           res.idProfile.bio = "null"
         }
       })
+      this.loading = false;
     })
   }
 
