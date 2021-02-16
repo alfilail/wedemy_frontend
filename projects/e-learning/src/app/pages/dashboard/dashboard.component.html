@@ -16,7 +16,7 @@
     </div>
 
     <div *ngIf="!isLoading && results.length === 0" class="d-flex justify-content-center align-items-center text-center"
-    style="font-size: 200%; font-weight: bold;">
+      style="font-size: 200%; font-weight: bold;">
       <p>Kamu belum terdaftar di kelas manapun :(</p>
 
     </div>
@@ -52,10 +52,11 @@
     </div>
 
     <div *ngIf="isLoading" class="row course-list list justify-content-between">
-      <div *ngFor='let in of counter(1) ;let i = index' class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
+      <div *ngFor='let in of counter(1) ;let i = index'
+        class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
         <div class="card shadow-lg card-light">
           <p-skeleton width="100%" height="200px" styleClass="p-mb-3"></p-skeleton>
-          <div class="p-d-flex p-flex-column p-px-2">
+          <div class="p-flex-column p-px-2">
             <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
             <p-skeleton width="15rem" height=".8rem" styleClass="p-mb-2"></p-skeleton>
             <p-skeleton width="13rem" height=".8rem"></p-skeleton>

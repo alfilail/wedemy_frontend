@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { DashboardPageComponent } from './pages/dashboard/containers';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -17,14 +16,14 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./module/master/pengaturan/pengaturan.module').then(m => m.PengaturanModule)
   },
-  {
-    path: '404',
-    component: NotFoundComponent
-  },
-  {
-    path: '**',
-    redirectTo: '404'
-  }
+  // {
+  //   path: '404',
+  //   component: NotFoundComponent
+  // },
+  // {
+  //   path: '**',
+  //   redirectTo: '404'
+  // }
 ];
 
 @NgModule({

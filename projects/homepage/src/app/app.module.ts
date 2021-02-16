@@ -13,10 +13,12 @@ import * as moment from 'moment';
 import { RouterModule } from '@angular/router';
 import { CanActivateTeam } from './shared/guards/classes/can-activate-team';
 import { Permissions } from '@bootcamp-homepage/shared/guards/classes/permissions';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
