@@ -5,6 +5,7 @@ import { ProfileService } from '@bootcamp-elearning/services/profile.service';
 import { UserService } from '@bootcamp-elearning/services/user.service';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -25,11 +26,15 @@ export class ProfileComponent implements OnInit {
   phoneIsValid: boolean;
   phoneErrMsg: string;
 
+  ktpIsValid: boolean;
+  ktpErrMsg: string;
+
   constructor(
     private userService: UserService,
     private authService: AuthService,
     private profileService: ProfileService,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -87,16 +92,29 @@ export class ProfileComponent implements OnInit {
 
 
   phoneValidation(event: string): void {
-    if (/^[0-9]*$/.test(event) && event.length >= 10) {
+    if (/^[0-9]*$/.test(event) && (event.length > 10 && event.length < 13)) {
       this.phoneIsValid = true;
     } else {
       this.phoneIsValid = false;
       if (!/^[0-9]*$/.test(event)) {
         this.phoneErrMsg = "Masukkan angka saja"
       }
-      if (event.length < 10) {
-        this.phoneErrMsg = "Minimal 10 angka"
+      else if (event.length < 11 || event.length > 12) {
+        this.phoneErrMsg = "Minimal 11 digit, maksimal 12 digit"
+      }
+    }
+  }
 
+  numIdentity(event: string): void {
+    if (/^[0-9]*$/.test(event) && event.length == 16) {
+      this.ktpIsValid = true;
+    } else {
+      this.ktpIsValid = false;
+      if (!/^[0-9]*$/.test(event)) {
+        this.ktpErrMsg = "Masukkan angka saja"
+      }
+      else if (event.length < 16 || event.length > 16) {
+        this.ktpErrMsg = "Nomor identitas harus 16 angka"
       }
     }
   }
