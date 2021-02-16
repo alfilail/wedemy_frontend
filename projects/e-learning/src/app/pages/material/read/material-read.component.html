@@ -1,7 +1,7 @@
 <div class="container px-5 mt-5">
     <div class="row main-material rounded shadow-sm">
         <div class="d-flex h-100 w-100 p-2 bg-light justify-content-start align-items-center">
-            <button pButton pRipple type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-secondary p-button-text mr-2"></button>
+            <button pButton pRipple (click)="back()" type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-secondary p-button-text mr-2"></button>
             <h5 class="material-title">
                 {{material.idLearningMaterial.learningMaterialName}}
             </h5>
@@ -22,28 +22,6 @@
               Unduh File
             </button> -->
         </div>
-
-    </div>
-    <div class="col text-center">
-        <ul class="row justify-content-center list-unstyled">
-            <li routerLink="forum" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">FORUM</li>
-
-            <ng-template [ngIf]="roleCode === roles.PARTICIPANT 
-    && ['TGS'].includes(material.idLearningMaterial.idLearningMaterialType.code)">
-                <li routerLink="answer" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">ANSWER</li>
-            </ng-template>
-
-            <ng-template [ngIf]="roleCode === roles.TUTOR
-    && ['TGS'].includes(material.idLearningMaterial.idLearningMaterialType.code)">
-                <li routerLink="assignment" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">ASSIGNMENT</li>
-            </ng-template>
-            <li *ngIf="roleCode === roles.TUTOR" routerLink="presence" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}" routerLinkActive="active" class="tab-item">PRESENCE</li>
-        </ul>
-        <div class="content" [innerHTML]="material.idLearningMaterial.description">
-        </div>
-        <button class="btn btn-primary" (click)="downloadFileFromBlob(material.idLearningMaterial.idFile, 'sample')">
-        File
-      </button>
 
     </div>
     <div class="col text-center">

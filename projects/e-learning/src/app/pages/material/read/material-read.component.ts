@@ -54,4 +54,9 @@ export class MaterialReadComponent implements OnInit {
   downloadFileFromBlob(data: File, fileName: string): void {
     downloadFile(data, fileName);
   }
+
+  back(): void {
+    console.log("Back button clicked");
+    this.location.back();
+  }
 }

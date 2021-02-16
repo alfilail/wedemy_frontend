@@ -1,7 +1,9 @@
+import { AnimationDriver } from '@angular/animations/browser';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import METHOD from '@bootcamp-core/constants/method';
 import { AnswerService } from '@bootcamp-elearning/services/answer.service';
+import { MaterialService } from '@bootcamp-elearning/services/material.service';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
 @Component({
@@ -16,9 +18,16 @@ export class AnswerComponent implements OnInit {
 
   idDetailModuleRegistration: string;
 
+  fileNameSelected: string = "Pilih file";
+  lastModified: string;
+  material: any;
+  fileName: string;
+  isOverDueDate: boolean;
+
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
-    private answerService: AnswerService) { }
+    private answerService: AnswerService,
+    private materialService: MaterialService) { }
 
   ngOnInit(): void {
     this.route
@@ -26,12 +35,14 @@ export class AnswerComponent implements OnInit {
       .subscribe(params => {
         this.idDetailModuleRegistration = params['idDtlModuleRgs'];
         this.getAnswer();
+        // this.getMaterial();
       });
   }
 
   setFile(event: any): void {
     let fileList = event.target.files;
     if (fileList) this.formData.append('file', fileList[0]);
+    this.fileNameSelected = fileList[0].name;
   }
 
   getAnswer(): void {
@@ -44,7 +55,10 @@ export class AnswerComponent implements OnInit {
       res => {
         console.log('Berhasil mengambil data answer');
         this.answer = res.data;
-        console.log(res);
+        this.getLastModified();
+        this.getFileName();
+        this.checkDueDate();
+        console.log(param);
       },
       err => {
         console.log(err);
@@ -57,7 +71,7 @@ export class AnswerComponent implements OnInit {
 
     let payload: Object;
     let method: string;
-    if (!this.answer) {
+    if (this.answer.id == "Empty") {
       payload = {
         idDetailModuleRegistration: {
           id: this.idDetailModuleRegistration
@@ -71,21 +85,74 @@ export class AnswerComponent implements OnInit {
       payload = {
         idFile: {
           id: this.answer.idFile.id
-        }
+        },
+        id: this.answer.id
       }
       method = METHOD.PATCH;
     }
 
     this.formData.append('body', JSON.stringify(payload));
+    console.log(this.formData.get('body'));
     this.answerService.uploadAnswer(this.formData, method).subscribe(
       res => {
         console.log(res);
+        this.formData.delete('body');
         this.getAnswer();
+
       },
       err => {
         console.log(err);
       }
     )
+  }
+
+  getLastModified(): void {
+    console.log(this.answer)
+    if (this.answer != null) {
+      if (this.answer.idFile.updatedAt){
+        this.lastModified = this.answer.idFile.updatedAt;
+      } else if (this.answer.idFile.createdAt){
+        this.lastModified = this.answer.idFile.createdAt;
+      }
+    } else {
+      this.lastModified = "Kosong"
+    }
+    
+  }
+
+
+  getFileName(): void {
+    if (this.answer != null) {
+      this.fileName = this.answer.idFile.name;
+    } else {
+      this.fileName = "Kosong";
+    }
+  }
+
+  getMaterial(): void {
+    this.materialService.getMaterial(this.idDetailModuleRegistration).subscribe(
+      res => {
+        this.material = res.data;
+        console.log(res.data);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  checkDueDate(): void {
+    let now = new Date();
+    let dueDate = new Date(this.answer.idDetailModuleRegistration.scheduleDate);
+    console.log(now);
+    console.log(dueDate);
+    if (now > dueDate){
+      this.isOverDueDate = true;
+      console.log("over due date");
+    } else {
+      this.isOverDueDate = false;
+    }
+    console.log(this.isOverDueDate);
   }
 
 }

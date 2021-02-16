@@ -1,16 +1,38 @@
-<div class="row">
-    <table>
-        <th>Header</th>
-        <td>Detail</td>
-    </table>
+<div class="">
+    <div class="mb-5">
+        <table class="">
+            <tr>
+                <td>Batas waktu pengumpulan</td>
+                <td style="width: 1rem;">&nbsp;:</td>
+                <td>{{answer.idDetailModuleRegistration.scheduleDate | date:'longDate'}}, {{answer.idDetailModuleRegistration.idModuleRegistration.idDetailClass.endTime}} WIB</td>
+            </tr>
+            <tr>
+                <td>Terakhir diubah</td>
+                <td style="width: 2rem;">&nbsp;:</td>
+                <td>{{lastModified}}</td>
+            </tr>
+            <tr>
+                <td>File terunggah</td>
+                <td style="width: 2rem;">&nbsp;:</td>
+                <td>{{fileName}}</td>
+            </tr>
+        </table>
+    </div>
 
-    <div class="col-sm-12 col-md-6">
-        <div class="form-group">
+
+    <div class="">
+        <p>Unggah File</p>
+        <div class="custom-file mb-3">
+            <input (change)="setFile($event)" type="file" class="custom-file-input" id="answerFile" name="filename">
+            <label class="custom-file-label" for="answerFile">{{fileNameSelected}}</label>
+        </div>
+        <p-button (click)="uploadAnswer()" type="submit" value="Submit" label="Kirim" icon="pi pi-send"></p-button>
+        <!-- <div class="form-group">
+
             <label for="answerFile">File</label>
             <input (change)="setFile($event)" type="file" value="passwords.txt" class="form-control" id="answerFile" aria-describedby="answerFileHelp">
-            <!-- <small id="answerFileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-        </div>
-        <input (click)="uploadAnswer()" type="submit" value="Submit">
+        </div> -->
+        <!-- <input (click)="uploadAnswer()" type="submit" value="Submit"> -->
     </div>
 
 </div>
