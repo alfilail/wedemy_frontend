@@ -1,20 +1,23 @@
-<div class="">
+<div class="bg-light rounded p-4">
     <div class="mb-5">
         <table class="">
             <tr>
                 <th>Batas waktu pengumpulan</th>
                 <td style="width: 1rem;">&nbsp;:</td>
-                <td><b>{{answer.idDetailModuleRegistration.scheduleDate | date:'longDate'}}, {{answer.idDetailModuleRegistration.idModuleRegistration.idDetailClass.endTime}} WIB</b></td>
+                <td *ngIf="isOverDueDate" class="due-date-over"><b>{{answer.idDetailModuleRegistration.scheduleDate | date:'longDate'}}, {{dueEndTime}}</b></td>
+                <td *ngIf="!isOverDueDate" class="due-date"><b>{{answer.idDetailModuleRegistration.scheduleDate | date:'longDate'}}, {{dueEndTime}}</b></td>
             </tr>
             <tr>
                 <th>Terakhir diubah</th>
                 <td style="width: 2rem;">&nbsp;:</td>
-                <td><b>{{lastModified == "Kosong" ? lastModified : lastModified | date:'longDate'}}, {{lastModified == "Kosong" ? lastModified : lastModified | date:'mediumTime'}} WIB</b></td>
+                <td *ngIf="lastModified == 'Kosong'">{{lastModified}}</td>
+                <td *ngIf="lastModified != 'Kosong'">{{lastModified | date:'longDate'}}, {{lastModifiedTime}} WIB</td>
             </tr>
             <tr>
                 <th>File terunggah</th>
                 <td style="width: 2rem;">&nbsp;:</td>
-                <td>{{fileName}}</td>
+                <td *ngIf="fileName == 'Kosong'">{{fileName}}</td>
+                <td *ngIf="fileName != 'Kosong'" (click)="downloadFileFromBlob(answer.idFile)" class="download-link">{{fileName}}</td>
             </tr>
         </table>
     </div>
