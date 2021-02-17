@@ -85,6 +85,12 @@ export class AnswerComponent implements OnInit {
       method = METHOD.POST;
     } else {
       payload = {
+        idDetailModuleRegistration: {
+          id: this.idDetailModuleRegistration
+        },
+        idParticipant: {
+          id: this.authService.getUserId()
+        },
         idFile: {
           id: this.answer.idFile.id
         },
@@ -110,19 +116,19 @@ export class AnswerComponent implements OnInit {
 
   getLastModified(): void {
     console.log(this.answer)
-    
+
     if (this.answer.id != "Empty") {
-      if (this.answer.idFile.updatedAt){
+      if (this.answer.idFile.updatedAt) {
         this.lastModified = this.answer.idFile.updatedAt;
         this.lastModifiedTime = this.lastModified.split("T")[1].split(".")[0];
-      } else if (this.answer.idFile.createdAt){
+      } else if (this.answer.idFile.createdAt) {
         this.lastModified = this.answer.idFile.createdAt;
         this.lastModifiedTime = this.lastModified.split("T")[1].split(".")[0];
       }
     } else {
       this.lastModified = "Kosong"
     }
-    
+
   }
 
 
@@ -144,17 +150,17 @@ export class AnswerComponent implements OnInit {
 
     this.dueEndTime = `${dueDate.toTimeString().split(" ")[0]} WIB`
 
-    if (now > dueDate){
+    if (now > dueDate) {
       this.isOverDueDate = true;
       console.log("over due date");
     } else {
       this.isOverDueDate = false;
     }
-    
+
   }
 
   downloadFileFromBlob(data: File): void {
     downloadFile(data, this.fileName);
   }
-  
+
 }

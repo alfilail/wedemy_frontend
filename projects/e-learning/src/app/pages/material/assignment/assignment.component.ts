@@ -69,7 +69,7 @@ export class AssignmentComponent implements OnInit {
             },
             createdBy: this.authService.getUserId(),
             version: val.version,
-            score: val.score
+            score: Number(val.score)
           })
         } else {
           refactModelUpdateScore.push({
@@ -85,7 +85,7 @@ export class AssignmentComponent implements OnInit {
             },
             createdBy: this.authService.getUserId(),
             version: val.version,
-            score: val.score
+            score: Number(val.score)
           })
         }
 

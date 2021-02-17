@@ -1,7 +1,7 @@
 <main>
     <div class="container">
         <div class="p-grid p-jc-between mb-4">
-            <div *ngIf="myRole===ROLES.PARTICIPANT" class="form-group p-col-3">
+            <div *ngIf="myRole===ROLES.PARTICIPANT" class="form-group">
                 <div class="p-grid p-jc-start">
                     <label class="p-col-4" for="ins">Pengajar :</label>
                     <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" id="ins" class="shadow-sm form-control p-col-7">
@@ -10,7 +10,7 @@
                 </select>
                 </div>
             </div>
-            <div class="form-group has-search p-col-3">
+            <div class="form-group has-search">
                 <span class="fas fa-search form-control-feedback"></span>
                 <input [(ngModel)]="query" (ngModelChange)="search()" type="text" class="form-control" placeholder="Temukan kelas">
             </div>

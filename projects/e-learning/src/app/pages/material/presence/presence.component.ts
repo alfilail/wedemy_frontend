@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { APPROVEMENT } from '@bootcamp-elearning/constants/approvement';
 import { PresenceService } from '@bootcamp-elearning/services/presence.service';
+import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
 @Component({
   selector: 'app-presence',
@@ -22,7 +23,8 @@ export class PresenceComponent implements OnInit {
   activityValues: number[] = [0, 100];
 
   constructor(private route: ActivatedRoute,
-    private presenceService: PresenceService) { }
+    private presenceService: PresenceService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.route
@@ -47,7 +49,8 @@ export class PresenceComponent implements OnInit {
               },
               idApprovement: {
                 code: code
-              }
+              },
+              createdBy: this.authService.getUserId()
             }
           )
         })
@@ -60,7 +63,8 @@ export class PresenceComponent implements OnInit {
           },
           idApprovement: {
             code: code
-          }
+          },
+          createdBy: this.authService.getUserId()
         }
       )
     }
