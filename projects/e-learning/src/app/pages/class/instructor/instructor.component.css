@@ -1,26 +1,27 @@
 section.section-title {
-  font-family: "Quicksand", sans-serif;
+    font-family: "Quicksand", sans-serif;
 }
 
 .instructor-img {
-  display: block;
-  width: 132px;
-  height: 128px;
+    display: block;
+    width: 10rem;
+    height: 10rem;
 }
 
 .profile-wrapper {
-  font-family: "Quicksand", sans-serif;
+    font-family: "Quicksand", sans-serif;
 }
 
 .profile-wrapper .instructor-name {
-  margin-top: 8px;
-  font-size: 16px;
-  font-weight: 700;
+    /* margin-top: 8px; */
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 .instructor-bio {
-  font-size: 15px;
-  font-weight: 600;
+    font-size: 15px;
+    font-weight: 600;
 }
+
 
 /* @media screen and (min-width:) {} */
