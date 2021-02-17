@@ -22,6 +22,10 @@ export class MaterialReadComponent implements OnInit {
   idDetailModuleRegistration: string;
   idDetailClass: string;
 
+  fileName: string;
+
+  isLoading: boolean = true;
+
   constructor(private sanitizer: DomSanitizer,
     private location: Location,
     private route: ActivatedRoute,
@@ -44,6 +48,8 @@ export class MaterialReadComponent implements OnInit {
       res => {
         this.material = res.data;
         console.log(res);
+        this.fileName = this.material.idLearningMaterial.idFile.name;
+        this.isLoading = false;
       },
       err => {
         console.log(err);
@@ -51,8 +57,8 @@ export class MaterialReadComponent implements OnInit {
     )
   }
 
-  downloadFileFromBlob(data: File, fileName: string): void {
-    downloadFile(data, fileName);
+  downloadFileFromBlob(data: File): void {
+    downloadFile(data, this.fileName);
   }
 
   back(): void {

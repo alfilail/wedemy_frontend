@@ -15,7 +15,7 @@
         <ng-template ngFor let-forum [ngForOf]="forums" let-i="index">
             <div class="p-grid comments mb-2 bg-white border rounded">
 
-                <img class="rounded-circle mr-3" src="assets/img/profile-default.jpeg" width="48" height="48">
+                <img class="rounded-circle mr-3" src="{{forum.forum.idUser.idProfile.idFile.file ? 'data:image/png;base64,'+forum.forum.idUser.idProfile.idFile.file : defaultImg}}" width="48" height="48">
 
                 <div class="d-flex flex-column">
                     <div class="d-sm-flex flex-column">

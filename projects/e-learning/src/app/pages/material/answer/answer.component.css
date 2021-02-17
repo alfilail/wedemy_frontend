@@ -1,7 +1,7 @@
 .closed {
     background-color: #FFCDD2;
     color: #73000c;
-    padding: 15px 15px 1px 15px;
+    padding: 18px 15px 1px 15px;
     width: fit-content;
     margin-bottom: 2rem;
 }
@@ -11,4 +11,18 @@
     color: #044868;
     padding: 1rem;
     margin-bottom: 2rem;
+}
+
+.download-link {
+    color: dodgerblue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.due-date {
+    color: limegreen;
+}
+
+.due-date-over {
+    color: red;
 }

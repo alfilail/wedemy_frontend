@@ -22,7 +22,7 @@
             <img *ngIf="!loading" class="shadow rounded p-mx-auto" src="data:image/png;base64,{{dtlClass.idClass.idFile.file}}" alt="">
         </div>
         <span class="info pl-3">
-            <h2><b>{{dtlClass.idClass.className}}</b></h2>
+            <h2><b>{{dtlClass.idClass.className}}</b></h2> 
             <div>
                 <h6 class="text-left ml-2"><i class="pi pi-users mr-1"></i>{{dtlClass.idClass.quota}} peserta</h6>
                 <h6 class="text-left ml-2"><i class="pi pi-book mr-1"></i>{{dtlClass.totalModules}} modul</h6>
@@ -89,7 +89,7 @@
                     <p-divider></p-divider>
 
                     <div class="tutor-profile d-lg-flex">
-                        <img class="shadow rounded mr-3" src="{{dtlClass.idClass.idTutor.idProfile.idFile ? 'data:image/png;base64,'+dtlClass.idClass.idTutor.idProfile.idFile.file : defaultImg}}" alt="">
+                        <img class="shadow rounded mr-3" src="{{dtlClass.idClass.idTutor.idProfile.idFile.file ? 'data:image/png;base64,'+dtlClass.idClass.idTutor.idProfile.idFile.file : defaultImg}}" alt="">
                         <span>
                             <h5>{{dtlClass.idClass.idTutor.idProfile.fullName}}</h5>
                             <p><i class="pi pi-envelope mr-2"></i>{{dtlClass.idClass.idTutor.idProfile.email}}</p>

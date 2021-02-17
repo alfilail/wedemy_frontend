@@ -46,7 +46,7 @@ export class UserAdminComponent implements OnInit {
       this.listUsers = val.data;
       this.listUsers.forEach(res => {
         if (res.idProfile.bio == null) {
-          res.idProfile.bio = "null"
+          res.idProfile.bio = "-"
         }
       })
       this.loading = false;
