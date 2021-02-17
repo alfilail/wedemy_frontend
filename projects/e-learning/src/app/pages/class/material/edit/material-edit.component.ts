@@ -94,6 +94,7 @@ export class MaterialEditComponent implements OnInit {
           return val.id === this.material.idLearningMaterial.idLearningMaterialType.id;
         })[0];
         this.isLoading = false;
+        
       },
       err => {
         console.log(err);
@@ -171,7 +172,10 @@ export class MaterialEditComponent implements OnInit {
         this.formData.delete('body');
       }
       this.formData.append('body', JSON.stringify(this.material));
-      
+    console.log(this.formData.get('file'))
+
+    console.log(this.formData.get('body'))
+
       this.materialService.updateMaterial(this.formData).subscribe(
         res => {
           console.log(res);

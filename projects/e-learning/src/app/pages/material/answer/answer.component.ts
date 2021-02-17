@@ -43,6 +43,9 @@ export class AnswerComponent implements OnInit {
   }
 
   setFile(event: any): void {
+    if (this.formData.get('file') != null) {
+      this.formData.delete('file');
+    }
     let fileList = event.target.files;
     if (fileList) this.formData.append('file', fileList[0]);
     this.fileNameSelected = fileList[0].name;
@@ -88,6 +91,13 @@ export class AnswerComponent implements OnInit {
         idFile: {
           id: this.answer.idFile.id
         },
+        idDetailModuleRegistration: {
+          id: this.idDetailModuleRegistration
+        },
+        idParticipant: {
+          id: this.authService.getUserId()
+        },
+        version: this.answer.version,
         id: this.answer.id
       }
       method = METHOD.PATCH;

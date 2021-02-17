@@ -13,8 +13,8 @@ section.section-title {
 }
 
 .profile-wrapper .instructor-name {
-    /* margin-top: 8px; */
-    font-size: 2rem;
+    margin-top: 8px;
+    font-size: 16px;
     font-weight: 700;
 }
 

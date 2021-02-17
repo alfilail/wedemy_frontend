@@ -23,7 +23,6 @@ const API = {
   WEDEMY_PRESENCE_QUERY_PATH: '/presence',
   WEDEMY_PARTICIPANT_PRESENCE_QUERY_PATH: '/approvement-renewal/participant-presence',
   WEDEMY_APPROVEMENT_PARTICIPANT_PRESENCE_QUERY_PATH: '/approvement-renewal/participant-approvement',
-  WEDEMY_DETAIL_PRESENCE_QUERY_PATH: '/detail-module-rgs/module-and-material',
 
   // 1.E Assignment
   WEDEMY_ASSIGNMENT_QUERY_PATH: '/evaluation',
