@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AssignmentService } from '@bootcamp-elearning/services/assignment.service';
 import { downloadFile } from '@bootcamp-elearning/utils/download';
+import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
 @Component({
   selector: 'app-assignment',
@@ -19,7 +20,8 @@ export class AssignmentComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute,
-    private assignmentService: AssignmentService) { }
+    private assignmentService: AssignmentService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.route
@@ -65,6 +67,7 @@ export class AssignmentComponent implements OnInit {
                 id: val.idAssignmentSubmission.idParticipant.id
               }
             },
+            createdBy: this.authService.getUserId(),
             version: val.version,
             score: val.score
           })
@@ -80,6 +83,7 @@ export class AssignmentComponent implements OnInit {
                 id: val.idAssignmentSubmission.idParticipant.id
               }
             },
+            createdBy: this.authService.getUserId(),
             version: val.version,
             score: val.score
           })

@@ -1,6 +1,8 @@
-// createElementTagA = () => {
+const createElementTagA = (url: string): HTMLAnchorElement => {
+  const link = document.createElement("a");
 
-// } 
+  return null;
+}
 
 // const source = this.reportService.getDetailScore(this.idDetailClass, idUser);
 //     const link = document.createElement("a");
