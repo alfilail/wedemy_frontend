@@ -104,10 +104,11 @@ export class PresenceComponent implements OnInit {
   }
 
   selectAll(isCheck: boolean): void {
+    console.log(isCheck);
+
     if (isCheck) {
       this.selectedParticipants = this.participants.filter(val => {
-        val.idApprovement.code === this.approvements.PENDING
-          || val.idApprovement.code !== this.approvements.ABSENT
+        return val.idApprovement.code === this.approvements.PENDING
       });
       console.log(this.selectedParticipants);
 

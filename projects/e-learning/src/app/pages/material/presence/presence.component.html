@@ -47,7 +47,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th>
-          <p-checkbox (click)="selectAll($event.checked)"></p-checkbox>
+          <p-checkbox (onChange)="selectAll($event.checked)"></p-checkbox>
         </th>
         <th>No</th>
         <th>Nama Peserta</th>
