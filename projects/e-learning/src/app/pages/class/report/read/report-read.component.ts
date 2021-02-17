@@ -46,31 +46,8 @@ export class ReportReadComponent implements OnInit {
   getAllPresence(): void {
     this.reportService.getAllPressence(this.idDetailClass).subscribe(
       res => {
-        console.log(res);
-
-        // let data = []
-        // let uniqueIdDetailModule = [];
-        // uniqueIdDetailModule = [...new Set(res.data.map(val => val.detailModule.idModuleRegistration.idModule.id))]
-
-        // uniqueIdDetailModule.forEach(idDetailModule => {
-        //   let groupLearningMaterial = {
-        //     detailModule: {
-        //       id: idDetailModule,
-        //       learningMaterials: []
-        //     }
-        //   }
-        //   res.data.forEach(val => {
-        //     if (val.detailModule.idModuleRegistration.idModule.id === idDetailModule) {
-        //       groupLearningMaterial.detailModule['moduleName'] = val.detailModule.idModuleRegistration.idModule.moduleName;
-        //       groupLearningMaterial.detailModule.learningMaterials.push(val.detailModule.idLearningMaterial);
-        //     }
-        //   })
-        //   data.push(groupLearningMaterial);
-        // })
-
         this.participantPresences = res.data;
-        console.log(res.data);
-
+        console.log(res);
         this.updateRowGroupMetaData();
       },
       err => {
@@ -86,27 +63,6 @@ export class ReportReadComponent implements OnInit {
 
   updateRowGroupMetaData() {
     this.rowGroupMetadata = {};
-
-    // if (this.participantPresences) {
-    //   for (let i = 0; i < this.participantPresences.length; i++) {
-    //     let rowData = this.participantPresences[i];
-    //     let representativeName = rowData.detailModule.moduleName;
-
-    //     if (i == 0) {
-    //       this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
-    //     }
-    //     else {
-    //       let previousRowData = this.participantPresences[i - 1];
-    //       let previousRowGroup = previousRowData.detailModule.moduleName;
-    //       if (representativeName === previousRowGroup)
-    //         this.rowGroupMetadata[representativeName].size++;
-    //       else
-    //         this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
-    //     }
-    //   }
-    // }
-
-
 
     if (this.participantPresences) {
       for (let i = 0; i < this.participantPresences.length; i++) {
@@ -129,10 +85,17 @@ export class ReportReadComponent implements OnInit {
 
   }
 
+  goToLink(url: string) {
+    window.open(url, "_blank");
+  }
+
+
   test(idUser: string): void {
     const source = this.reportService.getDetailScore(this.idDetailClass, idUser);
     const link = document.createElement("a");
     link.href = source;
+    link.target = '_blank'
+
     link.click();
     // let source = this.reportService.getDetailScore(this.idDetailClass, idUser);
   }
