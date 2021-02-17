@@ -23,4 +23,8 @@ export class ReportService {
     }
   }
 
+  getAllPressence(idDetailClass: string): Observable<Response<any[]>> {
+    return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_PRESENCE_QUERY_PATH}/${idDetailClass}`);
+  }
+
 }
