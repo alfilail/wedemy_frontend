@@ -72,12 +72,16 @@ export class MaterialAddComponent implements OnInit {
   }
 
   setFile(event: any): void {
+    console.log(this.formData.get('file'));
+    if(this.formData.get('file') != null){
+      this.formData.delete('file');
+    }
     let fileList = event.target.files;
     if (fileList) this.formData.append('file', fileList[0]);
 
     this.selectedFileName = fileList[0].name;
     this.fileIsValid = true;
-    
+    console.log(this.formData.get('file'));
   }
 
   back(): void {
@@ -101,6 +105,9 @@ export class MaterialAddComponent implements OnInit {
     }
 
     console.log(this.detailModuleRegistration);
+    if (this.formData.get('body')!=null){
+      this.formData.delete('body');
+    }
     this.formData.append('body', JSON.stringify(this.detailModuleRegistration));
     this.materialService.saveMaterial(this.formData).subscribe(
       res => {
@@ -178,4 +185,6 @@ export class MaterialAddComponent implements OnInit {
       this.disabledButton = true;
     }
   }
+
+  
 }

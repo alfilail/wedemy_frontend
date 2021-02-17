@@ -14,14 +14,22 @@
 </p-dialog>
 <div class="content">
     <div class="header">
-
     </div>
     <div class="header-item container mx-auto px-auto p-d-lg-flex p-jc-start" [(ngModel)]="dtlClass" ngDefaultControl>
         <div class="img-square-wrapper p-mx-auto p-mx-lg-0">
             <p-skeleton *ngIf="loading" size="250px"></p-skeleton>
             <img *ngIf="!loading" class="shadow rounded p-mx-auto" src="data:image/png;base64,{{dtlClass.idClass.idFile.file}}" alt="">
         </div>
-        <span class="info pl-3">
+        <span *ngIf="loading" class="info pl-3">
+            <p-skeleton  width="15rem" height="2rem" styleClass="p-mb-3"></p-skeleton>
+            <div>
+                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="10rem" height="1rem" styleClass=""></p-skeleton>
+             </div>
+             <p-skeleton width="10rem" height="3rem" styleClass="mt-5 mb-1"></p-skeleton>  
+        </span>
+        <span *ngIf="!loading" class="info pl-3">
             <h2><b>{{dtlClass.idClass.className}}</b></h2> 
             <div>
                 <h6 class="text-left ml-2"><i class="pi pi-users mr-1"></i>{{dtlClass.idClass.quota}} peserta</h6>
@@ -47,13 +55,66 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active p-4" id="tabs-1" role="tabpanel" [(ngModel)]="dtlClass" ngDefaultControl>
-                <div>
+                <div *ngIf="loading">
+                    <p-skeleton width="8rem" height="2rem" styleClass="mb-2"></p-skeleton>
+                    <p-divider></p-divider>
+                    <p-skeleton height="1rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton height="1rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton height="1rem" styleClass="mb-2"></p-skeleton>
+                </div>
+                <div *ngIf="!loading">
                     <h4>Deskripsi</h4>
                     <p-divider></p-divider>
                     <p>{{dtlClass.idClass.description}}</p>
                 </div>
 
-                <div class="mt-5">
+                <div *ngIf="loading" class="mt-5">
+                    <p-skeleton width="8rem" height="2rem" styleClass="mb-2"></p-skeleton>
+                    <p-divider></p-divider>
+                    <table>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div *ngIf="!loading" class="mt-5">
                     <h4>Jadwal</h4>
                     <p-divider></p-divider>
                     <table>
@@ -84,7 +145,18 @@
                         </tr>
                     </table>
                 </div>
-                <div class="mt-5">
+                <div *ngIf="loading" class="mt-5">
+                    <p-skeleton width="10rem" height="2rem" styleClass="mb-2"></p-skeleton>
+                    <p-divider></p-divider>
+                    <div class="tutor-profile d-lg-flex">
+                        <p-skeleton styleClass="mr-3" width="100px" height="100px"></p-skeleton>
+                        <span>
+                            <p-skeleton width="10rem" height="2rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton width="15rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="!loading" class="mt-5">
                     <h4>Profil Tutor</h4>
                     <p-divider></p-divider>
 
