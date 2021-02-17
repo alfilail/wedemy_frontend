@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import METHOD from '@bootcamp-core/constants/method';
 import { AnswerService } from '@bootcamp-elearning/services/answer.service';
 import { MaterialService } from '@bootcamp-elearning/services/material.service';
+import { downloadFile } from '@bootcamp-elearning/utils/download';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
 @Component({
@@ -24,6 +25,9 @@ export class AnswerComponent implements OnInit {
   fileName: string;
   isOverDueDate: boolean;
 
+  lastModifiedTime: string;
+  dueEndTime: string;
+
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
     private answerService: AnswerService,
@@ -35,7 +39,6 @@ export class AnswerComponent implements OnInit {
       .subscribe(params => {
         this.idDetailModuleRegistration = params['idDtlModuleRgs'];
         this.getAnswer();
-        // this.getMaterial();
       });
   }
 
@@ -58,7 +61,6 @@ export class AnswerComponent implements OnInit {
         this.getLastModified();
         this.getFileName();
         this.checkDueDate();
-        console.log(param);
       },
       err => {
         console.log(err);
@@ -112,8 +114,10 @@ export class AnswerComponent implements OnInit {
     if (this.answer.id != "Empty") {
       if (this.answer.idFile.updatedAt){
         this.lastModified = this.answer.idFile.updatedAt;
+        this.lastModifiedTime = this.lastModified.split("T")[1].split(".")[0];
       } else if (this.answer.idFile.createdAt){
         this.lastModified = this.answer.idFile.createdAt;
+        this.lastModifiedTime = this.lastModified.split("T")[1].split(".")[0];
       }
     } else {
       this.lastModified = "Kosong"
@@ -133,20 +137,24 @@ export class AnswerComponent implements OnInit {
   checkDueDate(): void {
     let now = new Date();
     let dueDate = new Date(this.answer.idDetailModuleRegistration.scheduleDate);
-    console.log(this.answer.idDetailModuleRegistration.idDetailClass);
     let dueTime = this.answer.idDetailModuleRegistration.idModuleRegistration.idDetailClass.endTime.split(":");
     dueDate.setHours(dueTime[0]);
     dueDate.setMinutes(dueTime[1]);
-    console.log(now);
-    console.log(dueDate);
-    console.log(dueTime)
+    dueDate.setSeconds(0);
+
+    this.dueEndTime = `${dueDate.toTimeString().split(" ")[0]} WIB`
+
     if (now > dueDate){
       this.isOverDueDate = true;
       console.log("over due date");
     } else {
       this.isOverDueDate = false;
     }
-    console.log(this.isOverDueDate);
+    
   }
 
+  downloadFileFromBlob(data: File): void {
+    downloadFile(data, this.fileName);
+  }
+  
 }
