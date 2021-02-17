@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import API from '@bootcamp-core/constants/api';
 import { ReportService } from '@bootcamp-elearning/services/report.service';
+import { createElementTagA } from '@bootcamp-elearning/utils/utils';
+import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
 @Component({
   selector: 'app-report-read',
@@ -9,19 +12,23 @@ import { ReportService } from '@bootcamp-elearning/services/report.service';
 })
 export class ReportReadComponent implements OnInit {
   idDetailClass: string;
+  roleCode: string;
 
   participantScores: any;
   selectedParticipantScore: any[];
-  loading: boolean = true;
+  loadingParicipantScore: boolean = true;
   activityValues: number[] = [0, 100];
 
   participantPresences: any;
+  loadingParicipantPresence: boolean = true;
   rowGroupMetadata: any;
 
   constructor(private route: ActivatedRoute,
-    private reportService: ReportService) { }
+    private reportService: ReportService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.roleCode = this.authService.getRole();
     this.route.params.subscribe(param => {
       this.idDetailClass = param['idDetailClass'];
       this.getAllScore();
@@ -34,11 +41,11 @@ export class ReportReadComponent implements OnInit {
       res => {
         console.log(res);
         this.participantScores = res.data;
-        this.loading = false;
+        this.loadingParicipantScore = false;
       },
       err => {
         console.log(err);
-        this.loading = false;
+        this.loadingParicipantScore = false;
       }
     )
   }
@@ -48,6 +55,7 @@ export class ReportReadComponent implements OnInit {
       res => {
         this.participantPresences = res.data;
         console.log(res);
+        this.loadingParicipantPresence = false;
         this.updateRowGroupMetaData();
       },
       err => {
@@ -85,10 +93,19 @@ export class ReportReadComponent implements OnInit {
 
   }
 
-  goToLink(url: string) {
-    window.open(url, "_blank");
+  getPresenceReportByIdModuleRgs(idDtlModuleRgs: string): void {
+    let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}?idDtlClass=${this.idDetailClass}&idDtlModuleRgs=${idDtlModuleRgs}`;
+    let link = createElementTagA(url);
+    link.target = '_blank';
+    link.click();
   }
 
+  getPresenceReport(): void {
+    let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_PRESENCE_QUERY_PATH}/${this.idDetailClass}`;
+    let link = createElementTagA(url);
+    link.target = '_blank';
+    link.click();
+  }
 
   test(idUser: string): void {
     const source = this.reportService.getDetailScore(this.idDetailClass, idUser);
