@@ -46,6 +46,7 @@ export class MaterialEditComponent implements OnInit {
   descClass: string = "";
 
   disabledButton: boolean = false;
+  isLoading: boolean = true;
 
   constructor(private authService: AuthService,
     private location: Location,
@@ -92,6 +93,8 @@ export class MaterialEditComponent implements OnInit {
         this.selectedMaterialType = res.data.filter(val => {
           return val.id === this.material.idLearningMaterial.idLearningMaterialType.id;
         })[0];
+        this.isLoading = false;
+        
       },
       err => {
         console.log(err);
@@ -100,6 +103,9 @@ export class MaterialEditComponent implements OnInit {
   }
 
   setFile(event: any): void {
+    if(this.formData.get('file') != null){
+      this.formData.delete('file');
+    }
     let fileList = event.target.files;
     if (fileList) this.formData.append('file', fileList[0]);
 
@@ -162,8 +168,14 @@ export class MaterialEditComponent implements OnInit {
     // console.log(this.detailModuleRegistration);
     console.log("hai");
     if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid) {
+      if (this.formData.get('body')!=null){
+        this.formData.delete('body');
+      }
       this.formData.append('body', JSON.stringify(this.material));
-      
+    console.log(this.formData.get('file'))
+
+    console.log(this.formData.get('body'))
+
       this.materialService.updateMaterial(this.formData).subscribe(
         res => {
           console.log(res);

@@ -3,13 +3,13 @@
 </section>
 
 
-<p-tabView>
+<p-tabView *ngIf="roleCode === ROLES.TUTOR">
   <p-tabPanel header="Nilai">
     <p-table #dt [value]="participantScores" [scrollable]="true" [(selection)]="selectedParticipantScore" dataKey="id"
       styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
-      [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+      [rowsPerPageOptions]="[10,25,50]" [loading]="loadingParicipantScore" [paginator]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
-      [globalFilterFields]="['name','averageValue']">
+      [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','score']">
       <ng-template pTemplate="caption">
         <div class="table-header p-d-flex p-jc-between">
           Daftar Peserta
@@ -48,7 +48,7 @@
             <span class="p-column-title">{{participantScore.score}}</span>
           </td>
           <td>
-            <a (click)="test(participantScore.idAssignmentSubmission.idParticipant.id)" class="btn btn-info">
+            <a (click)="getScoreReport(participantScore.idAssignmentSubmission.idParticipant.id)" class="btn btn-info">
               <i class="pi pi-file-pdf"></i>
               Unduh
             </a>
@@ -66,18 +66,19 @@
   <p-tabPanel header="Kehadiran">
     <div class="card px-4 py-4">
       <p-toolbar styleClass="p-mb-4 d-none d-md-flex flex-md-row justify-content-md-end">
-        <button pButton pRipple label="Cetak Laporan" icon="pi pi-save"
+        <button (click)="getPresenceReport()" pButton pRipple label="Cetak" icon="pi pi-save"
           class="p-button-success p-mr-2"></button>
       </p-toolbar>
 
       <p-toolbar styleClass="p-mb-4 d-md-none d-flex flex-row justify-content-center">
-        <button pButton pRipple label="Cetak Laporan" icon="pi pi-save"
+        <button (click)="getPresenceReport()" pButton pRipple label="Cetak" icon="pi pi-save"
           class="p-button-success btn-block p-mb-2"></button>
       </p-toolbar>
 
       <p-table [value]="participantPresences" [scrollable]="true"
       sortField="participantPresence.detailModule.idModuleRegistration.idModule.moduleName" sortMode="single"
       (onSort)="onSort()" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+      [loading]="loadingParicipantScore"
       [paginator]="true">
       <ng-template pTemplate="colgroup" let-columns>
         <colgroup>
@@ -109,11 +110,11 @@
             {{participantPresence.detailModule.scheduleDate | date}}
           </td>
           <td>
-            <a href="http://192.168.13.66:8080/wedemy/approvement-renewal/report/detail?idDtlClass={{idDetailClass}}&idDtlModuleRgs={{participantPresence.detailModule.id}}"
-              target="blank" class="btn btn-info" >
+            <button (click)="getPresenceReportByIdModuleRgs(participantPresence.detailModule.id)"
+              target="blank" class="btn btn-info" [disabled]="!participantPresence.checkDownload">
               <i class="pi pi-file-pdf"></i>
               Unduh
-            </a>
+            </button>
           </td>
         </tr>
       </ng-template>
@@ -128,3 +129,29 @@
      
   </p-tabPanel>
 </p-tabView>
+
+
+<div *ngIf="roleCode === ROLES.PARTICIPANT">
+  <div class="row">
+    <div class="col-3 bg-primary">
+      Sertifikat
+    </div>
+    <div class="col-3 bg-secondary">
+      <button (click)="getCertified()" class="btn btn-info">
+        Unduh
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 bg-primary">
+     Nilai
+    </div>
+    <div class="col-3 bg-secondary">
+      <button (click)="getScoreReport()" class="btn btn-info">
+        Unduh
+      </button>
+    </div>
+  </div>
+
+</div>

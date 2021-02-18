@@ -69,7 +69,7 @@ export class AssignmentComponent implements OnInit {
             },
             createdBy: this.authService.getUserId(),
             version: val.version,
-            score: val.score
+            score: Number(val.score)
           })
         } else {
           refactModelUpdateScore.push({
@@ -85,7 +85,7 @@ export class AssignmentComponent implements OnInit {
             },
             createdBy: this.authService.getUserId(),
             version: val.version,
-            score: val.score
+            score: Number(val.score)
           })
         }
 
@@ -98,10 +98,36 @@ export class AssignmentComponent implements OnInit {
     return [refactModelNewScore, refactModelUpdateScore];
   }
 
-  onChangeScore(event): void {
-    console.log('Event Onchange Score')
+  keyPress(event: any) {
+    const pattern = /[0-9]/;
+    let inputChar = String.fromCharCode(event.charCode);
     console.log(event);
-    console.log(this.assignments)
+
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  onChangeScore(event): void {
+    this.assignments = this.assignments.map(element => {
+      if (element.idAssignmentSubmission.idParticipant.id
+        === event.idAssignmentSubmission.idParticipant.id) {
+        console.log(event.score);
+        let score = Number(event.score);
+        if (score < 0) {
+          console.log('kurang dari 0');
+
+          element.score = 0;
+        }
+        if (score > 100) {
+          console.log('Lebih dari 100');
+
+          element.score = 100;
+        }
+      }
+      return element;
+    })
+    console.log(this.assignments);
 
   }
 

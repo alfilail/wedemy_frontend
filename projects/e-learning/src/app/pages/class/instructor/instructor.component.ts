@@ -11,6 +11,7 @@ export class InstructorComponent implements OnInit {
 
   idDetailClass: string;
   tutor: any;
+  isLoading: boolean = true;
 
   constructor(private route: ActivatedRoute,
     private classService: ClassService) { }
@@ -27,7 +28,7 @@ export class InstructorComponent implements OnInit {
       res => {
         console.log(res);
         this.tutor = res.data.idClass.idTutor;
-
+        this.isLoading = false;
       },
       err => {
         console.log(err);
