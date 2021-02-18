@@ -15,16 +15,15 @@ export class ReportService {
     return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_SCORE_QUERY_PATH}/${idDetailClass}`);
   }
 
-  getDetailScore(idDtlClass: string, idParticipant: string = ''): string {
-    if (idParticipant === '') {
-      return (`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_SCORE_QUERY_PATH}s/${idDtlClass}`);
-    } else {
-      return (`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_SCORE_QUERY_PATH}?idDtlClass=${idDtlClass}&idParticipant=${idParticipant}`);
-    }
-  }
-
   getAllPressence(idDetailClass: string): Observable<Response<any[]>> {
     return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_PRESENCE_QUERY_PATH}/${idDetailClass}`);
   }
 
+  getDetailScore(param: any): Observable<any> {
+    return this.http.get<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_DETAIL_SCORE_QUERY_PATH}`, { params: param });
+  }
+
+  getCertificate(param: any): Observable<any> {
+    return this.http.get<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_CERTIFICATE_QUERY_PATH}`, { params: param });
+  }
 }

@@ -37,7 +37,8 @@ const API = {
 
   // 1.G Evaluation
   WEDEMY_SCORE_QUERY_PATH: '/evaluation/scores',
-  WEDEMY_DETAIL_SCORE_QUERY_PATH: '/evaluation/report/score'
+  WEDEMY_DETAIL_SCORE_QUERY_PATH: '/evaluation/report/score',
+  WEDEMY_CERTIFICATE_QUERY_PATH: '/evaluation/certificate'
 }
 
 export default API;
