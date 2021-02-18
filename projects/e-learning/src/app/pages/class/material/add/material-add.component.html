@@ -10,7 +10,7 @@
     <div class="col-sm-12 col-md-6">
         <div class="form-group">
             <label for="materialCode">Kode Materi</label>
-            <input (ngModelChange)="mtrCodeValidation($event)" [(ngModel)]="materialCode" type="text" class="form-control {{mtrCodeClass}}" id="materialCode" aria-describedby="materialCodeHelp" required minlength="1" maxlength="10">
+            <input (ngModelChange)="mtrCodeValidation($event)" [(ngModel)]="materialCode" type="text" class="form-control {{mtrCodeClass}}" id="materialCode" aria-describedby="materialCodeHelp" minlength="1" maxlength="10">
             <small *ngIf="!mtrCodeIsValid" id="materialCodeHelp" class="form-text text-danger">{{mtrCodeErrMsg}}</small>
         </div>
     </div>
@@ -18,7 +18,7 @@
     <div class="col-sm-12 col-md-6">
         <div class="form-group">
             <label for="materialName">Nama Materi</label>
-            <input (ngModelChange)="mtrNameValidation($event)" [(ngModel)]="materialName" type="text" class="form-control {{mtrNameClass}}" id="materialName" aria-describedby="materialNameHelp" required minlength="1">
+            <input (ngModelChange)="mtrNameValidation($event)" [(ngModel)]="materialName" type="text" class="form-control {{mtrNameClass}}" id="materialName" aria-describedby="materialNameHelp" minlength="1">
             <small *ngIf="!mtrNameIsValid" id="materialNameHelp" class="form-text text-danger">{{mtrNameErrMsg}}</small>
         </div>
     </div>
@@ -26,7 +26,7 @@
     <div class="col-sm-12 col-md-6">
         <div class="form-group">
             <label for="startDate">Tanggal Berlangsung</label>
-            <input #dateLimit (ngModelChange)="startDateValidation($event)" [(ngModel)]="startDate" type="date" class="form-control {{startDateClass}}" id="startDate" aria-describedby="startDateHelp" required>
+            <input #dateLimit (ngModelChange)="startDateValidation($event)" [(ngModel)]="startDate" type="date" class="form-control {{startDateClass}}" id="startDate" aria-describedby="startDateHelp">
             <small *ngIf="!startDateIsValid" id="startDateHelp" class="form-text text-danger">{{startDateErrMsg}}</small>
         </div>
     </div>

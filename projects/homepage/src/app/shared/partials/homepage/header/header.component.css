@@ -33,6 +33,10 @@ border-color: white  !important;
     color: #f4d242 !important;
 }
 
+.nav-link:active {
+    color: #f4d242 !important;
+}
+
 .nav-link{
     color: white  !important;
 }

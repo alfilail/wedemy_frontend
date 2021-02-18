@@ -96,7 +96,7 @@
                                             <small *ngIf="!nomorKtpValid" class="p-error">{{nomorKtpErrMsg}}</small>
                                         </div>
                                         <div class="p-field  col-lg-6 col-md-6">
-                                            <label for="noTlp">No. Telepon</label>
+                                            <label for="noTlp">Nomor Ponsel</label>
                                             <input id="noTlp" type="text" required pInputText
                                                 (ngModelChange)="phoneValidation($event)" name="noTlp"
                                                 [(ngModel)]="profile.phone" [value]="profile.phone" maxlength="12">
@@ -146,7 +146,7 @@
                                 <form>
                                     <div class="d-flex">
                                         <div class="form-group mt-3 col-lg-6 col-md-6">
-                                            <label for="newPass">Password Baru</label>
+                                            <label for="newPass">Sandi Baru</label>
                                             <input pPassword [promptLabel]="'Masukan password'" [weakLabel]="'Lemah'"
                                                 [mediumLabel]="'Sedang'" [strongLabel]="'Kuat'" type="password"
                                                 class="form-control mt-2" name="newPass" id="newPass" [(ngModel)]="pass"
@@ -154,7 +154,7 @@
                                             <small *ngIf="!passwordValid" class="p-error">{{passwordErrMsg}}</small>
                                         </div>
                                         <div class="form-group mt-3 col-lg-6 col-md-6">
-                                            <label for="oldPass">Konfirmasi Password Baru</label>
+                                            <label for="oldPass">Konfirmasi Sandi Baru</label>
                                             <input type="password" [(ngModel)]="passConf" name="repatNewPass"
                                                 class="form-control mt-2" id="repatNewPass" required pInputText
                                                 (ngModelChange)="validation($event,'passConf')">

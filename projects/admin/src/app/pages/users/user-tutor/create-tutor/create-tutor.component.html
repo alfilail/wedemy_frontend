@@ -18,7 +18,7 @@
                             <small *ngIf="!usernameValid" class="p-error">{{usernameErrMsg}}</small>
                         </div>
                         <div class="mb-3 col-lg-6">
-                            <label for="Password" class="form-label">Password</label>
+                            <label for="Password" class="form-label">Sandi</label>
                             <input type="password" class="form-control" required pInputText
                                 (ngModelChange)="validation($event,'password')" name="password"
                                 [(ngModel)]="user.userPassword" id="Password" maxlength="40">

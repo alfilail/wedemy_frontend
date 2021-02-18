@@ -1,15 +1,21 @@
 <main>
     <div class="container">
-        <div class="p-d-flex p-ai-center p-jc-between mb-4 p-flex-wrap">
+        <!-- <div class="p-d-flex p-ai-center p-jc-between mb-4 p-flex-wrap">
             <div *ngIf="myRole===ROLES.PARTICIPANT" class="form-group p-d-flex p-ai-center p-jc-start">
 
                 <label class="mr-2 ml-2 p-mt-1" for="ins">Tutor :</label>
                 <p-dropdown inputId="ins" [options]="instructors" (ngModelChange)="search()" [(ngModel)]="selectedInstructor" placeholder="Semua  &#9;" optionLabel="name"></p-dropdown>
-                <!-- <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" id="ins" class="shadow-sm form-control p-col-7 p-lg-7 p-md-7 mt-2">
-                      <option [ngValue]="'Semua'">Semua</option>
-                      <option *ngFor="let instructor of instructors" [ngValue]="instructor">{{ instructor }}</option>
-                    </select> -->
+                 -->
 
+        <div class="p-grid p-jc-between mb-4">
+            <div *ngIf="myRole===ROLES.PARTICIPANT" class="form-group">
+                <div class="p-grid p-jc-start">
+                    <label class="p-col-auto mr-2 ml-2 p-mt-3" for="ins">Pengajar :</label>
+                    <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" id="ins" class="shadow-sm form-control p-col-7 p-lg-7 p-md-7 mt-2">
+                        <option [ngValue]="'Semua'">Semua</option>
+                        <option *ngFor="let instructor of instructors" [ngValue]="instructor">{{ instructor }}</option>
+                    </select>
+                </div>
             </div>
             <div class="form-group has-search">
                 <span class="fas fa-search form-control-feedback"></span>
@@ -40,6 +46,7 @@
                             <hr>
                             <div class="instructor-profile">
                                 <img class="float-left rounded-circle" src="{{class.idClass.idTutor.idProfile.idFile.file? 'data:image/png;base64,'+class.idClass.idTutor.idProfile.idFile.file : defaultImg}}" alt="" width="36px" height="36px">
+
                                 <p class="ml-3 float-left instructor-name mt-2">
                                     {{class.idClass.idTutor.idProfile.fullName}}
                                 </p>
