@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import API from '@bootcamp-core/constants/api';
+import { ROLE } from '@bootcamp-core/constants/role';
 import { ReportService } from '@bootcamp-elearning/services/report.service';
 import { createElementTagA } from '@bootcamp-elearning/utils/utils';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
@@ -11,8 +12,10 @@ import { AuthService } from '@bootcamp-homepage/services/auth.service';
   styleUrls: ['./report-read.component.css']
 })
 export class ReportReadComponent implements OnInit {
+  ROLES = ROLE;
   idDetailClass: string;
   roleCode: string;
+  idUser: string = '';
 
   participantScores: any;
   selectedParticipantScore: any[];
@@ -29,11 +32,16 @@ export class ReportReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.roleCode = this.authService.getRole();
-    this.route.params.subscribe(param => {
-      this.idDetailClass = param['idDetailClass'];
-      this.getAllScore();
-      this.getAllPresence();
-    })
+    if (this.roleCode === this.ROLES.TUTOR) {
+      this.route.params.subscribe(param => {
+        this.idDetailClass = param['idDetailClass'];
+        this.getAllScore();
+        this.getAllPresence();
+      })
+    } else {
+      this.route.params.subscribe(param => this.idDetailClass = param['idDetailClass'])
+      this.idUser = this.authService.getUserId();
+    }
   }
 
   getAllScore(): void {
@@ -64,7 +72,6 @@ export class ReportReadComponent implements OnInit {
     )
   }
 
-
   onSort() {
     this.updateRowGroupMetaData();
   }
@@ -90,7 +97,6 @@ export class ReportReadComponent implements OnInit {
         }
       }
     }
-
   }
 
   getPresenceReportByIdModuleRgs(idDtlModuleRgs: string): void {
@@ -107,6 +113,20 @@ export class ReportReadComponent implements OnInit {
     link.click();
   }
 
+  getScoreReport(idUser: string): void {
+    let url: string;
+    if (this.idUser === '') {
+      url = this.reportService.getDetailScore(this.idDetailClass, idUser)
+    } else {
+      url = this.reportService.getDetailScore(this.idDetailClass, this.idUser)
+    }
+    let link = createElementTagA(url);
+    console.log(url);
+
+    link.target = '_blank';
+    link.click();
+  }
+
   test(idUser: string): void {
     const source = this.reportService.getDetailScore(this.idDetailClass, idUser);
     const link = document.createElement("a");
@@ -115,6 +135,11 @@ export class ReportReadComponent implements OnInit {
 
     link.click();
     // let source = this.reportService.getDetailScore(this.idDetailClass, idUser);
+  }
+
+  getCertified(): void {
+    console.log(this.authService.getUserId());
+
   }
 
 }

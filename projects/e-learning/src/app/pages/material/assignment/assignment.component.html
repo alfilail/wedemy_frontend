@@ -62,8 +62,8 @@
             class="p-column-title">{{assignment.idAssignmentSubmission.idFile.file ? 'jawaban' : 'Tidak ada'}}</span>
         </td>
         <td>
-          <input [(ngModel)]="assignment.score" (ngModelChange)="onChangeScore($event)" type="text" size="2"
-            value="{{assignment.score}}">
+          <input [(ngModel)]="assignment.score" (keypress)="keyPress($event)" (ngModelChange)="onChangeScore(assignment)" type="text" size="2"
+        value=100>
         </td>
       </tr>
     </ng-template>
