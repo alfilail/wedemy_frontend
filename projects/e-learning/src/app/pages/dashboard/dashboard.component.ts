@@ -20,6 +20,8 @@ export class DashboardComponent implements OnInit {
   ROLES = ROLE;
   myRole: string;
 
+  defaultImg: string = "/assets/img/profile-default.jpeg";
+
   constructor(private dashboardService: DashboardService,
     private authService: AuthService) { }
 

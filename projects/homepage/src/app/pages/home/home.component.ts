@@ -10,6 +10,8 @@ import { DetailClassService } from '@bootcamp-homepage/services/detail-class.ser
 export class HomeComponent implements OnInit {
   
   listTopClasses : DetailClasses[] = [];
+  top: any[] = [1,2,3];
+  isLoading: boolean = true;
 
   constructor(
     private dtlClassService: DetailClassService,
@@ -18,6 +20,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.dtlClassService.getPopularClass().subscribe(res => {
       this.listTopClasses = res.data;
+      this.isLoading = false;
     })
   }
 

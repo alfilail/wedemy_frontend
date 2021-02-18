@@ -31,8 +31,8 @@ export class MaterialAddComponent implements OnInit {
   startDateErrMsg: string;
   descErrMsg: string;
 
-  mtrCodeIsValid: boolean;
-  mtrNameIsValid: boolean;
+  mtrCodeIsValid: boolean = true;
+  mtrNameIsValid: boolean = true;
   startDateIsValid: boolean;
   descIsValid: boolean;
   fileIsValid: boolean;
