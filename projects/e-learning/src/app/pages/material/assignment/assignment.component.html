@@ -14,15 +14,12 @@
       class="p-button-primary btn-block"></button>
   </p-toolbar>
 
-  <p-table #dt [value]="assignments" [scrollable]="true" [(selection)]="selectedAssignment" dataKey="id"
-    styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
-    [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
-    currentPageReportTemplate="Menampilkan {first} sampai {last} dari {totalRecords} data" [filterDelay]="0"
-    [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','averageValue']">
-    <ng-template pTemplate="caption">
-      <div class="table-header p-d-flex p-jc-between">
-        Daftar Peserta
-        <span class="p-input-icon-right">
+    <p-table #dt [value]="assignments" [scrollable]="true" [(selection)]="selectedAssignment" dataKey="id" styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Menampilkan {first} sampai {last} dari {totalRecords} data" [filterDelay]="0" [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','averageValue']">
+        <ng-template pTemplate="caption">
+            <div class="table-header p-d-flex p-jc-between">
+                Daftar Peserta
+                <span class="p-input-icon-right">
           <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
             placeholder="Cari nama perserta..." />
         </span>

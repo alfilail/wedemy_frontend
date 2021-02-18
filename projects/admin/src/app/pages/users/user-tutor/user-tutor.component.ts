@@ -35,7 +35,7 @@ export class UserTutorComponent implements OnInit {
       console.log(val)
       this.listUsers.forEach(res => {
         if (res.idProfile.bio == null) {
-          res.idProfile.bio = "null"
+          res.idProfile.bio = "-"
         }
       })
       this.loading = false;

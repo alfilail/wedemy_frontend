@@ -302,3 +302,8 @@ h6 {
         max-width: 25vw !important;
     }
 }
+
+.bg-theme {
+    background-color: #454575 !important;
+    border: none !important;
+}

@@ -195,7 +195,7 @@ export class ClassDetailComponent implements OnInit {
       this.isFull = false;
       this.isEnrolled = false;
       this.isEnded = false;
-    } else if(!this.isEnrolled && !this.isFull && !this.isLoggedOut && !this.isTutor){
+    } else if(!this.isEnrolled && !this.isFull && !this.isLoggedOut && !this.isTutor && !this.isEnded){
       this.showRegisterButton = true;
       this.isTutor = false;
       this.isFull = false;

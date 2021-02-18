@@ -58,8 +58,7 @@ export class ClassReadComponent implements OnInit {
 
     let end = new Date(c.endDate);
     let start = new Date(c.startDate);
-
-    if(todayFormatted < end) {
+    if(todayFormatted < start) {
       c.status = 1;
       console.log("pendaftaran dibuka");
     } else if (todayFormatted >= start) {

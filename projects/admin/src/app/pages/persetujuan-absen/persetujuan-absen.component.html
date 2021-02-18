@@ -56,18 +56,18 @@
             </div>
 
 
-            <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tambah Status Persetujuan Kelas" [modal]="true"
+            <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Status Absen" [modal]="true"
                 styleClass="p-fluid" (onHide)="hideDialog()">
                 <ng-template pTemplate="content">
                     <form name="approvementForm">
                         <div class="p-field">
-                            <label for="code">Kode</label>
+                            <label for="code">Kode Status Absen</label>
                             <input type="text" name="code" required pInputText
                                 (ngModelChange)="validation($event,'code')" id="code" [(ngModel)]="approvement.code"
                                 required /><small *ngIf="!codeValid" class="p-error">{{codeErrMsg}}</small>
                         </div>
                         <div class="p-field">
-                            <label for="name">Nama Status</label>
+                            <label for="name">Nama Status Absen</label>
                             <input type="text" name="nama" required pInputText id="name"
                                 (ngModelChange)="validation($event,'name')" [(ngModel)]="approvement.approvementName"
                                 required /><small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>

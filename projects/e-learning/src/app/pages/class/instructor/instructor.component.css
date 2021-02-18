@@ -23,5 +23,9 @@ section.section-title {
     font-weight: 600;
 }
 
+.photo-name {
+    min-width: 11rem;
+}
+
 
 /* @media screen and (min-width:) {} */
