@@ -21,10 +21,10 @@ export class SilabusComponent implements OnInit {
   module = new Modules();
   idUser: string
 
-  codeValid: boolean;
+  codeValid: boolean = true;
   codeErrMsg: string;
 
-  nameValid: boolean;
+  nameValid: boolean = true;
   nameErrMsg: string;
   loading: boolean = true;
 
