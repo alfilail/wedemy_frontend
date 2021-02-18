@@ -3,7 +3,7 @@
 </section>
 
 
-<p-tabView>
+<p-tabView *ngIf="roleCode === ROLES.TUTOR">
   <p-tabPanel header="Nilai">
     <p-table #dt [value]="participantScores" [scrollable]="true" [(selection)]="selectedParticipantScore" dataKey="id"
       styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
@@ -48,7 +48,7 @@
             <span class="p-column-title">{{participantScore.score}}</span>
           </td>
           <td>
-            <a (click)="test(participantScore.idAssignmentSubmission.idParticipant.id)" class="btn btn-info">
+            <a (click)="getScoreReport(participantScore.idAssignmentSubmission.idParticipant.id)" class="btn btn-info">
               <i class="pi pi-file-pdf"></i>
               Unduh
             </a>
@@ -110,11 +110,11 @@
             {{participantPresence.detailModule.scheduleDate | date}}
           </td>
           <td>
-            <a (click)="getPresenceReportByIdModuleRgs(participantPresence.detailModule.id)"
-              target="blank" class="btn btn-info" >
+            <button (click)="getPresenceReportByIdModuleRgs(participantPresence.detailModule.id)"
+              target="blank" class="btn btn-info" [disabled]="!participantPresence.checkDownload">
               <i class="pi pi-file-pdf"></i>
               Unduh
-            </a>
+            </button>
           </td>
         </tr>
       </ng-template>
@@ -129,3 +129,29 @@
      
   </p-tabPanel>
 </p-tabView>
+
+
+<div *ngIf="roleCode === ROLES.PARTICIPANT">
+  <div class="row">
+    <div class="col-3 bg-primary">
+      Sertifikat
+    </div>
+    <div class="col-3 bg-secondary">
+      <button (click)="getCertified()" class="btn btn-info">
+        Unduh
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 bg-primary">
+     Nilai
+    </div>
+    <div class="col-3 bg-secondary">
+      <button (click)="getScoreReport()" class="btn btn-info">
+        Unduh
+      </button>
+    </div>
+  </div>
+
+</div>
