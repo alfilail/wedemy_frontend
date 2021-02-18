@@ -21,7 +21,7 @@
     <div class="row shadow p-3 mb-5 bg-white rounded">
         <div class="col-12">
             <h2 class="text-center h-text">
-                <b>REGISTER</b>
+                <b>DAFTAR</b>
             </h2>
             <p-divider></p-divider>
         </div>
@@ -55,7 +55,7 @@
                             class="rounded-pill" type="text" id="username" name="username"
                             aria-describedby="username-help" (ngModelChange)="usernameValidation($event)" pInputText
                             maxlength="64">
-                        <label class="pl-2" for="username">Username</label>
+                        <label class="pl-2" for="username">Nama Pengguna</label>
                     </span>
                     <small *ngIf="!usernameValid" id="username-help" class="p-error ml-3">{{usernameErrorMsg}}</small>
                 </div>
@@ -65,18 +65,17 @@
                             class="rounded-pill" type="password" id="password" name="password"
                             aria-describedby="password-help" (ngModelChange)="passwordValidation($event)" required
                             minlength="8" maxlength="128" pPassword>
-                        <label class="pl-2" for="password">Password</label>
+                        <label class="pl-2" for="password">Kata Sandi</label>
                     </span>
                     <small *ngIf="!passwordValid" id="password-help" class="p-error ml-3">{{passwordErrorMsg}}</small>
                 </div>
                 <div class="text-center p-field p-col-12 mt-3">
-                    <button pButton type="button" label="D A F T A R" (click)="save()"
-                        class="btn-block p-button-rounded"></button>
+                    <button pButton type="button" label="D A F T A R" (click)="save()" class="btn-block p-button-rounded"></button>
                 </div>
                 <div class="form-group d-flex justify-content-center mt-3">
                     <p class="mr-2">Sudah memiliki akun?</p>
                     <a routerLink="/auth/login">
-                        <p class="text-center">LOGIN</p>
+                        <p class="text-center">MASUK</p>
                     </a>
                 </div>
             </div>
