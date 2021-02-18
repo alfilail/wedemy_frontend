@@ -30,31 +30,27 @@
             <ng-template ngFor let-class [ngForOf]="results" let-i="index">
                 <div class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
                     <div class="card card-wrapper shadow-lg card-light">
-                        <<<<<<< HEAD <img src="data:image/png;base64,{{class.idClass.idFile.file}}"
+                        <img loading=lazy src="data:image/png;base64,{{class.idClass.idFile.file}}"
                             class="card-img-top card-img-class">
-                            =======
-                            <img loading=lazy src="data:image/png;base64,{{class.idClass.idFile.file}}"
-                                class="card-img-top card-img-class">
-                            >>>>>>> 50f2587d11498144a5d8eaf9cb9bdb07e06da172
-                            <div class="card-body">
-                                <a class="text-decoration-none" [routerLink]="['../class/enrolled', class.id]">
-                                    <h5 class="card-title class-title">
-                                        {{class.idClass.className}}
-                                    </h5>
-                                </a>
-                                <p class="card-text class-short-desc">
-                                    {{class.idClass.description}}
+                        <div class="card-body">
+                            <a class="text-decoration-none" [routerLink]="['../class/enrolled', class.id]">
+                                <h5 class="card-title class-title">
+                                    {{class.idClass.className}}
+                                </h5>
+                            </a>
+                            <p class="card-text class-short-desc">
+                                {{class.idClass.description}}
+                            </p>
+                            <hr>
+                            <div class="instructor-profile">
+                                <img class="float-left rounded-circle"
+                                    src="https://s.gravatar.com/avatar/52bc543775b79088bc3bb3db40524299?d=mm" alt=""
+                                    width="36px" height="36px">
+                                <p class="ml-3 float-left instructor-name mt-2">
+                                    {{class.idClass.idTutor.idProfile.fullName}}
                                 </p>
-                                <hr>
-                                <div class="instructor-profile">
-                                    <img class="float-left rounded-circle"
-                                        src="https://s.gravatar.com/avatar/52bc543775b79088bc3bb3db40524299?d=mm" alt=""
-                                        width="36px" height="36px">
-                                    <p class="ml-3 float-left instructor-name mt-2">
-                                        {{class.idClass.idTutor.idProfile.fullName}}
-                                    </p>
-                                </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </ng-template>
