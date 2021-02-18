@@ -1,6 +1,6 @@
 <app-layout>
     <mat-toolbar class="page-header" role="heading">
-        <h1>Jenis Silabus</h1>
+        <h1>Tipe Materi</h1>
     </mat-toolbar>
 
     <div class="container-fluid">
@@ -57,19 +57,19 @@
             </div>
 
 
-            <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Jenis Silabus" [modal]="true"
+            <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tipe Materi" [modal]="true"
                 styleClass="p-fluid" (onHide)="hideDialog()">
                 <ng-template pTemplate="content">
                     <form name="jenisTugasForm">
                         <div class="p-field">
-                            <label for="code">Kode</label>
+                            <label for="code">Kode Tipe Materi</label>
                             <input type="text" name="code" required pInputText
                                 (ngModelChange)="validation($event,'code')" id="code"
                                 [(ngModel)]="learningMaterialType.code" maxlength="6" /><small *ngIf="!codeValid"
                                 class="p-error">{{codeErrMsg}}</small>
                         </div>
                         <div class="p-field">
-                            <label for="type">Tipe</label>
+                            <label for="type">Nama Tipe Materi</label>
                             <input type="text" name="type" required pInputText
                                 (ngModelChange)="validation($event,'name')" id="type"
                                 [(ngModel)]="learningMaterialType.learningMaterialTypeName" maxlength="50" /><small
