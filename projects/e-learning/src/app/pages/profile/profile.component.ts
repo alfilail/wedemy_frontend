@@ -29,6 +29,8 @@ export class ProfileComponent implements OnInit {
   ktpIsValid: boolean;
   ktpErrMsg: string;
 
+  isLoading: boolean = true;
+
   constructor(
     private userService: UserService,
     private authService: AuthService,
@@ -41,6 +43,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
       console.log(res.data);
       this.myAccount = res.data;
+      this.isLoading = false;
     })
   }
 
