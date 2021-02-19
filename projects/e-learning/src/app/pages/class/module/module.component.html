@@ -3,14 +3,14 @@
     <h2>Kurikulum Kelas</h2>
 </section>
 
-<div class="form-group d-flex justify-content-between">
+<div class="form-group p-d-flex p-flex-wrap justify-content-between">
     <button (click)="refresh()" class="btn btn-primary">
     <i class="pi pi-refresh"></i>
     Muat Ulang
   </button>
-    <select *ngIf="roleCode === roles.TUTOR" [(ngModel)]="selectedView" (ngModelChange)="onChangeOperation($event)" class="shadow-sm">
-    <option [value]="viewType.VIEW_ONLY">View Only</option>
-    <option [value]="viewType.OPERATION_VIEW">Operation View</option>
+    <select *ngIf="roleCode === roles.TUTOR" [(ngModel)]="selectedView" (ngModelChange)="onChangeOperation($event)" class="shadow-sm form-control mode-option">
+    <option [value]="viewType.VIEW_ONLY">Mode Baca</option>
+    <option [value]="viewType.OPERATION_VIEW">Mode Operasi</option>
   </select>
 </div>
 
