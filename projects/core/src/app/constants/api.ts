@@ -1,5 +1,5 @@
 const API = {
-  WEDEMY_HOST_DOMAIN: 'http://192.168.13.244:8080/wedemy',
+  WEDEMY_HOST_DOMAIN: 'http://192.168.13.66:8080/wedemy',
 
   /* 1. API of Tutor & Participant */
 
