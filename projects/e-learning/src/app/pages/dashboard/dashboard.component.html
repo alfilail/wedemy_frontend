@@ -7,11 +7,11 @@
                 <p-dropdown inputId="ins" [options]="instructors" (ngModelChange)="search()" [(ngModel)]="selectedInstructor" placeholder="Semua  &#9;" optionLabel="name"></p-dropdown>
                  -->
 
-        <div class="p-grid p-jc-between mb-4">
+        <div class="mb-4 p-d-flex p-flex-wrap p-jc-between">
             <div *ngIf="myRole===ROLES.PARTICIPANT" class="form-group">
-                <div class="p-grid p-jc-start">
-                    <label class="p-col-auto mr-2 ml-2 p-mt-3" for="ins">Tutor :</label>
-                    <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" id="ins" class="shadow-sm form-control p-col-7 p-lg-7 p-md-7 mt-2">
+                <div class="p-d-flex group-by-tutor">
+                    <label class="mr-2 p-as-center" for="ins">Tutor :</label>
+                    <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" id="ins" class="shadow-sm form-control">
                         <option [ngValue]="'Semua'">Semua</option>
                         <option *ngFor="let instructor of instructors" [ngValue]="instructor">{{ instructor }}</option>
                     </select>
