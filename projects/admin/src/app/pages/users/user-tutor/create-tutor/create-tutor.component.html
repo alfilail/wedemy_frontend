@@ -66,7 +66,8 @@
                         <div class="mb-3 col-lg-6">
                             <label for="tglLahir" class="form-label">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tglLahir" [(ngModel)]="profile.birthDate"
-                                required pInputText (ngModelChange)="validation($event,'birthDate')" id="tglLahir">
+                                required pInputText (ngModelChange)="validation($event,'birthDate')" id="tglLahir"
+                                max="2000-12-31" readonlyInput="true">
                             <small *ngIf="!birthDateValid" class="p-error">{{birthDateErrMsg}}</small>
                         </div>
                     </div>
