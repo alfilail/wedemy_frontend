@@ -52,3 +52,12 @@ main {
     pointer-events: none;
     color: #aaa;
 }
+
+.group-by-tutor {
+    width: 200px;
+}
+
+.group-by-tutor>label {
+    word-wrap: none;
+    white-space: nowrap;
+}

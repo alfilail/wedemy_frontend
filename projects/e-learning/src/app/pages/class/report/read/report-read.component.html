@@ -132,26 +132,32 @@
 
 
 <div *ngIf="roleCode === ROLES.PARTICIPANT">
-  <div class="row">
-    <div class="col-3 bg-primary">
-      Sertifikat
-    </div>
-    <div class="col-3 bg-secondary">
-      <button (click)="getCertified()" class="btn btn-info">
-        Unduh
-      </button>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-3 bg-primary">
-     Nilai
-    </div>
-    <div class="col-3 bg-secondary">
-      <button (click)="getScoreReport()" class="btn btn-info">
-        Unduh
-      </button>
-    </div>
-  </div>
+  <table class="table table-responsive">
+    <thead class="thead-light">
+      <tr>
+        <th style="width: 400px;" scope="col">Nama Laporan</th>
+        <th scope="col">Berkas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sertifikat</td>
+        <td>
+          <button (click)="downloadReport(selectedCertificatedUser)" class="btn btn-info">
+            Unduh
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>Nilai</td>
+        <td>
+          <button (click)="downloadReport(selectedScoreReportUser)" class="btn btn-info" [disabled]="!isReportScoreUserAvailable">
+            Unduh
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
