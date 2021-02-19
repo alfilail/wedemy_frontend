@@ -130,6 +130,8 @@ export class ReportReadComponent implements OnInit {
 
     this.reportService.getCertificate(param).subscribe(
       res => {
+        console.log('get certificate');
+
         console.log(res);
         this.isCertificateUserAvailable = res.data.check;
         this.selectedCertificatedUser = res.data;
@@ -149,10 +151,6 @@ export class ReportReadComponent implements OnInit {
     const link = createElementTagA(url);
     link.download = data.fileName;
     link.click();
-  }
-
-  getCertified(): void {
-    console.log(this.authService.getUserId());
   }
 
   onSort() {
