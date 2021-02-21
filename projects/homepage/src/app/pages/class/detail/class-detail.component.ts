@@ -8,7 +8,6 @@ import { ModuleRegistrations } from '@bootcamp-homepage/models/module-registrati
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { ClassEnrollmentService } from '@bootcamp-homepage/services/class-enrollment.service';
 import { DetailClassService } from '@bootcamp-homepage/services/detail-class.service';
-import { ModuleRegistrationService } from '@bootcamp-homepage/services/module-registration.service';
 
 @Component({
   selector: 'app-class-detail',
@@ -41,7 +40,6 @@ export class ClassDetailComponent implements OnInit {
   loading: boolean = true;
 
   constructor(private router: Router,
-    private moduleRgsService: ModuleRegistrationService,
     private dtlClassService: DetailClassService,
     private route: ActivatedRoute,
     private authService: AuthService,
@@ -67,25 +65,6 @@ export class ClassDetailComponent implements OnInit {
         this.loading = false;
       })
     });
-  }
-
-  countTotalMats(): void{
-    this.moduleRgsService.getModuleAndLearningMaterialsByIdDtlClass(this.param)
-    .subscribe(res => {
-      res.data.forEach(module => {
-        module.learningMaterials.forEach(m => this.countMat++);
-      })
-      this.countTotalHours(this.dtlClass.endTime, this.dtlClass.startTime);
-    })
-  }
-
-  countTotalHours(endTime: any, startTime: any): void{
-    let end = endTime.split(':');
-    let endMnt = end[0]*60 + end[1]*1;
-    let start = startTime.split(':');
-    let startMnt = start[0]*60 + start[1]*1;
-    let diff = endMnt-startMnt;
-    this.totalHours = this.countMat*(diff/60);
   }
 
   enrollNow(): void {

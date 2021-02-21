@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
 import { DetailClassService } from '@bootcamp-homepage/services/detail-class.service';
-import { ModuleRegistrationService } from '@bootcamp-homepage/services/module-registration.service';
 
 
 @Component({

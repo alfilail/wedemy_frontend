@@ -34,11 +34,7 @@ export class ClassDetailComponent implements OnInit {
     )
   }
 
-<<<<<<< HEAD
- 
-=======
   showVisible(): void {
     this.display = !this.display;
   }
->>>>>>> 4058656a523617c79ac313eff9e5e4dd4c68e1c2
 }
