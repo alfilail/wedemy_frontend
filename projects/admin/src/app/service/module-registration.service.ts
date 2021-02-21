@@ -4,7 +4,6 @@ import { ModuleRegistrations } from '@bootcamp-admin/model/module-registrations'
 import { Responses } from '@bootcamp-admin/model/response';
 import API from '@bootcamp-core/constants/api';
 import { Observable } from 'rxjs';
-import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'

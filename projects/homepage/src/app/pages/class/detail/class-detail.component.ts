@@ -66,28 +66,6 @@ export class ClassDetailComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  countTotalMats(): void {
-    this.moduleRgsService.getModuleAndLearningMaterialsByIdDtlClass(this.param)
-      .subscribe(res => {
-        res.data.forEach(module => {
-          module.learningMaterials.forEach(m => this.countMat++);
-        })
-        this.countTotalHours(this.dtlClass.endTime, this.dtlClass.startTime);
-      })
-  }
-
-  countTotalHours(endTime: any, startTime: any): void {
-    let end = endTime.split(':');
-    let endMnt = end[0] * 60 + end[1] * 1;
-    let start = startTime.split(':');
-    let startMnt = start[0] * 60 + start[1] * 1;
-    let diff = endMnt - startMnt;
-    this.totalHours = this.countMat * (diff / 60);
-  }
-
-=======
->>>>>>> 6b0a45794be5f4a58d1dd1e812f1b2fc1519c97c
   enrollNow(): void {
     if (this.isLoggedOut) {
       this.display = true;
@@ -101,9 +79,7 @@ export class ClassDetailComponent implements OnInit {
     this.classEnrollmentSelected.idDetailClass.id = this.dtlClass.id;
     this.classEnrollmentSelected.idUser.id = this.authService.getUserId();
     this.classEnrollmentService.insertClassEnrollment(this.classEnrollmentSelected)
-<<<<<<< HEAD
       .subscribe(res => {
-        console.log(res);
         this.closeDialog();
         this.isEnrolled = true;
         this.showRegisterButton = false;
@@ -111,16 +87,6 @@ export class ClassDetailComponent implements OnInit {
         this.isFull = false;
         this.isEnded = false;
       })
-=======
-    .subscribe(res => {
-      this.closeDialog();
-      this.isEnrolled = true;
-      this.showRegisterButton = false;
-      this.isTutor = false;
-      this.isFull = false;
-      this.isEnded = false;
-    })
->>>>>>> 6b0a45794be5f4a58d1dd1e812f1b2fc1519c97c
   }
 
   closeDialog(): void {

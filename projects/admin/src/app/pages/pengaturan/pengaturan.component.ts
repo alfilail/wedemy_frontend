@@ -95,7 +95,6 @@ export class PengaturanComponent implements OnInit {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       let file: File = fileList[0];
-      console.log(file, 'heheh');
       let data: FormData = new FormData();
       data.append('file', file);
       this.formData = data;

@@ -21,7 +21,6 @@ export class DashboardPageComponent {
 
     this.userService.getUserById(id).subscribe(val => {
       this.user = val.data;
-      console.log(val)
     })
   }
 }

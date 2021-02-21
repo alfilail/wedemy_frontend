@@ -1,4 +1,3 @@
-import { Time } from "@angular/common";
 import { BaseMaster } from "@bootcamp-core/models/base-master";
 import { Classes } from "./classes";
 
