@@ -25,7 +25,7 @@ export class AssignmentService {
     }
     if (updateAssignmentScore.length > 0) {
       let data = { evaluations: [...updateAssignmentScore] }
-      assignmentRequest.push(this.http.put<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_ASSIGNMENT_QUERY_PATH}`, data))
+      assignmentRequest.push(this.http.patch<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_ASSIGNMENT_QUERY_PATH}`, data))
     }
     console.log('Assignment Request');
     return forkJoin([...assignmentRequest]);
