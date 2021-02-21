@@ -38,7 +38,6 @@ export class SilabusComponent implements OnInit {
   }
 
   insertModule(): void {
-    console.log(this.module)
     if (this.codeValid == true && this.nameValid == true) {
       this.module.createdBy = this.idUser;
       this.moduleService.insertModules(this.module).subscribe(val => {
@@ -53,8 +52,6 @@ export class SilabusComponent implements OnInit {
 
   updateModule(): void {
     this.module.updatedBy = this.idUser
-    console.log(this.module)
-    console.log('update')
     this.moduleService.updateModule(this.module).subscribe(val => {
       this.productDialog = false; this.update = false;
       this.removeSilabus(this.module.id)
@@ -67,7 +64,6 @@ export class SilabusComponent implements OnInit {
     this.moduleService.getModules().subscribe(val => {
       this.listSilabus = val.data;
       this.loading = false;
-      console.log(val)
     })
   }
 

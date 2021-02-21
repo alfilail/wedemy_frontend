@@ -40,7 +40,7 @@ export class KelasComponent implements OnInit {
   getClasses() {
     this.dtlClsService.getDetailClasses().subscribe(val => {
       this.listKelas = val.data;
-      console.log(val); this.loading = false;
+      this.loading = false;
     })
   }
 

@@ -54,7 +54,6 @@ export class JenisTugasComponent implements OnInit {
   }
 
   updateLearningMaterialType() {
-    console.log('update')
     this.learningMaterialType.updatedBy = this.idUser
     this.learningMaterialTypeService.updateLearningMaterialType(this.learningMaterialType).subscribe(val => {
       this.productDialog = false;
@@ -68,7 +67,7 @@ export class JenisTugasComponent implements OnInit {
   getLearningMaterialTypes() {
     this.learningMaterialTypeService.getLearningMaterialTypes().subscribe(val => {
       this.listJenisTugas = val.data;
-      console.log(val); this.loading = false;
+      this.loading = false;
     })
   }
 

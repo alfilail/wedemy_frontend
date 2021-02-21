@@ -49,7 +49,6 @@ export class StatusTugasComponent implements OnInit {
   }
 
   updateSubmissionStatus() {
-    console.log('update')
     this.statusTugas.updatedBy = this.idUser
     this.submissionStatusService.updateSubmissionStatus(this.statusTugas).subscribe(val => {
       this.productDialog = false; this.update = false;
@@ -62,7 +61,6 @@ export class StatusTugasComponent implements OnInit {
   getSubmissionStatus() {
     this.submissionStatusService.getSubmissionStatus().subscribe(val => {
       this.listStatusTugas = val.data; this.loading = false;
-      console.log(val)
     })
   }
 

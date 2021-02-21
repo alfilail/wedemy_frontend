@@ -112,16 +112,12 @@ export class SettingComponent implements OnInit {
   }
 
   changePassword(): void {
-    let userCheck: User = new User();
-    userCheck.username = this.user.username;
-    userCheck.userPassword = this.pwNow;
-    this.userService.login(userCheck).subscribe(val => {
-      this.user.userPassword = this.pwNew;
-      this.user.updatedBy = this.authService.getUserId();
-      this.userService.updateUser(this.user).subscribe(res => {
-      console.log(res.data);
-      this.user = res.data;
-    })
+    this.user.userPassword = this.pwNew;
+    this.user.updatedBy = this.authService.getUserId();
+    this.userService.updateUser(this.user).subscribe(res => {
+    console.log(res.data);
+    this.user = res.data;
+    this.displayPassword = false;
     });
     
   }

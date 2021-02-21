@@ -13,7 +13,7 @@ import { BaseService } from './base.service';
 })
 export class DetailClassService extends BaseService{
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient) {
     super();
   }
 

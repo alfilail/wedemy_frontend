@@ -1,19 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoleService } from '@bootcamp-admin/service/role.service';
 import { ROLE } from '@bootcamp-homepage/constants/roles';
-import { RegisterComponent } from '@bootcamp-homepage/layouts/auth/register/register.component';
 import { ClassEnrollments } from '@bootcamp-homepage/models/class-enrollments';
-import { Classes } from '@bootcamp-homepage/models/classes';
 import { DetailClasses } from '@bootcamp-homepage/models/detail-classes';
 import { ModuleRegistrations } from '@bootcamp-homepage/models/module-registrations';
-import { Modules } from '@bootcamp-homepage/models/modules';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { ClassEnrollmentService } from '@bootcamp-homepage/services/class-enrollment.service';
-import { ClassService } from '@bootcamp-homepage/services/class.service';
 import { DetailClassService } from '@bootcamp-homepage/services/detail-class.service';
-import { ModuleRegistrationService } from '@bootcamp-homepage/services/module-registration.service';
 
 @Component({
   selector: 'app-class-detail',
@@ -33,7 +27,7 @@ export class ClassDetailComponent implements OnInit {
   display: boolean = false;
   confirm: boolean = false;
   classEnrollmentSelected: ClassEnrollments = new ClassEnrollments();
-  enrolled: boolean = false; /* To check if participant is already enrolled the class */
+  enrolled: boolean = false;
   showRegisterButton: boolean = false;
 
   isEnrolled: boolean = false;
@@ -46,7 +40,6 @@ export class ClassDetailComponent implements OnInit {
   loading: boolean = true;
 
   constructor(private router: Router,
-    private moduleRgsService: ModuleRegistrationService,
     private dtlClassService: DetailClassService,
     private route: ActivatedRoute,
     private authService: AuthService,
@@ -73,6 +66,7 @@ export class ClassDetailComponent implements OnInit {
     });
   }
 
+<<<<<<< HEAD
   countTotalMats(): void {
     this.moduleRgsService.getModuleAndLearningMaterialsByIdDtlClass(this.param)
       .subscribe(res => {
@@ -92,6 +86,8 @@ export class ClassDetailComponent implements OnInit {
     this.totalHours = this.countMat * (diff / 60);
   }
 
+=======
+>>>>>>> 6b0a45794be5f4a58d1dd1e812f1b2fc1519c97c
   enrollNow(): void {
     if (this.isLoggedOut) {
       this.display = true;
@@ -105,6 +101,7 @@ export class ClassDetailComponent implements OnInit {
     this.classEnrollmentSelected.idDetailClass.id = this.dtlClass.id;
     this.classEnrollmentSelected.idUser.id = this.authService.getUserId();
     this.classEnrollmentService.insertClassEnrollment(this.classEnrollmentSelected)
+<<<<<<< HEAD
       .subscribe(res => {
         console.log(res);
         this.closeDialog();
@@ -114,6 +111,16 @@ export class ClassDetailComponent implements OnInit {
         this.isFull = false;
         this.isEnded = false;
       })
+=======
+    .subscribe(res => {
+      this.closeDialog();
+      this.isEnrolled = true;
+      this.showRegisterButton = false;
+      this.isTutor = false;
+      this.isFull = false;
+      this.isEnded = false;
+    })
+>>>>>>> 6b0a45794be5f4a58d1dd1e812f1b2fc1519c97c
   }
 
   closeDialog(): void {

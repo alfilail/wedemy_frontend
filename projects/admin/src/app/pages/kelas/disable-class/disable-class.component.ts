@@ -90,12 +90,10 @@ export class DisableClassComponent implements OnInit {
   getClasses() {
     this.classService.getClassInactive().subscribe(val => {
       this.listKelas = val.data;
-      console.log(val); this.loading = false;
     })
   }
 
   save(): void {
-    console.log(this.kelas)
     this.dtlClass.createdBy = this.idUser
     this.dtlClass.idClass = this.kelas;
     this.dtlClass.startTime = this.startTimeValue;
@@ -103,8 +101,6 @@ export class DisableClassComponent implements OnInit {
     this.dtlClass.startDate = this.formatDate(this.rangeDates[0]);
     this.dtlClass.endDate = this.formatDate(this.rangeDates[1]);
 
-    console.log(this.dtlClass.startTime, this.dtlClass.startDate, this.dtlClass.endDate, this.dtlClass.endTime)
-    console.log(this.dtlClass)
 
     if (this.startTimeValue > this.endTimeValue) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Jam berakhir tidak boleh lebih awal" })

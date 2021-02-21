@@ -30,7 +30,8 @@ export class MaterialReadComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private materialService: MaterialService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.roleCode = this.authService.getRole();
@@ -63,6 +64,9 @@ export class MaterialReadComponent implements OnInit {
 
   back(): void {
     console.log("Back button clicked");
-    this.location.back();
+    console.log();
+    // this.location.back();
+    this.router.navigateByUrl(`/instructor/class/enrolled/${this.idDetailClass}`);
+    
   }
 }

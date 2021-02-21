@@ -64,7 +64,6 @@ export class CreateTutorComponent implements OnInit {
   }
 
   insertUser(): void {
-    console.log(this.roleUser)
 
     if (this.passwordValid && this.emailValid && this.namaValid
       && this.alamatValid && this.birthDateValid && this.birthPlaceValid
@@ -79,7 +78,6 @@ export class CreateTutorComponent implements OnInit {
       this.user.idProfile = this.profile;
       this.user.idRole = this.role;
 
-      console.log(this.user)
       this.userService.insertUsers(this.user).subscribe(val => {
         if (this.roleUser == 'tutor') {
           this.route.navigateByUrl('/admin/user-tutor')

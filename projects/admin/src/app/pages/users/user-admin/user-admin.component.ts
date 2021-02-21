@@ -50,12 +50,10 @@ export class UserAdminComponent implements OnInit {
         }
       })
       this.loading = false;
-      console.log(val)
     })
   }
 
   deleteUser(id: string) {
-    console.log(this.idUser)
     this.confirmationService.confirm({
       message: 'Apakah anda yakin ingin menghapus data?',
       header: 'Confirm',

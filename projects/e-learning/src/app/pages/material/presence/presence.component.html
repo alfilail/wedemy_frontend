@@ -1,4 +1,4 @@
-<button (click)="check()" class="btn btn-primary">Check</button>
+<!-- <button (click)="check()" class="btn btn-primary">Check</button> -->
 <div class="card px-4 py-4">
   <p-toolbar styleClass="p-mb-4 d-none d-md-flex flex-md-row justify-content-md-end">
     <button (click)="setStatusPresence(selectedParticipants, approvements.ACCEPT)" pButton pRipple label="Terima"
@@ -102,6 +102,11 @@
           </div>
 
         </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">Peserta Tidak ditemukan</td>
       </tr>
     </ng-template>
   </p-table>

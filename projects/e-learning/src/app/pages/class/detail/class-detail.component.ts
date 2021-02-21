@@ -8,14 +8,18 @@ import { ClassService } from '@bootcamp-elearning/services/class.service';
   styleUrls: ['./class-detail.component.css'],
 })
 export class ClassDetailComponent implements OnInit {
+  isLoading: boolean = true;
+  display: boolean = false;
+
   idDetailClass: string;
   class: any;
-  isLoading: boolean = true;
+
 
   constructor(private route: ActivatedRoute,
     private classService: ClassService) { }
 
   ngOnInit(): void {
+    console.log("hit thisss")
     this.idDetailClass = this.route.firstChild.snapshot.params['idDetailClass'];
     this.classService.getDetail(this.idDetailClass).subscribe(
       res => {
@@ -28,5 +32,9 @@ export class ClassDetailComponent implements OnInit {
         this.isLoading = false;
       }
     )
+  }
+
+  showVisible(): void {
+    this.display = !this.display;
   }
 }

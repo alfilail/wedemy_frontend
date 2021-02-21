@@ -77,19 +77,41 @@ export class ReportReadComponent implements OnInit {
     )
   }
 
-
   getPresenceReportByIdModuleRgs(idDtlModuleRgs: string): void {
-    let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}?idDtlClass=${this.idDetailClass}&idDtlModuleRgs=${idDtlModuleRgs}`;
-    let link = createElementTagA(url);
-    link.target = '_blank';
-    link.click();
+    // let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}?idDtlClass=${this.idDetailClass}&idDtlModuleRgs=${idDtlModuleRgs}`;
+    // let link = createElementTagA(url);
+    // link.target = '_blank';
+    // link.click()
+    const param = {
+      idDtlClass: this.idDetailClass,
+      idDtlModuleRgs: idDtlModuleRgs
+    }
+    this.reportService.getPresenceReportByIdModuleRegistration(param).subscribe(
+      res => {
+        console.log(res);
+        this.downloadReport(res.data);
+        // this.downLoadFile(res, "application/pdf");
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   getPresenceReport(): void {
-    let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_PRESENCE_QUERY_PATH}/${this.idDetailClass}`;
-    let link = createElementTagA(url);
-    link.target = '_blank';
-    link.click();
+    // let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_PRESENCE_QUERY_PATH}/${this.idDetailClass}`;
+    // let link = createElementTagA(url);
+    // link.target = '_blank';
+    // link.click();
+    this.reportService.getAllPresenceReport(this.idDetailClass).subscribe(
+      res => {
+        console.log(res);
+        this.downloadReport(res.data);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   getScoreReport(idUser: string): void {

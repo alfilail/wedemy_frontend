@@ -33,11 +33,6 @@
 <p-dialog header="Ubah Kata Sandi" [(visible)]="displayPassword" class="dialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <div class="p-fluid">
         <div class="p-field">
-            <label for="pwNow">Kata sandi saat ini</label>
-            <input required [(ngModel)]="pwNow" id="pwNow" type="password" (ngModelChange)="pwNowValidation($event)" pInputText>
-            <small *ngIf="!pwNowIsValid" id="fullname-help" class="p-error">{{pwNowMsg}}</small>
-        </div>
-        <div class="p-field">
             <label for="pwNew">Kata sandi baru</label>
             <input required [(ngModel)]="pwNew" id="pwNew" type="password" (ngModelChange)="pwNewValidation($event)" pInputText>
             <small *ngIf="!pwNewIsValid" id="fullname-help" class="p-error ">{{pwNewMsg}}</small>
