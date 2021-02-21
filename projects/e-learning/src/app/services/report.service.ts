@@ -27,8 +27,12 @@ export class ReportService {
     return this.http.get<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_CERTIFICATE_QUERY_PATH}`, { params: param });
   }
 
+  getAllPresenceReport(idDetailClass: string): Observable<Response<any[]>> {
+    return this.http.get<Response<any[]>>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_PRESENCE_QUERY_PATH}/${idDetailClass}`);
+  }
+
   getPresenceReportByIdModuleRegistration(param: any): any {
-    return this.http.get(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}`, { responseType: 'arraybuffer', params: param });
+    return this.http.get(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}`, { params: param });
   }
 
 }
