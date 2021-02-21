@@ -15,6 +15,6 @@ export class ModuleRegistrationService {
   }
 
   getModuleRegByIdDtlClass(idDtlClass: string): Observable<Responses<ModuleRegistrations[]>> {
-    return this.http.get<Responses<ModuleRegistrations[]>>(`${API.WEDEMY_HOST_DOMAIN}/module-registration/dtl-class/${idDtlClass}`)
+    return this.http.get<Responses<ModuleRegistrations[]>>(`${API.WEDEMY_HOST_DOMAIN}/module-registration/detail-class/${idDtlClass}`)
   }
 }

@@ -35,12 +35,13 @@ export class DisableClassComponent implements OnInit {
   idUser: string; loading: boolean = true;
 
   constructor(private dtlClassService: DtlClassService, private route: Router, private classService: ClassService, private auth: AuthService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-    this.idUser = auth.getUserId()
+
   }
 
   ngOnInit(): void {
     this.getClasses();
     this.isActive = true;
+    this.idUser = this.auth.getUserId()
   }
 
   onSelectEnd($event) {
@@ -95,6 +96,7 @@ export class DisableClassComponent implements OnInit {
 
   save(): void {
     console.log(this.kelas)
+    this.dtlClass.createdBy = this.idUser
     this.dtlClass.idClass = this.kelas;
     this.dtlClass.startTime = this.startTimeValue;
     this.dtlClass.endTime = this.endTimeValue;

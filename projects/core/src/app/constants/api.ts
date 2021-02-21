@@ -1,5 +1,5 @@
 const API = {
-  WEDEMY_HOST_DOMAIN: 'http://192.168.13.66:8080/wedemy',
+  WEDEMY_HOST_DOMAIN: 'http://54.254.13.200:8080/wedemy',
 
   /* 1. API of Tutor & Participant */
 
@@ -29,15 +29,15 @@ const API = {
 
   // 1.E Assignment
   WEDEMY_ASSIGNMENT_QUERY_PATH: '/evaluation',
-  WEDEMY_ASSIGNMENT_SCORE_QUERY_PATH: '/evaluation/submission-score',
+  WEDEMY_ASSIGNMENT_SCORE_QUERY_PATH: '/evaluation/submission-scorey',
 
   // 1.F Answer
   WEDEMY_ANSWER_QUERY_PATH: '/assignment-submission/participant',
   WEDEMY_ANSWER_UPLOAD_QUERY_PATH: '/assignment-submission',
 
   // 1.G Evaluation
-  WEDEMY_SCORE_QUERY_PATH: '/evaluation/report',
-  WEDEMY_DETAIL_SCORE_QUERY_PATH: '/evaluation/report/participant',
+  WEDEMY_SCORE_QUERY_PATH: '/evaluation/scores',
+  WEDEMY_DETAIL_SCORE_QUERY_PATH: '/evaluation/report/score',
   WEDEMY_CERTIFICATE_QUERY_PATH: '/evaluation/certificate'
 }
 

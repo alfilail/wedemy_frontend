@@ -21,7 +21,7 @@ import { ModuleRegistrationService } from '@bootcamp-homepage/services/module-re
   styleUrls: ['./class-detail.component.css']
 })
 export class ClassDetailComponent implements OnInit {
-  
+
   searchText = '';
   listModules: ModuleRegistrations[] = [];
   dtlClass: DetailClasses = new DetailClasses();
@@ -34,8 +34,8 @@ export class ClassDetailComponent implements OnInit {
   confirm: boolean = false;
   classEnrollmentSelected: ClassEnrollments = new ClassEnrollments();
   enrolled: boolean = false; /* To check if participant is already enrolled the class */
-  showRegisterButton: boolean = false; 
-  
+  showRegisterButton: boolean = false;
+
   isEnrolled: boolean = false;
   isEnded: boolean = false;
   isFull: boolean = false;
@@ -51,8 +51,7 @@ export class ClassDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     public datepipe: DatePipe,
-    private classEnrollmentService: ClassEnrollmentService) 
-  { }
+    private classEnrollmentService: ClassEnrollmentService) { }
 
   ngOnInit(): void {
     this.isLoggedOut = !this.authService.getToken();
@@ -74,47 +73,47 @@ export class ClassDetailComponent implements OnInit {
     });
   }
 
-  countTotalMats(): void{
+  countTotalMats(): void {
     this.moduleRgsService.getModuleAndLearningMaterialsByIdDtlClass(this.param)
-    .subscribe(res => {
-      res.data.forEach(module => {
-        module.learningMaterials.forEach(m => this.countMat++);
+      .subscribe(res => {
+        res.data.forEach(module => {
+          module.learningMaterials.forEach(m => this.countMat++);
+        })
+        this.countTotalHours(this.dtlClass.endTime, this.dtlClass.startTime);
       })
-      this.countTotalHours(this.dtlClass.endTime, this.dtlClass.startTime);
-    })
   }
 
-  countTotalHours(endTime: any, startTime: any): void{
+  countTotalHours(endTime: any, startTime: any): void {
     let end = endTime.split(':');
-    let endMnt = end[0]*60 + end[1]*1;
+    let endMnt = end[0] * 60 + end[1] * 1;
     let start = startTime.split(':');
-    let startMnt = start[0]*60 + start[1]*1;
-    let diff = endMnt-startMnt;
-    this.totalHours = this.countMat*(diff/60);
+    let startMnt = start[0] * 60 + start[1] * 1;
+    let diff = endMnt - startMnt;
+    this.totalHours = this.countMat * (diff / 60);
   }
 
   enrollNow(): void {
-    if(this.isLoggedOut){
+    if (this.isLoggedOut) {
       this.display = true;
-    } else if(!this.isLoggedOut){
+    } else if (!this.isLoggedOut) {
       this.confirm = true;
     }
   }
 
   enrollClass(): void {
     this.classEnrollmentSelected.createdBy = this.authService.getUserId();
-    this.classEnrollmentSelected.idDetailClass.id = this.dtlClass.id; 
+    this.classEnrollmentSelected.idDetailClass.id = this.dtlClass.id;
     this.classEnrollmentSelected.idUser.id = this.authService.getUserId();
     this.classEnrollmentService.insertClassEnrollment(this.classEnrollmentSelected)
-    .subscribe(res => {
-      console.log(res);
-      this.closeDialog();
-      this.isEnrolled = true;
-      this.showRegisterButton = false;
-      this.isTutor = false;
-      this.isFull = false;
-      this.isEnded = false;
-    })
+      .subscribe(res => {
+        console.log(res);
+        this.closeDialog();
+        this.isEnrolled = true;
+        this.showRegisterButton = false;
+        this.isTutor = false;
+        this.isFull = false;
+        this.isEnded = false;
+      })
   }
 
   closeDialog(): void {
@@ -125,18 +124,18 @@ export class ClassDetailComponent implements OnInit {
   checkEnrolled(): void {
     let idUser: string = this.authService.getUserId();
     let idDtlClass: string = this.dtlClass.id;
-    if (idUser != null){
-    this.classEnrollmentService.findClassEnrollment(idDtlClass, idUser)
-    .subscribe(res => {
-      if (res.data != null){
-        this.isEnrolled = true;
-        this.showRegisterButton = false;
-        this.isEnded = false;
-        this.isFull = false;
-        this.isTutor = false;
-      }
-    });
-  }
+    if (idUser != null) {
+      this.classEnrollmentService.findClassEnrollment(idDtlClass, idUser)
+        .subscribe(res => {
+          if (res.data != null) {
+            this.isEnrolled = true;
+            this.showRegisterButton = false;
+            this.isEnded = false;
+            this.isFull = false;
+            this.isTutor = false;
+          }
+        });
+    }
     this.isEnrolled = false;
   }
 
@@ -148,9 +147,9 @@ export class ClassDetailComponent implements OnInit {
     let end = new Date(this.dtlClass.endDate);
     let start = new Date(this.dtlClass.startDate);
 
-    if(todayFormatted < start) {
+    if (todayFormatted < start) {
       this.isEnded = false;
-    } else if (todayFormatted >= start) {
+    } else if (todayFormatted > start) {
       this.isEnded = true;
       this.showRegisterButton = false;
       this.isEnrolled = false;
@@ -163,7 +162,7 @@ export class ClassDetailComponent implements OnInit {
     let quotaClass = this.dtlClass.idClass.quota;
     let totalParticipant = this.dtlClass.totalParticipant;
 
-    if(totalParticipant >= quotaClass) {
+    if (totalParticipant >= quotaClass) {
       this.isFull = true;
       this.showRegisterButton = false;
       this.isEnrolled = false;
@@ -189,18 +188,18 @@ export class ClassDetailComponent implements OnInit {
   }
 
   checkRegis(): void {
-    if(this.isLoggedOut){
+    if (this.isLoggedOut) {
       this.showRegisterButton = true;
       this.isTutor = false;
       this.isFull = false;
       this.isEnrolled = false;
       this.isEnded = false;
-    } else if(!this.isEnrolled && !this.isFull && !this.isLoggedOut && !this.isTutor && !this.isEnded){
+    } else if (!this.isEnrolled && !this.isFull && !this.isLoggedOut && !this.isTutor && !this.isEnded) {
       this.showRegisterButton = true;
       this.isTutor = false;
       this.isFull = false;
       this.isEnrolled = false;
       this.isEnded = false;
-    } 
+    }
   }
 }

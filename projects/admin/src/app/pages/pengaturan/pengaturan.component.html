@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="fullname">Nama Lengkap</label>
-                                        <input type="text" class="form-control mt-2" id="fullname" required pInputText
+                                        <input type="text" class="form-control mt-2" id="fullname" pInputText
                                             (ngModelChange)="validation($event,'nama')" [value]="profile.fullName"
                                             name="fullname" [(ngModel)]="profile.fullName" maxlength="40">
                                         <small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
@@ -89,15 +89,14 @@
                                     <div class="d-flex">
                                         <div class="p-field  col-lg-6 col-md-6">
                                             <label for="noTlp">Nomor KTP</label>
-                                            <input id="ktp" type="text" required pInputText
-                                                (ngModelChange)="numIdentity($event)" name="ktp"
-                                                [(ngModel)]="profile.idNumber" [value]="profile.idNumber"
+                                            <input id="ktp" type="text" pInputText (ngModelChange)="numIdentity($event)"
+                                                name="ktp" [(ngModel)]="profile.idNumber" [value]="profile.idNumber"
                                                 maxlength="16">
                                             <small *ngIf="!nomorKtpValid" class="p-error">{{nomorKtpErrMsg}}</small>
                                         </div>
                                         <div class="p-field  col-lg-6 col-md-6">
                                             <label for="noTlp">Nomor Ponsel</label>
-                                            <input id="noTlp" type="text" required pInputText
+                                            <input id="noTlp" type="text" pInputText
                                                 (ngModelChange)="phoneValidation($event)" name="noTlp"
                                                 [(ngModel)]="profile.phone" [value]="profile.phone" maxlength="12">
                                             <small *ngIf="!phoneNumValid" class="p-error">{{phoneNumErrMsg}}</small>
@@ -106,7 +105,7 @@
                                     <div class="d-flex">
                                         <div class="p-field col-lg-6 col-md-6">
                                             <label for="tmptLahir">Tempat Lahir</label>
-                                            <input id="tmptLahir" type="text" name="tmptLahir" required pInputText
+                                            <input id="tmptLahir" type="text" name="tmptLahir" pInputText
                                                 (ngModelChange)="validation($event,'birthPlace')"
                                                 [(ngModel)]="profile.birthPlace" [value]="profile.birthPlace"
                                                 maxlength="30">
@@ -121,7 +120,7 @@
                                     </div>
                                     <div class="p-field col-lg-6 col-md-6">
                                         <label for="alamat">Alamat</label>
-                                        <textarea id="alamat" type="text" required pInputText
+                                        <textarea id="alamat" type="text" pInputText
                                             (ngModelChange)="validation($event,'alamat')" name="alamat"
                                             [(ngModel)]="profile.address" [value]="profile.address" rows="3"
                                             maxlength="100"></textarea>
@@ -150,13 +149,13 @@
                                             <input pPassword [promptLabel]="'Masukan password'" [weakLabel]="'Lemah'"
                                                 [mediumLabel]="'Sedang'" [strongLabel]="'Kuat'" type="password"
                                                 class="form-control mt-2" name="newPass" id="newPass" [(ngModel)]="pass"
-                                                required pInputText (ngModelChange)="validation($event,'pass')">
+                                                pInputText (ngModelChange)="validation($event,'pass')">
                                             <small *ngIf="!passwordValid" class="p-error">{{passwordErrMsg}}</small>
                                         </div>
                                         <div class="form-group mt-3 col-lg-6 col-md-6">
                                             <label for="oldPass">Konfirmasi Sandi Baru</label>
                                             <input type="password" [(ngModel)]="passConf" name="repatNewPass"
-                                                class="form-control mt-2" id="repatNewPass" required pInputText
+                                                class="form-control mt-2" id="repatNewPass" pInputText
                                                 (ngModelChange)="validation($event,'passConf')">
                                             <small *ngIf="!repeatPasswordValid"
                                                 class="p-error">{{repeatPasswordErrMsg}}</small>

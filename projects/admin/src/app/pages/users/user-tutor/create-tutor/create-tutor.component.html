@@ -13,13 +13,12 @@
                         <div class="mb-3 col-lg-6">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" (ngModelChange)="validation($event,'username')"
-                                [(ngModel)]="user.username" id="username" name="username" required pInputText
-                                maxlength="64">
+                                [(ngModel)]="user.username" id="username" name="username" pInputText maxlength="64">
                             <small *ngIf="!usernameValid" class="p-error">{{usernameErrMsg}}</small>
                         </div>
                         <div class="mb-3 col-lg-6">
                             <label for="Password" class="form-label">Sandi</label>
-                            <input type="password" class="form-control" required pInputText
+                            <input type="password" class="form-control" pInputText
                                 (ngModelChange)="validation($event,'password')" name="password"
                                 [(ngModel)]="user.userPassword" id="Password" maxlength="40">
                             <small *ngIf="!passwordValid" class="p-error">{{passErrMsg}}</small>
@@ -28,13 +27,13 @@
                     <div class="d-flex">
                         <div class="mb-3 col-lg-6">
                             <label for="idktp" class="form-label">Nomor KTP</label>
-                            <input type="text" class="form-control" id="idktp" name="idktp" required pInputText
+                            <input type="text" class="form-control" id="idktp" name="idktp" pInputText
                                 (ngModelChange)="numIdentity($event)" [(ngModel)]="profile.idNumber" maxlength="16">
                             <small *ngIf="!nomorKtpValid" class="p-error">{{nomorKtpErrMsg}}</small>
                         </div>
                         <div class="mb-3 col-lg-6">
                             <label for="nama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" name="nama" [(ngModel)]="profile.fullName" required
+                            <input type="text" class="form-control" name="nama" [(ngModel)]="profile.fullName"
                                 pInputText (ngModelChange)="validation($event,'nama')" id="nama" maxlength="50">
                             <small *ngIf="!namaValid" class="p-error">{{namaErrMsg}}</small>
                         </div>
@@ -42,15 +41,14 @@
                     <div class="d-flex">
                         <div class="mb-3 col-lg-6">
                             <label for="email" class="form-label">E-Mail</label>
-                            <input type="email" class="form-control" name="email" [(ngModel)]="profile.email" required
-                                pInputText (ngModelChange)="validation($event,'email')" id="email" maxlength="50">
+                            <input type="email" class="form-control" name="email" [(ngModel)]="profile.email" pInputText
+                                (ngModelChange)="validation($event,'email')" id="email" maxlength="50">
                             <small *ngIf="!emailValid" class="p-error">{{emailErrMsg}}</small>
                         </div>
                         <div class="mb-3 col-lg-6">
                             <label for="nomorPonsel" class="form-label">Nomor Ponsel</label>
                             <input type="text" class="form-control" name="nomorPonsel" [(ngModel)]="profile.phone"
-                                required pInputText (ngModelChange)="phoneValidation($event)" id="nomorPonsel"
-                                maxlength="12">
+                                pInputText (ngModelChange)="phoneValidation($event)" id="nomorPonsel" maxlength="12">
                             <small *ngIf="!numPhoneValid" class="p-error">{{numPhoneErrMsg}}</small>
                         </div>
                     </div>
@@ -58,7 +56,7 @@
                         <div class="mb-3 col-lg-6">
                             <label for="tempatLahir" class="form-label">Tempat Lahir</label>
                             <input type="text" class="form-control" name="tempatLahir" [(ngModel)]="profile.birthPlace"
-                                required pInputText (ngModelChange)="validation($event,'birthPlace')" maxlength="30"
+                                pInputText (ngModelChange)="validation($event,'birthPlace')" maxlength="30"
                                 id="tempatLahir">
                             <small *ngIf="!birthPlaceValid" id="username-help"
                                 class="p-error">{{birthPlaceErrMsg}}</small>
@@ -66,7 +64,7 @@
                         <div class="mb-3 col-lg-6">
                             <label for="tglLahir" class="form-label">Tanggal Lahir</label>
                             <input type="date" class="form-control" name="tglLahir" [(ngModel)]="profile.birthDate"
-                                required pInputText (ngModelChange)="validation($event,'birthDate')" id="tglLahir"
+                                pInputText (ngModelChange)="validation($event,'birthDate')" id="tglLahir"
                                 max="2000-12-31" readonlyInput="true">
                             <small *ngIf="!birthDateValid" class="p-error">{{birthDateErrMsg}}</small>
                         </div>
@@ -75,8 +73,8 @@
                         <div class=" mb-3 col-lg-6 col-md-6 ">
                             <label for=" alamat" class="form-label">Alamat</label>
                             <textarea type="text" class="form-control" name="alamat" [(ngModel)]="profile.address"
-                                required pInputText (ngModelChange)="validation($event,'alamat')" rows="3"
-                                maxlength="100" id="alamat"></textarea>
+                                pInputText (ngModelChange)="validation($event,'alamat')" rows="3" maxlength="100"
+                                id="alamat"></textarea>
                             <small *ngIf="!alamatValid" class="p-error">{{alamatErrMsg}}</small>
                         </div>
                     </div>
