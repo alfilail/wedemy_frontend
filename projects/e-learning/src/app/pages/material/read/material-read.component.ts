@@ -66,7 +66,7 @@ export class MaterialReadComponent implements OnInit {
     console.log("Back button clicked");
     console.log();
     // this.location.back();
-    this.router.navigateByUrl(`/instructor/class/enrolled/${this.idDetailClass}`);
-    
+    this.router.navigateByUrl(`../class/enrolled/${this.idDetailClass}`);
+
   }
 }
