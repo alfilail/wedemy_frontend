@@ -29,7 +29,7 @@ const API = {
 
   // 1.E Assignment
   WEDEMY_ASSIGNMENT_QUERY_PATH: '/evaluation',
-  WEDEMY_ASSIGNMENT_SCORE_QUERY_PATH: '/evaluation/submission-scorey',
+  WEDEMY_ASSIGNMENT_SCORE_QUERY_PATH: '/evaluation/submission-score',
 
   // 1.F Answer
   WEDEMY_ANSWER_QUERY_PATH: '/assignment-submission/participant',
