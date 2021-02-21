@@ -8,9 +8,12 @@ import { ClassService } from '@bootcamp-elearning/services/class.service';
   styleUrls: ['./class-detail.component.css'],
 })
 export class ClassDetailComponent implements OnInit {
+  isLoading: boolean = true;
+  display: boolean = false;
+
   idDetailClass: string;
   class: any;
-  isLoading: boolean = true;
+
 
   constructor(private route: ActivatedRoute,
     private classService: ClassService) { }
@@ -28,5 +31,9 @@ export class ClassDetailComponent implements OnInit {
         this.isLoading = false;
       }
     )
+  }
+
+  showVisible(): void {
+    this.display = !this.display;
   }
 }

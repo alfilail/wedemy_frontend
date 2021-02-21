@@ -34,6 +34,7 @@ export class ModuleComponent implements OnInit {
 
   ngOnInit(): void {
     this.roleCode = this.authService.getRole();
+
     this.route.params.subscribe(params => {
       this.idDetailClass = params['idDetailClass'];
       // setTimeout(() => {

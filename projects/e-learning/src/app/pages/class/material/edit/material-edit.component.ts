@@ -54,14 +54,23 @@ export class MaterialEditComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param => {
-      this.idDetailModuleRegistration = param['idDetailModuleRegistration'];
-      console.log('InI Detail module');
+    this.route
+      .queryParams
+      .subscribe(params => {
+        this.idDetailModuleRegistration = params['idDetailModuleRegistration']
 
-      console.log(this.idDetailModuleRegistration)
-      this.formData.append('file', null);
-      this.getMaterial();
-    })
+        this.formData.append('file', null);
+        this.getMaterial();
+      });
+
+    // this.route.params.subscribe(param => {
+    //   this.idDetailModuleRegistration = param['idDetailModuleRegistration'];
+    //   console.log('InI Detail module');
+
+    //   console.log(this.idDetailModuleRegistration)
+    //   this.formData.append('file', null);
+    //   this.getMaterial();
+    // })
   }
 
   getMaterial(): void {
@@ -94,7 +103,7 @@ export class MaterialEditComponent implements OnInit {
           return val.id === this.material.idLearningMaterial.idLearningMaterialType.id;
         })[0];
         this.isLoading = false;
-        
+
       },
       err => {
         console.log(err);
@@ -103,7 +112,7 @@ export class MaterialEditComponent implements OnInit {
   }
 
   setFile(event: any): void {
-    if(this.formData.get('file') != null){
+    if (this.formData.get('file') != null) {
       this.formData.delete('file');
     }
     let fileList = event.target.files;
@@ -114,7 +123,7 @@ export class MaterialEditComponent implements OnInit {
 
   getFileName(): void {
     console.log(this.material);
-    
+
   }
 
   back(): void {
@@ -168,13 +177,13 @@ export class MaterialEditComponent implements OnInit {
     // console.log(this.detailModuleRegistration);
     console.log("hai");
     if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid) {
-      if (this.formData.get('body')!=null){
+      if (this.formData.get('body') != null) {
         this.formData.delete('body');
       }
       this.formData.append('body', JSON.stringify(this.material));
-    console.log(this.formData.get('file'))
+      console.log(this.formData.get('file'))
 
-    console.log(this.formData.get('body'))
+      console.log(this.formData.get('body'))
 
       this.materialService.updateMaterial(this.formData).subscribe(
         res => {

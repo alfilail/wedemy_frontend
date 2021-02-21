@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SidebarModule } from 'primeng/sidebar';
 import { TabViewModule } from 'primeng/tabview';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
@@ -41,7 +42,8 @@ import { SkeletonModule } from 'primeng/skeleton';
     SkeletonModule,
     ConfirmDialogModule,
     TabViewModule,
-    ToolbarModule
+    ToolbarModule,
+    SidebarModule
 
   ],
   providers: [ConfirmationService]

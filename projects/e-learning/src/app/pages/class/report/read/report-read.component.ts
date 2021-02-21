@@ -77,12 +77,33 @@ export class ReportReadComponent implements OnInit {
     )
   }
 
-
   getPresenceReportByIdModuleRgs(idDtlModuleRgs: string): void {
-    let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}?idDtlClass=${this.idDetailClass}&idDtlModuleRgs=${idDtlModuleRgs}`;
-    let link = createElementTagA(url);
-    link.target = '_blank';
-    link.click();
+    // let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}?idDtlClass=${this.idDetailClass}&idDtlModuleRgs=${idDtlModuleRgs}`;
+    // let link = createElementTagA(url);
+    // link.target = '_blank';
+    // link.click()
+    const param = {
+      idDtlClass: this.idDetailClass,
+      idDtlModuleRgs: idDtlModuleRgs
+    }
+    this.reportService.getPresenceReportByIdModuleRegistration(param).subscribe(
+      res => {
+        console.log(res);
+        this.downLoadFile(res, "application/pdf");
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+  downLoadFile(data: any, type: string) {
+    let blob = new Blob([data], { type: type });
+    let url = window.URL.createObjectURL(blob);
+    let pwa = window.open(url);
+
+    if (!pwa || pwa.closed || typeof pwa.closed == 'undefined') {
+      alert('Please disable your Pop-up blocker and try again.');
+    }
   }
 
   getPresenceReport(): void {

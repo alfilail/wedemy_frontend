@@ -144,7 +144,10 @@
       <tr>
         <td>Sertifikat</td>
         <td>
-          <button (click)="downloadReport(selectedCertificatedUser)" class="btn btn-info">
+          <button (click)="downloadReport(selectedCertificatedUser)" 
+            class="btn btn-info"
+            [disabled]="!isCertificateUserAvailable">
+            <i class="pi pi-file-pdf"></i>
             Unduh
           </button>
         </td>
@@ -153,6 +156,7 @@
         <td>Nilai</td>
         <td>
           <button (click)="downloadReport(selectedScoreReportUser)" class="btn btn-info" [disabled]="!isReportScoreUserAvailable">
+            <i class="pi pi-file-pdf"></i>
             Unduh
           </button>
         </td>

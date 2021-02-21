@@ -26,4 +26,9 @@ export class ReportService {
   getCertificate(param: any): Observable<any> {
     return this.http.get<any>(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_CERTIFICATE_QUERY_PATH}`, { params: param });
   }
+
+  getPresenceReportByIdModuleRegistration(param: any): any {
+    return this.http.get(`${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}`, { responseType: 'arraybuffer', params: param });
+  }
+
 }

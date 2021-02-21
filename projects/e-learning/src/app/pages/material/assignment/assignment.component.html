@@ -55,7 +55,7 @@
                     <span *ngIf="assignment.idAssignmentSubmission.idFile.file" (click)="downloadFileFromBlob(assignment.idAssignmentSubmission.idFile, assignment.idAssignmentSubmission.idFile.name )" class="p-column-title link">{{assignment.idAssignmentSubmission.idFile.file ? assignment.idAssignmentSubmission.idFile.name : 'Tidak ada'}}</span>
                 </td>
                 <td>
-                    <input [(ngModel)]="assignment.score" (keypress)="keyPress($event)" (ngModelChange)="onChangeScore(assignment)" type="text" size="2">
+                    <input [(ngModel)]="assignment.score" (keypress)="keyPress($event)" (ngModelChange)="onChangeScore(assignment)" type="text" size="2" [disabled]="!assignment.idAssignmentSubmission.idFile.file">
                 </td>
             </tr>
         </ng-template>
