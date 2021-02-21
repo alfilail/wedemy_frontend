@@ -40,7 +40,6 @@ export class HttpIntercept implements HttpInterceptor {
       tap(
         event => {
           if (event instanceof HttpResponse) {
-            console.log('request succeeded');
             if (event.body.ok == true && event.body.message) {
               if (event.body.message != 'Data berhasil diambil') {
                 this.toast.successToast(event.body.message)
@@ -50,7 +49,6 @@ export class HttpIntercept implements HttpInterceptor {
         },
         error => {
           if (error instanceof HttpErrorResponse) {
-            console.log('request failed');
             if (error.error != null) {
               if (error.error.message) {
                 this.toast.errorToast(error.error.message)
@@ -61,7 +59,7 @@ export class HttpIntercept implements HttpInterceptor {
           }
         },
         () => {
-          console.log('complete');
+          console.log('completed');
         }
       )
     )

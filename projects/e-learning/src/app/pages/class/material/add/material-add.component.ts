@@ -52,10 +52,15 @@ export class MaterialAddComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param => {
-      this.idModuleRegistration = param['idModuleRegistration']
-      console.log(param['idModuleRegistration']);
-    })
+    // this.route.params.subscribe(param => {
+    //   this.idModuleRegistration = param['idModuleRegistration']
+    //   console.log(param['idModuleRegistration']);
+    // })
+    this.route
+      .queryParams
+      .subscribe(params => {
+        this.idModuleRegistration = params['idModuleRegistration']
+      });
     this.getMaterialTypes();
   }
 
@@ -73,7 +78,7 @@ export class MaterialAddComponent implements OnInit {
 
   setFile(event: any): void {
     console.log(this.formData.get('file'));
-    if(this.formData.get('file') != null){
+    if (this.formData.get('file') != null) {
       this.formData.delete('file');
     }
     let fileList = event.target.files;
@@ -105,7 +110,7 @@ export class MaterialAddComponent implements OnInit {
     }
 
     console.log(this.detailModuleRegistration);
-    if (this.formData.get('body')!=null){
+    if (this.formData.get('body') != null) {
       this.formData.delete('body');
     }
     this.formData.append('body', JSON.stringify(this.detailModuleRegistration));
@@ -177,14 +182,14 @@ export class MaterialAddComponent implements OnInit {
   }
 
   checkDisabled(): void {
-    if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid 
+    if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid
       //&& this.fileIsValid
-      ) {
+    ) {
       this.disabledButton = false;
     } else {
       this.disabledButton = true;
     }
   }
 
-  
+
 }

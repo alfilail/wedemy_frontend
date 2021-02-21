@@ -12,11 +12,13 @@ const routes: Routes = [
     path: 'class',
     component: ClassDetailComponent,
     children: [
-      { path: 'enrolled/:idDetailClass', component: ModuleComponent },
       { path: 'instructor/:idDetailClass', component: InstructorComponent },
+      { path: 'enrolled/:idDetailClass', component: ModuleComponent },
       { path: 'report/:idDetailClass', component: ReportReadComponent },
-      { path: 'add-material/:idModuleRegistration', component: MaterialAddComponent },
-      { path: 'edit-material/:idDetailModuleRegistration', component: MaterialEditComponent }
+      { path: 'add-material/:idDetailClass', component: MaterialAddComponent },
+      { path: 'edit-material/:idDetailClass', component: MaterialEditComponent }
+      // { path: 'add-material/:idModuleRegistration', component: MaterialAddComponent },
+      // { path: 'edit-material/:idDetailModuleRegistration', component: MaterialEditComponent }
     ]
   }
 ];
