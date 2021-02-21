@@ -134,7 +134,6 @@ export class MaterialEditComponent implements OnInit {
     let idLearningMaterial = model.idLearningMaterial;
     const newModel = {
       id: this.idDetailModuleRegistration,
-      orderNumber: model.orderNumber,
       scheduleDate: model.scheduleDate,
       version: model.version,
       idLearningMaterial: {

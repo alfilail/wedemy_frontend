@@ -118,16 +118,11 @@
   }
 }
 
-
-/* :host ::ng-deep .course-sidebar-mobile {
-  color: red;
-} */
-
 .sidebar-button-mobile {
   z-index: 1000;
-  position: absolute;
+  position: fixed;
   right: 36px;
-  bottom: 10px;
+  bottom: 20px;
   background-color: #454575;
 }
 
@@ -136,6 +131,4 @@
   :host ::ng-deep .p-component-overlay {
     display: none !important;
   }
-
-
 }
