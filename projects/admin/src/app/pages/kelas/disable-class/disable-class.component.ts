@@ -35,12 +35,13 @@ export class DisableClassComponent implements OnInit {
   idUser: string; loading: boolean = true;
 
   constructor(private dtlClassService: DtlClassService, private route: Router, private classService: ClassService, private auth: AuthService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-    this.idUser = auth.getUserId()
+
   }
 
   ngOnInit(): void {
     this.getClasses();
     this.isActive = true;
+    this.idUser = this.auth.getUserId()
   }
 
   onSelectEnd($event) {
@@ -89,20 +90,17 @@ export class DisableClassComponent implements OnInit {
   getClasses() {
     this.classService.getClassInactive().subscribe(val => {
       this.listKelas = val.data;
-      console.log(val); this.loading = false;
     })
   }
 
   save(): void {
-    console.log(this.kelas)
+    this.dtlClass.createdBy = this.idUser
     this.dtlClass.idClass = this.kelas;
     this.dtlClass.startTime = this.startTimeValue;
     this.dtlClass.endTime = this.endTimeValue;
     this.dtlClass.startDate = this.formatDate(this.rangeDates[0]);
     this.dtlClass.endDate = this.formatDate(this.rangeDates[1]);
 
-    console.log(this.dtlClass.startTime, this.dtlClass.startDate, this.dtlClass.endDate, this.dtlClass.endTime)
-    console.log(this.dtlClass)
 
     if (this.startTimeValue > this.endTimeValue) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Jam berakhir tidak boleh lebih awal" })

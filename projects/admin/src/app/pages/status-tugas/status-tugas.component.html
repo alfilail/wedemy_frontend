@@ -62,13 +62,13 @@
                 <ng-template pTemplate="content">
                     <div class="p-field">
                         <label for="code">Kode</label>
-                        <input type="text" id="code" required pInputText (ngModelChange)="validation($event,'code')"
+                        <input type="text" id="code" pInputText (ngModelChange)="validation($event,'code')"
                             [(ngModel)]="statusTugas.code" maxlength="6" />
                         <small *ngIf="!codeValid" class="p-error">{{codeErrMsg}}</small>
                     </div>
                     <div class="p-field">
                         <label for="name">Nama Status</label>
-                        <input type="text" id="name" required pInputText (ngModelChange)="validation($event,'name')"
+                        <input type="text" id="name" pInputText (ngModelChange)="validation($event,'name')"
                             [(ngModel)]="statusTugas.submissionStatusName" maxlength="50" />
                         <small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
                     </div>

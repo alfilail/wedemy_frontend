@@ -61,12 +61,4 @@ export class MaterialReadComponent implements OnInit {
   downloadFileFromBlob(data: File): void {
     downloadFile(data, this.fileName);
   }
-
-  back(): void {
-    console.log("Back button clicked");
-    console.log();
-    // this.location.back();
-    this.router.navigateByUrl(`/instructor/class/enrolled/${this.idDetailClass}`);
-    
-  }
 }

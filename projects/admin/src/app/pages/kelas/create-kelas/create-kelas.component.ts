@@ -95,14 +95,12 @@ export class CreateKelasComponent implements OnInit {
     this.classService.getClassById(this.statusActivity).subscribe(val => {
       this.class = val.data;
       this.tutorSelect = val.data.idTutor
-      console.log(this.class)
     })
   }
 
   getTutors(): void {
     this.tutorService.getUserByCode('TTR').subscribe(val => {
       this.listTutors = val.data
-      console.log(val)
     })
   }
 
@@ -149,7 +147,6 @@ export class CreateKelasComponent implements OnInit {
   getModules() {
     this.moduleService.getModules().subscribe(val => {
       this.listModules = val.data;
-      console.log(val)
     })
   }
 
@@ -163,7 +160,6 @@ export class CreateKelasComponent implements OnInit {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       let file: File = fileList[0];
-      console.log(file);
       let data: FormData = new FormData();
       data.append('file', file);
       this.formData = data;
@@ -190,14 +186,11 @@ export class CreateKelasComponent implements OnInit {
       dtlClass.endDate = this.formatDate(this.rangeDates[1])
     }
 
-    console.log(this.startTimeValue)
-    console.log(this.endTimeValue)
 
     if (this.startTimeValue > this.endTimeValue) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Jam berakhir tidak boleh lebih awal" })
     } else {
       if (this.statusActivity == 'create') {
-        console.log('insert')
 
         this.modules.push(this.moduleSelect)
 
@@ -207,17 +200,14 @@ export class CreateKelasComponent implements OnInit {
         classHelper.module = this.modules
 
         this.listClass.push(classHelper)
-        console.log(this.listClass, 'add')
         this.classHelper = classHelper
       } else {
-        console.log('update')
         this.updateClass();
       }
     }
   }
 
   saveClass() {
-    console.log(this.classHelper, 'insert')
 
     this.formData.append("body", JSON.stringify(this.classHelper));
     this.classService.insertClasses(this.formData).subscribe(val => {
@@ -228,14 +218,11 @@ export class CreateKelasComponent implements OnInit {
   deleteList(index: number): void {
     this.modules.splice(index, 1)
     this.listClass.splice(index, 1)
-    console.log(index)
-    console.log(this.listClass, 'delete')
   }
 
   updateClass() {
     this.class.id = this.statusActivity
     this.class.updatedBy = this.idUser
-    console.log(this.class)
     this.formData.append("body", JSON.stringify(this.class));
 
     this.classService.updateClass(this.formData).subscribe(val => {

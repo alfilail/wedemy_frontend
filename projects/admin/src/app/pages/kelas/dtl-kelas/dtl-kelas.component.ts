@@ -34,7 +34,6 @@ export class DtlKelasComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
       this.idDtlClass = params['id']
-      console.log(this.idDtlClass)
       this.getDtlClasses();
       this.getClasssName();
       this.idUser = this.auth.getUserId()
@@ -45,7 +44,7 @@ export class DtlKelasComponent implements OnInit {
   getDtlClasses() {
     this.moduleRegService.getModuleRegByIdDtlClass(this.idDtlClass).subscribe(val => {
       this.listModuleRegs = val.data
-      console.log(val); this.loading = false;
+      this.loading = false;
     })
   }
 

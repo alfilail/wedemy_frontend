@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ClassService } from '@bootcamp-elearning/services/class.service';
 
@@ -14,18 +15,19 @@ export class ClassDetailComponent implements OnInit {
   idDetailClass: string;
   class: any;
 
-
   constructor(private route: ActivatedRoute,
-    private classService: ClassService) { }
+    private classService: ClassService,
+    private titleService: Title) {
+  }
 
   ngOnInit(): void {
-    console.log("hit thisss")
     this.idDetailClass = this.route.firstChild.snapshot.params['idDetailClass'];
     this.classService.getDetail(this.idDetailClass).subscribe(
       res => {
         console.log(res);
         this.class = res.data;
         this.isLoading = false;
+        this.titleService.setTitle(`Kurikulum Kelas - ${this.class.idClass.className}`);
       },
       err => {
         console.log(err);

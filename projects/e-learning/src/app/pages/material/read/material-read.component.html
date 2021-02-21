@@ -19,7 +19,7 @@
 <div *ngIf="!isLoading" class="container px-5 mt-5">
   <div class="row main-material rounded">
     <div class="d-flex h-100 w-100 p-2 bg-light border justify-content-start align-items-center">
-      <button pButton pRipple (click)="back()" type="button" icon="pi pi-arrow-left"
+      <button pButton pRipple [routerLink]="['../class/enrolled', idDetailClass]" type="button" icon="pi pi-arrow-left"
         class="p-button-rounded p-button-secondary p-button-text mr-2"></button>
       <h5 class="material-title">
         {{material.idLearningMaterial.learningMaterialName}}

@@ -11,7 +11,7 @@
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
       [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','score']">
       <ng-template pTemplate="caption">
-        <div class="table-header p-d-flex p-jc-between">
+        <div class="table-header table-responsive p-d-md-flex p-jc-between p-mb-sm-6 p-mb-md-0">
           Daftar Peserta
           <span class="p-input-icon-right">
             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"

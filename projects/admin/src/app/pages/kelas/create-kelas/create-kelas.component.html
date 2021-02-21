@@ -13,16 +13,14 @@
                         <div class="d-flex">
                             <div class="p-field col-lg-6">
                                 <label for="code">Kode Kelas</label>
-                                <input id="code" type="text" required pInputText
-                                    (ngModelChange)="validate($event,'code')" [value]="class.code"
-                                    [(ngModel)]="class.code" maxlength="6">
+                                <input id="code" type="text" pInputText (ngModelChange)="validate($event,'code')"
+                                    [value]="class.code" [(ngModel)]="class.code" maxlength="6">
                                 <small *ngIf="!codeValid" class="p-error">{{codeErrMsg}}</small>
                             </div>
                             <div class="p-field col-lg-6">
                                 <label for="name">Nama Kelas</label>
-                                <input id="name" type="text" required pInputText
-                                    (ngModelChange)="validate($event,'nama')" [value]="class.className"
-                                    [(ngModel)]="class.className" maxlength="50">
+                                <input id="name" type="text" pInputText (ngModelChange)="validate($event,'nama')"
+                                    [value]="class.className" [(ngModel)]="class.className" maxlength="50">
                                 <small *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
 
                             </div>
@@ -31,8 +29,8 @@
                             <div class="mb-3  col-lg-6">
                                 <label for="description" class="form-label">Deskripsi</label>
                                 <textarea class="form-control" id="description" [value]="class.description" rows="3"
-                                    [(ngModel)]="class.description" required pInputText
-                                    (ngModelChange)="validate($event,'desc')" rows="3" maxlength="300"></textarea>
+                                    [(ngModel)]="class.description" pInputText (ngModelChange)="validate($event,'desc')"
+                                    rows="3" maxlength="300"></textarea>
                                 <small *ngIf="!descValid" class="p-error">{{descErrMsg}}</small>
 
                             </div>
@@ -50,8 +48,8 @@
                         <div class="d-flex">
                             <div class="p-field col-lg-6">
                                 <label for="kuota">Kuota</label>
-                                <input id="kuota" type="text" [value]="class.quota" [(ngModel)]="class.quota" required
-                                    pInputText (ngModelChange)="validateQuota($event)" maxlength="4">
+                                <input id="kuota" type="text" [value]="class.quota" [(ngModel)]="class.quota" pInputText
+                                    (ngModelChange)="validateQuota($event)" maxlength="4">
                                 <small *ngIf="!kuotaValid" class="p-error">{{kuotaErrMsg}}</small>
                             </div>
                             <div class="p-field col-lg-6">

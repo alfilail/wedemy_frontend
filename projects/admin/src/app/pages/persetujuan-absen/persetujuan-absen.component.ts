@@ -48,7 +48,6 @@ export class PersetujuanAbsenComponent implements OnInit {
   }
 
   updateApprovement(): void {
-    console.log('update')
     this.approvement.updatedBy = this.idUser
     this.aprovementService.updateApprovement(this.approvement).subscribe(val => {
       this.productDialog = false;
@@ -62,7 +61,7 @@ export class PersetujuanAbsenComponent implements OnInit {
   getApprovements(): void {
     this.aprovementService.getApprovements().subscribe(val => {
       this.listApprovements = val.data
-      console.log(val); this.loading = false;
+      this.loading = false;
     })
   }
 

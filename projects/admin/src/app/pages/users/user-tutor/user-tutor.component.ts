@@ -32,7 +32,6 @@ export class UserTutorComponent implements OnInit {
   getUserByCode(): void {
     this.userService.getUserByCode('TTR').subscribe(val => {
       this.listUsers = val.data;
-      console.log(val)
       this.listUsers.forEach(res => {
         if (res.idProfile.bio == null) {
           res.idProfile.bio = "-"

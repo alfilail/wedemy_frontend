@@ -36,6 +36,7 @@ const API = {
   WEDEMY_ANSWER_UPLOAD_QUERY_PATH: '/assignment-submission',
 
   // 1.G Evaluation
+  // WEDEMY_SCORE_QUERY_PATH: '/evaluation/scores',
   WEDEMY_SCORE_QUERY_PATH: '/evaluation/report',
   WEDEMY_DETAIL_SCORE_QUERY_PATH: '/evaluation/report/participant',
   WEDEMY_CERTIFICATE_QUERY_PATH: '/evaluation/certificate'

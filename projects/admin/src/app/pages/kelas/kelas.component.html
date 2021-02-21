@@ -21,10 +21,11 @@
                         </div>
                     </ng-template>
                 </p-toolbar>
-                <p-table #dt [value]="listKelas" [rows]="10" [paginator]="true" [globalFilterFields]="['code']"
-                    [rowHover]="true" dataKey="id" class="p-m-3" [scrollable]="true"
+                <p-table #dt [value]="listKelas" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['idTutor.idProfile.fullName','code']" [rowHover]="true" dataKey="id"
+                    class="p-m-3" [scrollable]="true"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
+                    [showCurrentPageReport]="true" [filterDelay]="0">
                     <ng-template pTemplate="colgroup" let-columns>
                         <colgroup>
                             <col style="width:150px">

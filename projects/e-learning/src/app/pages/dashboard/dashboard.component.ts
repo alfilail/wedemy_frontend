@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ROLE } from '@bootcamp-core/constants/role';
 import { DashboardService } from '@bootcamp-elearning/services/dashboard.service';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
@@ -23,7 +24,10 @@ export class DashboardComponent implements OnInit {
   defaultImg: string = "/assets/img/profile-default.jpeg";
 
   constructor(private dashboardService: DashboardService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private titleService: Title) {
+    this.titleService.setTitle('Dashboard');
+  }
 
   ngOnInit(): void {
     this.getMyClass();
@@ -35,8 +39,6 @@ export class DashboardComponent implements OnInit {
     this.myRole = rolecode;
     this.dashboardService.getMyClass(userId, rolecode).subscribe(
       res => {
-        // setTimeout(() => {
-        // }, 2000)
         this.classes = res.data;
         this.results = res.data;
         this.isLoading = false;
@@ -49,52 +51,12 @@ export class DashboardComponent implements OnInit {
 
   getUniqueInstructor(): void {
     console.log('Classes Data');
-
     console.log(this.classes);
-
-    // const uniqueInstructors = this.classes.filter((val, i, arr) => {
-    //   return arr.indexOf(
-    //     arr.find(item =>
-    //       item
-    //         .idDetailClass
-    //         .idClass
-    //         .idTutor
-    //         .idProfile
-    //         .fullName === val
-    //           .idDetailClass
-    //           .idClass
-    //           .idTutor
-    //           .idProfile
-    //         .fullName
-    //     )
-    //   ) === i;
-    // })
-
-    // const [{
-    //   idDetailClass: {
-    //     idClass: { idTutor }
-    //   }
-    // }] = uniqueInstructors
-    // console.log('Unique Instructor');
-    // console.log(idTutor);
-
-    // this.instructors = idTutor;
-    // console.log('getUniqueInstructor');
-
     const uniqueInstructors = [...new Set(this.classes.map(item => item.idClass
       .idTutor
       .idProfile.fullName))];
     console.log(uniqueInstructors);
     this.instructors = uniqueInstructors;
-    // const uniqueInstructors = [];
-    // const tmp = new Map();
-    // for(const item of this.classes) {
-    //   if(!tmp.has(item)) { 
-    //     tmp.set(item.idDetailclass)
-    //   }
-    // }
-
-
   }
 
   search(): void {

@@ -40,7 +40,6 @@ export class NilaiComponent implements OnInit {
   }
 
   insertNilai(): void {
-    console.log('insert')
     this.nilai.createdBy = this.idUser
     this.gradeService.insertGrade(this.nilai).subscribe(val => {
       this.productDialog = false;
@@ -49,7 +48,6 @@ export class NilaiComponent implements OnInit {
   }
 
   updateNilai(): void {
-    console.log('update')
     this.nilai.updatedBy = this.idUser
     this.gradeService.updateGrade(this.nilai).subscribe(val => {
       this.productDialog = false;
@@ -63,7 +61,7 @@ export class NilaiComponent implements OnInit {
   getNilai(): void {
     this.gradeService.getGrades().subscribe(val => {
       this.listNilai = val.data;
-      console.log(val); this.loading = false;
+      this.loading = false;
     })
   }
 

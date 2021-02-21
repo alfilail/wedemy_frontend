@@ -94,7 +94,6 @@ export class MaterialAddComponent implements OnInit {
   }
 
   save(): void {
-    this.detailModuleRegistration.orderNumber = 100;
     this.detailModuleRegistration.scheduleDate = this.startDate;
     this.detailModuleRegistration.idLearningMaterial = {
       createdBy: this.authService.getUserId(),
