@@ -26,3 +26,10 @@
 .due-date-over {
     color: red;
 }
+
+@media only screen and (max-width: 600px) {
+    tr {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
