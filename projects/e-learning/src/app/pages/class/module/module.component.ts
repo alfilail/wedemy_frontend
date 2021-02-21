@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { PresenceService } from '@bootcamp-elearning/services/presence.service';
 import { ConfirmationService } from 'primeng/api';
 import { MaterialService } from '@bootcamp-elearning/services/material.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-module',
@@ -30,32 +31,27 @@ export class ModuleComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private classService: ClassService,
     private materialService: MaterialService,
-    private presenceService: PresenceService) { }
+    private presenceService: PresenceService,
+    private titleService: Title) { }
 
   ngOnInit(): void {
     this.roleCode = this.authService.getRole();
 
     this.route.params.subscribe(params => {
       this.idDetailClass = params['idDetailClass'];
-      // setTimeout(() => {
-
-      // }, 20000)
       this.getDetail(this.idDetailClass);
     })
   }
 
   getDetail(idDtlClass: string): void {
     let idUser = this.authService.getUserId();
-    let params = {
-      idUser,
-      idDtlClass
-    }
+    let params = { idUser, idDtlClass }
 
     this.classService.getDetailModule(params).subscribe(
       res => {
         this.modules = res.data;
-        console.log(res);
         this.checkPresent();
+        this.titleService.setTitle(`Kurikulum Kelas - ${this.modules.detailClass.idClass.className}`);
       },
       err => { console.log(err) }
     )
@@ -250,26 +246,12 @@ export class ModuleComponent implements OnInit {
             console.log(err);
           }
         )
-      },
-      reject: (type) => {
-        // switch(type) {
-        //     case ConfirmEventType.REJECT:
-        //         this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
-        //     break;
-        //     case ConfirmEventType.CANCEL:
-        //         this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
-        //     break;
-        // }
       }
     });
-
-
-
   }
 
   refresh(): void {
     this.isLoading = true;
     this.getDetail(this.idDetailClass);
   }
-
 }

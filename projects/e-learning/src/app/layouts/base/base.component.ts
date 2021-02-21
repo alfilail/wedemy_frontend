@@ -9,12 +9,9 @@ import { AuthService } from '@bootcamp-homepage/services/auth.service';
   styleUrls: ['./base.component.css']
 })
 export class BaseComponent implements OnInit {
-  title: string = 'Dashboard'
 
   constructor(private router: Router,
-    private authService: AuthService,
-    private titleService: Title) {
-    this.titleService.setTitle(this.title);
+    private authService: AuthService) {
   }
 
   ngOnInit(): void {

@@ -89,13 +89,8 @@
     </p-sidebar>
 
   </aside>
+  <button (click)="showVisible()" class="d-block d-md-none d-lg-none sidebar-button-mobile btn">
+    <i class="pi pi-th-large" style="color: white;"></i>
+  </button>
   <router-outlet></router-outlet>
 </div>
-
-<!-- Bottom Navigation -->
-<nav class="d-flex d-md-none d-lg-none justify-content-end fixed-bottom">
-  <button (click)="showVisible()" class="btn btn-primary">
-    KLIK
-  </button>
-</nav>
-<!-- End Bottom Navigation -->

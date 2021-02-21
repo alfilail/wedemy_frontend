@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ClassService } from '@bootcamp-elearning/services/class.service';
 
@@ -14,7 +15,8 @@ export class InstructorComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(private route: ActivatedRoute,
-    private classService: ClassService) { }
+    private classService: ClassService,
+    private titleService: Title) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(param => {
@@ -29,6 +31,7 @@ export class InstructorComponent implements OnInit {
         console.log(res);
         this.tutor = res.data.idClass.idTutor;
         this.isLoading = false;
+        this.titleService.setTitle(`Tutor - ${this.tutor.idProfile.fullName}`);
       },
       err => {
         console.log(err);

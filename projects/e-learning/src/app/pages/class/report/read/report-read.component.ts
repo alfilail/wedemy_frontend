@@ -99,10 +99,6 @@ export class ReportReadComponent implements OnInit {
   }
 
   getPresenceReport(): void {
-    // let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_PRESENCE_QUERY_PATH}/${this.idDetailClass}`;
-    // let link = createElementTagA(url);
-    // link.target = '_blank';
-    // link.click();
     this.reportService.getAllPresenceReport(this.idDetailClass).subscribe(
       res => {
         console.log(res);
