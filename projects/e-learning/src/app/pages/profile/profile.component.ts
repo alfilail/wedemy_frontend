@@ -119,8 +119,10 @@ export class ProfileComponent implements OnInit {
   numIdentity(event: string): void {
     if (/^[0-9]*$/.test(event) && event.length == 16) {
       this.ktpIsValid = true;
+      this.disabledButton = false;
     } else {
       this.ktpIsValid = false;
+      this.disabledButton = true;
       if (!/^[0-9]*$/.test(event)) {
         this.ktpErrMsg = "Masukkan angka saja"
       }
@@ -144,5 +146,11 @@ export class ProfileComponent implements OnInit {
       this.birthDateIsValid = true;
       this.disabledButton = false;
     }
+  }
+
+  refresh(): void {
+    this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
+      this.myAccount = res.data;
+    })
   }
 }
