@@ -47,7 +47,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
-      console.log(res.data);
       this.myAccount = res.data;
       this.isLoading = false;
       this.getYearRange();
@@ -57,7 +56,6 @@ export class ProfileComponent implements OnInit {
   getYearRange(): void {
     let now = new Date().getFullYear();
     this.yearRange = now-1;
-    console.log(now);
   }
 
   showMaximizableDialog() {
@@ -65,7 +63,6 @@ export class ProfileComponent implements OnInit {
       this.url = 'data:image/png;base64,' + this.myAccount.idProfile.idFile.file
     }
     this.displayMaximizable = true;
-    console.log(this.myAccount.idProfile.version)
   }
 
   onSelectFile(event) {
@@ -73,7 +70,6 @@ export class ProfileComponent implements OnInit {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       let file: File = fileList[0];
-      console.log(file);
       let data: FormData = new FormData();
       data.append('file', file);
       this.formData = data;
@@ -97,7 +93,6 @@ export class ProfileComponent implements OnInit {
     this.myAccount.idProfile.updatedBy = this.authService.getUserId();
 
     this.formData.append('body', JSON.stringify(this.myAccount.idProfile));
-    console.log(this.formData.get('body'))
     this.profileService.updateProfile(this.formData).subscribe(res => {
       this.myAccount.idProfile = res.data;
       this.displayMaximizable = false;
@@ -141,10 +136,6 @@ export class ProfileComponent implements OnInit {
     now.setMinutes(0);
     now.setSeconds(0);
     let birthDate = new Date(event);
-    // birthDate.setTime(0);
-    console.log(event);
-    console.log(birthDate);
-    console.log(now)
     if (birthDate >= now || birthDate.toString() == now.toString()) {
       this.birthDateIsValid = false;
       this.disabledButton = true;
