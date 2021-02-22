@@ -13,10 +13,6 @@ export class ClassService {
   constructor(private http: HttpClient) {
   }
 
-  getClasses(): Observable<Responses<Classes[]>> {
-    return this.http.get<Responses<Classes[]>>(`${API.WEDEMY_HOST_DOMAIN}/class`)
-  }
-
   insertClasses(formData: FormData): Observable<any> {
     return this.http.post<any>(`${API.WEDEMY_HOST_DOMAIN}/class`, formData)
   }
