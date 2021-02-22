@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '@bootcamp-homepage/pages/home/home.component';
+import { CanActivateTeam } from '@bootcamp-homepage/shared/guards/classes/can-activate-team';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [CanActivateTeam]
   }
 ];
 
