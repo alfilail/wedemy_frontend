@@ -53,7 +53,6 @@ export class DashboardComponent implements OnInit {
     const uniqueInstructors = [...new Set(this.classes.map(item => item.idClass
       .idTutor
       .idProfile.fullName))];
-    console.log(uniqueInstructors);
     this.instructors = uniqueInstructors;
   }
 

@@ -1,7 +1,7 @@
 <main>
   <div class="container">
-    <div class="mb-4 p-d-flex p-flex-wrap p-jc-between">
-      <div *ngIf="myRole===ROLES.PARTICIPANT" class="form-group">
+    <div class="mb-4 row justify-content-lg-between">
+      <div *ngIf="myRole === ROLES.PARTICIPANT" class="form-group col-lg-4">
         <div class="p-d-flex group-by-tutor">
           <label class="mr-2 p-as-center" for="ins">Tutor :</label>
           <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" id="ins" class="shadow-sm form-control">
@@ -10,7 +10,7 @@
           </select>
         </div>
       </div>
-      <div class="form-group has-search">
+      <div class="form-group has-search col-lg-4">
         <span class="fas fa-search form-control-feedback"></span>
         <input [(ngModel)]="query" (ngModelChange)="search()" type="text" class="form-control"
           placeholder="Temukan kelas">
@@ -27,7 +27,7 @@
       <!-- Course Listing -->
       <ng-template ngFor let-class [ngForOf]="results" let-i="index">
         <div class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
-          <div class="card card-wrapper shadow-lg card-light">
+          <div class="card card--wrapper shadow-lg card-light">
             <img loading=lazy src="data:image/png;base64,{{class.idClass.idFile.file}}"
               class="card-img-top card-img-class">
             <div class="card-body">
@@ -36,7 +36,7 @@
                   {{class.idClass.className}}
                 </h5>
               </a>
-              <p class="card-text class-short-desc">
+              <p class="card-text class-short-desc" style="height: 80px;">
                 {{class.idClass.description}}
               </p>
               <hr>

@@ -28,7 +28,6 @@ export class InstructorComponent implements OnInit {
   getDetail(): void {
     this.classService.getDetail(this.idDetailClass).subscribe(
       res => {
-        console.log(res);
         this.tutor = res.data.idClass.idTutor;
         this.isLoading = false;
         this.titleService.setTitle(`Tutor - ${this.tutor.idProfile.fullName}`);

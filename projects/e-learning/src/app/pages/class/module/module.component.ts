@@ -9,6 +9,7 @@ import { PresenceService } from '@bootcamp-elearning/services/presence.service';
 import { ConfirmationService } from 'primeng/api';
 import { MaterialService } from '@bootcamp-elearning/services/material.service';
 import { Title } from '@angular/platform-browser';
+import { MATERIAL_TYPES } from '@bootcamp-elearning/constants/meterial-type';
 
 @Component({
   selector: 'app-module',
@@ -20,6 +21,7 @@ export class ModuleComponent implements OnInit {
   roleCode: string;
 
   roles = ROLE;
+  materialTypes = MATERIAL_TYPES;
   viewType = VIEW_TYPE;
   selectedView = VIEW_TYPE.VIEW_ONLY;
 
@@ -63,70 +65,56 @@ export class ModuleComponent implements OnInit {
     this.modules.modulesAndMaterials.forEach(val => {
       val.learningMaterials.forEach(learningMaterial => {
         if (this.roleCode === ROLE.PARTICIPANT) {
-          console.log('Role anda adalah Participant');
-          // if (true) {
           if (!learningMaterial.doesParticipantPresent) {
             if (learningMaterial.isUserOnTime) {
               if (learningMaterial.doesTutorPresent) {
-                // Button Absen
                 learningMaterial.statusPresent = {
                   type: 'btn',
                   style: 'success',
                   msg: 'Hadir',
                   status: 400
                 }
-                console.log('Bisa Absen');
               } else {
-                // Tutor belum menghadiri kelas
                 learningMaterial.statusPresent = {
                   type: 'badge',
                   style: 'info',
                   msg: 'Tutor Belum Menghadiri Kelas',
                   status: 400
                 }
-                console.log('Tutor Belum Menghadiri Kelas');
               }
             } else {
               let scheduleDate = learningMaterial.learningMaterial.scheduleDate;
               let scheduleStarDateTime = moment(`${scheduleDate} ${startTime}`, "YYYY-MM-DD HH:mm");
               let scheduleEndDateTime = moment(`${scheduleDate} ${endTime}`, "YYYY-MM-DD HH:mm");
               let dateTimeNow = moment(new Date());
-              console.log('Waktu Sekarang');
-              // console.log(dateTimeNow.add(7, 'hours'));
 
               if (dateTimeNow.diff(scheduleStarDateTime, 'seconds') >= 0) {
                 if (dateTimeNow.diff(scheduleEndDateTime, 'seconds') > 0) {
-                  // Kelas Kadaluarsa
                   learningMaterial.statusPresent = {
                     type: 'badge',
                     style: 'danger',
                     msg: 'Anda Terlambat Menghadiri Kelas',
                     status: 400
                   }
-                  console.log('Anda Terlambat');
                 }
               } else {
-                // Kelas belum dimulai
                 learningMaterial.statusPresent = {
                   type: 'badge',
                   style: 'warning',
                   msg: 'Kelas Belum Dimulai',
                   status: 400
                 }
-                console.log('Kelas belum dimulai');
               }
             }
           } else {
             if (learningMaterial.isParticipantConfirmed) {
               if (learningMaterial.isParticipantAccepted) {
-                // Telah menghadiri kelas
                 learningMaterial.statusPresent = {
                   type: 'badge',
                   style: 'success',
                   msg: 'Telah Menghadiri Kelas',
                   status: 200
                 }
-                console.log('Telah menghadiri kelas');
               } else {
                 learningMaterial.statusPresent = {
                   type: 'badge',
@@ -134,7 +122,6 @@ export class ModuleComponent implements OnInit {
                   msg: 'Tutor menolak kehadiran anda',
                   status: 400
                 }
-                console.log('Tutor menolak kehadiran anda');
               }
             } else {
               learningMaterial.statusPresent = {
@@ -143,63 +130,47 @@ export class ModuleComponent implements OnInit {
                 msg: 'Menunggu Konfirmasi Tutor',
                 status: 400
               }
-              console.log('Menunggu konfirmasi tutor');
             }
           }
         } else {
-          console.log('Role anda adalah Tutor');
           if (!learningMaterial.doesTutorPresent) {
-            console.log('Role anda adalah Tutor: doesTutorPresent');
             if (learningMaterial.isUserOnTime) {
-              console.log('Role anda adalah Tutor: isUserOntime');
-              // Button Absen
               learningMaterial.statusPresent = {
                 type: 'btn',
                 style: 'success',
                 msg: 'Hadir',
                 status: 400
               }
-              console.log('Bisa Absen');
             } else {
-              console.log('Role anda adalah Tutor: NOT isUserOntime');
               let scheduleDate = learningMaterial.learningMaterial.scheduleDate;
               let scheduleStarDateTime = moment(`${scheduleDate} ${startTime}`, "YYYY-MM-DD HH:mm");
               let scheduleEndDateTime = moment(`${scheduleDate} ${endTime}`, "YYYY-MM-DD HH:mm");
               let dateTimeNow = moment(new Date());
-              // dateTimeNow.add(7, 'hours')
               if (dateTimeNow.diff(scheduleStarDateTime, 'seconds') >= 0) {
-                console.log('Role anda adalah Tutor: dateTimeNow.diff(scheduleStarDateTime, seconds) >= 0)');
                 if (dateTimeNow.diff(scheduleEndDateTime, 'seconds') > 0) {
-                  console.log('Role anda adalah Tutor: dateTimeNow.diff(scheduleEndDateTime, seconds) > 0');
-                  // Kelas Kadaluarsa
                   learningMaterial.statusPresent = {
                     type: 'badge',
                     style: 'danger',
                     msg: 'Anda Terlambat',
                     status: 400
                   }
-                  console.log('Anda terlambat');
                 }
               } else {
-                // Kelas belum dimulai
                 learningMaterial.statusPresent = {
                   type: 'badge',
                   style: 'warning',
                   msg: 'Kelas Belum Dimulai',
                   status: 400
                 }
-                console.log('Kelas belum dimulai');
               }
             }
           } else {
-            // Telah menghadiri kelas
             learningMaterial.statusPresent = {
               type: 'badge',
               style: 'success',
               msg: 'Telah Menghadiri Kelas',
               status: 200
             }
-            console.log('Telah menghadiri kelas');
           }
         }
       });
@@ -239,7 +210,6 @@ export class ModuleComponent implements OnInit {
       accept: () => {
         this.materialService.removeMaterial(idLearningMaterial, this.authService.getUserId()).subscribe(
           res => {
-            console.log(res);
             this.refresh();
           },
           err => {

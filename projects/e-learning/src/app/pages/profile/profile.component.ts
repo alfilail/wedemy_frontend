@@ -41,7 +41,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
-      console.log(res.data);
       this.myAccount = res.data;
       this.isLoading = false;
     })
@@ -52,7 +51,6 @@ export class ProfileComponent implements OnInit {
       this.url = 'data:image/png;base64,' + this.myAccount.idProfile.idFile.file
     }
     this.displayMaximizable = true;
-    console.log(this.myAccount.idProfile.version)
   }
 
   onSelectFile(event) {
@@ -60,7 +58,6 @@ export class ProfileComponent implements OnInit {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       let file: File = fileList[0];
-      console.log(file);
       let data: FormData = new FormData();
       data.append('file', file);
       this.formData = data;
@@ -84,7 +81,6 @@ export class ProfileComponent implements OnInit {
     this.myAccount.idProfile.updatedBy = this.authService.getUserId();
 
     this.formData.append('body', JSON.stringify(this.myAccount.idProfile));
-    console.log(this.formData.get('body'))
     this.profileService.updateProfile(this.formData).subscribe(res => {
       this.myAccount.idProfile = res.data;
       this.displayMaximizable = false;

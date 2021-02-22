@@ -52,10 +52,6 @@ export class MaterialAddComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.route.params.subscribe(param => {
-    //   this.idModuleRegistration = param['idModuleRegistration']
-    //   console.log(param['idModuleRegistration']);
-    // })
     this.route
       .queryParams
       .subscribe(params => {
@@ -77,7 +73,6 @@ export class MaterialAddComponent implements OnInit {
   }
 
   setFile(event: any): void {
-    console.log(this.formData.get('file'));
     if (this.formData.get('file') != null) {
       this.formData.delete('file');
     }
@@ -86,7 +81,6 @@ export class MaterialAddComponent implements OnInit {
 
     this.selectedFileName = fileList[0].name;
     this.fileIsValid = true;
-    console.log(this.formData.get('file'));
   }
 
   back(): void {
@@ -108,14 +102,12 @@ export class MaterialAddComponent implements OnInit {
       id: this.idModuleRegistration
     }
 
-    console.log(this.detailModuleRegistration);
     if (this.formData.get('body') != null) {
       this.formData.delete('body');
     }
     this.formData.append('body', JSON.stringify(this.detailModuleRegistration));
     this.materialService.saveMaterial(this.formData).subscribe(
       res => {
-        console.log(res);
         this.back();
       },
       err => {
@@ -182,7 +174,6 @@ export class MaterialAddComponent implements OnInit {
 
   checkDisabled(): void {
     if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid
-      //&& this.fileIsValid
     ) {
       this.disabledButton = false;
     } else {

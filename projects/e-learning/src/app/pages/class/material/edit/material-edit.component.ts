@@ -61,23 +61,13 @@ export class MaterialEditComponent implements OnInit {
 
         this.formData.append('file', null);
         this.getMaterial();
-      });
-
-    // this.route.params.subscribe(param => {
-    //   this.idDetailModuleRegistration = param['idDetailModuleRegistration'];
-    //   console.log('InI Detail module');
-
-    //   console.log(this.idDetailModuleRegistration)
-    //   this.formData.append('file', null);
-    //   this.getMaterial();
-    // })
+      })
   }
 
   getMaterial(): void {
     this.materialService.getMaterial(this.idDetailModuleRegistration).subscribe(
       res => {
         this.material = this.transformModelToRequired(res.data);
-        console.log(res);
 
         if (res.data.idLearningMaterial.idFile) {
           this.selectedFileName = res.data.idLearningMaterial.idFile.name;
@@ -121,11 +111,6 @@ export class MaterialEditComponent implements OnInit {
     this.selectedFileName = fileList[0].name;
   }
 
-  getFileName(): void {
-    console.log(this.material);
-
-  }
-
   back(): void {
     this.location.back();
   }
@@ -157,36 +142,13 @@ export class MaterialEditComponent implements OnInit {
   }
 
   update(): void {
-    // this.detailModuleRegistration.orderNumber = 100;
-    // this.detailModuleRegistration.version = 0;
-    // this.detailModuleRegistration.scheduleDate = this.startDate;
-    // this.detailModuleRegistration.idLearningMaterial = {
-    //   createdBy: this.authService.getUserId(),
-    //   code: this.materialCode,
-    //   learningMaterialName: this.materialName,
-    //   description: this.description,
-    //   idLearningMaterialType: {
-    //     id: this.selectedMaterialType.id
-    //   }
-    // };
-    // this.detailModuleRegistration.idModuleRegistration = {
-    //   id: this.idModuleRegistration
-    // }
-
-    // console.log(this.detailModuleRegistration);
-    console.log("hai");
     if (this.mtrCodeIsValid && this.mtrNameIsValid && this.startDateIsValid && this.descIsValid) {
       if (this.formData.get('body') != null) {
         this.formData.delete('body');
       }
       this.formData.append('body', JSON.stringify(this.material));
-      console.log(this.formData.get('file'))
-
-      console.log(this.formData.get('body'))
-
       this.materialService.updateMaterial(this.formData).subscribe(
         res => {
-          console.log(res);
           this.back();
         },
         err => {
@@ -224,7 +186,6 @@ export class MaterialEditComponent implements OnInit {
       this.mtrNameClass = ""
     }
     this.checkDisabled();
-    console.log(this.disabledButton);
   }
 
   startDateValidation(event: string): void {

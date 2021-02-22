@@ -1,4 +1,3 @@
-<!-- <button (click)="check()" class="btn btn-primary">Check</button> -->
 <div class="card px-4 py-4">
   <p-toolbar styleClass="p-mb-4 d-none d-md-flex flex-md-row justify-content-md-end">
     <button (click)="setStatusPresence(selectedParticipants, approvements.ACCEPT)" pButton pRipple label="Terima"
@@ -18,15 +17,13 @@
       class="p-button-primary btn-block"></button>
   </p-toolbar>
 
-
-
   <p-table #dt [value]="participants" [scrollable]="true" [(selection)]="selectedParticipants"
     dataKey="idPresence.idUser.id" styleClass="p-datatable-participant" [rowHover]="true" [rows]="10"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
     currentPageReportTemplate="Menampilkan {first} sampai {last} dari {totalRecords} data" [filterDelay]="0"
     [globalFilterFields]="['idPresence.idUser.idProfile.fullName']">
     <ng-template pTemplate="caption">
-      <div class="table-header p-d-flex p-jc-between">
+      <div class="table-header table-responsive p-d-md-flex p-jc-between p-mb-sm-6 p-mb-md-0">
         Daftar Peserta
         <span class="p-input-icon-right">
           <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"

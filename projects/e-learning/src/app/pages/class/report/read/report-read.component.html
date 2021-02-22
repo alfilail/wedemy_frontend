@@ -2,13 +2,12 @@
   <h2>Laporan</h2>
 </section>
 
-
 <p-tabView *ngIf="roleCode === ROLES.TUTOR">
   <p-tabPanel header="Nilai">
     <p-table #dt [value]="participantScores" [scrollable]="true" [(selection)]="selectedParticipantScore" dataKey="id"
       styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
       [rowsPerPageOptions]="[10,25,50]" [loading]="loadingParicipantScore" [paginator]="true"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+      currentPageReportTemplate="Menampilkan {first} sampai {last} dari {totalRecords} entri" [filterDelay]="0"
       [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','score']">
       <ng-template pTemplate="caption">
         <div class="table-header table-responsive p-d-md-flex p-jc-between p-mb-sm-6 p-mb-md-0">
