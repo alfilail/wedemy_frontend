@@ -224,8 +224,7 @@ export class CreateKelasComponent implements OnInit {
     this.class.id = this.statusActivity
     this.class.updatedBy = this.idUser
     this.formData.append("body", JSON.stringify(this.class));
-
-    this.classService.updateClass(this.formData).subscribe(val => {
+    this.classService.updateClass(this.formData).subscribe(res => {
       this.getClass();
       this.formData.delete("body")
       this.route.navigateByUrl('/admin/kelas-aktif')

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ROLE } from '@bootcamp-core/constants/role';
+import { SELECTED_TYPE } from '@bootcamp-elearning/constants/selected-type';
 import { DashboardService } from '@bootcamp-elearning/services/dashboard.service';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
   isLoading: boolean = true;
 
   results: any[] = [];
-  selectedInstructor = 'Semua';
+  selectedInstructor = SELECTED_TYPE.ALL;
 
   ROLES = ROLE;
   myRole: string;
@@ -43,15 +44,12 @@ export class DashboardComponent implements OnInit {
         this.results = res.data;
         this.isLoading = false;
         this.getUniqueInstructor();
-        console.log(res);
       },
       err => { console.log(err) }
     )
   }
 
   getUniqueInstructor(): void {
-    console.log('Classes Data');
-    console.log(this.classes);
     const uniqueInstructors = [...new Set(this.classes.map(item => item.idClass
       .idTutor
       .idProfile.fullName))];
@@ -61,7 +59,7 @@ export class DashboardComponent implements OnInit {
 
   search(): void {
     this.results = this.classes.filter((item) => {
-      if (this.selectedInstructor == 'Semua') {
+      if (this.selectedInstructor == SELECTED_TYPE.ALL) {
         return item
           .idClass
           .className

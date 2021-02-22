@@ -21,16 +21,11 @@ export class DtlClassService {
     return this.http.get<Responses<DetailClasses>>(`${API.WEDEMY_HOST_DOMAIN}/detail-class/${id}`)
   }
 
-  getDetailClassInactive(): Observable<Responses<DetailClasses[]>> {
-    return this.http.get<Responses<DetailClasses[]>>(`${API.WEDEMY_HOST_DOMAIN}/detail-class/inactive`)
-  }
-
   updateInactiveClass(dtlClass: DetailClasses): Observable<Responses<DetailClasses[]>> {
     return this.http.post<Responses<DetailClasses[]>>(`${API.WEDEMY_HOST_DOMAIN}/detail-class`, dtlClass)
   }
 
   getDtlClassByIdClass(idClass: string): Observable<Responses<DetailClasses[]>> {
     return this.http.get<Responses<DetailClasses[]>>(`${API.WEDEMY_HOST_DOMAIN}/detail-class/class/${idClass}`)
-
   }
 }
