@@ -42,7 +42,7 @@ export class SilabusComponent implements OnInit {
       this.module.createdBy = this.idUser;
       this.moduleService.insertModules(this.module).subscribe(val => {
         this.productDialog = false;
-        this.listSilabus.push(this.module)
+        this.getModules()
       })
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })

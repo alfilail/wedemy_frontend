@@ -38,9 +38,9 @@ export class SettingComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserById(this.authService.getUserId())
-    .subscribe(res => {
-      this.user = res.data;
-    });
+      .subscribe(res => {
+        this.user = res.data;
+      });
   }
 
   showUsernameDialog(): void {
@@ -94,22 +94,29 @@ export class SettingComponent implements OnInit {
       this.usernameNewMsg = "Nama pengguna tidak boleh kosong"
     } else {
       this.pwNewConfirmIsValid = true;
-      
-      if (/\s/.test(event)){
+
+      if (/\s/.test(event)) {
         this.usernameNewIsValid = false;
         this.usernameNewMsg = "Nama pengguna tidak boleh mengandung spasi"
       }
     }
   }
 
+  changeUsername(): void {
+    this.user.username = this.usernameNew;
+    this.user.updatedBy = this.authService.getUserId();
+    this.userService.updateUser(this.user).subscribe(res => {
+      this.user = res.data;
+    })
+  }
+
   changePassword(): void {
     this.user.userPassword = this.pwNew;
     this.user.updatedBy = this.authService.getUserId();
     this.userService.updateUser(this.user).subscribe(res => {
-
-    this.user = res.data;
-    this.displayPassword = false;
+      this.user = res.data;
+      this.displayPassword = false;
     });
-    
+
   }
 }

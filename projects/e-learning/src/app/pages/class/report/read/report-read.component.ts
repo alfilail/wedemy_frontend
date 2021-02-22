@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import API from '@bootcamp-core/constants/api';
 import { ROLE } from '@bootcamp-core/constants/role';
@@ -32,9 +33,11 @@ export class ReportReadComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private reportService: ReportService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle(`Laporan`);
     this.roleCode = this.authService.getRole();
     this.route.params.subscribe(param => {
       this.idDetailClass = param['idDetailClass'];
@@ -52,7 +55,6 @@ export class ReportReadComponent implements OnInit {
   getAllScore(): void {
     this.reportService.getAllScore(this.idDetailClass).subscribe(
       res => {
-        console.log(res);
         this.participantScores = res.data;
         this.loadingParicipantScore = false;
       },
@@ -67,7 +69,6 @@ export class ReportReadComponent implements OnInit {
     this.reportService.getAllPressence(this.idDetailClass).subscribe(
       res => {
         this.participantPresences = res.data;
-        console.log(res);
         this.loadingParicipantPresence = false;
         this.updateRowGroupMetaData();
       },
@@ -78,19 +79,13 @@ export class ReportReadComponent implements OnInit {
   }
 
   getPresenceReportByIdModuleRgs(idDtlModuleRgs: string): void {
-    // let url = `${API.WEDEMY_HOST_DOMAIN}${API.WEDEMY_REPORT_DETAIL_PRESENCE_QUERY_PATH}?idDtlClass=${this.idDetailClass}&idDtlModuleRgs=${idDtlModuleRgs}`;
-    // let link = createElementTagA(url);
-    // link.target = '_blank';
-    // link.click()
     const param = {
       idDtlClass: this.idDetailClass,
       idDtlModuleRgs: idDtlModuleRgs
     }
     this.reportService.getPresenceReportByIdModuleRegistration(param).subscribe(
       res => {
-        console.log(res);
         this.downloadReport(res.data);
-        // this.downLoadFile(res, "application/pdf");
       },
       err => {
         console.log(err);
@@ -101,7 +96,6 @@ export class ReportReadComponent implements OnInit {
   getPresenceReport(): void {
     this.reportService.getAllPresenceReport(this.idDetailClass).subscribe(
       res => {
-        console.log(res);
         this.downloadReport(res.data);
       },
       err => {
@@ -118,7 +112,6 @@ export class ReportReadComponent implements OnInit {
 
     this.reportService.getDetailScore(param).subscribe(
       res => {
-        console.log(res);
         this.isReportScoreUserAvailable = res.data.check;
         if (res.data.check && this.roleCode === this.ROLES.TUTOR) {
 
@@ -148,9 +141,6 @@ export class ReportReadComponent implements OnInit {
 
     this.reportService.getCertificate(param).subscribe(
       res => {
-        console.log('get certificate');
-
-        console.log(res);
         this.isCertificateUserAvailable = res.data.check;
         this.selectedCertificatedUser = res.data;
       },

@@ -43,7 +43,7 @@ export class NilaiComponent implements OnInit {
     this.nilai.createdBy = this.idUser
     this.gradeService.insertGrade(this.nilai).subscribe(val => {
       this.productDialog = false;
-      this.listNilai.push(this.nilai);
+      this.getNilai();
     });
   }
 
@@ -53,7 +53,6 @@ export class NilaiComponent implements OnInit {
       this.productDialog = false;
       this.update = false;
       this.removeNilai(this.nilai.id)
-      this.listNilai.push(this.nilai)
       this.getNilai()
     });
   }

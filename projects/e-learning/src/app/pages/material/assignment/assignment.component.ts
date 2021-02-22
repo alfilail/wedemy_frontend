@@ -42,7 +42,6 @@ export class AssignmentComponent implements OnInit {
       res => {
         this.assignments = res.data;
         this.loading = false;
-        console.log(res);
       },
       err => {
         console.log(err);
@@ -88,21 +87,14 @@ export class AssignmentComponent implements OnInit {
             score: Number(val.score)
           })
         }
-
       }
     })
-    console.log('new score');
-    console.log(refactModelNewScore);
-    console.log('update score');
-    console.log(refactModelUpdateScore);
     return [refactModelNewScore, refactModelUpdateScore];
   }
 
   keyPress(event: any) {
     const pattern = /[0-9]/;
     let inputChar = String.fromCharCode(event.charCode);
-    console.log(event);
-
     if (!pattern.test(inputChar)) {
       event.preventDefault();
     }
@@ -112,16 +104,11 @@ export class AssignmentComponent implements OnInit {
     this.assignments = this.assignments.map(element => {
       if (element.idAssignmentSubmission.idParticipant.id
         === event.idAssignmentSubmission.idParticipant.id) {
-        console.log(event.score);
         let score = Number(event.score);
         if (score < 0) {
-          console.log('kurang dari 0');
-
           element.score = 0;
         }
         if (score > 100) {
-          console.log('Lebih dari 100');
-
           element.score = 100;
         }
       }
@@ -139,7 +126,6 @@ export class AssignmentComponent implements OnInit {
     let res = this.refactorModelScore(this.assignments);
     this.assignmentService.setScoreAssignment(res[0], res[1]).subscribe(
       res => {
-        console.log(res);
         this.refresh();
       },
       err => {

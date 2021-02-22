@@ -24,7 +24,6 @@ export class ClassDetailComponent implements OnInit {
     this.idDetailClass = this.route.firstChild.snapshot.params['idDetailClass'];
     this.classService.getDetail(this.idDetailClass).subscribe(
       res => {
-        console.log(res);
         this.class = res.data;
         this.isLoading = false;
         this.titleService.setTitle(`Kurikulum Kelas - ${this.class.idClass.className}`);

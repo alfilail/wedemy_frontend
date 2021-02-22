@@ -46,7 +46,7 @@ export class JenisTugasComponent implements OnInit {
       this.learningMaterialType.createdBy = this.idUser
       this.learningMaterialTypeService.insertLearningMaterialTypes(this.learningMaterialType).subscribe(val => {
         this.productDialog = false;
-        this.listJenisTugas.push(this.learningMaterialType);
+        this.getLearningMaterialTypes()
       })
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
@@ -59,7 +59,6 @@ export class JenisTugasComponent implements OnInit {
       this.productDialog = false;
       this.update = false;
       this.removeJenisTugas(this.learningMaterialType.id)
-      this.listJenisTugas.push(this.learningMaterialType)
       this.getLearningMaterialTypes()
     })
   }

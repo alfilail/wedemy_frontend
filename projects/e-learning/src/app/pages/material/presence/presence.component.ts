@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { APPROVEMENT } from '@bootcamp-elearning/constants/approvement';
 import { PresenceService } from '@bootcamp-elearning/services/presence.service';
@@ -24,9 +25,11 @@ export class PresenceComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private presenceService: PresenceService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Kehadiran')
     this.route
       .queryParams
       .subscribe(params => {
@@ -71,7 +74,6 @@ export class PresenceComponent implements OnInit {
 
     this.presenceService.setStatusPresence(payload).subscribe(
       res => {
-        console.log(res);
         this.getPresence();
       },
       err => {
@@ -87,7 +89,6 @@ export class PresenceComponent implements OnInit {
     }
     this.presenceService.getPresence(param).subscribe(
       res => {
-        console.log(res);
         this.participants = res.data;
         this.loading = false;
       },
@@ -102,20 +103,11 @@ export class PresenceComponent implements OnInit {
     this.getPresence();
   }
 
-  check(): void {
-    console.log('check presence');
-    console.log(this.selectedParticipants);
-  }
-
   selectAll(isCheck: boolean): void {
-    console.log(isCheck);
-
     if (isCheck) {
       this.selectedParticipants = this.participants.filter(val => {
         return val.idApprovement.code === this.approvements.PENDING
       });
-      console.log(this.selectedParticipants);
-
     } else {
       this.selectedParticipants = [];
     }

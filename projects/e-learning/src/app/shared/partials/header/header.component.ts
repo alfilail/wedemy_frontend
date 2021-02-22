@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit {
         res => {
           this.user = res.data;
           this.getFirstName();
-          console.log(res);
         },
         err => {
           console.log(err);

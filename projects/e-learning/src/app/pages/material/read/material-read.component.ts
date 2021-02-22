@@ -26,12 +26,9 @@ export class MaterialReadComponent implements OnInit {
 
   isLoading: boolean = true;
 
-  constructor(private sanitizer: DomSanitizer,
-    private location: Location,
-    private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private materialService: MaterialService,
-    private authService: AuthService,
-    private router: Router) { }
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.roleCode = this.authService.getRole();
@@ -48,7 +45,6 @@ export class MaterialReadComponent implements OnInit {
     this.materialService.getMaterial(this.idDetailModuleRegistration).subscribe(
       res => {
         this.material = res.data;
-        console.log(res);
         this.fileName = this.material.idLearningMaterial.idFile.name;
         this.isLoading = false;
       },

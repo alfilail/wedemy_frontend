@@ -6,7 +6,7 @@ import { Users } from '@bootcamp-admin/model/users';
 import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { UserService } from '@bootcamp-admin/service/user.service';
 import { MessageService } from 'primeng/api';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-create-tutor',
   templateUrl: './create-tutor.component.html',
@@ -23,6 +23,7 @@ export class CreateTutorComponent implements OnInit {
   user = new Users();
   role = new Roles();
   roleUser: string;
+  birthDate: Date = new Date();
 
   usernameValid: boolean;
   usernameErrMsg: string;
@@ -51,6 +52,7 @@ export class CreateTutorComponent implements OnInit {
   birthDateValid: boolean;
   birthDateErrMsg: string;
 
+  roleActive: string;
   idUser: string
   constructor(private auth: AuthService, private messageService: MessageService, private route: Router, private userService: UserService, private activeRoute: ActivatedRoute) {
 
@@ -59,6 +61,11 @@ export class CreateTutorComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
       this.roleUser = params['user']
+      if (this.roleUser == 'tutor') {
+        this.roleActive = 'Tutor'
+      } else {
+        this.roleActive = 'Admin'
+      }
       this.idUser = this.auth.getUserId();
     })
   }
@@ -66,18 +73,23 @@ export class CreateTutorComponent implements OnInit {
   insertUser(): void {
 
     if (this.passwordValid && this.emailValid && this.namaValid
-      && this.alamatValid && this.birthDateValid && this.birthPlaceValid
+      && this.alamatValid && this.birthPlaceValid
       && this.nomorKtpValid && this.numPhoneErrMsg && this.emailValid) {
       if (this.roleUser == 'tutor') {
         this.role.code = 'TTR';
+        this.roleActive = 'Tutor'
       } else {
         this.role.code = 'ADM';
+        this.roleActive = 'Admin'
       }
 
       this.user.createdBy = this.idUser
+
+      this.profile.birthDate = this.formatDate(this.birthDate)
       this.user.idProfile = this.profile;
       this.user.idRole = this.role;
 
+      console.log(this.user)
       this.userService.insertUsers(this.user).subscribe(val => {
         if (this.roleUser == 'tutor') {
           this.route.navigateByUrl('/admin/user-tutor')
@@ -90,6 +102,11 @@ export class CreateTutorComponent implements OnInit {
     }
   }
 
+
+  formatDate(str: Date): string {
+    let format = moment(str).format('YYYY-MM-DD');
+    return format;
+  }
 
   backButton() {
     if (this.roleUser == 'tutor') {
@@ -116,9 +133,6 @@ export class CreateTutorComponent implements OnInit {
       } else if (col == 'birthPlace') {
         this.birthPlaceValid = false;
         this.birthPlaceErrMsg = 'tempat lahir tidak boleh kosong'
-      } else if (col == 'birthDate') {
-        this.birthDateValid = false;
-        this.birthDateErrMsg = 'tanggal lahir tidak boleh kosong'
       } else if (col == 'password') {
         this.passwordValid = false;
         this.passErrMsg = 'password tidak boleh kosong'
@@ -167,7 +181,23 @@ export class CreateTutorComponent implements OnInit {
         } else {
           this.birthPlaceValid = true;
         }
-      } else if (col == 'birthDate') {
+      }
+    }
+  }
+
+  birthValidation(event: string): void {
+    if (event.length == 0) {
+      this.birthDateValid = false;
+      this.birthDateErrMsg = 'tanggal lahir tidak boleh kosong'
+    } else {
+      let date = new Date(event);
+      if (date.getFullYear() > 2020) {
+        console.log('tes')
+        this.birthDateValid = false;
+        this.birthDateErrMsg = 'kelahiran minimal tahun 2020'
+      } else {
+        console.log('true')
+
         this.birthDateValid = true;
       }
     }

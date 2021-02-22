@@ -70,7 +70,10 @@
             <li class="section-item d-flex justify-content-end py-1 align-items-center"
               style="background-color: rgb(230, 230, 230);">
               <div class="item pr-3" style="font-size: 12px; font-weight: bold;">
-                {{ material.learningMaterial.scheduleDate | date}} {{modules.detailClass.startTime}} -
+                <i class="fas fa-calendar-day"></i>&nbsp;
+                {{ material.learningMaterial.scheduleDate | date}} &nbsp;
+                <i class="fas fa-clock"></i>&nbsp;
+                {{modules.detailClass.startTime}} -
                 {{modules.detailClass.endTime}}
               </div>
             </li>
@@ -78,9 +81,14 @@
               <div class="item">
                 <div class="title-container">
                   <span class="material-icon">
-                    <!-- material.learningMaterial.idLearningMaterial.idLearningMaterialType.code -->
-                    <i class="fas fa-file-alt"></i>
+                    <i *ngIf=" material.learningMaterial.idLearningMaterial.idLearningMaterialType.code === materialTypes.MATERIAL" 
+                      class="fas fa-book-open"></i>
+                    <i *ngIf=" material.learningMaterial.idLearningMaterial.idLearningMaterialType.code === materialTypes.TASK" 
+                      class="fas fa-file-signature"></i>
+                      <i *ngIf=" material.learningMaterial.idLearningMaterial.idLearningMaterialType.code === materialTypes.EXAM" 
+                      class="fas fa-tasks"></i>
                   </span>
+                  
                   <ng-template [ngIf]="material.statusPresent.status === 200">
                     <a [routerLink]="['../../../material']"
                       [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: material.learningMaterial.id}">
@@ -128,9 +136,7 @@
               </div>
             </li>
           </ng-template>
-
         </ul>
-
       </div>
     </div>
   </ng-template>

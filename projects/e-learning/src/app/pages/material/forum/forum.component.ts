@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { Forum } from '@bootcamp-elearning/models/forum';
 import { ForumService } from '@bootcamp-elearning/services/forum.service';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-forum',
@@ -25,10 +24,12 @@ export class ForumComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
-    private forumService: ForumService) {
+    private forumService: ForumService,
+    private titleService: Title) {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Forum');
     this.route
       .queryParams
       .subscribe(params => {
@@ -41,7 +42,6 @@ export class ForumComponent implements OnInit {
     this.forumService.getForum(idDetailModuleRegistration).subscribe(
       res => {
         this.forums = res.data
-        console.log(res);
       },
       err => {
         console.log(err);
@@ -60,7 +60,6 @@ export class ForumComponent implements OnInit {
     }
     this.forumService.postForum(data).subscribe(
       res => {
-        console.log(res);
         this.getForum(this.idDetailModuleRegistration);
         this.comment = '';
       },
@@ -78,7 +77,6 @@ export class ForumComponent implements OnInit {
     }
     this.forumService.replyPostForum(reply).subscribe(
       res => {
-        console.log(res);
         this.getForum(this.idDetailModuleRegistration);
         this.comment = '';
         this.replyComment = '';

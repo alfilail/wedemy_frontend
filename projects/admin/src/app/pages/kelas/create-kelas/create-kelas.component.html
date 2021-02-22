@@ -1,7 +1,11 @@
 <app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h1>Kelas Aktif</h1>
+    </mat-toolbar>
+
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12 pb-5 justify-content-center">
-            <div class="card m-4">
+            <div class="card m-3">
                 <div class="card-header d-flex">
                     <button class="btn btn-primary-outline" width="20px" routerLink="/admin/kelas-aktif">
                         <i class="fas fa-chevron-left fa-lg"></i>
@@ -103,7 +107,7 @@
                                 class="p-button-raised p-button-success" (click)="addClass()"></button>
                             <ng-template #update>
                                 <button pButton pRipple label="Update" icon="pi pi-plus"
-                                    class="p-button-raised p-button-success" (click)="addClass()"></button>
+                                    class="p-button-raised p-button-success" (click)="updateClass()"></button>
                             </ng-template>
                         </div>
                     </div>

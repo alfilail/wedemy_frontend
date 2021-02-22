@@ -30,8 +30,7 @@ export class AnswerComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private authService: AuthService,
-    private answerService: AnswerService,
-    private materialService: MaterialService) { }
+    private answerService: AnswerService) { }
 
   ngOnInit(): void {
     this.route
@@ -59,7 +58,6 @@ export class AnswerComponent implements OnInit {
 
     this.answerService.getAnswer(param).subscribe(
       res => {
-        console.log('Berhasil mengambil data answer');
         this.answer = res.data;
         this.getLastModified();
         this.getFileName();
@@ -72,8 +70,6 @@ export class AnswerComponent implements OnInit {
   }
 
   uploadAnswer(): void {
-    console.log('Tombol Upload di click');
-
     let payload: Object;
     let method: string;
     if (this.answer.id == "Empty") {
@@ -104,10 +100,8 @@ export class AnswerComponent implements OnInit {
     }
 
     this.formData.append('body', JSON.stringify(payload));
-    console.log(this.formData.get('body'));
     this.answerService.uploadAnswer(this.formData, method).subscribe(
       res => {
-        console.log(res);
         this.formData.delete('body');
         this.getAnswer();
 
@@ -119,8 +113,6 @@ export class AnswerComponent implements OnInit {
   }
 
   getLastModified(): void {
-    console.log(this.answer)
-
     if (this.answer.id != "Empty") {
       if (this.answer.idFile.updatedAt) {
         this.lastModified = this.answer.idFile.updatedAt;
@@ -156,7 +148,6 @@ export class AnswerComponent implements OnInit {
 
     if (now > dueDate) {
       this.isOverDueDate = true;
-      console.log("over due date");
     } else {
       this.isOverDueDate = false;
     }
@@ -166,5 +157,4 @@ export class AnswerComponent implements OnInit {
   downloadFileFromBlob(data: File): void {
     downloadFile(data, this.fileName);
   }
-
 }

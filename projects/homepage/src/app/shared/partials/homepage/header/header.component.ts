@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROLE } from '@bootcamp-homepage/constants/roles';
-import { Roles } from '@bootcamp-homepage/models/roles';
 import { Users } from '@bootcamp-homepage/models/users';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { UserService } from '@bootcamp-homepage/services/user.service';
@@ -22,7 +21,6 @@ export class HeaderComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private route: ActivatedRoute,
     private router: Router,
   ) { }
 
