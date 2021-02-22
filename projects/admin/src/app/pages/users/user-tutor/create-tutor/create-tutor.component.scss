@@ -27,3 +27,11 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+:host::ng-deep .p-calendar .p-inputtext   {
+  height: 40px;
+  }
+
+:host::ng-deep  .p-calendar-w-btn {
+  height: 40px;
+}
