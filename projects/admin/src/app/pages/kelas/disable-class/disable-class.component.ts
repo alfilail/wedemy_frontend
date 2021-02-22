@@ -90,6 +90,7 @@ export class DisableClassComponent implements OnInit {
   getClasses() {
     this.classService.getClassInactive().subscribe(val => {
       this.listKelas = val.data;
+      this.loading = false;
     })
   }
 
