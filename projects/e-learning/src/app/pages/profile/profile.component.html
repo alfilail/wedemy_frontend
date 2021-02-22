@@ -171,7 +171,8 @@
             <div class="p-field">
                 <label for="navigators">Tanggal Lahir</label>
                 <p-calendar [ngModelOptions]="{standalone: true}" dateFormat="yy-mm-dd" [(ngModel)]="myAccount.idProfile.birthDate" placeholder="{{myAccount.idProfile.birthDate? myAccount.idProfile.birthDate : 'Masukkan Tanggal Lahir'}}" [showIcon]="true" [monthNavigator]="true"
-                    [yearNavigator]="true" yearRange="1950:{{yearRange}}" inputId="navigators"></p-calendar>
+                    [yearNavigator]="true" yearRange="1950:{{yearRange}}" inputId="navigators" (ngModelChange)="birthDateValidation($event)"></p-calendar>
+                <small *ngIf="!birthDateIsValid" class="p-error">{{birthDateErrMsg}}</small>
             </div>
             <div class="p-field">
                 <label for="address">Alamat</label>
@@ -180,7 +181,8 @@
             </div>
         </div>
         <div class="text-right">
-            <p-button icon="pi pi-check" type="submit" label="Simpan" styleClass="p-button-text"></p-button>
+            <button pButton pRipple type="submit" label="Simpan" [disabled]="disabledButton"></button>
+            <!-- <p-button icon="pi pi-check" type="submit" label="Simpan" styleClass="p-button-text" disabled="false"></p-button> -->
         </div>
     </form>
 </p-dialog>

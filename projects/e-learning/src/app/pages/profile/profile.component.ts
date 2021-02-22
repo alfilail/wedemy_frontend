@@ -32,6 +32,11 @@ export class ProfileComponent implements OnInit {
   isLoading: boolean = true;
   yearRange: number;
 
+  birthDateIsValid: boolean;
+  birthDateErrMsg: string;
+
+  disabledButton: boolean = false;
+
   constructor(
     private userService: UserService,
     private authService: AuthService,
@@ -130,4 +135,23 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  birthDateValidation(event: string): void {
+    let now = new Date();
+    now.setHours(0);
+    now.setMinutes(0);
+    now.setSeconds(0);
+    let birthDate = new Date(event);
+    // birthDate.setTime(0);
+    console.log(event);
+    console.log(birthDate);
+    console.log(now)
+    if (birthDate >= now || birthDate.toString() == now.toString()) {
+      this.birthDateIsValid = false;
+      this.disabledButton = true;
+      this.birthDateErrMsg = "Tanggal lahir tidak boleh lebih dari sama dengan hari ini "
+    } else {
+      this.birthDateIsValid = true;
+      this.disabledButton = false;
+    }
+  }
 }
