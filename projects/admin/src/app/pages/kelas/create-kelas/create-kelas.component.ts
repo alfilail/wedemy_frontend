@@ -9,7 +9,6 @@ import { Profiles } from '@bootcamp-admin/model/profiles';
 import { Users } from '@bootcamp-admin/model/users';
 import { AuthService } from '@bootcamp-admin/service/auth.service';
 import { ClassService } from '@bootcamp-admin/service/class.service';
-import { DtlClassService } from '@bootcamp-admin/service/dtl-class.service';
 import { ModuleService } from '@bootcamp-admin/service/module.service';
 import { UserService } from '@bootcamp-admin/service/user.service';
 import * as moment from 'moment';
@@ -226,9 +225,12 @@ export class CreateKelasComponent implements OnInit {
   }
 
   updateClass() {
+    let kelas = new Classes();
+    this.class.idTutor = this.tutorSelect
     this.class.id = this.statusActivity
     this.class.updatedBy = this.idUser
     this.formData.append("body", JSON.stringify(this.class));
+
     this.classService.updateClass(this.formData).subscribe(res => {
       this.getClass();
       this.formData.delete("body")
