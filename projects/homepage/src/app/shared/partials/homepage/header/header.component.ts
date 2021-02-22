@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROLE } from '@bootcamp-homepage/constants/roles';
+import { Roles } from '@bootcamp-homepage/models/roles';
 import { Users } from '@bootcamp-homepage/models/users';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
 import { UserService } from '@bootcamp-homepage/services/user.service';
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   isLoggedOut: boolean;
   firstName: string;
   defaultImg: string = "/assets/img/profile-default.jpeg";
+  isAdmin: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -31,6 +33,9 @@ export class HeaderComponent implements OnInit {
       this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
         this.user = res.data;
         this.getFirstName(res.data.idProfile.fullName);
+        if (this.authService.getRole() == ROLE.ADMIN || this.authService.getRole() == ROLE.SPRADMIN) {
+          this.isAdmin = true;
+        }
       })
     }
   }

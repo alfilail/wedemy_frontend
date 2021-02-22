@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ROLE } from '@bootcamp-homepage/constants/roles';
 import { Users } from '@bootcamp-homepage/models/users';
 import { AuthService } from '@bootcamp-homepage/services/auth.service';
-import { ToastService } from '@bootcamp-homepage/services/toast.service';
 import { UserService } from '@bootcamp-homepage/services/user.service';
-import { MessageService } from 'primeng/api';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -30,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.user).subscribe(val => {
       this.authService.saveToken(val.token);
       this.authService.saveProfile(val.profile, this.user);
-      console.log(this.authService.getRole());
+      
       if (this.authService.getRole() == ROLE.PARTICIPANT) {
         this.router.navigateByUrl('/')
       } else if (this.authService.getRole() == ROLE.ADMIN) {

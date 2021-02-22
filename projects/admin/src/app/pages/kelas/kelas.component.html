@@ -25,7 +25,7 @@
                     [globalFilterFields]="['idTutor.idProfile.fullName','code']" [rowHover]="true" dataKey="id"
                     class="p-m-3" [scrollable]="true"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                    [showCurrentPageReport]="true" [filterDelay]="0">
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
                     <ng-template pTemplate="colgroup" let-columns>
                         <colgroup>
                             <col style="width:150px">

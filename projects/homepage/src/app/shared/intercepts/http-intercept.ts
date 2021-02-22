@@ -39,6 +39,7 @@ export class HttpIntercept implements HttpInterceptor {
     return next.handle(reqNew).pipe(
       tap(
         event => {
+          console.log(event)
           if (event instanceof HttpResponse) {
             if (event.body.ok == true && event.body.message) {
               if (event.body.message != 'Data berhasil diambil') {

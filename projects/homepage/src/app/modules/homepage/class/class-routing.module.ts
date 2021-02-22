@@ -7,11 +7,13 @@ import { CanActivateTeam } from '@bootcamp-homepage/shared/guards/classes/can-ac
 const routes: Routes = [
   {
     path: 'class',
-    component: ClassReadComponent
+    component: ClassReadComponent,
+    canActivate: [CanActivateTeam]
   },
   {
     path : 'class/:idClass',
-    component: ClassDetailComponent
+    component: ClassDetailComponent,
+    canActivate: [CanActivateTeam]
   },
 ];
 
