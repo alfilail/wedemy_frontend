@@ -5,7 +5,7 @@
         <div class="p-d-flex group-by-tutor">
           <label class="mr-2 p-as-center" for="ins">Tutor :</label>
           <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" id="ins" class="shadow-sm form-control">
-            <option [ngValue]="'Semua'">Semua</option>
+            <option [ngValue]="'SEMUA'">Semua</option>
             <option *ngFor="let instructor of instructors" [ngValue]="instructor">{{ instructor }}</option>
           </select>
         </div>
@@ -44,7 +44,6 @@
                 <img class="float-left rounded-circle"
                   src="{{class.idClass.idTutor.idProfile.idFile.file? 'data:image/png;base64,'+class.idClass.idTutor.idProfile.idFile.file : defaultImg}}"
                   alt="" width="36px" height="36px">
-
                 <p class="ml-3 float-left instructor-name mt-2">
                   {{class.idClass.idTutor.idProfile.fullName}}
                 </p>
