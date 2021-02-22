@@ -30,6 +30,12 @@ export class ProfileComponent implements OnInit {
   ktpErrMsg: string;
 
   isLoading: boolean = true;
+  yearRange: number;
+
+  birthDateIsValid: boolean;
+  birthDateErrMsg: string;
+
+  disabledButton: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -43,7 +49,13 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserById(this.authService.getUserId()).subscribe(res => {
       this.myAccount = res.data;
       this.isLoading = false;
+      this.getYearRange();
     })
+  }
+
+  getYearRange(): void {
+    let now = new Date().getFullYear();
+    this.yearRange = now-1;
   }
 
   showMaximizableDialog() {
@@ -118,4 +130,19 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  birthDateValidation(event: string): void {
+    let now = new Date();
+    now.setHours(0);
+    now.setMinutes(0);
+    now.setSeconds(0);
+    let birthDate = new Date(event);
+    if (birthDate >= now || birthDate.toString() == now.toString()) {
+      this.birthDateIsValid = false;
+      this.disabledButton = true;
+      this.birthDateErrMsg = "Tanggal lahir tidak boleh lebih dari sama dengan hari ini "
+    } else {
+      this.birthDateIsValid = true;
+      this.disabledButton = false;
+    }
+  }
 }

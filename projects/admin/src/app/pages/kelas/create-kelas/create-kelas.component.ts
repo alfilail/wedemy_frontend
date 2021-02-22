@@ -40,6 +40,8 @@ export class CreateKelasComponent implements OnInit {
   jamSelesaiValid: boolean;
   jamSelesaiErrMsg: string;
 
+  errMsg: string;
+
   formData: FormData = new FormData();;
   file: String;
   endTimeValue: string;
@@ -168,42 +170,44 @@ export class CreateKelasComponent implements OnInit {
   }
 
   addClass() {
+    if (this.kuotaValid && this.nameValid && this.descValid && this.jamMulaiValid && this.jamSelesaiValid) {
+      let kelas = new Classes();
+      kelas = this.class
+      kelas.createdBy = this.idUser
+      kelas.idTutor = this.tutorSelect
 
-    let kelas = new Classes();
-    kelas = this.class
-    kelas.createdBy = this.idUser
-    kelas.idTutor = this.tutorSelect
+      let dtlClass = new DetailClasses();
 
-    let dtlClass = new DetailClasses();
+      dtlClass.idClass = kelas;
+      dtlClass.endTime = this.endTimeValue
+      dtlClass.startTime = this.startTimeValue
+      dtlClass.createdBy = this.idUser
 
-    dtlClass.idClass = kelas;
-    dtlClass.endTime = this.endTimeValue
-    dtlClass.startTime = this.startTimeValue
-    dtlClass.createdBy = this.idUser
-
-    if (this.rangeDates != undefined) {
-      dtlClass.startDate = this.formatDate(this.rangeDates[0])
-      dtlClass.endDate = this.formatDate(this.rangeDates[1])
-    }
-
-
-    if (this.startTimeValue > this.endTimeValue) {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: "Jam berakhir tidak boleh lebih awal" })
-    } else {
-      if (this.statusActivity == 'create') {
-
-        this.modules.push(this.moduleSelect)
-
-        let classHelper = new ClassHelper();
-        classHelper.detailClass = dtlClass
-        classHelper.clazz = kelas
-        classHelper.module = this.modules
-
-        this.listClass.push(classHelper)
-        this.classHelper = classHelper
-      } else {
-        this.updateClass();
+      if (this.rangeDates != undefined) {
+        dtlClass.startDate = this.formatDate(this.rangeDates[0])
+        dtlClass.endDate = this.formatDate(this.rangeDates[1])
       }
+
+      if (this.startTimeValue > this.endTimeValue) {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: "Jam berakhir tidak boleh lebih awal" })
+      } else {
+        if (this.statusActivity == 'create') {
+
+          this.modules.push(this.moduleSelect)
+
+          let classHelper = new ClassHelper();
+          classHelper.detailClass = dtlClass
+          classHelper.clazz = kelas
+          classHelper.module = this.modules
+
+          this.listClass.push(classHelper)
+          this.classHelper = classHelper
+        } else {
+          this.updateClass();
+        }
+      }
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: this.errMsg })
     }
   }
 
@@ -236,12 +240,15 @@ export class CreateKelasComponent implements OnInit {
       if (col == 'code') {
         this.codeValid = false;
         this.codeErrMsg = 'kode tidak boleh kosong'
+        this.errMsg = this.codeErrMsg
       } else if (col == 'nama') {
         this.nameValid = false;
         this.nameErrMsg = 'nama tidak boleh kosong'
+        this.errMsg = this.nameErrMsg
       } else if (col == 'desc') {
         this.descValid = false;
         this.descErrMsg = 'deskripsi tidak boleh kosong'
+        this.errMsg = this.descErrMsg
       }
     } else {
       if (col == 'code') {
@@ -254,6 +261,7 @@ export class CreateKelasComponent implements OnInit {
         if (event > this.startTimeValue) {
           this.jamSelesaiValid = false;
           this.jamSelesaiErrMsg = "waktu selesai tidak boleh lebih awal daripada waktu mulai"
+          this.errMsg = this.jamSelesaiErrMsg
         } else {
           this.jamMulaiValid = true;
         }
@@ -268,12 +276,16 @@ export class CreateKelasComponent implements OnInit {
       this.kuotaValid = false;
       if (!/^[0-9]*$/.test(event)) {
         this.kuotaErrMsg = "Masukkan angka saja"
+        this.errMsg = this.kuotaErrMsg
       } else if (Number(event) < 1) {
         this.kuotaErrMsg = "kuota peserta tidak boleh kurang dari 1 "
+        this.errMsg = this.kuotaErrMsg
       } else if (Number(event) > 1000) {
         this.kuotaErrMsg = "kuota peserta tidak boleh lebih dari 1000"
+        this.errMsg = this.kuotaErrMsg
       } if (event.length == 0) {
         this.kuotaErrMsg = 'kuota peserta tidak boleh kosong'
+        this.errMsg = this.kuotaErrMsg
       }
     }
   }
