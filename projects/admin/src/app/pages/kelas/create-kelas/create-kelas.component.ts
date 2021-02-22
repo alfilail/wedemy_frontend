@@ -225,7 +225,6 @@ export class CreateKelasComponent implements OnInit {
   }
 
   updateClass() {
-    let kelas = new Classes();
     this.class.idTutor = this.tutorSelect
     this.class.id = this.statusActivity
     this.class.updatedBy = this.idUser

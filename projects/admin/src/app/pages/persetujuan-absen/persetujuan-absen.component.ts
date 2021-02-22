@@ -40,7 +40,7 @@ export class PersetujuanAbsenComponent implements OnInit {
       this.approvement.createdBy = this.idUser
       this.aprovementService.insertApprovement(this.approvement).subscribe(val => {
         this.productDialog = false;
-        this.listApprovements.push(this.approvement)
+        this.getApprovements();
       })
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
@@ -53,7 +53,6 @@ export class PersetujuanAbsenComponent implements OnInit {
       this.productDialog = false;
       this.update = false;
       this.removeApprovement(this.approvement.id)
-      this.listApprovements.push(this.approvement)
       this.getApprovements()
     })
   }

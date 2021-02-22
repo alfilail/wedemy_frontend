@@ -40,8 +40,7 @@ export class StatusTugasComponent implements OnInit {
       this.statusTugas.createdBy = this.idUser
       this.submissionStatusService.insertSubmissionStatus(this.statusTugas).subscribe(val => {
         this.productDialog = false;
-        this.listStatusTugas.push(this.statusTugas);
-
+        this.getSubmissionStatus();
       })
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: "Data tidak valid." })
@@ -53,7 +52,6 @@ export class StatusTugasComponent implements OnInit {
     this.submissionStatusService.updateSubmissionStatus(this.statusTugas).subscribe(val => {
       this.productDialog = false; this.update = false;
       this.removeStatusTugas(this.statusTugas.id)
-      this.listStatusTugas.push(this.statusTugas)
       this.getSubmissionStatus()
     })
   }
