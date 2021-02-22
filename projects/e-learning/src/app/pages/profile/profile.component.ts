@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
   ktpErrMsg: string;
 
   isLoading: boolean = true;
+  yearRange: number;
 
   constructor(
     private userService: UserService,
@@ -44,7 +45,14 @@ export class ProfileComponent implements OnInit {
       console.log(res.data);
       this.myAccount = res.data;
       this.isLoading = false;
+      this.getYearRange();
     })
+  }
+
+  getYearRange(): void {
+    let now = new Date().getFullYear();
+    this.yearRange = now-1;
+    console.log(now);
   }
 
   showMaximizableDialog() {

@@ -171,7 +171,7 @@
             <div class="p-field">
                 <label for="navigators">Tanggal Lahir</label>
                 <p-calendar [ngModelOptions]="{standalone: true}" dateFormat="yy-mm-dd" [(ngModel)]="myAccount.idProfile.birthDate" placeholder="{{myAccount.idProfile.birthDate? myAccount.idProfile.birthDate : 'Masukkan Tanggal Lahir'}}" [showIcon]="true" [monthNavigator]="true"
-                    [yearNavigator]="true" yearRange="1980:2025" inputId="navigators"></p-calendar>
+                    [yearNavigator]="true" yearRange="1950:{{yearRange}}" inputId="navigators"></p-calendar>
             </div>
             <div class="p-field">
                 <label for="address">Alamat</label>
