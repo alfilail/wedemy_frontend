@@ -170,7 +170,7 @@ export class CreateKelasComponent implements OnInit {
   }
 
   addClass() {
-    if (this.kuotaValid && this.nameValid && this.descValid && this.jamMulaiValid && this.jamSelesaiValid) {
+    if (this.kuotaValid == true && this.nameValid == true && this.descValid == true) {
       let kelas = new Classes();
       kelas = this.class
       kelas.createdBy = this.idUser
@@ -206,7 +206,8 @@ export class CreateKelasComponent implements OnInit {
           this.updateClass();
         }
       }
-    } else {
+    }
+    else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: this.errMsg })
     }
   }
@@ -257,14 +258,6 @@ export class CreateKelasComponent implements OnInit {
         this.nameValid = true;
       } else if (col == 'desc') {
         this.descValid = true;
-      } else if (col == 'endHour') {
-        if (event > this.startTimeValue) {
-          this.jamSelesaiValid = false;
-          this.jamSelesaiErrMsg = "waktu selesai tidak boleh lebih awal daripada waktu mulai"
-          this.errMsg = this.jamSelesaiErrMsg
-        } else {
-          this.jamMulaiValid = true;
-        }
       }
     }
   }
