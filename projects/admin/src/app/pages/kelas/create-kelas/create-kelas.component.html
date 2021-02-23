@@ -42,7 +42,7 @@
                                 <label for="kodeSilabus">Tutor</label>
                                 <select class="form-control" [(ngModel)]="tutorSelect" ngDefaultControl>
                                     <option *ngFor="let tutor of listTutors" [ngValue]="tutor"
-                                        [selected]="tutor == tutorSelect">
+                                        [selected]="tutor.id == tutorSelect.id">
                                         {{tutor.idProfile.fullName}}
                                     </option>
                                 </select>
